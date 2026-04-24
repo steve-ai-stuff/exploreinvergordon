@@ -1,0 +1,4189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Invergordon — Gateway to the Scottish Highlands</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    background: url('website_image_files/background_images/background_image.jpg') center 30% / cover no-repeat;
+    z-index: 0;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.55) 0%,
+      rgba(8,15,30,0.3) 40%,
+      rgba(8,15,30,0.75) 100%);
+    z-index: 1;
+  }
+
+  .hero-stars { display: none; }
+
+  .hero-mountains {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+  }
+
+  .hero-mountains svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+  }
+
+  .hero-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3rem, 10vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mist);
+    margin: 1.5rem 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    color: var(--gold);
+    padding: 0.85rem 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.6);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-cta:hover {
+    background: rgba(201,168,76,0.12);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.2);
+  }
+
+  .hero-cta svg { display: none; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .scroll-hint span {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite 1.5s;
+  }
+
+  /* ── WALK BANNER ── */
+  .walk-banner {
+    background: linear-gradient(to right, rgba(8,15,30,0.6), rgba(107,74,126,0.15), rgba(8,15,30,0.6));
+    border-top: 1px solid rgba(107,74,126,0.3);
+    border-bottom: 1px solid rgba(107,74,126,0.3);
+    color: var(--mist);
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+
+  .walk-banner p {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  .walk-banner strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--heather-light);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 1rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--heather-light);
+  }
+
+  .divider {
+    margin: 0.75rem 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── WELCOME ── */
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .welcome-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .saltire-strip {
+    height: 4px;
+    background: linear-gradient(to right, #1d4fa8, #ffffff 50%, #1d4fa8);
+  }
+
+  .welcome-card {
+    background: rgba(29,79,168,0.12);
+    border: 1px solid rgba(46,106,173,0.25);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .welcome-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--saltire));
+  }
+
+  .welcome-card:hover {
+    background: rgba(29,79,168,0.22);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: block;
+    text-align: center;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── MURAL TRAIL ── */
+  .trail-section {
+    background: rgba(8,15,30,0.95);
+    border-top: 1px solid rgba(29,79,168,0.25);
+    border-bottom: 1px solid rgba(29,79,168,0.25);
+    padding: 2rem 1.5rem 0;
+  }
+
+  .trail-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .trail-intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .trail-intro { grid-template-columns: 1fr; align-items: center; }
+  }
+
+  .trail-stats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .trail-stat {
+    flex: 1 1 240px;
+    max-width: 300px;
+  }
+
+  .trail-stat {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(29,79,168,0.1);
+    border: 1px solid rgba(29,79,168,0.2);
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 3rem;
+    text-align: center;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+
+  /* ── MURAL FLIP CARDS ── */
+  .murals-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    background: transparent;
+    border: none;
+  }
+  @media (min-width: 500px) {
+    .murals-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 768px) {
+    .murals-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .mural-flip-wrap {
+    perspective: 800px;
+    cursor: pointer;
+    height: 160px;
+  }
+
+  .mural-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 4px;
+  }
+
+  .mural-flip-wrap.flipped .mural-flip-inner,
+  .mural-flip-wrap:hover .mural-flip-inner {
+    transform: rotateX(180deg);
+  }
+
+  .mural-face, .mural-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* FRONT face — the text tile */
+  .mural-face {
+    background: var(--highland-deep);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(29,79,168,0.2);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+  }
+  .mural-face::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), var(--heather));
+    transform: scaleX(0);
+    transition: transform 0.35s ease;
+  }
+  .mural-flip-wrap:hover .mural-face::after {
+    transform: scaleX(1);
+  }
+
+  /* BACK face — image preview */
+  .mural-back {
+    transform: rotateX(180deg);
+    background: #111;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .mural-back img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+  .mural-back-label {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .mural-back-click-hint {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .mural-number {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .mural-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  .mural-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .mural-tap-hint {
+    color: var(--gold);
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  /* ── LIGHTBOX ── */
+  #mural-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: lbFadeIn 0.25s ease;
+  }
+  #mural-lightbox.open {
+    display: flex;
+  }
+  @keyframes lbFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .lb-inner {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background: var(--highland-deep);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+    animation: lbSlideUp 0.3s cubic-bezier(0.2,0.8,0.3,1);
+  }
+  @keyframes lbSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .lb-img-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .lb-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .lb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-align: center;
+    padding: 2rem;
+  }
+  .lb-placeholder-icon {
+    font-size: 3rem;
+    opacity: 0.4;
+  }
+  .lb-info {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+  .lb-number {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .lb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .lb-location {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .lb-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+    font-family: 'Overpass Mono', monospace;
+    letter-spacing: 0.1em;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .lb-close {
+    position: absolute;
+    top: 12px; right: 14px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .lb-close:hover { background: rgba(200,50,50,0.7); }
+
+  /* ── EXPANDED MURAL ── */
+  .mural-expanded {
+    display: none;
+    grid-column: 1 / -1;
+    background: rgba(26,31,46,0.95);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem;
+    margin: 0;
+  }
+
+  .mural-expanded.active { display: block; }
+
+  .mural-expanded h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .mural-expanded p {
+    color: var(--mist);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .close-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+  }
+
+  .close-btn:hover { color: var(--cream); border-color: rgba(255,255,255,0.3); }
+
+  /* ── BUSINESSES ── */
+  .businesses-section {
+    padding: 1rem 1.5rem 2rem;
+  }
+
+  .biz-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+
+  /* ── BUSINESS FLIP CARDS ── */
+  .biz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    background: transparent;
+    border: none;
+    margin-top: 2.5rem;
+  }
+
+  .biz-flip-wrap {
+    perspective: 700px;
+    cursor: pointer;
+    height: 110px;
+  }
+
+  .biz-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 4px;
+  }
+
+  .biz-flip-wrap.biz-flipped .biz-flip-inner,
+  .biz-flip-wrap:hover .biz-flip-inner {
+    transform: rotateX(180deg);
+  }
+
+  .biz-face, .biz-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* Front */
+  .biz-face {
+    background: var(--highland-deep);
+    border: 1px solid rgba(29,79,168,0.2);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .biz-face::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--heather), var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  .biz-flip-wrap:hover .biz-face::after {
+    transform: scaleX(1);
+  }
+
+  /* Back — photo */
+  .biz-back {
+    transform: rotateX(180deg);
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: #111;
+    overflow: hidden;
+  }
+
+  .biz-back-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+
+  .biz-back-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0.4rem 0.6rem 0.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.82), transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .biz-back-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .biz-back-hint {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+
+  /* fallback colour block when no photo */
+  .biz-back-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .biz-category {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .biz-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  /* ── BUSINESS LIGHTBOX ── */
+  #biz-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: lbFadeIn 0.2s ease;
+  }
+  #biz-lightbox.open { display: flex; }
+
+  .biz-lb-inner {
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    background: var(--highland-deep);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+    animation: lbSlideUp 0.28s cubic-bezier(0.2,0.8,0.3,1);
+  }
+
+  /* Photo hero */
+  .biz-lb-photo-wrap {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #111;
+    overflow: hidden;
+  }
+
+  .biz-lb-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .biz-lb-photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a2d3d, #0d1438);
+    z-index: 0;
+  }
+
+  .biz-lb-photo:not([src=""]) ~ .biz-lb-photo-fallback {
+    z-index: -1;
+  }
+
+
+  .biz-lb-info {
+    padding: 1.1rem 1.4rem 1.4rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .biz-lb-text .biz-lb-cat {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .biz-lb-text .biz-lb-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .biz-lb-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1rem;
+    background: var(--gold);
+    color: #0a0f1e;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+    align-self: center;
+  }
+  .biz-lb-open:hover { opacity: 0.85; }
+
+  .biz-lb-close {
+    position: absolute;
+    top: 10px; right: 12px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .biz-lb-close:hover { background: rgba(200,50,50,0.7); }
+
+
+  /* ── LANDSCAPE ── */
+  .landscape-section {
+    background: linear-gradient(180deg, rgba(8,15,30,0) 0%, rgba(14,30,58,0.9) 50%, rgba(8,15,30,0) 100%);
+    border-top: 1px solid rgba(29,79,168,0.15);
+    border-bottom: 1px solid rgba(29,79,168,0.15);
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .landscape-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .landscape-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.4;
+    margin: 2rem 0;
+  }
+
+  .landscape-quote span { color: var(--gold-light); }
+
+  /* ── MUSEUM ── */
+  .museum-section {
+    padding: 1rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .museum-card {
+    background: linear-gradient(135deg, rgba(29,79,168,0.15), rgba(107,74,126,0.12));
+    border: 1px solid rgba(29,79,168,0.25);
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .museum-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -20%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(29,79,168,0.12) 0%, transparent 70%);
+  }
+
+  .museum-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .museum-card p {
+    color: var(--mist);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .museum-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--heather);
+    color: var(--cream);
+    padding: 0.85rem 1.75rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--heather-light);
+    color: var(--highland-deep);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.85rem 1.75rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--highland-deep);
+  }
+
+  /* ── CRUISE INFO ── */
+  .cruise-section {
+    background: rgba(8,15,30,0.95);
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(29,79,168,0.2);
+  }
+
+  .cruise-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .cruise-inner { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .cruise-tip {
+    padding: 1.5rem;
+    border-left: 2px solid var(--gold);
+  }
+
+  .cruise-tip h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .cruise-tip p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+
+  .footer-credit {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.6rem !important;
+    color: rgba(154,144,128,0.5) !important;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+
+  /* ── LANGUAGE BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(8,12,24,0.98);
+    border-bottom: 1px solid rgba(29,79,168,0.35);
+    padding: 0.4rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s;
+  }
+
+  @media (max-width: 680px) {
+    .lang-bar {
+      gap: 0.5rem;
+      padding: 0.35rem 0.5rem;
+    }
+    .lang-btn {
+      font-size: 0.52rem;
+      padding: 0.2rem 0.2rem;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  .lang-btn:hover, .lang-btn.active { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* ── INTRO TEXT ── */
+  .intro-text {
+    font-size: 1.15rem;
+    color: var(--mist);
+    line-height: 1.8;
+    max-width: 650px;
+  }
+
+  .intro-text strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ── CRUISE HUB SECTION ── */
+  .cruise-hub-section {
+    padding: 2rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .arrival-info-bar {
+    background: linear-gradient(to right, var(--heather), rgba(46,106,173,0.6), var(--heather));
+    border: 1px solid rgba(46,106,173,0.4);
+    padding: 1.75rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .arrival-info-bar {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1.5rem 1.25rem;
+    }
+  }
+
+  .arrival-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .arrival-stat-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .arrival-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+
+  .arrival-stat-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  /* ── ITINERARY CARDS ── */
+  .itinerary-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .itinerary-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .itinerary-card {
+    background: rgba(8,15,30,0.7);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 6px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .itinerary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .itinerary-card.card-2h::before {
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+  }
+
+  .itinerary-card.card-4h::before {
+    background: linear-gradient(to right, var(--loch-blue), var(--loch-light));
+  }
+
+  .itinerary-card.card-8h::before {
+    background: linear-gradient(to right, var(--heather), var(--heather-light));
+  }
+
+  .itinerary-card:hover {
+    background: rgba(29,79,168,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+  }
+
+  .card-time-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .itinerary-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .itinerary-card .intro-text {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .itinerary-card ul {
+    list-style: none;
+    margin-bottom: 1.25rem;
+  }
+
+  .itinerary-card li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.65rem;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .itinerary-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .card-option {
+    background: rgba(29,79,168,0.08);
+    border-left: 2px solid var(--heather-light);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+  }
+
+  .card-option strong {
+    color: var(--heather-light);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+
+  .card-option p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .pro-tip {
+    background: rgba(201,168,76,0.08);
+    border-left: 2px solid var(--gold);
+    padding: 1rem 1.25rem;
+    margin-top: 1.25rem;
+    border-radius: 3px;
+  }
+
+  .pro-tip::before {
+    content: '💡 Pro Tip: ';
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .pro-tip p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── PORT ARRIVAL GUIDE ── */
+  .port-arrival-guide {
+    margin: 3rem 0 2rem;
+  }
+
+  .port-arrival-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .port-arrival-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .port-column {
+    background: rgba(29,79,168,0.12);
+    border: 1px solid rgba(29,79,168,0.25);
+    padding: 1.75rem;
+    border-radius: 6px;
+  }
+
+  .port-column h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .port-column p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .port-column p strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ── SHIP SCHEDULE CALLOUT ── */
+  .ship-schedule-callout {
+    background: rgba(201,168,76,0.1);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 2rem 1.75rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .ship-schedule-callout .section-label {
+    margin-bottom: 0.5rem;
+  }
+
+  .ship-schedule-callout h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--cream);
+    margin-bottom: 1.25rem;
+  }
+
+  .ship-schedule-callout p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .ship-schedule-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    padding: 0.8rem 1.75rem;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+
+  .ship-schedule-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  .ship-schedule-callout .ship-operators {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── EXCURSION GRID ── */
+  .excursion-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 500px) {
+    .excursion-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .excursion-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .excursion-card {
+    background: rgba(8,15,30,0.8);
+    border: 1px solid rgba(29,79,168,0.25);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .excursion-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--heather), var(--loch-blue), var(--heather));
+  }
+
+  .excursion-card:hover {
+    background: rgba(29,79,168,0.18);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  .excursion-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .excursion-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .excursion-distance {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+  }
+
+  .excursion-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .excursion-card a {
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 0.2rem;
+    transition: all 0.2s ease;
+  }
+
+  .excursion-card a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  /* ── TIPS ACCORDION ── */
+  .tips-accordion {
+    margin: 2rem 0;
+  }
+
+  .tip-item {
+    background: rgba(29,79,168,0.1);
+    border: 1px solid rgba(29,79,168,0.2);
+    margin-bottom: 0.75rem;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .tip-header {
+    background: rgba(29,79,168,0.15);
+    padding: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .tip-header:hover {
+    background: rgba(29,79,168,0.25);
+  }
+
+  .tip-header-icon {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+  }
+
+  .tip-header-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .tip-toggle {
+    font-size: 1.25rem;
+    color: var(--gold);
+    transition: transform 0.3s ease;
+  }
+
+  .tip-item.open .tip-toggle {
+    transform: rotate(180deg);
+  }
+
+  .tip-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 1.25rem;
+  }
+
+  .tip-item.open .tip-body {
+    max-height: 500px;
+    padding: 1rem 1.25rem;
+  }
+
+  .tip-body p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── PHOTO UPLOAD TEASER ── */
+  .photo-upload-teaser {
+    background: linear-gradient(135deg, rgba(29,79,168,0.15), rgba(107,74,126,0.08));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 6px;
+    padding: 2.25rem 1.75rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .photo-upload-teaser-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .photo-upload-teaser h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .photo-upload-teaser p {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .upload-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .upload-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE BAR — fixed at very top -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+</div>
+
+<!-- SALTIRE STRIP -->
+<div class="saltire-strip"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="javascript:void(0)" onclick="scrollTo('nav-logo-top')" class="nav-logo">Invergordon</a>
+  <ul class="nav-links">
+    <li><a href="javascript:void(0)" onclick="scrollTo('cruise-hub')" class="nav-cruise">Cruise</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('welcome')" class="nav-arrive">Arrive</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('murals')" class="nav-murals">Murals</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('town')" class="nav-town">Town</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('museum')" class="nav-museum">Museum</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('landscape')" class="nav-landscape">Landscape</a></li>
+    <li><a href="blog.html" class="nav-blog">Blog</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding-top:0; max-width:100%;">
+  <div class="hero-bg"></div>
+  <div class="hero-stars"></div>
+
+  <!-- SVG Mountains -->
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mtnGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0e2040;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="mtnGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#091530;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="lochGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#1d4fa8;stop-opacity:0.6" />
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <!-- Back mountains -->
+      <path d="M0,400 L0,280 L120,180 L200,220 L320,120 L440,190 L560,100 L680,170 L800,80 L920,160 L1040,90 L1160,150 L1280,110 L1360,170 L1440,130 L1440,400 Z" fill="url(#mtnGrad1)" opacity="0.6"/>
+      <!-- Mid mountains -->
+      <path d="M0,400 L0,320 L80,260 L180,290 L280,220 L400,270 L500,210 L620,260 L720,190 L840,250 L960,200 L1080,260 L1180,210 L1300,255 L1440,220 L1440,400 Z" fill="url(#mtnGrad2)" opacity="0.8"/>
+      <!-- Loch / water reflection -->
+      <path d="M0,400 L0,370 L200,355 L400,365 L600,350 L800,362 L1000,348 L1200,360 L1440,350 L1440,400 Z" fill="url(#lochGrad)" opacity="0.9"/>
+      <!-- Foreground hills -->
+      <path d="M0,400 L0,385 L150,370 L350,380 L550,365 L750,378 L950,362 L1150,375 L1350,365 L1440,372 L1440,400 Z" fill="#080f1e"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-tag" id="hero-tag">Port of Cromarty Firth · Scottish Highlands</p>
+    <h1 class="hero-title">
+      Explore
+      <em>Invergordon</em>
+    </h1>
+    <p class="hero-subtitle" id="hero-sub">Gateway to the Highlands — just a 5-minute walk from your ship</p>
+    <a href="javascript:void(0)" onclick="scrollTo('welcome')" class="hero-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <span id="hero-cta-text">Begin Your Visit</span>
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="t-scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- WALK BANNER -->
+<div class="walk-banner">
+  <p id="walk-banner-text">🚶 <strong>Town Centre is just a 5-minute walk</strong> from the cruise terminal — no bus needed, no taxis required</p>
+</div>
+
+<!-- CRUISE HUB -->
+<section id="cruise-hub" class="cruise-hub-section">
+  <p class="section-label">Port of Cromarty Firth</p>
+  <h2 class="section-title">Cruise Passenger <em>Hub</em></h2>
+  <div class="divider"></div>
+  <p class="intro-text">Everything you need to make the most of your time in Invergordon — from the moment your anchor drops to the moment you reboard.</p>
+
+  <!-- ARRIVAL INFO BAR -->
+  <div class="arrival-info-bar">
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">🚶</div>
+      <div class="arrival-stat-value">5 min walk</div>
+      <div class="arrival-stat-label">Town Centre from terminal</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">⏱️</div>
+      <div class="arrival-stat-value">8–12 hours</div>
+      <div class="arrival-stat-label">Typical port stay</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">💰</div>
+      <div class="arrival-stat-value">Free entry</div>
+      <div class="arrival-stat-label">Mural trail, town, High Street</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">🗺️</div>
+      <div class="arrival-stat-value">No tour needed</div>
+      <div class="arrival-stat-label">Everything is walkable</div>
+    </div>
+  </div>
+
+  <!-- TIME-OPTIMISED ITINERARY CARDS -->
+  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem; text-align: center;">How to Spend Your Time</h3>
+
+  <div class="itinerary-cards">
+    <!-- 2 HOUR CARD -->
+    <div class="itinerary-card card-2h">
+      <div class="card-time-badge">2 Hours</div>
+      <h3>Don't Panic</h3>
+      <p class="intro-text">You can still have an unforgettable experience.</p>
+      <ul>
+        <li>Walk from terminal to High Street (5 min)</li>
+        <li>Coffee at a local café (20 min)</li>
+        <li>Walk the central mural section: The Long Goodbye, Pipes & Drams, Gather Round (30–40 min)</li>
+        <li>Browse the High Street — Scottish gifts, local crafts (15 min)</li>
+        <li>Return to terminal with time to spare</li>
+      </ul>
+      <div class="pro-tip">
+        <p>Start at the railway station — it's the closest mural to the terminal and arguably the most impressive.</p>
+      </div>
+    </div>
+
+    <!-- 4-5 HOUR CARD -->
+    <div class="itinerary-card card-4h">
+      <div class="card-time-badge">4–5 Hours</div>
+      <h3>The Ideal Day</h3>
+      <p class="intro-text">You'll leave wishing you had more time.</p>
+      <ul>
+        <li>Full Mural Trail (60–90 min — all 12 murals)</li>
+        <li>Visit Invergordon Museum & Heritage Centre (45 min)</li>
+        <li>Lunch on the High Street — sit-down meal (60 min)</li>
+        <li>Walk to the waterfront and enjoy the Cromarty Firth views (20 min)</li>
+        <li>Browse shops and pick up a Highland souvenir</li>
+      </ul>
+      <div class="pro-tip">
+        <p>Download the free Mural Trail app before you leave the ship — it gives audio stories for each mural.</p>
+      </div>
+    </div>
+
+    <!-- 8+ HOUR CARD -->
+    <div class="itinerary-card card-8h">
+      <div class="card-time-badge">8+ Hours</div>
+      <h3>Full Day</h3>
+      <p class="intro-text">You are in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.</p>
+
+      <div class="card-option">
+        <strong>Option A — The Highland Explorer</strong>
+        <p>Morning mural trail + museum → Lunch → Afternoon excursion to Fyrish Monument (stunning panoramic views, moderate walk, 90 min return) → Evening back in town for a whisky</p>
+      </div>
+
+      <div class="card-option">
+        <strong>Option B — The Distillery Trail</strong>
+        <p>Glenmorangie Distillery (20 min from port, world-famous 10-year-old, tours available) → Dalmore Distillery (15 min, luxury expressions, stunning estate) → Late lunch in Invergordon → Museum or more murals</p>
+      </div>
+
+      <div class="card-option">
+        <strong>Option C — The Highlands Escape</strong>
+        <p>Coach or taxi to Inverness (40 min) → Culloden Battlefield (2 hours) → Loch Ness (optional further 20 min) → Return by 5pm — make sure you leave plenty of time</p>
+      </div>
+
+      <div class="pro-tip">
+        <p>If you're heading to Loch Ness, book a taxi or join a small group excursion — public transport is limited. Local drivers know these roads like the back of their hand.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORT ARRIVAL GUIDE -->
+  <div class="port-arrival-guide">
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin-bottom: 1.5rem;">Getting Started</h3>
+    <div class="port-arrival-grid">
+      <div class="port-column">
+        <h3>Getting from Ship to Town</h3>
+        <p>Your ship docks at the <strong>Port of Cromarty Firth terminal</strong></p>
+        <p>The town centre is a <strong>5-minute flat walk</strong> along the waterfront</p>
+        <p>Follow the signs or simply walk with the crowd — everyone's heading the same way</p>
+        <p>There is <strong>no need for a shuttle bus, taxi, or tour</strong> for the town itself</p>
+        <p>The <strong>High Street runs parallel to the water</strong> — you'll find it instantly</p>
+      </div>
+      <div class="port-column">
+        <h3>What to Bring Ashore</h3>
+        <p><strong>Comfortable walking shoes</strong> — flat terrain, no hills needed for town</p>
+        <p><strong>Light waterproof layer</strong> — even in summer, this is Scotland</p>
+        <p><strong>A small amount of cash</strong> — some small businesses prefer it</p>
+        <p><strong>Your phone</strong> — fully charged, the mural trail deserves photos</p>
+        <p><strong>No currency exchange needed</strong> — Scotland uses British Pounds Sterling (£)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHIP SCHEDULE CALLOUT -->
+  <div class="ship-schedule-callout">
+    <p class="section-label">This Season</p>
+    <h3>Ships Expected at Port of Cromarty Firth</h3>
+    <p>The 2026 cruise season runs from March through October, with ships calling 2–3 times per week at peak. The Port of Cromarty Firth publishes the full schedule on their official website.</p>
+    <a href="https://www.pocf.co.uk/cruise/cruise-schedule/" target="_blank" class="ship-schedule-btn">View Official Ship Schedule ↗</a>
+    <p class="ship-operators">Look out for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many more calling throughout the season.</p>
+  </div>
+
+  <!-- LOCAL EXCURSION DIRECTORY -->
+  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Popular Excursions</h3>
+
+  <div class="excursion-grid">
+    <div class="excursion-card">
+      <div class="excursion-icon">🏔️</div>
+      <h3>Fyrish Monument</h3>
+      <div class="excursion-distance">25 min drive</div>
+      <p>A replica of the Gates of Nagapatnam, built in 1782 to provide employment for local people after the Highland Clearances. Panoramic views over the Cromarty Firth.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">🥃</div>
+      <h3>Glenmorangie Distillery</h3>
+      <div class="excursion-distance">18 min drive</div>
+      <p>One of Scotland's most celebrated Highland single malts. Distillery tours, tastings, and a beautiful estate on the shores of the Dornoch Firth.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">🥃</div>
+      <h3>Dalmore Distillery</h3>
+      <div class="excursion-distance">12 min drive</div>
+      <p>Legendary for its complex, sherry-influenced expressions. One of the world's most collectable whiskies, made just minutes from the port.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">🏰</div>
+      <h3>Culloden Battlefield</h3>
+      <div class="excursion-distance">45 min drive</div>
+      <p>The site of the last pitched battle on British soil (1746). A haunting, beautifully managed National Trust for Scotland site. Essential Highland history.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">🏔️</div>
+      <h3>Loch Ness</h3>
+      <div class="excursion-distance">60 min drive</div>
+      <p>Home of the world's most famous mystery. The Great Glen and the loch itself are breathtaking regardless of what lurks beneath. Urquhart Castle on the shore is stunning.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">🏙️</div>
+      <h3>Inverness City Centre</h3>
+      <div class="excursion-distance">40 min drive</div>
+      <p>The capital of the Highlands. Victorian Market, Inverness Castle, the River Ness, independent shops, and excellent food. A full half-day destination.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">🏰</div>
+      <h3>Dunrobin Castle</h3>
+      <div class="excursion-distance">45 min drive</div>
+      <p>The largest castle in the Northern Highlands and one of Britain's oldest continuously inhabited houses. A fairytale turreted palace set in formal French-style gardens overlooking the sea, home to the Earls and Dukes of Sutherland. Falconry displays in the grounds.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">🏯</div>
+      <h3>Urquhardt Castle</h3>
+      <div class="excursion-distance">65 min drive</div>
+      <p>One of Scotland's most dramatic castle ruins, perched on the banks of Loch Ness with the famous loch stretching out behind it. A Historic Environment Scotland site with a modern visitor centre. The most photographed castle in the Highlands — and for good reason.</p>
+      <a href="#">Learn more</a>
+    </div>
+
+    <div class="excursion-card">
+      <div class="excursion-icon">👑</div>
+      <h3>Inverness Castle Experience</h3>
+      <div class="excursion-distance">40 min drive</div>
+      <p>Scotland's newest major visitor attraction, newly opened in the heart of Inverness with breathtaking views over the River Ness, the historic bridges, and the city centre below. An immersive Highland journey through 10,000 years of history, culture, and landscape — right on your doorstep.</p>
+      <a href="#">Learn more</a>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS ACCORDION -->
+  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Practical Tips</h3>
+
+  <div class="tips-accordion">
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">💷</span>
+        <span class="tip-header-text">Money & Payments</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p>Scotland uses British Pounds Sterling (£). Cards are widely accepted. A small amount of cash is useful for market stalls, small cafés, and tips.</p>
+      </div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🌤️</span>
+        <span class="tip-header-text">Weather</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p>Even in summer, the Highlands can be unpredictable. A light waterproof layer is always wise. July and August are the warmest months, averaging 17–19°C.</p>
+      </div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">📱</span>
+        <span class="tip-header-text">Mobile & Wi-Fi</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p>UK mobile networks (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available in some cafés. Download offline maps before you arrive.</p>
+      </div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🚕</span>
+        <span class="tip-header-text">Getting Around</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p>Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.</p>
+      </div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🛒</span>
+        <span class="tip-header-text">Shopping Tips</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p>Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.</p>
+      </div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🐾</span>
+        <span class="tip-header-text">A Scottish Welcome</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p>Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO UPLOAD TEASER -->
+  <div class="photo-upload-teaser">
+    <div class="photo-upload-teaser-icon">📸</div>
+    <h3>Did you visit Invergordon today?</h3>
+    <p>Upload your favourite photo from your visit and we'll feature it in our Visitor Gallery — shared with travellers from around the world.</p>
+    <button class="upload-btn">Upload Your Photo</button>
+  </div>
+</section>
+
+<!-- WELCOME -->
+<section id="welcome">
+  <p class="section-label" id="welcome-label">Welcome Aboard</p>
+  <h2 class="section-title" id="welcome-title">Your day in <em>Invergordon</em></h2>
+  <div class="divider"></div>
+  <p class="intro-text" id="welcome-text">
+    Most cruise passengers are whisked away on coaches before they realise what they're leaving behind. <strong>Don't make that mistake.</strong> Invergordon's High Street, its world-famous mural trail, and the breathtaking landscapes of Easter Ross are all on your doorstep — and they're free. This is one of the most underrated stops on any Highland cruise itinerary, and the locals know it.
+  </p>
+  <div class="welcome-grid" style="margin-top:1rem;">
+    <a href="javascript:void(0)" onclick="document.getElementById('murals').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
+      <span class="card-icon">🎨</span>
+      <div class="card-title" id="card1-title">The Mural Trail</div>
+      <p class="card-text" id="card1-text">11 extraordinary large-scale murals tell the story of Invergordon's remarkable history. Allow 60–90 minutes. Starts at the railway station, ends at the museum.</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card1-cta">Explore ↓</p>
+    </a>
+    <a href="javascript:void(0)" onclick="document.querySelector('footer').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
+      <span class="card-icon">🏔️</span>
+      <div class="card-title" id="card2-title">Highland Scenery</div>
+      <p class="card-text" id="card2-text">Mountains, sea lochs, ancient forests and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes in Europe.</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card2-cta">Discover ↓</p>
+    </a>
+    <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
+      <span class="card-icon">🍽️</span>
+      <div class="card-title" id="card3-title">Eat & Drink Locally</div>
+      <p class="card-text" id="card3-text">From a legendary full Scottish breakfast to award-winning Indian cuisine, the High Street offers genuine local flavours. No tourist traps — just good food.</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card3-cta">See the Guide ↓</p>
+    </a>
+    <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
+      <span class="card-icon">🛍️</span>
+      <div class="card-title" id="card4-title">Shop Local</div>
+      <p class="card-text" id="card4-text">Scottish gifts, handmade crafts, tartan and local art. Support real independent businesses, not chain stores. Everything is a short stroll from the port.</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card4-cta">Browse ↓</p>
+    </a>
+  </div>
+</section>
+
+<section class="museum-section" id="museum">
+  <p class="section-label" id="museum-label">History & Heritage</p>
+  <h2 class="section-title" id="museum-title">Invergordon <em>Museum</em></h2>
+  <div class="divider"></div>
+  <div style="width:100%;max-width:1000px;margin:0 auto 1.5rem;overflow:hidden;border-radius:4px;">
+    <img src="website_image_files/library_image/Invergordon-Museum.jpg" alt="Invergordon Museum"
+         style="width:100%;height:260px;object-fit:cover;object-position:top;display:block;"/>
+  </div>
+  <div class="museum-card">
+    <h3 id="museum-card-title">Discover Invergordon's Remarkable Story</h3>
+    <p id="museum-text1">Invergordon has a history that most visitors never expect — a Royal Naval base that shaped two World Wars, a 1931 mutiny that changed British naval history, an oil boom and bust that mirrored the Highland experience of the 20th century, and a community that has reinvented itself time and again. The museum holds this story, told through artefacts, photographs and the voices of the people who lived it.</p>
+    <p id="museum-text2">The museum is currently planning an exciting move to a new, larger home — a modern heritage centre that will do full justice to Invergordon's extraordinary past. Your visit today helps support that future.</p>
+    <div class="museum-links">
+      <a href="https://www.invergordonmuseum.co.uk" target="_blank" class="btn-primary" id="museum-btn1">Visit the Museum ↗</a>
+      <a href="https://invergordonoffthewall.org.uk/app/" target="_blank" class="btn-secondary" id="museum-btn2">Download Mural App ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- MURAL TRAIL -->
+<div class="trail-section" id="murals">
+  <div class="trail-inner">
+    <p class="section-label" id="mural-label">Outdoor Art Gallery</p>
+    <h2 class="section-title" id="mural-title">The <em>Mural Trail</em></h2>
+    <div class="divider"></div>
+
+    <div class="trail-intro">
+      <div>
+        <p id="mural-intro1" style="color:var(--mist); font-size:1.05rem; line-height:1.8; margin-bottom:1.5rem;">
+          In 2002, a group of local volunteers called <strong style="color:var(--cream);">Invergordon Off the Wall</strong> began a remarkable community project — transforming the town's walls into a monumental open-air gallery celebrating Highland history and heritage.
+        </p>
+        <p id="mural-intro2" style="color:var(--mist); font-size:1.05rem; line-height:1.8;">
+          Officially launched by HRH The Princess Royal in 2007, the trail now features 11 large-scale professionally painted murals plus sculpture. It is one of the first mural trails in Scotland and remains one of the finest.
+        </p>
+        <div style="margin-top:1.5rem;">
+          <a href="https://invergordonoffthewall.org.uk" target="_blank" class="btn-secondary" id="mural-official-btn">Visit Official Site ↗</a>
+        </div>
+      </div>
+      <div class="trail-stats">
+        <div class="trail-stat">
+          <div class="stat-number">11</div>
+          <div class="stat-label" id="stat1-label">Large-scale murals painted by professional artists</div>
+        </div>
+        <div class="trail-stat">
+          <div class="stat-number">60'</div>
+          <div class="stat-label" id="stat2-label">Minutes to walk the full trail at a leisurely pace</div>
+        </div>
+        <div class="trail-stat">
+          <div class="stat-number">Free</div>
+          <div class="stat-label" id="stat3-label">No entry fee. Open every day, all year round</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Murals Grid -->
+    <div class="murals-grid" id="murals-grid">
+
+      <div class="mural-flip-wrap" id="flip-1"
+           onmouseenter="flipCard(1)"
+           onmouseleave="unflipCard(1)"
+           ontouchstart="flipCard(1)"
+           onclick="openLightbox(1)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 01</div>
+            <div class="mural-name">The Long Goodbye</div>
+            <div class="mural-desc">Invergordon Station · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#2d4a6b;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/Long-Goodbye-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              The Long Goodbye
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-2"
+           onmouseenter="flipCard(2)"
+           onmouseleave="unflipCard(2)"
+           ontouchstart="flipCard(2)"
+           onclick="openLightbox(2)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 02</div>
+            <div class="mural-name">Pipes & Drams</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#4a2d6b;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/PipesandDrams-640x480.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Pipes & Drams
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-3"
+           onmouseenter="flipCard(3)"
+           onmouseleave="unflipCard(3)"
+           ontouchstart="flipCard(3)"
+           onclick="openLightbox(3)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 03</div>
+            <div class="mural-name">Gather Round</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#2d6b4a;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/GatherRound-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Gather Round
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-4"
+           onmouseenter="flipCard(4)"
+           onmouseleave="unflipCard(4)"
+           ontouchstart="flipCard(4)"
+           onclick="openLightbox(4)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 04</div>
+            <div class="mural-name">The Loch</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#1a3d5c;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheLoch-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              The Loch
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-5"
+           onmouseenter="flipCard(5)"
+           onmouseleave="unflipCard(5)"
+           ontouchstart="flipCard(5)"
+           onclick="openLightbox(5)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 05</div>
+            <div class="mural-name">Volunteer Spirit</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#6b4a2d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Volunteer-Spirit-2021-640x960.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Volunteer Spirit
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-6"
+           onmouseenter="flipCard(6)"
+           onmouseleave="unflipCard(6)"
+           ontouchstart="flipCard(6)"
+           onclick="openLightbox(6)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 06</div>
+            <div class="mural-name">Our Legacy</div>
+            <div class="mural-desc">Near Museum · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#3d2d6b;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/OurLegacy-640x287.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Our Legacy
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-7"
+           onmouseenter="flipCard(7)"
+           onmouseleave="unflipCard(7)"
+           ontouchstart="flipCard(7)"
+           onclick="openLightbox(7)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 07</div>
+            <div class="mural-name">Fire! Fire!</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#6b2d2d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/FireFire-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Fire! Fire!
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-8"
+           onmouseenter="flipCard(8)"
+           onmouseleave="unflipCard(8)"
+           ontouchstart="flipCard(8)"
+           onclick="openLightbox(8)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 08</div>
+            <div class="mural-name">The Way We Were</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#2d5c4a;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheWayWeWere-640x413.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              The Way We Were
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-9"
+           onmouseenter="flipCard(9)"
+           onmouseleave="unflipCard(9)"
+           ontouchstart="flipCard(9)"
+           onclick="openLightbox(9)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 09</div>
+            <div class="mural-name">Saltburn's Past</div>
+            <div class="mural-desc">Saltburn Road · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#5c3d1a;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/SaltburnsPast-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Saltburn's Past
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-10"
+           onmouseenter="flipCard(10)"
+           onmouseleave="unflipCard(10)"
+           ontouchstart="flipCard(10)"
+           onclick="openLightbox(10)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 10</div>
+            <div class="mural-name">A Century of Sport</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#1a5c3d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/CenturyOfSport-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              A Century of Sport
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-11"
+           onmouseenter="flipCard(11)"
+           onmouseleave="unflipCard(11)"
+           ontouchstart="flipCard(11)"
+           onclick="openLightbox(11)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">MURAL 11</div>
+            <div class="mural-name">Heritage of the Firth</div>
+            <div class="mural-desc">Near Museum · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#3d1a5c;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/HeritageOfTheFirth-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Heritage of the Firth
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-12"
+           onmouseenter="flipCard(12)"
+           onmouseleave="unflipCard(12)"
+           ontouchstart="flipCard(12)"
+           onclick="openLightbox(12)">
+        <div class="mural-flip-inner">
+          <!-- Front -->
+          <div class="mural-face">
+            <div class="mural-number">SCULPTURE</div>
+            <div class="mural-name">Evolution</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <!-- Back (image preview) -->
+          <div class="mural-back" style="background:#4a3d2d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Evolution-640x960.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Evolution
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+      <!-- Expanded detail panels (hidden until clicked) -->
+      <div class="mural-expanded" id="mural-1">
+        <h3>The Long Goodbye</h3>
+        <p>Located at Invergordon Railway Station, this deeply moving mural tells the story of the Seaforth Highlanders — local soldiers of the 51st Highland Division — who marched away to war in 1939 and endured capture at St Valery-en-Caux in 1940. Painted by artist Tracey Shough in 2007, it depicts their departure, the brutal march across Europe, and the real stories of local men including Reid Ross, who escaped through France and eventually returned home. Look closely at the platform panels — individual soldiers from Invergordon have their stories painted into the brickwork.</p>
+        <button class="close-btn" onclick="closeMural('mural-1')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-2">
+        <h3>Pipes & Drams</h3>
+        <p>A vibrant celebration of the Highland Games tradition and the iconic sound of the bagpipes that has echoed across this landscape for centuries. Invergordon has a long history with pipe bands — the Invergordon Distillery Pipe Band was formed in 1964 and the town has always held its Highland heritage close. This mural captures the colour, pride and community spirit that defines the Highlands.</p>
+        <button class="close-btn" onclick="closeMural('mural-2')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-3">
+        <h3>Gather Round</h3>
+        <p>Community is at the heart of everything in Invergordon, and this mural captures the spirit of people coming together — celebrating, sharing stories, and maintaining the bonds that make small Highland towns so resilient. It reflects the collaborative spirit of the Off the Wall project itself, which was built entirely on community involvement from the very beginning.</p>
+        <button class="close-btn" onclick="closeMural('mural-3')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-4">
+        <h3>The Loch</h3>
+        <p>The Cromarty Firth and the surrounding lochs are the defining landscape of Easter Ross. This mural celebrates the extraordinary wildlife that calls these waters home — including over 300 harbour seals and one of only two resident populations of bottlenose dolphins in the UK. The Firth is also home to 30,000 overwintering birds and 21 species of algae and eelgrass. You're looking at one of Scotland's most important natural habitats.</p>
+        <button class="close-btn" onclick="closeMural('mural-4')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-5">
+        <h3>Volunteer Spirit</h3>
+        <p>Invergordon has always relied on its volunteers — from the lifeboat crews who have served the Moray Firth since 1878, to the flower planters who bring colour to the High Street every summer, to the Off the Wall volunteers themselves who built this entire mural trail with no public funding. This mural is a tribute to the quietly heroic people who keep this community alive.</p>
+        <button class="close-btn" onclick="closeMural('mural-5')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-6">
+        <h3>Our Legacy</h3>
+        <p>Painted by Tracey Shough, this was actually the very first mural created for the trail — a celebration of the natural heritage of the Cromarty Firth. It depicts the extraordinary ecology of the Firth and the relationship between the people of Invergordon and the landscape that surrounds them. A fitting starting point for a project that would grow into something remarkable.</p>
+        <button class="close-btn" onclick="closeMural('mural-6')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-7">
+        <h3>Fire! Fire!</h3>
+        <p>This dramatic mural commemorates Invergordon's volunteer fire service and the real incidents that tested this community's courage over the generations. Fire was a constant danger in the days when buildings were primarily timber, and the men and women who answered the call did so with no formal training and no guarantee of safety. A tribute to bravery most people never think about.</p>
+        <button class="close-btn" onclick="closeMural('mural-7')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-8">
+        <h3>The Way We Were</h3>
+        <p>A window into everyday life in Invergordon across the decades — the High Street when it was bustling, the harbour when it was full of working vessels, the families and faces that made this town what it is. This mural is living memory, painted from photographs and first-hand accounts of people who grew up here. Look carefully and you may recognise details from the town as it still stands today.</p>
+        <button class="close-btn" onclick="closeMural('mural-8')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-9">
+        <h3>Saltburn's Past</h3>
+        <p>Saltburn is the peaceful woodland community just east of Invergordon, and this mural celebrates its history as a distinct settlement with its own identity. The Saltburn Woodland Walk is one of the most popular routes for both cruise visitors and locals — a beautiful green escape just minutes from the port, with views out across the Cromarty Firth.</p>
+        <button class="close-btn" onclick="closeMural('mural-9')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-10">
+        <h3>A Century of Sport</h3>
+        <p>From Highland Games athletics to football on the shore, sport has always been central to life in Easter Ross. This mural celebrates 100 years of sporting achievement and community competition — capturing the moments of triumph and the spirit of participation that defines how Highlanders approach both victory and defeat. With good humour, always.</p>
+        <button class="close-btn" onclick="closeMural('mural-10')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-11">
+        <h3>The Heritage of the Firth</h3>
+        <p>The Cromarty Firth has been central to Invergordon's story for centuries — as a naval base, an oil industry hub, a fishing ground, and now as one of Scotland's most ecologically important estuaries. This mural brings together the maritime history of the Firth in one sweeping panorama, from the warships of WWI and WWII to the oil rigs of the 1970s and the wind turbines of today.</p>
+        <button class="close-btn" onclick="closeMural('mural-11')">✕ Close</button>
+      </div>
+
+      <div class="mural-expanded" id="mural-12">
+        <h3>Evolution — Sculpture</h3>
+        <p>The Evolution sculpture on the High Street is a striking three-dimensional companion to the mural trail — a physical landmark that has become one of the most photographed spots in Invergordon. Created as part of the Off the Wall community project, it represents the town's journey through history and its continued evolution as a living, growing community. Stop here, take your photo, and think about what it took to build something this remarkable with volunteer hands.</p>
+        <button class="close-btn" onclick="closeMural('mural-12')">✕ Close</button>
+      </div>
+
+    </div>
+
+    <div style="margin-top:2.5rem; text-align:center;">
+      <p style="font-family:'Overpass Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--text-muted); text-transform:uppercase; margin-bottom:1rem;" id="mural-collab">Content in collaboration with</p>
+      <a href="https://invergordonoffthewall.org.uk" target="_blank" class="btn-secondary">Invergordon Off the Wall — Official Site ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- LANDSCAPE SECTION -->
+<div class="landscape-section" id="landscape" style="display:none;">
+  <div class="landscape-inner">
+    <p class="section-label" id="landscape-label">Easter Ross & Beyond</p>
+    <blockquote class="landscape-quote" id="landscape-quote">
+      "Step off the ship and you are standing in the middle of <span>one of the most beautiful landscapes in Europe.</span> Mountains, sea lochs, ancient forests and dramatic coastlines — all within sight."
+    </blockquote>
+    <div class="divider" style="margin:0 auto;"></div>
+    <p id="landscape-text" style="color:var(--text-muted); font-size:1rem; margin-top:1.5rem; line-height:1.8;">
+      Invergordon sits on the Cromarty Firth — a sheltered sea inlet surrounded by hills and mountains. To the north, Ben Wyvis rises to over 1,000 metres. To the south, the Black Isle peninsula stretches towards Inverness. Dolphins and seals are regularly spotted from the shoreline. This is genuine Highland scenery, not a tourist reconstruction of it.
+    </p>
+  </div>
+</div>
+
+<!-- BUSINESSES -->
+<div class="businesses-section" id="town">
+  <div style="display:flex; justify-content:center; margin-bottom: 1rem;">
+    <div class="trail-stat" style="max-width:600px; width:100%;">
+      <div class="stat-number" style="min-width:5rem;">In Town</div>
+      <div class="stat-label">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
+    </div>
+  </div>
+  <div class="biz-inner">
+    <div class="biz-grid">
+      <div class="biz-flip-wrap" id="biz-flip-0"
+           onmouseenter="bizFlip(0)"
+           onmouseleave="bizUnflip(0)"
+           onclick="openBizLightbox(0)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Food & Drink</div>
+            <div class="biz-name">Cafe Tomich</div>
+          </div>
+          <div class="biz-back" style="background:#1a3d2d;">
+            <div class="biz-back-fallback">☕</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJVx4HI0ebj0gRi11Vthm04-4&fov=90&pitch=0"
+                 alt="Cafe Tomich"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Cafe Tomich</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-1"
+           onmouseenter="bizFlip(1)"
+           onmouseleave="bizUnflip(1)"
+           onclick="openBizLightbox(1)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Food & Drink</div>
+            <div class="biz-name">Smugglers Point Café</div>
+          </div>
+          <div class="biz-back" style="background:#1a3d2d;">
+            <div class="biz-back-fallback">☕</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJn_61XgCbj0gRtHMkAdKD8ZY&fov=90&pitch=0"
+                 alt="Smugglers Point Café"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Smugglers Point Café</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-2"
+           onmouseenter="bizFlip(2)"
+           onmouseleave="bizUnflip(2)"
+           onclick="openBizLightbox(2)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Food & Drink</div>
+            <div class="biz-name">Rasho's Café</div>
+          </div>
+          <div class="biz-back" style="background:#1a3d2d;">
+            <div class="biz-back-fallback">☕</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJ01Ree0ebj0gRtLBjKjsEviM&fov=90&pitch=0"
+                 alt="Rasho's Café"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Rasho's Café</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-3"
+           onmouseenter="bizFlip(3)"
+           onmouseleave="bizUnflip(3)"
+           onclick="openBizLightbox(3)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Food & Drink</div>
+            <div class="biz-name">Harry Gow Bakers</div>
+          </div>
+          <div class="biz-back" style="background:#1a3d2d;">
+            <div class="biz-back-fallback">🥐</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJHUd0Y0ebj0gRa7IhRfN-idk&fov=90&pitch=0"
+                 alt="Harry Gow Bakers"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Harry Gow Bakers</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-4"
+           onmouseenter="bizFlip(4)"
+           onmouseleave="bizUnflip(4)"
+           onclick="openBizLightbox(4)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Restaurant</div>
+            <div class="biz-name">Balti Mahal</div>
+          </div>
+          <div class="biz-back" style="background:#2d1a3d;">
+            <div class="biz-back-fallback">🍛</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJi5wGY0ebj0gRhqe46bwt0aI&fov=90&pitch=0"
+                 alt="Balti Mahal"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Balti Mahal</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-5"
+           onmouseenter="bizFlip(5)"
+           onmouseleave="bizUnflip(5)"
+           onclick="openBizLightbox(5)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Restaurant</div>
+            <div class="biz-name">Bonnie Bhaji</div>
+          </div>
+          <div class="biz-back" style="background:#2d1a3d;">
+            <div class="biz-back-fallback">🍛</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJ4-oCjFObj0gR9zMbBiLGjKs&fov=90&pitch=0"
+                 alt="Bonnie Bhaji"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Bonnie Bhaji</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-6"
+           onmouseenter="bizFlip(6)"
+           onmouseleave="bizUnflip(6)"
+           onclick="openBizLightbox(6)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Restaurant</div>
+            <div class="biz-name">Dinner @8 Chinese</div>
+          </div>
+          <div class="biz-back" style="background:#2d1a3d;">
+            <div class="biz-back-fallback">🥢</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJbbWU0kmbj0gRpDWsecXvpnQ&fov=90&pitch=0"
+                 alt="Dinner @8 Chinese"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Dinner @8 Chinese</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-7"
+           onmouseenter="bizFlip(7)"
+           onmouseleave="bizUnflip(7)"
+           onclick="openBizLightbox(7)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Restaurant & Bar</div>
+            <div class="biz-name">Tuckers Inn</div>
+          </div>
+          <div class="biz-back" style="background:#3d1a1a;">
+            <div class="biz-back-fallback">🍺</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJSyDfbzabj0gR_RdA7whbs4s&fov=90&pitch=0"
+                 alt="Tuckers Inn"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Tuckers Inn</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-8"
+           onmouseenter="bizFlip(8)"
+           onmouseleave="bizUnflip(8)"
+           onclick="openBizLightbox(8)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Bar & Hotel</div>
+            <div class="biz-name">The Marine</div>
+          </div>
+          <div class="biz-back" style="background:#1a2d3d;">
+            <div class="biz-back-fallback">🥃</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJ03RBm0Cbj0gRfpGgF_c9x2M&fov=90&pitch=0"
+                 alt="The Marine"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">The Marine</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-9"
+           onmouseenter="bizFlip(9)"
+           onmouseleave="bizUnflip(9)"
+           onclick="openBizLightbox(9)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Scottish Gifts</div>
+            <div class="biz-name">MacRaes Tartan & Gifts</div>
+          </div>
+          <div class="biz-back" style="background:#2d3d1a;">
+            <div class="biz-back-fallback">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJf_0wyECbj0gRFcCWwFAyyKc&fov=90&pitch=0"
+                 alt="MacRaes Tartan & Gifts"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">MacRaes Tartan & Gifts</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-10"
+           onmouseenter="bizFlip(10)"
+           onmouseleave="bizUnflip(10)"
+           onclick="openBizLightbox(10)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Gifts</div>
+            <div class="biz-name">Tanstar Gifts</div>
+          </div>
+          <div class="biz-back" style="background:#3d2d1a;">
+            <div class="biz-back-fallback">🎁</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJxQUQYUebj0gRXCstJgOfB8A&fov=90&pitch=0"
+                 alt="Tanstar Gifts"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Tanstar Gifts</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-11"
+           onmouseenter="bizFlip(11)"
+           onmouseleave="bizUnflip(11)"
+           onclick="openBizLightbox(11)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Gifts</div>
+            <div class="biz-name">Nickel & Dime</div>
+          </div>
+          <div class="biz-back" style="background:#3d2d1a;">
+            <div class="biz-back-fallback">🎁</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJX34agEebj0gRp2DTk_DKXlk&fov=90&pitch=0"
+                 alt="Nickel & Dime"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Nickel & Dime</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-12"
+           onmouseenter="bizFlip(12)"
+           onmouseleave="bizUnflip(12)"
+           onclick="openBizLightbox(12)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Art Gallery</div>
+            <div class="biz-name">Invergordon Gallery</div>
+          </div>
+          <div class="biz-back" style="background:#1a2d3d;">
+            <div class="biz-back-fallback">🖼️</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJlQmVBnmbj0gRaTmOTbHr3pQ&fov=90&pitch=0"
+                 alt="Invergordon Gallery"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Invergordon Gallery</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-13"
+           onmouseenter="bizFlip(13)"
+           onmouseleave="bizUnflip(13)"
+           onclick="openBizLightbox(13)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Local Artist</div>
+            <div class="biz-name">Mike Ross Arts</div>
+          </div>
+          <div class="biz-back" style="background:#2d1a3d;">
+            <div class="biz-back-fallback">🎨</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJRVP0eISbj0gRdTD-hvK3Z7Q&fov=90&pitch=0"
+                 alt="Mike Ross Arts"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Mike Ross Arts</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-14"
+           onmouseenter="bizFlip(14)"
+           onmouseleave="bizUnflip(14)"
+           onclick="openBizLightbox(14)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Strength Sports</div>
+            <div class="biz-name">The Stoltman Shop</div>
+          </div>
+          <div class="biz-back" style="background:#3d1a2d;">
+            <div class="biz-back-fallback">💪</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJJYZTRTmbj0gR5Mkt6bVHYKo&fov=90&pitch=0"
+                 alt="The Stoltman Shop"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">The Stoltman Shop</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-15"
+           onmouseenter="bizFlip(15)"
+           onmouseleave="bizUnflip(15)"
+           onclick="openBizLightbox(15)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Supermarket</div>
+            <div class="biz-name">Co-Op</div>
+          </div>
+          <div class="biz-back" style="background:#1a3d1a;">
+            <div class="biz-back-fallback">🛒</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJ-zZbYkebj0gReRM_JAOAmUg&fov=90&pitch=0"
+                 alt="Co-Op"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Co-Op</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-16"
+           onmouseenter="bizFlip(16)"
+           onmouseleave="bizUnflip(16)"
+           onclick="openBizLightbox(16)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Pharmacy</div>
+            <div class="biz-name">Boots Chemist</div>
+          </div>
+          <div class="biz-back" style="background:#1a2a3d;">
+            <div class="biz-back-fallback">💊</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJ-zZbYkebj0gRyHaB8n4KaLk&fov=90&pitch=0"
+                 alt="Boots Chemist"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Boots Chemist</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-17"
+           onmouseenter="bizFlip(17)"
+           onmouseleave="bizUnflip(17)"
+           onclick="openBizLightbox(17)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Charity Shop</div>
+            <div class="biz-name">Hope Charity Shop</div>
+          </div>
+          <div class="biz-back" style="background:#3d2a1a;">
+            <div class="biz-back-fallback">❤️</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJRdqdfkebj0gR9WWGsUjO4jw&fov=90&pitch=0"
+                 alt="Hope Charity Shop"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Hope Charity Shop</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-18"
+           onmouseenter="bizFlip(18)"
+           onmouseleave="bizUnflip(18)"
+           onclick="openBizLightbox(18)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Charity Shop</div>
+            <div class="biz-name">Blythswood Care</div>
+          </div>
+          <div class="biz-back" style="background:#3d2a1a;">
+            <div class="biz-back-fallback">❤️</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJA1goY0ebj0gRfNZ7GPSXovQ&fov=90&pitch=0"
+                 alt="Blythswood Care"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Blythswood Care</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-19"
+           onmouseenter="bizFlip(19)"
+           onmouseleave="bizUnflip(19)"
+           onclick="openBizLightbox(19)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Library</div>
+            <div class="biz-name">Invergordon Library</div>
+          </div>
+          <div class="biz-back" style="background:#2a1a3d;">
+            <div class="biz-back-fallback">📚</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJyf11q0Cbj0gRktwyIvj_yIQ&fov=90&pitch=0"
+                 alt="Invergordon Library"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Invergordon Library</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-20"
+           onmouseenter="bizFlip(20)"
+           onmouseleave="bizUnflip(20)"
+           onclick="openBizLightbox(20)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Newsagent & Café</div>
+            <div class="biz-name">Buchanan's Newsagents</div>
+          </div>
+          <div class="biz-back" style="background:#1a3d3d;">
+            <div class="biz-back-fallback">📰</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJV51le0ebj0gRw36VZyq25FU&fov=90&pitch=0"
+                 alt="Buchanan's Newsagents"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Buchanan's Newsagents</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-21"
+           onmouseenter="bizFlip(21)"
+           onmouseleave="bizUnflip(21)"
+           onclick="openBizLightbox(21)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Leisure & Swimming</div>
+            <div class="biz-name">Invergordon Leisure Centre</div>
+          </div>
+          <div class="biz-back" style="background:#1a2d3d;">
+            <div class="biz-back-fallback">🏊</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJR22_czmbj0gRIICh7wkKRoU&fov=90&pitch=0"
+                 alt="Invergordon Leisure Centre"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Invergordon Leisure Centre</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-22"
+           onmouseenter="bizFlip(22)"
+           onmouseleave="bizUnflip(22)"
+           onclick="openBizLightbox(22)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Builders Merchant</div>
+            <div class="biz-name">Travis Perkins</div>
+          </div>
+          <div class="biz-back" style="background:#3d3d1a;">
+            <div class="biz-back-fallback">🔨</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJy5cMeECbj0gRJKVHpSTpHgs&fov=90&pitch=0"
+                 alt="Travis Perkins"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Travis Perkins</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="biz-flip-wrap" id="biz-flip-23"
+           onmouseenter="bizFlip(23)"
+           onmouseleave="bizUnflip(23)"
+           onclick="openBizLightbox(23)">
+        <div class="biz-flip-inner">
+          <div class="biz-face">
+            <div class="biz-category">Taxi Service</div>
+            <div class="biz-name">Highland Taxis</div>
+          </div>
+          <div class="biz-back" style="background:#3d2d1a;">
+            <div class="biz-back-fallback">🚕</div>
+            <img class="biz-back-photo"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x220&location=place_id:ChIJTXaE3oabj0gRVDw6fVArfvo&fov=90&pitch=0"
+                 alt="Highland Taxis"
+                 onerror="this.style.display='none'"/>
+            <div class="biz-back-overlay">
+              <div class="biz-back-name">Highland Taxis</div>
+              <div class="biz-back-hint">CLICK TO EXPLORE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- MUSEUM -->
+
+
+<!-- CRUISE TIPS -->
+<div class="cruise-section">
+  <div class="cruise-inner">
+    <div class="cruise-tip">
+      <h4 id="tip1-title">Getting Into Town</h4>
+      <p id="tip1-text">The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you're on the High Street. No shuttle, no cost.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip2-title">How Long Do You Need?</h4>
+      <p id="tip2-text">The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip3-title">Before You Sail Away</h4>
+      <p id="tip3-text">Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>EXPLORE INVERGORDON · EASTER ROSS · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.5rem;"><a href="https://invergordonoffthewall.org.uk" target="_blank">Invergordon Off the Wall</a> · <a href="https://www.invergordonmuseum.co.uk" target="_blank">Invergordon Museum</a> · <a href="https://pocf.co.uk/cruise/" target="_blank">Port of Cromarty Firth</a></p>
+  <p class="footer-credit" id="footer-credit">A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot</p>
+</footer>
+
+<script>
+// ── SMOOTH SCROLL (iframe-safe) ──
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── MURAL TOGGLE ──
+function toggleMural(card, id) {
+  const panel = document.getElementById(id);
+  const allPanels = document.querySelectorAll('.mural-expanded');
+  const isOpen = panel.classList.contains('active');
+
+  allPanels.forEach(p => p.classList.remove('active'));
+
+  if (!isOpen) {
+    panel.classList.add('active');
+    setTimeout(() => {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
+}
+
+function closeMural(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// ── LANGUAGE SWITCHER ──
+const translations = {
+  en: {
+    heroTag: "Port of Cromarty Firth · Scottish Highlands",
+    heroSub: "Gateway to the Highlands — just a 5-minute walk from your ship",
+    heroCta: "Begin Your Visit",
+    walkBanner: "🚶 <strong>Town Centre is just a 5-minute walk</strong> from the cruise terminal — no bus needed, no taxis required",
+    welcomeLabel: "Welcome Aboard",
+    welcomeTitle: "Your day in <em>Invergordon</em>",
+    welcomeText: "Most cruise passengers are whisked away on coaches before they realise what they're leaving behind. <strong>Don't make that mistake.</strong> Invergordon's High Street, its world-famous mural trail, and the breathtaking landscapes of Easter Ross are all on your doorstep — and they're free. This is one of the most underrated stops on any Highland cruise itinerary, and the locals know it.",
+    card1Title: "The Mural Trail",
+    card1Text: "11 extraordinary large-scale murals tell the story of Invergordon's remarkable history. Allow 60–90 minutes. Starts at the railway station, ends at the museum.",
+    card1Cta: "Explore ↓",
+    card2Title: "Highland Scenery",
+    card2Text: "Mountains, sea lochs, ancient forests and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes in Europe.",
+    card2Cta: "Discover ↓",
+    card3Title: "Eat & Drink Locally",
+    card3Text: "From a legendary full Scottish breakfast to award-winning Indian cuisine, the High Street offers genuine local flavours. No tourist traps — just good food.",
+    card3Cta: "See the Guide ↓",
+    card4Title: "Shop Local",
+    card4Text: "Scottish gifts, handmade crafts, tartan and local art. Support real independent businesses, not chain stores. Everything is a short stroll from the port.",
+    card4Cta: "Browse ↓",
+    muralLabel: "Outdoor Art Gallery",
+    muralTitle: "The <em>Mural Trail</em>",
+    muralIntro1: "In 2002, a group of local volunteers called <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> began a remarkable community project — transforming the town's walls into a monumental open-air gallery celebrating Highland history and heritage.",
+    muralIntro2: "Officially launched by HRH The Princess Royal in 2007, the trail now features 11 large-scale professionally painted murals plus sculpture. It is one of the first mural trails in Scotland and remains one of the finest.",
+    muralOfficialBtn: "Visit Official Site ↗",
+    stat1Label: "Large-scale murals painted by professional artists",
+    stat2Label: "Minutes to walk the full trail at a leisurely pace",
+    stat3Label: "No entry fee. Open every day, all year round",
+    muralTapHint: "Tap to discover",
+    muralCollab: "Content in collaboration with",
+    landscapeLabel: "Easter Ross & Beyond",
+    landscapeQuote: "Step off the ship and you are standing in the middle of <span>one of the most beautiful landscapes in Europe.</span> Mountains, sea lochs, ancient forests and dramatic coastlines — all within sight.",
+    landscapeText: "Invergordon sits on the Cromarty Firth — a sheltered sea inlet surrounded by hills and mountains. To the north, Ben Wyvis rises to over 1,000 metres. To the south, the Black Isle peninsula stretches towards Inverness. Dolphins and seals are regularly spotted from the shoreline. This is genuine Highland scenery, not a tourist reconstruction of it.",
+    bizLabel: "High Street Guide",
+    bizTitle: "Where to eat, <em>shop & explore</em>",
+    bizIntro: "All within a short walk of the port. Support local.",
+    museumLabel: "History & Heritage",
+    museumTitle: "Invergordon <em>Museum</em>",
+    museumCardTitle: "Discover Invergordon's Remarkable Story",
+    museumText1: "Invergordon has a history that most visitors never expect — a Royal Naval base that shaped two World Wars, a 1931 mutiny that changed British naval history, an oil boom and bust that mirrored the Highland experience of the 20th century, and a community that has reinvented itself time and again. The museum holds this story, told through artefacts, photographs and the voices of the people who lived it.",
+    museumText2: "The museum is currently planning an exciting move to a new, larger home — a modern heritage centre that will do full justice to Invergordon's extraordinary past. Your visit today helps support that future.",
+    museumBtn1: "Visit the Museum ↗",
+    museumBtn2: "Download Mural App ↗",
+    tip1Title: "Getting Into Town",
+    tip1Text: "The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you're on the High Street. No shuttle, no cost.",
+    tip2Title: "How Long Do You Need?",
+    tip2Text: "The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.",
+    tip3Title: "Before You Sail Away",
+    tip3Text: "Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.",
+    footerCredit: "A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot",
+    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Landscape",
+    scroll: "Scroll",
+  },
+  de: {
+    heroTag: "Port of Cromarty Firth · Schottisches Hochland",
+    heroSub: "Tor zu den Highlands — nur 5 Minuten zu Fuß von Ihrem Schiff",
+    heroCta: "Beginnen Sie Ihren Besuch",
+    walkBanner: "🚶 <strong>Das Stadtzentrum ist nur 5 Minuten zu Fuß</strong> vom Kreuzfahrtterminal entfernt — kein Bus, kein Taxi nötig",
+    welcomeLabel: "Willkommen an Bord",
+    welcomeTitle: "Ihr Tag in <em>Invergordon</em>",
+    welcomeText: "Die meisten Kreuzfahrtpassagiere werden in Busse verfrachtet, bevor sie merken, was sie zurücklassen. <strong>Machen Sie diesen Fehler nicht.</strong> Invergordon's Hauptstraße, sein weltberühmter Wandbild-Pfad und die atemberaubenden Landschaften von Easter Ross liegen direkt vor Ihrer Tür — und sie sind kostenlos. Dies ist eine der unterschätztesten Stationen jeder Highlands-Kreuzfahrt.",
+    card1Title: "Der Wandbild-Pfad",
+    card1Text: "11 außergewöhnliche großformatige Wandbilder erzählen die Geschichte von Invergordon. Einplanen: 60–90 Minuten. Beginnt am Bahnhof, endet am Museum.",
+    card1Cta: "Entdecken ↓",
+    card2Title: "Hochland-Landschaft",
+    card2Text: "Berge, Meeresfjorde, alte Wälder und dramatische Küstenlinien umgeben die Stadt. Sie stehen mitten in einer der schönsten Landschaften Europas.",
+    card2Cta: "Erleben ↓",
+    card3Title: "Lokal Essen & Trinken",
+    card3Text: "Von einem legendären schottischen Frühstück bis zur preisgekrönten indischen Küche bietet die Hauptstraße echte lokale Geschmäcker. Keine Touristenfallen — nur gutes Essen.",
+    card3Cta: "Zum Ratgeber ↓",
+    card4Title: "Lokal Einkaufen",
+    card4Text: "Schottische Geschenke, Handwerk, Tartan und lokale Kunst. Unterstützen Sie echte unabhängige Geschäfte. Alles ist ein kurzer Spaziergang vom Hafen entfernt.",
+    card4Cta: "Entdecken ↓",
+    muralLabel: "Freilichtgalerie",
+    muralTitle: "Der <em>Wandbild-Pfad</em>",
+    muralIntro1: "Im Jahr 2002 begann eine Gruppe lokaler Freiwilliger namens <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> ein bemerkenswertes Gemeinschaftsprojekt — die Wände der Stadt in eine monumentale Freiluftgalerie zu verwandeln.",
+    muralIntro2: "Offiziell von HRH The Princess Royal im Jahr 2007 eröffnet, umfasst der Pfad jetzt 11 großformatige professionell gemalte Wandbilder plus Skulptur. Er ist einer der ersten Wandbild-Pfade in Schottland.",
+    muralOfficialBtn: "Offizielle Website ↗",
+    stat1Label: "Großformatige Wandbilder von professionellen Künstlern",
+    stat2Label: "Minuten für den gesamten Pfad in gemütlichem Tempo",
+    stat3Label: "Kein Eintritt. Täglich geöffnet, das ganze Jahr",
+    muralTapHint: "Tippen zum Entdecken",
+    muralCollab: "Inhalt in Zusammenarbeit mit",
+    landscapeLabel: "Easter Ross & Umgebung",
+    landscapeQuote: "Steigen Sie vom Schiff und stehen Sie mitten in einer <span>der schönsten Landschaften Europas.</span> Berge, Meeresfjorde, alte Wälder und dramatische Küstenlinien — alles in Sichtweite.",
+    landscapeText: "Invergordon liegt am Cromarty Firth — einem geschützten Meeresarm umgeben von Hügeln und Bergen. Im Norden erhebt sich Ben Wyvis auf über 1.000 Meter. Im Süden erstreckt sich die Black Isle Halbinsel Richtung Inverness. Delfine und Robben werden regelmäßig vom Ufer aus gesichtet.",
+    bizLabel: "Stadtführer",
+    bizTitle: "Essen, <em>Einkaufen & Entdecken</em>",
+    bizIntro: "Alles in kurzer Gehweite vom Hafen. Unterstützen Sie lokale Geschäfte.",
+    museumLabel: "Geschichte & Erbe",
+    museumTitle: "Invergordon <em>Museum</em>",
+    museumCardTitle: "Entdecken Sie Invergordon's bemerkenswerte Geschichte",
+    museumText1: "Invergordon hat eine Geschichte, die die meisten Besucher nie erwarten — ein königlicher Marinesstützpunkt, der zwei Weltkriege mitgestaltete, ein Aufstand 1931, der die britische Marinegeschichte veränderte, und eine Gemeinschaft, die sich immer wieder neu erfunden hat.",
+    museumText2: "Das Museum plant derzeit einen aufregenden Umzug in ein neues, größeres Zuhause — ein modernes Kulturzentrum. Ihr Besuch heute hilft, diese Zukunft zu unterstützen.",
+    museumBtn1: "Museum besuchen ↗",
+    museumBtn2: "Wandbild-App laden ↗",
+    tip1Title: "In die Stadt kommen",
+    tip1Text: "Das Stadtzentrum ist 5 Minuten zu Fuß vom Kreuzfahrtterminal entfernt. Gehen Sie einfach geradeaus aus den Hafentoren und Sie sind auf der Hauptstraße. Kein Shuttle, keine Kosten.",
+    tip2Title: "Wie viel Zeit brauchen Sie?",
+    tip2Text: "Der vollständige Wandbild-Pfad dauert 60–90 Minuten in gemütlichem Tempo. Fügen Sie Zeit für das Mittagessen und einen Bummel durch die Geschäfte hinzu — ein halber Tag ist sehr angenehm gefüllt.",
+    tip3Title: "Bevor Sie absegeln",
+    tip3Text: "Erwägen Sie, dem Invergordon Wandbild-Pfad zu spenden — eine von Freiwilligen betriebene schottische Wohltätigkeitsorganisation, die diese außergewöhnliche Galerie durch Gemeinschaftsarbeit erhält.",
+    footerCredit: "Ein digitales Gemeinschaftsprojekt für Invergordon · Mit KI von einem Einheimischen erstellt · ExploreInvergordon.scot",
+    navArrive: "Ankommen", navMurals: "Wandbilder", navTown: "Stadt", navMuseum: "Museum", navLandscape: "Landschaft",
+    scroll: "Scrollen",
+  },
+  fr: {
+    heroTag: "Port of Cromarty Firth · Hautes-Terres d'Écosse",
+    heroSub: "La porte des Highlands — à seulement 5 minutes à pied de votre navire",
+    heroCta: "Commencez votre visite",
+    walkBanner: "🚶 <strong>Le centre-ville est à seulement 5 minutes à pied</strong> du terminal de croisière — pas besoin de bus ni de taxi",
+    welcomeLabel: "Bienvenue à bord",
+    welcomeTitle: "Votre journée à <em>Invergordon</em>",
+    welcomeText: "La plupart des croisiéristes montent dans des bus avant de réaliser ce qu'ils laissent derrière eux. <strong>Ne faites pas cette erreur.</strong> La High Street d'Invergordon, son célèbre parcours de fresques murales et les paysages à couper le souffle des Highlands sont à votre portée — et gratuits. C'est l'une des escales les plus sous-estimées de toute croisière dans les Highlands.",
+    card1Title: "Le Parcours des Fresques",
+    card1Text: "11 fresques murales extraordinaires racontent l'histoire remarquable d'Invergordon. Comptez 60–90 minutes. Commence à la gare, se termine au musée.",
+    card1Cta: "Explorer ↓",
+    card2Title: "Paysages des Highlands",
+    card2Text: "Montagnes, lochs marins, forêts anciennes et côtes dramatiques entourent la ville. Vous vous tenez au cœur de l'un des plus beaux paysages d'Europe.",
+    card2Cta: "Découvrir ↓",
+    card3Title: "Manger & Boire Local",
+    card3Text: "Du légendaire petit-déjeuner écossais à la cuisine indienne primée, la High Street offre de vraies saveurs locales. Pas de pièges à touristes — juste de la bonne cuisine.",
+    card3Cta: "Voir le guide ↓",
+    card4Title: "Acheter Local",
+    card4Text: "Cadeaux écossais, artisanat, tartan et art local. Soutenez de vraies entreprises indépendantes. Tout est à quelques pas du port.",
+    card4Cta: "Parcourir ↓",
+    muralLabel: "Galerie d'Art en Plein Air",
+    muralTitle: "Le <em>Parcours des Fresques</em>",
+    muralIntro1: "En 2002, un groupe de bénévoles locaux appelé <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> a lancé un remarquable projet communautaire — transformer les murs de la ville en une galerie monumentale célébrant l'histoire des Highlands.",
+    muralIntro2: "Officiellement inauguré par SAR la Princesse Royale en 2007, le parcours comprend désormais 11 fresques murales à grande échelle peintes par des professionnels, plus une sculpture. C'est l'un des premiers parcours de fresques en Écosse.",
+    muralOfficialBtn: "Site officiel ↗",
+    stat1Label: "Fresques murales à grande échelle peintes par des artistes professionnels",
+    stat2Label: "Minutes pour parcourir tout le circuit à allure tranquille",
+    stat3Label: "Entrée gratuite. Ouvert tous les jours, toute l'année",
+    muralTapHint: "Appuyer pour découvrir",
+    muralCollab: "Contenu en collaboration avec",
+    landscapeLabel: "Easter Ross & Au-delà",
+    landscapeQuote: "Descendez du navire et vous vous trouvez au cœur de <span>l'un des plus beaux paysages d'Europe.</span> Montagnes, lochs marins, forêts anciennes et côtes dramatiques — tout à portée de vue.",
+    landscapeText: "Invergordon est situé sur le Cromarty Firth — un bras de mer abrité entouré de collines et de montagnes. Au nord, Ben Wyvis s'élève à plus de 1 000 mètres. Au sud, la péninsule de la Black Isle s'étend vers Inverness. Des dauphins et des phoques sont régulièrement aperçus depuis le rivage.",
+    bizLabel: "Guide de la High Street",
+    bizTitle: "Manger, <em>faire ses courses & explorer</em>",
+    bizIntro: "Tout à quelques minutes à pied du port. Soutenez les commerces locaux.",
+    museumLabel: "Histoire & Patrimoine",
+    museumTitle: "Musée <em>d'Invergordon</em>",
+    museumCardTitle: "Découvrez l'histoire remarquable d'Invergordon",
+    museumText1: "Invergordon a une histoire que la plupart des visiteurs n'imaginent pas — une base navale royale qui a façonné deux guerres mondiales, une mutinerie en 1931 qui a changé l'histoire navale britannique, et une communauté qui s'est réinventée à plusieurs reprises.",
+    museumText2: "Le musée prépare actuellement un déménagement vers un nouvel espace plus grand — un centre patrimonial moderne. Votre visite aujourd'hui contribue à soutenir cet avenir.",
+    museumBtn1: "Visiter le musée ↗",
+    museumBtn2: "Télécharger l'application ↗",
+    tip1Title: "Rejoindre le centre-ville",
+    tip1Text: "Le centre-ville est à 5 minutes à pied du terminal de croisière. Marchez simplement tout droit depuis les portes du port et vous êtes sur la High Street. Pas de navette, pas de frais.",
+    tip2Title: "Combien de temps faut-il?",
+    tip2Text: "Le parcours complet des fresques prend 60–90 minutes à allure tranquille. Ajoutez du temps pour déjeuner sur la High Street et flâner dans les boutiques — une demi-journée en ville est très confortablement remplie.",
+    tip3Title: "Avant de reprendre la mer",
+    tip3Text: "Pensez à faire un don au Parcours des Fresques d'Invergordon — une association caritative écossaise gérée par des bénévoles qui entretient cette galerie extraordinaire grâce à l'effort communautaire.",
+    footerCredit: "Un projet numérique communautaire pour Invergordon · Créé avec l'IA par un résident local · ExploreInvergordon.scot",
+    navArrive: "Arriver", navMurals: "Fresques", navTown: "Ville", navMuseum: "Musée", navLandscape: "Paysage",
+    scroll: "Défiler",
+  },
+  us: {
+    heroTag: "Port of Cromarty Firth · Scottish Highlands",
+    heroSub: "Gateway to the Scottish Highlands — just a 5-minute walk from your ship",
+    heroCta: "Start Exploring",
+    walkBanner: "🚶 <strong>Downtown is just a 5-minute walk</strong> from the cruise terminal — no shuttle, no taxi, no charge",
+    welcomeLabel: "Welcome Ashore",
+    welcomeTitle: "Your day in <em>Invergordon</em>",
+    welcomeText: "Most cruise passengers hop on a bus and miss the best part of the stop. <strong>Don't do it.</strong> Invergordon's famous outdoor mural trail, stunning Highland scenery, and genuine Scottish shops and restaurants are all right here — totally free and just a short walk from the dock. Locals reckon it's one of the most underrated ports on any Scottish itinerary.",
+    card1Title: "The Mural Trail",
+    card1Text: "11 incredible large-scale outdoor murals tell the story of Invergordon's history. Plan for 60–90 minutes. Starts at the train station, ends at the museum.",
+    card1Cta: "Explore ↓",
+    card2Title: "Highland Scenery",
+    card2Text: "Mountains, sea lochs, ancient forests, and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes anywhere in Europe.",
+    card2Cta: "Discover ↓",
+    card3Title: "Eat & Drink Local",
+    card3Text: "From a legendary full Scottish breakfast to award-winning Indian food, the High Street has real local flavors. No tourist traps — just great food at honest prices.",
+    card3Cta: "See the Guide ↓",
+    card4Title: "Shop Local",
+    card4Text: "Scottish gifts, handmade crafts, tartan, and local art. Support real independent businesses, not chain stores. Everything's a short stroll from the port.",
+    card4Cta: "Browse ↓",
+    muralLabel: "Outdoor Art Gallery",
+    muralTitle: "The <em>Mural Trail</em>",
+    muralIntro1: "Back in 2002, a group of local volunteers called <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> started an incredible community project — turning the town's walls into a massive open-air gallery celebrating Highland history.",
+    muralIntro2: "Officially opened by HRH The Princess Royal in 2007, the trail now has 11 large-scale professionally painted murals plus a sculpture. It's one of the first mural trails in Scotland and still one of the best.",
+    muralOfficialBtn: "Official Website ↗",
+    stat1Label: "Large-scale murals painted by professional artists",
+    stat2Label: "Minutes to walk the full trail at a relaxed pace",
+    stat3Label: "Completely free. Open every day, year-round",
+    muralTapHint: "Tap to learn more",
+    muralCollab: "Content created in partnership with",
+    landscapeLabel: "Easter Ross & Beyond",
+    landscapeQuote: "Step off the ship and you're standing in the middle of <span>one of the most beautiful landscapes in all of Europe.</span> Mountains, sea lochs, ancient forests, and dramatic coastlines — all right in front of you.",
+    landscapeText: "Invergordon sits on the Cromarty Firth — a sheltered sea inlet surrounded by hills and mountains. To the north, Ben Wyvis rises to over 3,300 feet. To the south, the Black Isle peninsula stretches toward Inverness. Dolphins and seals are regularly spotted from shore. This is the real deal — genuine Highland scenery, not a tourist reconstruction.",
+    bizLabel: "High Street Guide",
+    bizTitle: "Where to eat, <em>shop & explore</em>",
+    bizIntro: "All within easy walking distance of the port. Shop local.",
+    museumLabel: "History & Heritage",
+    museumTitle: "Invergordon <em>Museum</em>",
+    museumCardTitle: "Discover Invergordon's Remarkable Story",
+    museumText1: "Invergordon has a history most visitors never expect — a Royal Naval base that played a role in both World Wars, a 1931 mutiny that shook the British Navy, an oil boom and bust, and a community that has reinvented itself again and again. The museum holds this story through artifacts, photos, and the voices of the people who lived it.",
+    museumText2: "The museum is currently planning an exciting move to a new, larger space — a modern heritage center worthy of Invergordon's extraordinary past. Your visit today helps make that future possible.",
+    museumBtn1: "Visit the Museum ↗",
+    museumBtn2: "Download the Mural App ↗",
+    tip1Title: "Getting Downtown",
+    tip1Text: "The town center is a 5-minute walk from the cruise terminal — less than a quarter mile. Just walk straight out of the port gates and you're on the High Street. No shuttle needed, no cost.",
+    tip2Title: "How Much Time Do You Need?",
+    tip2Text: "The full mural trail takes 60–90 minutes at an easy pace. Add time for lunch and some shopping and a half-day in town is very easily filled.",
+    tip3Title: "Before You Head Back",
+    tip3Text: "Consider making a donation to the Invergordon Mural Trail — a volunteer-run Scottish charity that keeps this amazing outdoor gallery going entirely through community effort.",
+    footerCredit: "A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot",
+    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Scenery",
+    scroll: "Scroll",
+  },
+  no: {
+    heroTag: "Port of Cromarty Firth · Skotske Høylandet",
+    heroSub: "Porten til Høylandet — bare 5 minutters gange fra skipet ditt",
+    heroCta: "Start besøket ditt",
+    walkBanner: "🚶 <strong>Bysentrum er bare 5 minutters gange</strong> fra cruiseterminalen — ingen buss eller taxi nødvendig",
+    welcomeLabel: "Velkommen om bord",
+    welcomeTitle: "Din dag i <em>Invergordon</em>",
+    welcomeText: "De fleste cruisepassasjerer kjøres av gårde på busser før de forstår hva de går glipp av. <strong>Ikke gjør den feilen.</strong> Invergordon's High Street, den verdensberømte muralsruten og de fantastiske høylandslandskapen i Easter Ross er rett utenfor døren din — og de er gratis. Dette er en av de mest undervurderte stopp på enhver Høylands-cruise.",
+    card1Title: "Muralsruten",
+    card1Text: "11 ekstraordinære storformat-muraler forteller historien om Invergordon. Sett av 60–90 minutter. Starter ved jernbanestasjonen, slutter ved museet.",
+    card1Cta: "Utforsk ↓",
+    card2Title: "Høylandslandskap",
+    card2Text: "Fjell, sjøfjorder, eldgamle skoger og dramatiske kystlinjer omgir byen. Du står midt i ett av de vakreste landskapene i Europa.",
+    card2Cta: "Oppdag ↓",
+    card3Title: "Spis & Drikk Lokalt",
+    card3Text: "Fra en legendarisk skotsk frokost til prisbelønnet indisk mat, tilbyr High Street ekte lokale smaker. Ingen turistfeller — bare god mat.",
+    card3Cta: "Se guiden ↓",
+    card4Title: "Handle Lokalt",
+    card4Text: "Skotske gaver, håndverk, tartan og lokal kunst. Støtt ekte uavhengige bedrifter. Alt er en kort spasertur fra havnen.",
+    card4Cta: "Bla gjennom ↓",
+    muralLabel: "Friluftskunstgalleri",
+    muralTitle: "<em>Muralsruten</em>",
+    muralIntro1: "I 2002 startet en gruppe lokale frivillige kalt <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> et bemerkelsesverdig fellesskapsprosjekt — å forvandle byens vegger til et monumentalt friluftskunstgalleri.",
+    muralIntro2: "Offisielt åpnet av HKH Prinsessen Kongelige i 2007, har ruten nå 11 storformat-muraler malt av profesjonelle, pluss en skulptur. Det er en av de første muralsrutene i Skottland.",
+    muralOfficialBtn: "Offisiell nettside ↗",
+    stat1Label: "Storformat-muraler malt av profesjonelle kunstnere",
+    stat2Label: "Minutter for å gå hele ruten i rolig tempo",
+    stat3Label: "Gratis inngang. Åpent hver dag, hele året",
+    muralTapHint: "Trykk for å oppdage",
+    muralCollab: "Innhold i samarbeid med",
+    landscapeLabel: "Easter Ross & Omegn",
+    landscapeQuote: "Gå av skipet og du står midt i <span>ett av de vakreste landskapene i Europa.</span> Fjell, sjøfjorder, eldgamle skoger og dramatiske kystlinjer — alt i sikte.",
+    landscapeText: "Invergordon ligger ved Cromarty Firth — en beskyttet sjøarm omgitt av åser og fjell. Mot nord reiser Ben Wyvis seg til over 1 000 meter. Mot sør strekker Black Isle-halvøya seg mot Inverness. Delfiner og seler observeres jevnlig fra strandlinjen.",
+    bizLabel: "High Street-guide",
+    bizTitle: "Spise, <em>handle & utforske</em>",
+    bizIntro: "Alt innen kort gangavstand fra havnen. Støtt lokale bedrifter.",
+    museumLabel: "Historie & Arv",
+    museumTitle: "Invergordon <em>Museum</em>",
+    museumCardTitle: "Oppdag Invergordon's bemerkelsesverdig historie",
+    museumText1: "Invergordon har en historie som de fleste besøkende aldri forventer — en kongelig marinbase som formet to verdenskrIger, et mytteri i 1931 som endret britisk marinehistorie, og et samfunn som har fornyet seg igjen og igjen.",
+    museumText2: "Museet planlegger for øyeblikket en spennende flytting til et nytt, større hjem — et moderne kulturarvsenter. Ditt besøk i dag bidrar til å støtte denne fremtiden.",
+    museumBtn1: "Besøk museet ↗",
+    museumBtn2: "Last ned mural-appen ↗",
+    tip1Title: "Komme seg til sentrum",
+    tip1Text: "Bysentrum er 5 minutters gange fra cruiseterminalen. Gå rett frem fra havneporten og du er på High Street. Ingen shuttlebuss, ingen kostnad.",
+    tip2Title: "Hvor lang tid trenger du?",
+    tip2Text: "Den fullstendige muralsruten tar 60–90 minutter i rolig tempo. Legg til tid for lunsj og butikkshopping — en halv dag i byen er veldig behagelig fylt.",
+    tip3Title: "Før du seiler av",
+    tip3Text: "Vurder å donere til Invergordon Muralsruten — en frivilligdrevet skotsk veldedighet som vedlikeholder dette ekstraordinære galleriet gjennom fellesskapsinnsats.",
+    footerCredit: "Et digitalt fellesskapsprosjekt for Invergordon · Bygget med KI av en lokal innbygger · ExploreInvergordon.scot",
+    navArrive: "Ankomst", navMurals: "Muraler", navTown: "By", navMuseum: "Museum", navLandscape: "Landskap",
+    scroll: "Rull",
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const t = translations[lang];
+  if (!t) return;
+
+  // Helper
+  const set = (id, html, useHTML = true) => {
+    const el = document.getElementById(id);
+    if (el) useHTML ? el.innerHTML = html : el.textContent = html;
+  };
+
+  // Nav
+  document.querySelectorAll('.nav-arrive').forEach(el => el.textContent = t.navArrive);
+  document.querySelectorAll('.nav-murals').forEach(el => el.textContent = t.navMurals);
+  document.querySelectorAll('.nav-town').forEach(el => el.textContent = t.navTown);
+  document.querySelectorAll('.nav-museum').forEach(el => el.textContent = t.navMuseum);
+  document.querySelectorAll('.nav-landscape').forEach(el => el.textContent = t.navLandscape);
+  document.querySelectorAll('.t-scroll').forEach(el => el.textContent = t.scroll);
+
+  // Hero
+  set('hero-tag', t.heroTag, false);
+  set('hero-sub', t.heroSub, false);
+  set('hero-cta-text', t.heroCta, false);
+
+  // Walk banner
+  set('walk-banner-text', t.walkBanner);
+
+  // Welcome section
+  set('welcome-label', t.welcomeLabel, false);
+  set('welcome-title', t.welcomeTitle);
+  set('welcome-text', t.welcomeText);
+  set('card1-title', t.card1Title, false);
+  set('card1-text', t.card1Text, false);
+  set('card1-cta', t.card1Cta, false);
+  set('card2-title', t.card2Title, false);
+  set('card2-text', t.card2Text, false);
+  set('card2-cta', t.card2Cta, false);
+  set('card3-title', t.card3Title, false);
+  set('card3-text', t.card3Text, false);
+  set('card3-cta', t.card3Cta, false);
+  set('card4-title', t.card4Title, false);
+  set('card4-text', t.card4Text, false);
+  set('card4-cta', t.card4Cta, false);
+
+  // Mural section
+  set('mural-label', t.muralLabel, false);
+  set('mural-title', t.muralTitle);
+  set('mural-intro1', t.muralIntro1);
+  set('mural-intro2', t.muralIntro2);
+  set('mural-official-btn', t.muralOfficialBtn, false);
+  set('stat1-label', t.stat1Label, false);
+  set('stat2-label', t.stat2Label, false);
+  set('stat3-label', t.stat3Label, false);
+  set('mural-collab', t.muralCollab, false);
+  document.querySelectorAll('.mural-tap-hint').forEach(el => el.textContent = t.muralTapHint);
+
+  // Landscape
+  set('landscape-label', t.landscapeLabel, false);
+  set('landscape-quote', t.landscapeQuote);
+  set('landscape-text', t.landscapeText, false);
+
+  // Businesses
+  set('biz-label', t.bizLabel, false);
+  set('biz-title', t.bizTitle);
+  set('biz-intro', t.bizIntro, false);
+
+  // Museum
+  set('museum-label', t.museumLabel, false);
+  set('museum-title', t.museumTitle);
+  set('museum-card-title', t.museumCardTitle, false);
+  set('museum-text1', t.museumText1, false);
+  set('museum-text2', t.museumText2, false);
+  set('museum-btn1', t.museumBtn1, false);
+  set('museum-btn2', t.museumBtn2, false);
+
+  // Tips
+  set('tip1-title', t.tip1Title, false);
+  set('tip1-text', t.tip1Text, false);
+  set('tip2-title', t.tip2Title, false);
+  set('tip2-text', t.tip2Text, false);
+  set('tip3-title', t.tip3Title, false);
+  set('tip3-text', t.tip3Text, false);
+
+  // Footer
+  set('footer-credit', t.footerCredit, false);
+}
+
+// ── SUBTLE SCROLL FADE IN ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(15px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+
+<!-- Celtic Font Import -->
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* Waving flag animation */
+@keyframes wave {
+  0%   { d: path("M8,0 Q30,-6 52,0 Q74,6 96,0 Q118,-6 140,0 L140,90 Q118,96 96,90 Q74,84 52,90 Q30,96 8,90 Z"); }
+  25%  { d: path("M8,0 Q30,8 52,2 Q74,-6 96,2 Q118,8 140,0 L140,90 Q118,82 96,88 Q74,96 52,88 Q30,82 8,90 Z"); }
+  50%  { d: path("M8,0 Q30,-4 52,4 Q74,10 96,4 Q118,-4 140,0 L140,90 Q118,96 96,86 Q74,80 52,86 Q30,96 8,90 Z"); }
+  75%  { d: path("M8,0 Q30,6 52,-2 Q74,-8 96,-2 Q118,6 140,0 L140,90 Q118,84 96,92 Q74,98 52,92 Q30,84 8,90 Z"); }
+  100% { d: path("M8,0 Q30,-6 52,0 Q74,6 96,0 Q118,-6 140,0 L140,90 Q118,96 96,90 Q74,84 52,90 Q30,96 8,90 Z"); }
+}
+
+@keyframes flagpoleGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(200,160,60,0.4); }
+  50% { box-shadow: 0 0 18px rgba(200,160,60,0.8); }
+}
+
+  /* ── CONTACT SECTION ── */
+  .contact-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, var(--highland-deep), var(--highland-dark));
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    position: relative;
+    z-index: 10;
+    margin: 2rem auto;
+    max-width: 860px;
+  }
+  .contact-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .contact-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .contact-subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    width: 100%;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+  .form-group select option { background: var(--highland-dark); color: var(--text-light); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .contact-submit {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.5);
+    border-radius: 4px;
+    color: var(--gold-light);
+    cursor: pointer;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    padding: 0.85rem 2rem;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+  }
+  .contact-submit:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+    box-shadow: 0 6px 24px rgba(201,168,76,0.15);
+    transform: translateY(-2px);
+  }
+  .contact-success {
+    display: none;
+    text-align: center;
+    padding: 2.5rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
+    background: rgba(201,168,76,0.05);
+  }
+  .contact-success .success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .contact-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+  .contact-success p { color: var(--text-muted); font-size: 0.95rem; }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .contact-submit { width: 100%; text-align: center; }
+  }
+
+.saltire-footer-wrap {
+  background: #0a0f1e;
+  padding: 60px 20px 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.flag-assembly {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 28px;
+}
+
+.flagpole {
+  width: 5px;
+  height: 180px;
+  background: linear-gradient(to bottom, #c8a03c, #8a6820, #c8a03c, #6b5018);
+  border-radius: 3px;
+  animation: flagpoleGlow 3s ease-in-out infinite;
+  flex-shrink: 0;
+  margin-top: 0;
+  align-self: stretch;
+}
+
+.flag-canvas {
+  width: 148px;
+  height: 100px;
+  position: relative;
+  overflow: visible;
+  margin-top: 10px;
+}
+
+/* Clip path shapes for waving */
+.flag-body {
+  position: relative;
+  width: 148px;
+  height: 90px;
+  filter: drop-shadow(4px 4px 18px rgba(0,60,200,0.55));
+  animation: flagWaveShadow 2.8s ease-in-out infinite;
+}
+
+@keyframes flagWaveShadow {
+  0%,100% { filter: drop-shadow(4px 4px 18px rgba(0,60,200,0.55)); }
+  50% { filter: drop-shadow(8px 6px 22px rgba(0,60,200,0.3)); }
+}
+
+.scotland-heart-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.we-text, .scotland-after {
+  color: white;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 12px rgba(100,140,255,0.5);
+}
+
+.heart-3d-wrap {
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 6px 20px rgba(20,80,255,0.7)) drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  transition: transform 0.3s ease;
+}
+.heart-3d-wrap:hover {
+  transform: scale(1.08) translateY(-3px);
+}
+
+.footer-tagline {
+  color: rgba(255,255,255,0.28);
+  font-size: 0.7rem;
+  margin-top: 22px;
+  letter-spacing: 0.15em;
+  font-family: 'IM Fell English', Georgia, serif;
+}
+</style>
+
+
+    <!-- Mural Lightbox -->
+    <div id="mural-lightbox" onclick="closeLightbox(event)">
+      <div class="lb-inner">
+        <button class="lb-close" onclick="closeLightboxBtn()">✕</button>
+        <div class="lb-img-wrap" id="lb-img-wrap">
+          <div class="lb-placeholder">
+            <div class="lb-placeholder-icon">🎨</div>
+            <div id="lb-placeholder-text">MURAL PHOTO COMING SOON</div>
+            <div style="font-size:0.65rem;margin-top:8px;opacity:0.6;">Add image URL to the muralData array in the page source</div>
+          </div>
+        </div>
+        <div class="lb-info">
+          <div class="lb-number" id="lb-number"></div>
+          <div class="lb-title" id="lb-title"></div>
+          <div class="lb-location" id="lb-location"></div>
+          <div class="lb-note">📍 When you have mural photos, add their URLs to the <code>muralData</code> array in the page source.</div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- Business Lightbox -->
+<div id="biz-lightbox" onclick="closeBizLightbox(event)">
+  <div class="biz-lb-inner">
+    <button class="biz-lb-close" onclick="closeBizLightboxBtn()">✕</button>
+
+    <!-- Photo hero -->
+    <div class="biz-lb-photo-wrap">
+      <img id="biz-lb-photo" class="biz-lb-photo" src="" alt=""
+           onerror="this.parentElement.style.display='none'"/>
+      <div class="biz-lb-photo-fallback" id="biz-lb-photo-fallback">
+        <span id="biz-lb-icon" style="font-size:3rem;"></span>
+      </div>
+    </div>
+
+    <!-- Info bar -->
+    <div class="biz-lb-info">
+      <div class="biz-lb-text">
+        <div class="biz-lb-cat" id="biz-lb-cat"></div>
+        <div class="biz-lb-name" id="biz-lb-name"></div>
+      </div>
+      <a id="biz-lb-open" class="biz-lb-open" href="#" target="_blank">Open in Google Maps ↗</a>
+    </div>
+
+    <!-- Google Place photo -->
+    <div id="biz-lb-gphoto-wrap" style="width:100%;height:200px;overflow:hidden;background:#111;border-top:1px solid rgba(255,255,255,0.08);position:relative;">
+      <img id="biz-lb-gphoto" src="" alt=""
+           style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+           onerror="this.style.display='none';document.getElementById('biz-lb-gphoto-fallback').style.display='flex';"/>
+      <div id="biz-lb-gphoto-fallback"
+           style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;
+                  background:linear-gradient(135deg,#1a2535,#0d1438);
+                  font-family:'Overpass Mono',monospace;font-size:0.65rem;
+                  letter-spacing:0.12em;color:rgba(255,255,255,0.3);">
+        NO PHOTO AVAILABLE
+      </div>
+    </div>
+    <a id="biz-lb-map-link" href="#" target="_blank"
+       style="display:block;text-align:center;padding:0.6rem;background:rgba(0,0,0,0.3);
+              font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;
+              color:var(--gold);text-decoration:none;">
+      📍 OPEN IN GOOGLE MAPS ↗
+    </a>
+  </div>
+</div>
+
+<!-- ── CONTACT / FEEDBACK SECTION ── -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+
+    <div class="contact-label">Get in Touch</div>
+    <h2 class="contact-title">We'd Love to Hear From You</h2>
+    <p class="contact-subtitle">
+      Whether you're planning your first visit, a local business wanting to be listed, or
+      simply want to share your Highland memories — drop us a message below.
+    </p>
+
+    <!-- The form itself -->
+    <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+
+      <!-- Row 1: two inputs side by side -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" name="name" placeholder="e.g. Fiona MacLeod" required />
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Your Email Address</label>
+          <input type="email" id="contact-email" name="email" placeholder="hello@example.com" required />
+        </div>
+      </div>
+
+      <!-- Row 2: reason dropdown -->
+      <div class="form-group">
+        <label for="contact-reason">Reason for Contact</label>
+        <select id="contact-reason" name="reason" required>
+          <option value="" disabled selected>Select a reason…</option>
+          <option value="visited">Have just visited</option>
+          <option value="planning">Planning a visit soon</option>
+          <option value="business">List a business on your website</option>
+          <option value="recommendation">Making a recommendation</option>
+          <option value="advertising">Advertising on your site</option>
+          <option value="feedback">General Feedback</option>
+          <option value="donation">Making a donation</option>
+          <option value="other">Another reason...</option>
+        </select>
+      </div>
+
+      <!-- Row 3: message textarea -->
+      <div class="form-group">
+        <label for="contact-message">Your Message</label>
+        <textarea id="contact-message" name="message" placeholder="Tell us what's on your mind…" required></textarea>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="contact-submit">Send Message →</button>
+
+    </form>
+
+    <!-- Success message — hidden until form is submitted -->
+    <div class="contact-success" id="contactSuccess">
+      <div class="success-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+      <h3>Message Received!</h3>
+      <p>Thank you for reaching out. We'll get back to you as soon as we can — probably after a wee dram.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Saltire Footer -->
+<footer class="saltire-footer-wrap">
+
+  <span class="we-text">We</span>
+
+  <!-- Flag + Heart overlay composition -->
+  <div style="position:relative; display:inline-block; margin-top:8px;">
+
+    <!-- Saltire flag image -->
+    <img src="website_image_files/background_images/saltire_flag.jpg"
+         style="display:block; width:300px; border-radius:8px;
+                filter: drop-shadow(0 8px 28px rgba(20,30,100,0.75));"/>
+
+    <!-- Heart centred over flag -->
+    <div style="position:absolute; top:54%; left:50%; transform:translate(-50%,-50%);
+                filter: drop-shadow(0 4px 16px rgba(0,0,0,0.55));">
+      <svg width="140" height="122" viewBox="0 0 140 122" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Match the deep navy/indigo of the flag blue areas -->
+          <radialGradient id="heartGrad2" cx="38%" cy="28%" r="68%">
+            <stop offset="0%"   stop-color="#7080c8"/>
+            <stop offset="25%"  stop-color="#4050a0"/>
+            <stop offset="55%"  stop-color="#1e2860"/>
+            <stop offset="100%" stop-color="#0d1438"/>
+          </radialGradient>
+          <!-- Silky sheen to match flag fabric reflection -->
+          <radialGradient id="heartSheen" cx="32%" cy="22%" r="50%">
+            <stop offset="0%"   stop-color="rgba(200,210,255,0.60)"/>
+            <stop offset="45%"  stop-color="rgba(140,160,230,0.18)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+          <!-- Subtle lower sheen like fabric catching light from below -->
+          <radialGradient id="heartLowSheen" cx="65%" cy="80%" r="40%">
+            <stop offset="0%"   stop-color="rgba(160,175,255,0.22)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+          <filter id="hBlur">
+            <feGaussianBlur stdDeviation="2.5"/>
+          </filter>
+        </defs>
+
+        <!-- Drop shadow blob -->
+        <ellipse cx="70" cy="115" rx="38" ry="7" fill="rgba(0,0,0,0.4)" filter="url(#hBlur)"/>
+
+        <!-- Heart base - deep navy matching flag -->
+        <path d="M70 106 C70 106 10 68 10 34 C10 16 24 4 42 4 C56 4 66 14 70 22 C74 14 84 4 98 4 C116 4 130 16 130 34 C130 68 70 106 70 106 Z"
+              fill="url(#heartGrad2)"/>
+
+        <!-- Primary silky sheen (top-left) -->
+        <path d="M70 106 C70 106 10 68 10 34 C10 16 24 4 42 4 C56 4 66 14 70 22 C74 14 84 4 98 4 C116 4 130 16 130 34 C130 68 70 106 70 106 Z"
+              fill="url(#heartSheen)"/>
+
+        <!-- Lower fabric catch-light -->
+        <path d="M70 106 C70 106 10 68 10 34 C10 16 24 4 42 4 C56 4 66 14 70 22 C74 14 84 4 98 4 C116 4 130 16 130 34 C130 68 70 106 70 106 Z"
+              fill="url(#heartLowSheen)"/>
+
+        <!-- Specular highlight blob top-left -->
+        <ellipse cx="42" cy="26" rx="15" ry="8" fill="rgba(220,230,255,0.28)" transform="rotate(-25 42 26)"/>
+
+        <!-- Scotland text shadow -->
+        <text x="71" y="59" text-anchor="middle" dominant-baseline="middle"
+              fill="rgba(0,0,40,0.5)"
+              font-family="'IM Fell English', Georgia, serif"
+              font-size="23" font-style="italic" font-weight="700" letter-spacing="1.2">Scotland</text>
+        <!-- Scotland text -->
+        <text x="70" y="58" text-anchor="middle" dominant-baseline="middle"
+              fill="#a8a39c"
+              font-family="'IM Fell English', Georgia, serif"
+              font-size="23" font-style="italic" font-weight="700" letter-spacing="1.2">Scotland</text>
+      </svg>
+    </div>
+  </div>
+
+  <p class="footer-tagline">EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
+</footer>
+
+
+<script>
+// ── Tips Accordion logic ──
+document.querySelectorAll('.tip-header').forEach(header => {
+  header.addEventListener('click', function() {
+    const tipItem = this.parentElement;
+    tipItem.classList.toggle('open');
+  });
+});
+</script>
+
+<script>
+// ── Mural flip card logic ──
+const muralData = [
+  { num: "MURAL 01",  name: "The Long Goodbye",       loc: "Invergordon Station", img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/Long-Goodbye-640x427.jpg" },
+  { num: "MURAL 02",  name: "Pipes & Drams",          loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/PipesandDrams-640x480.jpg" },
+  { num: "MURAL 03",  name: "Gather Round",            loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/GatherRound-640x427.jpg" },
+  { num: "MURAL 04",  name: "The Loch",                loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheLoch-640x427.jpg" },
+  { num: "MURAL 05",  name: "Volunteer Spirit",        loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Volunteer-Spirit-2021-640x960.jpg" },
+  { num: "MURAL 06",  name: "Our Legacy",              loc: "Near Museum",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/OurLegacy-640x287.jpg" },
+  { num: "MURAL 07",  name: "Fire! Fire!",             loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/FireFire-640x427.jpg" },
+  { num: "MURAL 08",  name: "The Way We Were",         loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheWayWeWere-640x413.jpg" },
+  { num: "MURAL 09",  name: "Saltburn's Past",         loc: "Saltburn Road",       img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/SaltburnsPast-640x427.jpg" },
+  { num: "MURAL 10",  name: "A Century of Sport",      loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/CenturyOfSport-640x427.jpg" },
+  { num: "MURAL 11",  name: "Heritage of the Firth",   loc: "Near Museum",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/HeritageOfTheFirth-640x427.jpg" },
+  { num: "SCULPTURE", name: "Evolution",               loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Evolution-640x960.jpg" },
+];
+
+function flipCard(idx) {
+  const el = document.getElementById('flip-' + idx);
+  if (el) el.classList.add('flipped');
+}
+function unflipCard(idx) {
+  const el = document.getElementById('flip-' + idx);
+  if (el) el.classList.remove('flipped');
+}
+
+function openLightbox(idx) {
+  const d = muralData[idx - 1];
+  if (!d) return;
+  document.getElementById('lb-number').textContent   = d.num;
+  document.getElementById('lb-title').textContent    = d.name;
+  document.getElementById('lb-location').textContent = '📍 ' + d.loc;
+
+  const wrap = document.getElementById('lb-img-wrap');
+  wrap.innerHTML = '';
+  if (d.img) {
+    const img = document.createElement('img');
+    img.src = d.img;
+    img.alt = d.name;
+    wrap.appendChild(img);
+  } else {
+    wrap.innerHTML = `<div class="lb-placeholder">
+      <div class="lb-placeholder-icon">🎨</div>
+      <div>${d.num} · ${d.name}</div>
+      <div style="font-size:0.65rem;margin-top:8px;opacity:0.6;">Set img URL in muralData to show photo here</div>
+    </div>`;
+  }
+
+  document.getElementById('mural-lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e.target === document.getElementById('mural-lightbox')) closeLightboxBtn();
+}
+function closeLightboxBtn() {
+  document.getElementById('mural-lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightboxBtn(); });
+</script>
+
+
+<script>
+// ── Business flip cards ──
+const bizPhotos = {
+  "Cafe Tomich": "website_image_files/business_images/Cafe Tomich.jpg",
+  "Smugglers Point Café": "website_image_files/business_images/Smugglers Point Cafe.jpg",
+  "Rasho\'s Café": "website_image_files/business_images/Rashos Cafe.jpg",
+  "Harry Gow Bakers": "website_image_files/business_images/Harry Gow Bakers.jpeg",
+  "Balti Mahal": "website_image_files/business_images/Balti Mahal.png",
+  "Bonnie Bhaji": "website_image_files/business_images/Bonnie Bhaji.jpg",
+  "Dinner @8 Chinese": "website_image_files/business_images/Come Home Love, Dinner @8 Chinese Takeaway.jpg",
+  "Tuckers Inn": "website_image_files/business_images/Tuckers Inn.jpg",
+  "The Marine": "website_image_files/business_images/Marine Bar & Hotel.jpg",
+  "MacRaes Tartan & Gifts": "website_image_files/business_images/Macraes of Scotland.jpg",
+  "Tanstar Gifts": "website_image_files/business_images/Tanstar Gifts.jpg",
+  "Nickel & Dime": "website_image_files/business_images/Nickel & Dime Hardware Shop.jpg",
+  "Invergordon Gallery": "website_image_files/business_images/Invergordon Gallery.jpg",
+  "Mike Ross Arts": "website_image_files/business_images/Mike Ross Arts.jpg",
+  "Hope Charity Shop": "website_image_files/business_images/Hope Charity Shop.jpg",
+  "Travis Perkins": "website_image_files/business_images/Travis Perkins Invergordon.jpg",
+  "Boots Chemist": "website_image_files/business_images/Boots Pharmacy.jpg",
+  "Co-Op": "website_image_files/business_images/Co-Op Food Invergordon.jpg",
+  "Invergordon Library": "website_image_files/business_images/Invergordon Library.JPG",
+  "Blythswood Care": "website_image_files/business_images/Blythswood Care Charity Shop.jpg",
+  "Buchanan's Newsagents": "website_image_files/business_images/Buchanan's Newsagents Grab n Go.jpg",
+  "Highland Taxis": "website_image_files/business_images/Highland Taxis Ross-shire Taxis.jpg",
+  "Invergordon Leisure Centre": "website_image_files/business_images/Invergordon Leisure Centre High Life Highland.jpg",
+  "The Stoltman Shop": "website_image_files/business_images/The Stoltman Shop.jpg",
+};
+
+const bizData = [
+  { name: "Cafe Tomich", cat: "Food & Drink", icon: "☕", placeId: "ChIJVx4HI0ebj0gRi11Vthm04-4", lat: 57.6842, lng: -4.1701, icon: "☕", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJVx4HI0ebj0gRi11Vthm04-4", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJVx4HI0ebj0gRi11Vthm04-4" },
+  { name: "Smugglers Point Café", cat: "Food & Drink", icon: "☕", placeId: "ChIJn_61XgCbj0gRtHMkAdKD8ZY", lat: 57.682, lng: -4.1698, icon: "☕", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJn_61XgCbj0gRtHMkAdKD8ZY", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJn_61XgCbj0gRtHMkAdKD8ZY" },
+  { name: "Rasho\'s Café", photoPos: "top", cat: "Food & Drink", icon: "☕", placeId: "ChIJ01Ree0ebj0gRtLBjKjsEviM", lat: 57.6855, lng: -4.1699, icon: "☕", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJ01Ree0ebj0gRtLBjKjsEviM", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJ01Ree0ebj0gRtLBjKjsEviM" },
+  { name: "Harry Gow Bakers", cat: "Food & Drink", icon: "🥐", placeId: "ChIJHUd0Y0ebj0gRa7IhRfN-idk", lat: 57.6857, lng: -4.1703, icon: "🥐", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJHUd0Y0ebj0gRa7IhRfN-idk", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJHUd0Y0ebj0gRa7IhRfN-idk" },
+  { name: "Balti Mahal", photoPos: "top", cat: "Restaurant", icon: "🍛", placeId: "ChIJi5wGY0ebj0gRhqe46bwt0aI", lat: 57.6857, lng: -4.171, icon: "🍛", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJi5wGY0ebj0gRhqe46bwt0aI", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJi5wGY0ebj0gRhqe46bwt0aI" },
+  { name: "Bonnie Bhaji", photoPos: "70%", cat: "Restaurant", icon: "🍛", placeId: "ChIJ4-oCjFObj0gR9zMbBiLGjKs", lat: 57.6853, lng: -4.1742, icon: "🍛", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJ4-oCjFObj0gR9zMbBiLGjKs", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJ4-oCjFObj0gR9zMbBiLGjKs" },
+  { name: "Dinner @8 Chinese", cat: "Restaurant", icon: "🥢", placeId: "ChIJbbWU0kmbj0gRpDWsecXvpnQ", lat: 57.6838, lng: -4.1692, icon: "🥢", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJbbWU0kmbj0gRpDWsecXvpnQ", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJbbWU0kmbj0gRpDWsecXvpnQ" },
+  { name: "Tuckers Inn", cat: "Pub & Bar", icon: "🍺", placeId: "ChIJSyDfbzabj0gR_RdA7whbs4s", lat: 57.6822, lng: -4.1658, icon: "🍺", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJSyDfbzabj0gR_RdA7whbs4s", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJSyDfbzabj0gR_RdA7whbs4s" },
+  { name: "The Marine", cat: "Hotel & Bar", icon: "🏨", placeId: "ChIJ03RBm0Cbj0gRfpGgF_c9x2M", lat: 57.6856, lng: -4.1725, icon: "🏨", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJ03RBm0Cbj0gRfpGgF_c9x2M", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJ03RBm0Cbj0gRfpGgF_c9x2M" },
+  { name: "MacRaes Tartan & Gifts", photoPos: "top", cat: "Scottish Gifts", icon: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", placeId: "ChIJf_0wyECbj0gRFcCWwFAyyKc", lat: 57.6856, lng: -4.173, icon: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJf_0wyECbj0gRFcCWwFAyyKc", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJf_0wyECbj0gRFcCWwFAyyKc" },
+  { name: "Tanstar Gifts", photoPos: "top", cat: "Gifts", icon: "🎁", placeId: "ChIJxQUQYUebj0gRXCstJgOfB8A", lat: 57.6856, lng: -4.1718, icon: "🎁", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJxQUQYUebj0gRXCstJgOfB8A", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJxQUQYUebj0gRXCstJgOfB8A" },
+  { name: "Nickel & Dime", cat: "Gifts", icon: "🎁", placeId: "ChIJX34agEebj0gRp2DTk_DKXlk", lat: 57.6857, lng: -4.1714, icon: "🎁", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJX34agEebj0gRp2DTk_DKXlk", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJX34agEebj0gRp2DTk_DKXlk" },
+  { name: "Invergordon Gallery", cat: "Art Gallery", icon: "🖼️", placeId: "ChIJlQmVBnmbj0gRaTmOTbHr3pQ", lat: 57.6838, lng: -4.1695, icon: "🖼️", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJlQmVBnmbj0gRaTmOTbHr3pQ", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJlQmVBnmbj0gRaTmOTbHr3pQ" },
+  { name: "Mike Ross Arts", cat: "Local Artist", icon: "🎨", placeId: "ChIJRVP0eISbj0gRdTD-hvK3Z7Q", lat: 57.687, lng: -4.172, icon: "🎨", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJRVP0eISbj0gRdTD-hvK3Z7Q", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJRVP0eISbj0gRdTD-hvK3Z7Q" },
+  { name: "The Stoltman Shop", photoPos: "top", cat: "Strength Sports", icon: "💪", placeId: "ChIJJYZTRTmbj0gR5Mkt6bVHYKo", lat: 57.6838, lng: -4.17, icon: "💪", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJJYZTRTmbj0gR5Mkt6bVHYKo", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJJYZTRTmbj0gR5Mkt6bVHYKo" },
+  { name: "Co-Op", cat: "Supermarket", icon: "🛒", placeId: "ChIJ-zZbYkebj0gReRM_JAOAmUg", lat: 57.6858, lng: -4.1708, icon: "🛒", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJ-zZbYkebj0gReRM_JAOAmUg", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJ-zZbYkebj0gReRM_JAOAmUg" },
+  { name: "Boots Chemist", photoPos: "25%", cat: "Pharmacy", icon: "💊", placeId: "ChIJ-zZbYkebj0gRyHaB8n4KaLk", lat: 57.6858, lng: -4.1708, icon: "💊", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJ-zZbYkebj0gRyHaB8n4KaLk", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJ-zZbYkebj0gRyHaB8n4KaLk" },
+  { name: "Hope Charity Shop", photoPos: "top", cat: "Charity Shop", icon: "❤️", placeId: "ChIJRdqdfkebj0gR9WWGsUjO4jw", lat: 57.6856, lng: -4.1722, icon: "❤️", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJRdqdfkebj0gR9WWGsUjO4jw", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJRdqdfkebj0gR9WWGsUjO4jw" },
+  { name: "Blythswood Care", cat: "Charity Shop", icon: "❤️", placeId: "ChIJA1goY0ebj0gRfNZ7GPSXovQ", lat: 57.6857, lng: -4.1716, icon: "❤️", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJA1goY0ebj0gRfNZ7GPSXovQ", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJA1goY0ebj0gRfNZ7GPSXovQ" },
+  { name: "Invergordon Library", photoPos: "95%", cat: "Library", icon: "📚", placeId: "ChIJyf11q0Cbj0gRktwyIvj_yIQ", lat: 57.6852, lng: -4.1745, icon: "📚", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJyf11q0Cbj0gRktwyIvj_yIQ", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJyf11q0Cbj0gRktwyIvj_yIQ" },
+  { name: "Buchanan\'s Newsagents", photoPos: "100%", cat: "Newsagent & Café", icon: "📰", placeId: "ChIJV51le0ebj0gRw36VZyq25FU", lat: 57.6856, lng: -4.17, icon: "📰", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJV51le0ebj0gRw36VZyq25FU", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJV51le0ebj0gRw36VZyq25FU" },
+  { name: "Invergordon Leisure Centre", cat: "Leisure & Swimming", icon: "🏊", placeId: "ChIJR22_czmbj0gRIICh7wkKRoU", lat: 57.6876, lng: -4.1748, icon: "🏊", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJR22_czmbj0gRIICh7wkKRoU", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJR22_czmbj0gRIICh7wkKRoU" },
+  { name: "Travis Perkins", cat: "Builders Merchant", icon: "🔨", placeId: "ChIJy5cMeECbj0gRJKVHpSTpHgs", lat: 57.6858, lng: -4.167, icon: "🔨", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJy5cMeECbj0gRJKVHpSTpHgs", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJy5cMeECbj0gRJKVHpSTpHgs" },
+  { name: "Highland Taxis", cat: "Taxi Service", icon: "🚕", placeId: "ChIJTXaE3oabj0gRVDw6fVArfvo", lat: 57.6832, lng: -4.171, icon: "🚕", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJTXaE3oabj0gRVDw6fVArfvo", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJTXaE3oabj0gRVDw6fVArfvo" },
+];
+
+function bizFlip(i) { document.getElementById('biz-flip-'+i)?.classList.add('biz-flipped'); }
+function bizUnflip(i) { document.getElementById('biz-flip-'+i)?.classList.remove('biz-flipped'); }
+
+function openBizLightbox(i) {
+  const d = bizData[i];
+  if (!d) return;
+  document.getElementById('biz-lb-cat').textContent  = d.cat;
+  document.getElementById('biz-lb-name').textContent = d.name;
+  document.getElementById('biz-lb-icon').textContent = d.icon;
+  document.getElementById('biz-lb-open').href        = d.mapsUrl;
+
+  // Street View photo hero
+  const photoSrc = `https://maps.googleapis.com/maps/api/streetview?size=700x220&location=place_id:${d.placeId}&fov=90&pitch=0`;
+  const photoEl = document.getElementById('biz-lb-photo');
+  photoEl.src = photoSrc;
+  photoEl.alt = d.name;
+
+  // Show fallback icon behind photo
+  document.getElementById('biz-lb-photo-fallback').style.zIndex = '0';
+  photoEl.onload  = () => { document.getElementById('biz-lb-photo-fallback').style.zIndex = '-1'; };
+  photoEl.onerror = () => { photoEl.style.display = 'none'; document.getElementById('biz-lb-photo-fallback').style.zIndex = '1'; };
+
+  document.getElementById('biz-lb-map-link').href = d.mapsUrl;
+
+  // Reset photo state
+  const gphoto = document.getElementById('biz-lb-gphoto');
+  const gfallback = document.getElementById('biz-lb-gphoto-fallback');
+  gphoto.style.display = 'block';
+  gfallback.style.display = 'none';
+
+  // Use embedded base64 photo if available
+  if (bizPhotos[d.name]) {
+    gphoto.style.objectPosition = d.photoPos || 'center';
+    gphoto.setAttribute('style', `width:100%;height:100%;object-fit:cover;object-position:${d.photoPos || 'center'};display:block;`);
+    gphoto.src = bizPhotos[d.name];
+    gphoto.onerror = function() {
+      this.style.display = 'none';
+      gfallback.style.display = 'flex';
+    };
+  } else {
+    gphoto.style.display = 'none';
+    gfallback.style.display = 'flex';
+    gfallback.style.background = 'linear-gradient(135deg, #1a2535, #0d1438)';
+  }
+
+  document.getElementById('biz-lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBizLightbox(e) {
+  if (e.target === document.getElementById('biz-lightbox')) closeBizLightboxBtn();
+}
+function closeBizLightboxBtn() {
+  document.getElementById('biz-lightbox').classList.remove('open');
+
+  const photoEl = document.getElementById('biz-lb-photo');
+  if (photoEl) { photoEl.src = ''; photoEl.style.display = 'block'; }
+  document.body.style.overflow = '';
+}
+// ── Contact form handler ──
+function handleContactSubmit(event) {
+  // Prevent the page from refreshing (default form behaviour)
+  event.preventDefault();
+
+  // Hide the form and show the success message
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('contactSuccess').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

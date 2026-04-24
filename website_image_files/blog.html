@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Explore Invergordon</title>
+<meta name="description" content="Stories, updates and local knowledge from Invergordon in the Scottish Highlands. Written by a local.">
+<link rel="canonical" href="https://exploreinvergordon.scot/blog.html">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,15,30,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+
+  /* ── BLOG HERO ── */
+  .blog-hero {
+    position: relative;
+    padding: 10rem 2rem 6rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background-image: url('website_image_files/background_images/blog-hero.jpeg');
+    background-size: cover;
+    background-position: center 55%;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .blog-hero {
+      background-position: center 82%;
+    }
+  }
+
+  .blog-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.45) 0%,
+      rgba(8,15,30,0.65) 60%,
+      rgba(8,15,30,0.92) 100%);
+    z-index: 0;
+  }
+
+  .blog-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .blog-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .blog-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .blog-hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .blog-hero p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* ── POSTS ── */
+  .posts-container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .post {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .post:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .post-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .post h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: brightness(0.92);
+  }
+
+  .post-image-placeholder {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, var(--loch-blue), var(--highland-dark));
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .post-image-placeholder span {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .post p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .post p:last-of-type { margin-bottom: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Invergordon</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+  </ul>
+</nav>
+
+<div class="blog-hero">
+  <p class="blog-label">From the Highlands</p>
+  <h1>Stories from <em>Invergordon</em></h1>
+  <p>Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.</p>
+</div>
+
+<div class="posts-container">
+
+  <!--
+  ═══════════════════════════════════════════════════════════
+  TO ADD A NEW POST:
+  Copy one of the <article class="post"> blocks below,
+  paste it above this comment, update the date, title,
+  and content. Newest post always goes at the top.
+  To add a photo: replace the <div class="post-image-placeholder">
+  block with: <img src="your-image.jpg" class="post-image" alt="description">
+  ═══════════════════════════════════════════════════════════
+  -->
+
+  <!-- POST: 24 April 2026 -->
+  <article class="post">
+    <p class="post-meta">24 April 2026 &middot; Cruise Season</p>
+    <h2>The Renaissance Calls In — First Drone Shots of the Season</h2>
+    <img src="website_image_files/background_images/renaissance-invergordon-april-2026.jpeg" class="post-image" alt="The Fred. Olsen Renaissance docked at Invergordon with cherry blossom in the foreground, April 2026">
+    <p>Today was one of those days that reminds you exactly why living in Invergordon is something special. The Fred. Olsen Renaissance was in port — and for the first time this season, the weather, the schedule, and a charged drone all lined up at the same moment.</p>
+    <p>Getting airborne over the Cromarty Firth with a ship of that scale in the frame is a different thing entirely. The contrast between the quiet rooftops of the town, the cherry blossom in full bloom, and the Renaissance sitting at the quayside is the kind of image that tells the whole story of Invergordon without needing a caption.</p>
+    <p>More shots to follow as the season gets underway. The 2026 cruise schedule brings some big ships to the Firth this year — plenty of opportunities ahead.</p>
+  </article>
+
+  <!-- POST: April 2026 — Welcome -->
+  <article class="post">
+    <p class="post-meta">April 2026 &middot; Welcome</p>
+    <h2>Welcome to Explore Invergordon</h2>
+    <div class="post-image-placeholder">
+      <span>Photo coming soon</span>
+    </div>
+    <p>Invergordon sits on the shore of the Cromarty Firth in the Scottish Highlands — one of the deepest natural harbours in Europe, and for a few months every year, one of the busiest cruise ports in Scotland.</p>
+    <p>This blog is written by a local. The aim is simple: to share what makes this town worth exploring, beyond the obvious. The Mural Trail, the distilleries, the history, the food, the people. The things that don't make it onto the generic tourist leaflets.</p>
+    <p>If you've arrived by ship and you're wondering what to do with your day ashore — start here. If you're planning a visit by road — also start here. And if you already know Invergordon and want to keep up with what's happening in and around the town, this is the place to check back.</p>
+    <p>More posts coming regularly throughout the season.</p>
+  </article>
+
+</div>
+
+<footer>
+  <p>EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS</p>
+  <p><a href="index.html">&#8592; Back to main site</a></p>
+</footer>
+
+</body>
+</html>
