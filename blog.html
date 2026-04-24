@@ -85,9 +85,30 @@
 
   /* ── BLOG HERO ── */
   .blog-hero {
-    padding: 8rem 2rem 4rem;
+    position: relative;
+    padding: 10rem 2rem 6rem;
     text-align: center;
     border-bottom: 1px solid rgba(255,255,255,0.06);
+    background-image: url('website_image_files/background_images/blog-hero.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    overflow: hidden;
+  }
+
+  .blog-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.55) 0%,
+      rgba(8,15,30,0.72) 60%,
+      rgba(8,15,30,0.92) 100%);
+    z-index: 0;
+  }
+
+  .blog-hero > * {
+    position: relative;
+    z-index: 1;
   }
 
   .blog-label {
