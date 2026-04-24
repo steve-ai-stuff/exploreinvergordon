@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Explore Invergordon — Gateway to the Scottish Highlands</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1145,7 +1146,7 @@
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -1161,6 +1162,18 @@
     text-transform: uppercase;
     padding: 0.25rem 0.5rem;
     transition: color 0.2s;
+  }
+
+  @media (max-width: 680px) {
+    .lang-bar {
+      gap: 0.5rem;
+      padding: 0.35rem 0.5rem;
+    }
+    .lang-btn {
+      font-size: 0.52rem;
+      padding: 0.2rem 0.2rem;
+      letter-spacing: 0.04em;
+    }
   }
 
   .lang-btn:hover, .lang-btn.active { color: var(--gold); }
