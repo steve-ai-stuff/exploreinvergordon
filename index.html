@@ -54,7 +54,7 @@
     background: var(--highland-deep);
     color: var(--text-light);
     font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 18px;
+    font-size: 19px;
     line-height: 1.7;
     overflow-x: hidden;
   }
@@ -113,7 +113,7 @@
 
   .hero-tag {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 0.3em;
     color: var(--gold);
     text-transform: uppercase;
@@ -158,7 +158,7 @@
     color: var(--gold);
     padding: 0.85rem 2.5rem;
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -242,7 +242,7 @@
 
   .section-label {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 0.35em;
     color: var(--gold);
     text-transform: uppercase;
@@ -327,8 +327,8 @@
   }
 
   .card-text {
-    font-size: 0.95rem;
-    color: var(--text-muted);
+    font-size: 1rem;
+    color: var(--text-light);
     line-height: 1.6;
   }
 
@@ -502,7 +502,7 @@
 
   .mural-number {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     letter-spacing: 0.2em;
     color: var(--gold);
     margin-bottom: 0.5rem;
@@ -516,7 +516,7 @@
     line-height: 1.2;
   }
   .mural-desc {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     line-height: 1.4;
   }
@@ -807,7 +807,7 @@
 
   .biz-category {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     letter-spacing: 0.2em;
     color: var(--heather-light);
     text-transform: uppercase;
@@ -1096,7 +1096,7 @@
 
   footer p {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
@@ -1143,7 +1143,7 @@
 
   .nav-links a {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     text-decoration: none;
@@ -1175,7 +1175,7 @@
 
   .lang-btn {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 0.1em;
     color: var(--text-muted);
     background: none;
@@ -1192,7 +1192,7 @@
       padding: 0.35rem 0.5rem;
     }
     .lang-btn {
-      font-size: 0.52rem;
+      font-size: 0.56rem;
       padding: 0.2rem 0.2rem;
       letter-spacing: 0.04em;
     }
@@ -1213,7 +1213,7 @@
 
   /* ── INTRO TEXT ── */
   .intro-text {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: var(--mist);
     line-height: 1.8;
     max-width: 650px;
@@ -1591,7 +1591,7 @@
   }
 
   .excursion-card p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 1rem;
@@ -1803,7 +1803,7 @@
       <em>Invergordon</em>
     </h1>
     <p class="hero-subtitle" id="hero-sub">Your guide to Invergordon, Scottish Highlands — just a 5-minute walk from your cruise ship</p>
-    <a href="javascript:void(0)" onclick="scrollTo('welcome')" class="hero-cta">
+    <a href="javascript:void(0)" onclick="beginVisit()" class="hero-cta">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       <span id="hero-cta-text">Begin Your Visit</span>
     </a>
@@ -1952,76 +1952,76 @@
   <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Popular Excursions</h3>
 
   <div class="excursion-grid">
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="wind">
       <div class="excursion-icon">🏔️</div>
       <h3>Fyrish Monument</h3>
       <div class="excursion-distance">25 min drive</div>
       <p>A replica of the Gates of Nagapatnam, built in 1782 to provide employment for local people after the Highland Clearances. Panoramic views over the Cromarty Firth.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.walkhighlands.co.uk/north-highlands/fyrish-monument.shtml" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="whisky">
       <div class="excursion-icon">🥃</div>
       <h3>Glenmorangie Distillery</h3>
       <div class="excursion-distance">18 min drive</div>
       <p>One of Scotland's most celebrated Highland single malts. Distillery tours, tastings, and a beautiful estate on the shores of the Dornoch Firth.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.glenmorangie.com/en-gb/visit-us/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="whisky">
       <div class="excursion-icon">🥃</div>
       <h3>Dalmore Distillery</h3>
       <div class="excursion-distance">12 min drive</div>
       <p>Legendary for its complex, sherry-influenced expressions. One of the world's most collectable whiskies, made just minutes from the port.</p>
-      <a href="#">Learn more</a>
+      <a href="https://thedalmore.com/visit/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="sword">
       <div class="excursion-icon">🏰</div>
       <h3>Culloden Battlefield</h3>
       <div class="excursion-distance">45 min drive</div>
       <p>The site of the last pitched battle on British soil (1746). A haunting, beautifully managed National Trust for Scotland site. Essential Highland history.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.nts.org.uk/visit/places/culloden" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="water">
       <div class="excursion-icon">🏔️</div>
       <h3>Loch Ness</h3>
       <div class="excursion-distance">60 min drive</div>
       <p>Home of the world's most famous mystery. The Great Glen and the loch itself are breathtaking regardless of what lurks beneath. Urquhart Castle on the shore is stunning.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.visitlochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="horn">
       <div class="excursion-icon">🏙️</div>
       <h3>Inverness City Centre</h3>
       <div class="excursion-distance">40 min drive</div>
       <p>The capital of the Highlands. Victorian Market, Inverness Castle, the River Ness, independent shops, and excellent food. A full half-day destination.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.visitinverness.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="fanfare">
       <div class="excursion-icon">🏰</div>
       <h3>Dunrobin Castle</h3>
       <div class="excursion-distance">45 min drive</div>
       <p>The largest castle in the Northern Highlands and one of Britain's oldest continuously inhabited houses. A fairytale turreted palace set in formal French-style gardens overlooking the sea, home to the Earls and Dukes of Sutherland. Falconry displays in the grounds.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.dunrobincastle.co.uk/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="fanfare">
       <div class="excursion-icon">🏯</div>
-      <h3>Urquhardt Castle</h3>
+      <h3>Urquhart Castle</h3>
       <div class="excursion-distance">65 min drive</div>
       <p>One of Scotland's most dramatic castle ruins, perched on the banks of Loch Ness with the famous loch stretching out behind it. A Historic Environment Scotland site with a modern visitor centre. The most photographed castle in the Highlands — and for good reason.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="fanfare">
       <div class="excursion-icon">👑</div>
       <h3>Inverness Castle Experience</h3>
       <div class="excursion-distance">40 min drive</div>
       <p>Scotland's newest major visitor attraction, newly opened in the heart of Inverness with breathtaking views over the River Ness, the historic bridges, and the city centre below. An immersive Highland journey through 10,000 years of history, culture, and landscape — right on your doorstep.</p>
-      <a href="#">Learn more</a>
+      <a href="https://www.invernesscastle.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
   </div>
 
@@ -2101,7 +2101,7 @@
     <div class="photo-upload-teaser-icon">📸</div>
     <h3>Did you visit Invergordon today?</h3>
     <p>Upload your favourite photo from your visit and we'll feature it in our Visitor Gallery — shared with travellers from around the world.</p>
-    <button class="upload-btn">Upload Your Photo</button>
+    <button class="upload-btn" onclick="showUploadComingSoon(this)">Upload Your Photo</button>
   </div>
 </section>
 
@@ -2154,9 +2154,10 @@
     <p id="museum-text1">Invergordon has a history that most visitors never expect — a Royal Naval base that shaped two World Wars, a 1931 mutiny that changed British naval history, an oil boom and bust that mirrored the Highland experience of the 20th century, and a community that has reinvented itself time and again. The museum holds this story, told through artefacts, photographs and the voices of the people who lived it.</p>
     <p id="museum-text2">The museum is currently planning an exciting move to a new, larger home — a modern heritage centre that will do full justice to Invergordon's extraordinary past. Your visit today helps support that future.</p>
     <div class="museum-links">
-      <a href="https://www.invergordonmuseum.co.uk" target="_blank" class="btn-primary" id="museum-btn1">Visit the Museum ↗</a>
-      <a href="https://invergordonoffthewall.org.uk/app/" target="_blank" class="btn-secondary" id="museum-btn2">Download Mural App ↗</a>
+      <a href="https://www.invergordonmuseum.co.uk" target="_blank" rel="noopener" class="btn-primary" id="museum-btn1">Visit the Museum ↗</a>
+      <a href="https://invergordonoffthewall.org.uk/app/" target="_blank" rel="noopener" class="btn-secondary" id="museum-btn2">Download Mural App ↗</a>
     </div>
+    <p style="font-size:0.78rem; color:var(--text-muted); margin-top:1rem; font-style:italic; opacity:0.7;">* These links open official third-party websites. Explore Invergordon is not affiliated with these organisations — we simply recommend them as genuinely excellent local resources.</p>
   </div>
 </section>
 
@@ -3187,7 +3188,7 @@
 <footer>
   <p>EXPLORE INVERGORDON · EASTER ROSS · SCOTTISH HIGHLANDS</p>
   <p style="margin-top:0.5rem;"><a href="https://invergordonoffthewall.org.uk" target="_blank">Invergordon Off the Wall</a> · <a href="https://www.invergordonmuseum.co.uk" target="_blank">Invergordon Museum</a> · <a href="https://pocf.co.uk/cruise/" target="_blank">Port of Cromarty Firth</a></p>
-  <p class="footer-credit" id="footer-credit">A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot</p>
+  <p class="footer-credit" id="footer-credit">Created by a Local Resident using Modern Tools — Capturing his own Unique Images &amp; Video of the Town and Surrounding Areas · ExploreInvergordon.scot</p>
   <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html">Privacy Policy</a></p>
 </footer>
 
@@ -3269,7 +3270,7 @@ const translations = {
     tip2Text: "The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.",
     tip3Title: "Before You Sail Away",
     tip3Text: "Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.",
-    footerCredit: "A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot",
+    footerCredit: "Created by a Local Resident using Modern Tools — Capturing his own Unique Images & Video of the Town and Surrounding Areas · ExploreInvergordon.scot",
     navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Landscape",
     scroll: "Scroll",
   },
@@ -3944,7 +3945,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 <!-- Saltire Footer -->
 <footer class="saltire-footer-wrap">
 
-  <span class="we-text">We</span>
+  <span class="we-text">We 💙 Scotland</span>
 
   <!-- Flag + Heart overlay composition -->
   <div style="position:relative; display:inline-block; margin-top:8px;">
@@ -4047,11 +4048,11 @@ const muralData = [
 
 function flipCard(idx) {
   const el = document.getElementById('flip-' + idx);
-  if (el) el.classList.add('flipped');
+  if (el) { el.classList.add('flipped'); playFX('whooshFwd'); }
 }
 function unflipCard(idx) {
   const el = document.getElementById('flip-' + idx);
-  if (el) el.classList.remove('flipped');
+  if (el) { el.classList.remove('flipped'); playFX('whooshBck'); }
 }
 
 function openLightbox(idx) {
@@ -4147,8 +4148,8 @@ const bizData = [
   { name: "Highland Taxis", cat: "Taxi Service", icon: "🚕", placeId: "ChIJTXaE3oabj0gRVDw6fVArfvo", lat: 57.6832, lng: -4.171, icon: "🚕", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJTXaE3oabj0gRVDw6fVArfvo", embedUrl: "https://www.google.com/maps/embed/v1/place?key=AIzaSyB4xmBnsgzFfBhML_g2QW6JOyPMqT5MMKM&q=place_id:ChIJTXaE3oabj0gRVDw6fVArfvo" },
 ];
 
-function bizFlip(i) { document.getElementById('biz-flip-'+i)?.classList.add('biz-flipped'); }
-function bizUnflip(i) { document.getElementById('biz-flip-'+i)?.classList.remove('biz-flipped'); }
+function bizFlip(i) { document.getElementById('biz-flip-'+i)?.classList.add('biz-flipped'); playFX('whooshFwd'); }
+function bizUnflip(i) { document.getElementById('biz-flip-'+i)?.classList.remove('biz-flipped'); playFX('whooshBck'); }
 
 function openBizLightbox(i) {
   const d = bizData[i];
@@ -4207,12 +4208,86 @@ function closeBizLightboxBtn() {
 }
 // ── Contact form handler ──
 function handleContactSubmit(event) {
-  // Prevent the page from refreshing (default form behaviour)
   event.preventDefault();
+  playFX('cow');
+  setTimeout(function() {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+  }, 400);
+}
+</script>
 
-  // Hide the form and show the success message
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('contactSuccess').style.display = 'block';
+<script>
+// ══════════════════════════════════════════════════════
+// SOUND FX ENGINE — Explore Invergordon
+// ══════════════════════════════════════════════════════
+(function() {
+  var pool = {};
+  var ready = false;
+
+  var files = {
+    bagpipes:  'sounds/bagpipes_trimmed.mp3',
+    whooshFwd: 'sounds/bamboo-whoosh_trimmed.mp3',
+    whooshBck: 'sounds/whoosh-effect.mp3',
+    camera:    'sounds/camera-shutter.mp3',
+    wind:      'sounds/cemetary-wind_trimmed.mp3',
+    whisky:    'sounds/pouring-whisky_trimmed.mp3',
+    sword:     'sounds/draw-sword.mp3',
+    water:     'sounds/water-drop.mp3',
+    horn:      'sounds/car-horn.mp3',
+    fanfare:   'sounds/castle-medieval-fanfare_trimmed.mp3',
+    cow:       'sounds/highland-cow-moo.mp3'
+  };
+
+  function init() {
+    if (ready) return;
+    ready = true;
+    for (var k in files) {
+      var a = new Audio(files[k]);
+      a.preload = 'auto';
+      pool[k] = a;
+    }
+  }
+
+  // Unlock audio on first user gesture (browser autoplay policy)
+  document.addEventListener('click',      init, { once: true });
+  document.addEventListener('touchstart', init, { once: true });
+  document.addEventListener('keydown',    init, { once: true });
+
+  window.playFX = function(key) {
+    init();
+    var a = pool[key];
+    if (!a) return;
+    try { a.currentTime = 0; a.play().catch(function(){}); } catch(e){}
+  };
+})();
+
+// ── Begin Your Visit: bagpipes + slow scroll to Cruise Hub ──
+function beginVisit() {
+  playFX('bagpipes');
+  setTimeout(function() {
+    var el = document.getElementById('cruise-hub');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 400);
+}
+
+// ── Excursion card hover sounds (wired via data-sound attribute) ──
+document.querySelectorAll('.excursion-card[data-sound]').forEach(function(card) {
+  var key = card.getAttribute('data-sound');
+  card.addEventListener('mouseenter', function() { playFX(key); });
+});
+
+// ── Upload Your Photo — coming soon message ──
+function showUploadComingSoon(btn) {
+  playFX('camera');
+  var teaser = btn.closest('.photo-upload-teaser');
+  if (!teaser) return;
+  if (teaser.querySelector('.upload-msg')) return; // already shown
+  var msg = document.createElement('p');
+  msg.className = 'upload-msg';
+  msg.style.cssText = 'color:var(--gold);font-family:"Overpass Mono",monospace;font-size:0.75rem;letter-spacing:0.1em;margin-top:0.9rem;text-align:center;';
+  msg.textContent = '📸 Visitor photo gallery coming soon — check back after the 2026 cruise season opens!';
+  teaser.appendChild(msg);
 }
 </script>
 
