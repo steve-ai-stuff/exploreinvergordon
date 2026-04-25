@@ -76,7 +76,7 @@
     position: fixed;
     inset: 0;
     background: url('website_image_files/background_images/background_image.jpg') center 30% / cover no-repeat;
-    z-index: 0;
+    z-index: -1;
   }
 
   .hero-bg::after {
@@ -1224,11 +1224,18 @@
     font-weight: 600;
   }
 
+  /* ── POST-HERO CONTENT: ensure sections paint above fixed hero-bg ── */
+  .walk-banner, section:not(.hero), footer {
+    position: relative;
+    z-index: 1;
+  }
+
   /* ── CRUISE HUB SECTION ── */
   .cruise-hub-section {
     padding: 2rem 1.5rem;
     max-width: 1000px;
     margin: 0 auto;
+    background: var(--highland-deep);
   }
 
   .arrival-info-bar {
