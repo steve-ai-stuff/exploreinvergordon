@@ -296,25 +296,25 @@
 <body>
 
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" onclick="setLang('de')">DE</button>
-  <button class="lang-btn" onclick="setLang('fr')">FR</button>
-  <button class="lang-btn" onclick="setLang('us')">US</button>
-  <button class="lang-btn" onclick="setLang('no')">NO</button>
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
 </div>
 
 <nav>
   <a href="index.html" class="nav-logo">Invergordon</a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="index.html" id="blog-nav-home">Home</a></li>
+    <li><a href="blog.html" class="active" id="blog-nav-blog">Blog</a></li>
   </ul>
 </nav>
 
 <div class="blog-hero">
-  <p class="blog-label">From the Highlands</p>
-  <h1>Stories from <em>Invergordon</em></h1>
-  <p>Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.</p>
+  <p class="blog-label" id="blog-hero-label">From the Highlands</p>
+  <h1 id="blog-hero-title">Stories from <em>Invergordon</em></h1>
+  <p id="blog-hero-desc">Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.</p>
 </div>
 
 <div class="posts-container">
@@ -332,43 +332,168 @@
 
   <!-- POST: 24 April 2026 -->
   <article class="post">
-    <p class="post-meta">24 April 2026 &middot; Cruise Season</p>
-    <h2>The Renaissance Calls In — First Drone Shots of the Season</h2>
+    <p class="post-meta" id="p1-meta">24 April 2026 &middot; Cruise Season</p>
+    <h2 id="p1-title">The Renaissance Calls In — First Drone Shots of the Season</h2>
     <img src="website_image_files/background_images/renaissance-invergordon-april-2026.jpeg" class="post-image" alt="The Fred. Olsen Renaissance docked at Invergordon with cherry blossom in the foreground, April 2026">
-    <p>Today was one of those days that reminds you exactly why living in Invergordon is something special. The Fred. Olsen Renaissance was in port — and for the first time this season, the weather, the schedule, and a charged drone all lined up at the same moment.</p>
-    <p>Getting airborne over the Cromarty Firth with a ship of that scale in the frame is a different thing entirely. The contrast between the quiet rooftops of the town, the cherry blossom in full bloom, and the Renaissance sitting at the quayside is the kind of image that tells the whole story of Invergordon without needing a caption.</p>
-    <p>More shots to follow as the season gets underway. The 2026 cruise schedule brings some big ships to the Firth this year — plenty of opportunities ahead.</p>
+    <p id="p1-body1">Today was one of those days that reminds you exactly why living in Invergordon is something special. The Fred. Olsen Renaissance was in port — and for the first time this season, the weather, the schedule, and a charged drone all lined up at the same moment.</p>
+    <p id="p1-body2">Getting airborne over the Cromarty Firth with a ship of that scale in the frame is a different thing entirely. The contrast between the quiet rooftops of the town, the cherry blossom in full bloom, and the Renaissance sitting at the quayside is the kind of image that tells the whole story of Invergordon without needing a caption.</p>
+    <p id="p1-body3">More shots to follow as the season gets underway. The 2026 cruise schedule brings some big ships to the Firth this year — plenty of opportunities ahead.</p>
   </article>
 
   <!-- POST: April 2026 — Welcome -->
   <article class="post">
-    <p class="post-meta">April 2026 &middot; Welcome</p>
-    <h2>Welcome to Explore Invergordon</h2>
+    <p class="post-meta" id="p2-meta">April 2026 &middot; Welcome</p>
+    <h2 id="p2-title">Welcome to Explore Invergordon</h2>
     <img src="website_image_files/background_images/welcome-invergordon.jpeg" class="post-image" alt="Two cruise ships and an oil rig in the Cromarty Firth, Invergordon, Scottish Highlands">
-    <p>Invergordon sits on the shore of the Cromarty Firth in the Scottish Highlands — one of the deepest natural harbours in Europe, and for a few months every year, one of the busiest cruise ports in Scotland.</p>
-    <p>This blog is written by a local. The aim is simple: to share what makes this town worth exploring, beyond the obvious. The Mural Trail, the distilleries, the history, the food, the people. The things that don't make it onto the generic tourist leaflets.</p>
-    <p>If you've arrived by ship and you're wondering what to do with your day ashore — start here. If you're planning a visit by road — also start here. And if you already know Invergordon and want to keep up with what's happening in and around the town, this is the place to check back.</p>
-    <p>More posts coming regularly throughout the season.</p>
+    <p id="p2-body1">Invergordon sits on the shore of the Cromarty Firth in the Scottish Highlands — one of the deepest natural harbours in Europe, and for a few months every year, one of the busiest cruise ports in Scotland.</p>
+    <p id="p2-body2">This blog is written by a local. The aim is simple: to share what makes this town worth exploring, beyond the obvious. The Mural Trail, the distilleries, the history, the food, the people. The things that don't make it onto the generic tourist leaflets.</p>
+    <p id="p2-body3">If you've arrived by ship and you're wondering what to do with your day ashore — start here. If you're planning a visit by road — also start here. And if you already know Invergordon and want to keep up with what's happening in and around the town, this is the place to check back.</p>
+    <p id="p2-body4">More posts coming regularly throughout the season.</p>
   </article>
 
 </div>
 
 <footer>
-  <p>EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS</p>
-  <p><a href="index.html">&#8592; Back to main site</a></p>
-  <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html">Privacy Policy</a></p>
+  <p id="blog-footer-tagline">EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS</p>
+  <p><a href="index.html" id="blog-footer-back">&#8592; Back to main site</a></p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html" id="blog-footer-privacy">Privacy Policy</a></p>
 </footer>
 
 <script>
+var blogTranslations = {
+  en: {
+    navHome: "Home", navBlog: "Blog",
+    heroLabel: "From the Highlands",
+    heroTitle: "Stories from <em>Invergordon</em>",
+    heroDesc: "Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.",
+    p1Meta: "24 April 2026 &middot; Cruise Season",
+    p1Title: "The Renaissance Calls In — First Drone Shots of the Season",
+    p1Body1: "Today was one of those days that reminds you exactly why living in Invergordon is something special. The Fred. Olsen Renaissance was in port — and for the first time this season, the weather, the schedule, and a charged drone all lined up at the same moment.",
+    p1Body2: "Getting airborne over the Cromarty Firth with a ship of that scale in the frame is a different thing entirely. The contrast between the quiet rooftops of the town, the cherry blossom in full bloom, and the Renaissance sitting at the quayside is the kind of image that tells the whole story of Invergordon without needing a caption.",
+    p1Body3: "More shots to follow as the season gets underway. The 2026 cruise schedule brings some big ships to the Firth this year — plenty of opportunities ahead.",
+    p2Meta: "April 2026 &middot; Welcome",
+    p2Title: "Welcome to Explore Invergordon",
+    p2Body1: "Invergordon sits on the shore of the Cromarty Firth in the Scottish Highlands — one of the deepest natural harbours in Europe, and for a few months every year, one of the busiest cruise ports in Scotland.",
+    p2Body2: "This blog is written by a local. The aim is simple: to share what makes this town worth exploring, beyond the obvious. The Mural Trail, the distilleries, the history, the food, the people. The things that don’t make it onto the generic tourist leaflets.",
+    p2Body3: "If you’ve arrived by ship and you’re wondering what to do with your day ashore — start here. If you’re planning a visit by road — also start here. And if you already know Invergordon and want to keep up with what’s happening in and around the town, this is the place to check back.",
+    p2Body4: "More posts coming regularly throughout the season.",
+    footerTagline: "EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS",
+    footerBack: "← Back to main site",
+    footerPrivacy: "Privacy Policy"
+  },
+  de: {
+    navHome: "Startseite", navBlog: "Blog",
+    heroLabel: "Aus dem Hochland",
+    heroTitle: "Geschichten aus <em>Invergordon</em>",
+    heroDesc: "Lokales Wissen, Geschichte, Neuigkeiten und Fotografie aus dem Herzen des schottischen Hochlands. Geschrieben von einem Einheimischen.",
+    p1Meta: "24. April 2026 &middot; Kreuzfahrtsaison",
+    p1Title: "Die Renaissance legt an — Erste Drohnenaufnahmen der Saison",
+    p1Body1: "Heute war einer jener Tage, die einem genau daran erinnern, warum das Leben in Invergordon etwas Besonderes ist. Die Fred. Olsen Renaissance war im Hafen — und zum ersten Mal in dieser Saison stimmten das Wetter, der Zeitplan und eine aufgeladene Drohne gleichzeitig überein.",
+    p1Body2: "Mit einer Drohne über den Cromarty Firth aufzusteigen und ein Schiff dieser Größe im Blickfeld zu haben, ist eine ganz andere Angelegenheit. Der Kontrast zwischen den ruhigen Hausdächern der Stadt, der voll erüblhten Kirschblüte und dem am Kai liegenden Renaissance ist die Art von Bild, das die ganze Geschichte Invergordons erzählt, ohne eine Bildunterschrift zu benötigen.",
+    p1Body3: "Weitere Aufnahmen folgen, wenn die Saison Fahrt aufnimmt. Der Kreuzfahrtplan 2026 bringt dieses Jahr einige große Schiffe in den Firth — viele Möglichkeiten liegen noch vor uns.",
+    p2Meta: "April 2026 &middot; Willkommen",
+    p2Title: "Willkommen bei Explore Invergordon",
+    p2Body1: "Invergordon liegt am Ufer des Cromarty Firth im schottischen Hochland — einer der tiefsten Naturhäfen in Europa, und für einige Monate jedes Jahres einer der belebtesten Kreuzfahrthäfen in Schottland.",
+    p2Body2: "Dieser Blog wird von einem Einheimischen geschrieben. Das Ziel ist einfach: zu teilen, was diese Stadt es wert macht, erkundet zu werden — jenseits des Offensichtlichen. Der Mural Trail, die Destillerien, die Geschichte, das Essen, die Menschen. Die Dinge, die es nicht in die generischen Touristenprospekte schaffen.",
+    p2Body3: "Wenn Sie mit dem Schiff angekommen sind und sich fragen, was Sie mit Ihrem Tag an Land anfangen sollen — fangen Sie hier an. Wenn Sie eine Reise per Auto planen — ebenfalls hier anfangen. Und wenn Sie Invergordon bereits kennen und auf dem Laufenden bleiben möchten, was in und um die Stadt passiert, ist dies der Ort, an den Sie zurückkehren sollten.",
+    p2Body4: "Weitere Beiträge folgen regelmäßig im Laufe der Saison.",
+    footerTagline: "EXPLORE INVERGORDON &middot; SCHOTTISCHES HOCHLAND",
+    footerBack: "← Zurück zur Hauptseite",
+    footerPrivacy: "Datenschutzrichtlinie"
+  },
+  fr: {
+    navHome: "Accueil", navBlog: "Blog",
+    heroLabel: "Des Highlands",
+    heroTitle: "Histoires d’<em>Invergordon</em>",
+    heroDesc: "Savoir local, histoire, actualités et photographie depuis le cœur des Highlands écossaises. Écrit par un local.",
+    p1Meta: "24 Avril 2026 &middot; Saison de Croisière",
+    p1Title: "Le Renaissance fait escale — Premières prises de vue par drone de la saison",
+    p1Body1: "Aujourd’hui était l’un de ces jours qui vous rappellent exactement pourquoi vivre à Invergordon est quelque chose de spécial. Le Fred. Olsen Renaissance était au port — et pour la première fois cette saison, la météo, le programme et un drone chargé se sont tous alignés au même moment.",
+    p1Body2: "Décoller au-dessus du Cromarty Firth avec un navire de cette taille dans le cadre est une tout autre chose. Le contraste entre les toits tranquilles de la ville, les cerisiers en pleine floraison et le Renaissance à quai est le genre d’image qui raconte toute l’histoire d’Invergordon sans avoir besoin d’une légende.",
+    p1Body3: "D’autres clichés suivront au fur et à mesure que la saison avance. Le programme de croisières 2026 amène de grands navires dans le Firth cette année — de nombreuses opportunités à venir.",
+    p2Meta: "Avril 2026 &middot; Bienvenue",
+    p2Title: "Bienvenue sur Explore Invergordon",
+    p2Body1: "Invergordon est situé sur les rives du Cromarty Firth dans les Highlands écossaises — l’un des ports naturels les plus profonds d’Europe, et pendant quelques mois chaque année, l’un des ports de croisière les plus actifs d’Écosse.",
+    p2Body2: "Ce blog est écrit par un local. L’objectif est simple : partager ce qui rend cette ville digne d’être explorée, au-delà de l’évident. Le Mural Trail, les distilleries, l’histoire, la cuisine, les gens. Les choses qui ne se retrouvent pas dans les dépliants touristiques génériques.",
+    p2Body3: "Si vous êtes arrivé en bateau et vous demandez quoi faire de votre journée à terre — commencez ici. Si vous planifiez une visite par la route — commencez également ici. Et si vous connaissez déjà Invergordon et souhaitez vous tenir au courant de ce qui se passe dans et autour de la ville, c’est l’endroit où revenir.",
+    p2Body4: "D’autres articles à venir régulièrement tout au long de la saison.",
+    footerTagline: "EXPLORE INVERGORDON &middot; HIGHLANDS ÉCOSSAISES",
+    footerBack: "← Retour au site principal",
+    footerPrivacy: "Politique de Confidentialité"
+  },
+  us: {
+    navHome: "Home", navBlog: "Blog",
+    heroLabel: "From the Highlands",
+    heroTitle: "Stories from <em>Invergordon</em>",
+    heroDesc: "Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.",
+    p1Meta: "April 24, 2026 &middot; Cruise Season",
+    p1Title: "The Renaissance Calls In — First Drone Shots of the Season",
+    p1Body1: "Today was one of those days that reminds you exactly why living in Invergordon is something special. The Fred. Olsen Renaissance was in port — and for the first time this season, the weather, the schedule, and a fully charged drone all lined up at the same moment.",
+    p1Body2: "Getting airborne over the Cromarty Firth with a ship of that scale in the frame is a whole different experience. The contrast between the quiet rooftops of the town, the cherry blossom in full bloom, and the Renaissance sitting at the quayside is exactly the kind of image that tells the whole story of Invergordon without needing a caption.",
+    p1Body3: "More shots to follow as the season gets rolling. The 2026 cruise schedule brings some big ships to the Firth this year — plenty of opportunities ahead.",
+    p2Meta: "April 2026 &middot; Welcome",
+    p2Title: "Welcome to Explore Invergordon",
+    p2Body1: "Invergordon sits on the shore of the Cromarty Firth in the Scottish Highlands — one of the deepest natural harbors in Europe, and for a few months every year, one of Scotland’s busiest cruise ports.",
+    p2Body2: "This blog is written by a local. The goal is simple: to share what makes this town worth exploring, beyond the obvious. The Mural Trail, the distilleries, the history, the food, the people. The things that never make it into the generic tourist brochures.",
+    p2Body3: "If you’ve arrived by ship and you’re wondering what to do with your day ashore — start here. If you’re planning a road trip visit — also start here. And if you already know Invergordon and want to stay current with what’s happening in and around town, this is the place to bookmark.",
+    p2Body4: "More posts coming regularly throughout the season.",
+    footerTagline: "EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS",
+    footerBack: "← Back to main site",
+    footerPrivacy: "Privacy Policy"
+  },
+  no: {
+    navHome: "Hjem", navBlog: "Blogg",
+    heroLabel: "Fra høylandet",
+    heroTitle: "Historier fra <em>Invergordon</em>",
+    heroDesc: "Lokal kunnskap, historie, oppdateringer og fotografi fra hjertet av de skotske høylandene. Skrevet av en innbygger.",
+    p1Meta: "24. april 2026 &middot; Cruisesesong",
+    p1Title: "Renaissance legger til kai — Årets første dronebilder",
+    p1Body1: "I dag var en av de dagene som minner deg på nøyaktig hvorfor det er noe spesielt å bo i Invergordon. Fred. Olsen Renaissance var i havn — og for første gang denne sesongen var været, tidsplanen og en ladet drone på plass samtidig.",
+    p1Body2: "Å lette over Cromarty Firth med et skip i den størrelsen i bildet er en helt annen opplevelse. Kontrasten mellom de rolige hustak i byen, kirsebærblomstringen i full blomstring og Renaissance ved kaia er nettopp den type bilde som forteller hele Invergordons historie uten å trenge en bildetekst.",
+    p1Body3: "Flere bilder vil følge etter hvert som sesongen tar seg opp. Cruiseprogrammet for 2026 bringer noen store skip til Fjorden dette året — det er mange muligheter fremover.",
+    p2Meta: "April 2026 &middot; Velkommen",
+    p2Title: "Velkommen til Explore Invergordon",
+    p2Body1: "Invergordon ligger ved bredden av Cromarty Firth i de skotske høylandene — en av de dypeste naturhavnene i Europa, og i noen måneder hvert år en av de travleste cruisehavnene i Skottland.",
+    p2Body2: "Denne bloggen er skrevet av en innbygger. Målet er enkelt: å dele det som gjør denne byen verdt å utforske, utover det åpenbare. Muralmalen, destilleriene, historien, maten, menneskene. De tingene som ikke havner i de generiske turistbrosj\u00fyrene.",
+    p2Body3: "Hvis du har ankommet med skip og lurer på hva du skal gjøre med dagen i land — start her. Hvis du planlegger et besøk med bil — start også her. Og hvis du allerede kjenner Invergordon og ønsker å holde deg oppdatert på hva som skjer i og rundt byen, er dette stedet å komme tilbake til.",
+    p2Body4: "Flere innlegg kommer jevnlig gjennom sesongen.",
+    footerTagline: "EXPLORE INVERGORDON &middot; SKOTSKE HØYLANDER",
+    footerBack: "← Tilbake til hovedsiden",
+    footerPrivacy: "Personvernregler"
+  }
+};
+
+function set(id, val) {
+  var el = document.getElementById(id);
+  if (el) el.innerHTML = val;
+}
+
 function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(function(btn, i) {
-    btn.classList.remove('active');
-  });
+  var t = blogTranslations[lang] || blogTranslations.en;
+  document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
   var langs = ['en','de','fr','us','no'];
   var idx = langs.indexOf(lang);
-  if (idx > -1) {
-    document.querySelectorAll('.lang-btn')[idx].classList.add('active');
-  }
+  if (idx > -1) document.querySelectorAll('.lang-btn')[idx].classList.add('active');
+
+  set('blog-nav-home', t.navHome);
+  set('blog-nav-blog', t.navBlog);
+  set('blog-hero-label', t.heroLabel);
+  set('blog-hero-title', t.heroTitle);
+  set('blog-hero-desc', t.heroDesc);
+  set('p1-meta', t.p1Meta);
+  set('p1-title', t.p1Title);
+  set('p1-body1', t.p1Body1);
+  set('p1-body2', t.p1Body2);
+  set('p1-body3', t.p1Body3);
+  set('p2-meta', t.p2Meta);
+  set('p2-title', t.p2Title);
+  set('p2-body1', t.p2Body1);
+  set('p2-body2', t.p2Body2);
+  set('p2-body3', t.p2Body3);
+  set('p2-body4', t.p2Body4);
+  set('blog-footer-tagline', t.footerTagline);
+  set('blog-footer-back', t.footerBack);
+  set('blog-footer-privacy', t.footerPrivacy);
 }
 </script>
 

@@ -1753,14 +1753,14 @@
 
 <!-- NAV -->
 <nav>
-  <a href="javascript:void(0)" onclick="scrollTo('nav-logo-top')" class="nav-logo">Invergordon</a>
+  <a href="javascript:void(0)" onclick="navTo('nav-logo-top')" class="nav-logo">Invergordon</a>
   <ul class="nav-links">
-    <li><a href="javascript:void(0)" onclick="scrollTo('cruise-hub')" class="nav-cruise">Cruise</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollTo('getting-started')" class="nav-arrive">Arrive</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollTo('murals')" class="nav-murals">Murals</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollTo('welcome')" class="nav-town">Town</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollTo('museum')" class="nav-museum">Museum</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollTo('landscape')" class="nav-landscape">Landscape</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('cruise-hub')" class="nav-cruise">Cruise</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('getting-started')" class="nav-arrive">Arrive</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('murals')" class="nav-murals">Murals</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('welcome')" class="nav-town">Town</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('museum')" class="nav-museum">Museum</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('landscape')" class="nav-landscape">Landscape</a></li>
     <li><a href="blog.html" class="nav-blog">Blog</a></li>
   </ul>
 </nav>
@@ -3186,17 +3186,9 @@
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <p>EXPLORE INVERGORDON · EASTER ROSS · SCOTTISH HIGHLANDS</p>
-  <p style="margin-top:0.5rem;"><a href="https://invergordonoffthewall.org.uk" target="_blank">Invergordon Off the Wall</a> · <a href="https://www.invergordonmuseum.co.uk" target="_blank">Invergordon Museum</a> · <a href="https://pocf.co.uk/cruise/" target="_blank">Port of Cromarty Firth</a></p>
-  <p class="footer-credit" id="footer-credit">Created by a Local Resident using Modern Tools — Capturing his own Unique Images &amp; Video of the Town and Surrounding Areas · ExploreInvergordon.scot</p>
-  <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html">Privacy Policy</a></p>
-</footer>
-
 <script>
-// ── SMOOTH SCROLL (iframe-safe) ──
-function scrollTo(id) {
+// ── SMOOTH SCROLL (iframe-safe, avoids conflict with window.scrollTo) ──
+function navTo(id) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -4228,6 +4220,13 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
   <p class="footer-tagline">EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
 </footer>
 
+<!-- FOOTER -->
+<footer>
+  <p>EXPLORE INVERGORDON · EASTER ROSS · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.5rem;"><a href="https://invergordonoffthewall.org.uk" target="_blank">Invergordon Off the Wall</a> · <a href="https://www.invergordonmuseum.co.uk" target="_blank">Invergordon Museum</a> · <a href="https://pocf.co.uk/cruise/" target="_blank">Port of Cromarty Firth</a></p>
+  <p class="footer-credit" id="footer-credit">Created by a Local Resident using Modern Tools — Capturing his own Unique Images &amp; Video of the Town and Surrounding Areas · ExploreInvergordon.scot</p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html">Privacy Policy</a></p>
+</footer>
 
 <script>
 // ── Tips Accordion logic ──
@@ -4299,6 +4298,38 @@ function closeLightboxBtn() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightboxBtn(); });
+
+// ── Mobile two-tap flip for mural cards ──
+(function() {
+  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  if (!isTouchDevice) return;
+  document.querySelectorAll('.mural-face .flip-front').forEach(function(front) {
+    var card = front.closest('[id^="flip-"]');
+    if (!card) return;
+    var idx = card.id.replace('flip-', '');
+    front.addEventListener('touchend', function(e) {
+      if (!card.classList.contains('flipped')) {
+        e.preventDefault();
+        // Unflip any other open mural card first
+        document.querySelectorAll('[id^="flip-"].flipped').forEach(function(other) {
+          if (other !== card) { other.classList.remove('flipped'); playFX('whooshBck'); }
+        });
+        flipCard(idx);
+      }
+    }, { passive: false });
+  });
+  document.querySelectorAll('.mural-face .flip-back').forEach(function(back) {
+    var card = back.closest('[id^="flip-"]');
+    if (!card) return;
+    var idx = card.id.replace('flip-', '');
+    back.addEventListener('touchend', function(e) {
+      var link = e.target.closest('a');
+      if (link) return; // let the link open naturally
+      e.preventDefault();
+      unflipCard(idx);
+    }, { passive: false });
+  });
+})();
 </script>
 
 
@@ -4360,6 +4391,40 @@ const bizData = [
 
 function bizFlip(i) { document.getElementById('biz-flip-'+i)?.classList.add('biz-flipped'); playFX('whooshFwd'); }
 function bizUnflip(i) { document.getElementById('biz-flip-'+i)?.classList.remove('biz-flipped'); playFX('whooshBck'); }
+
+// ── Mobile two-tap flip for business cards ──
+(function() {
+  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  if (!isTouchDevice) return;
+  document.querySelectorAll('[id^="biz-flip-"]').forEach(function(card) {
+    var idx = card.id.replace('biz-flip-', '');
+    var front = card.querySelector('.biz-face-front');
+    var back  = card.querySelector('.biz-face-back');
+    if (front) {
+      front.addEventListener('touchend', function(e) {
+        if (!card.classList.contains('biz-flipped')) {
+          e.preventDefault();
+          // Unflip any other open biz card first
+          document.querySelectorAll('[id^="biz-flip-"].biz-flipped').forEach(function(other) {
+            if (other !== card) {
+              var oi = other.id.replace('biz-flip-', '');
+              bizUnflip(oi);
+            }
+          });
+          bizFlip(idx);
+        }
+      }, { passive: false });
+    }
+    if (back) {
+      back.addEventListener('touchend', function(e) {
+        var link = e.target.closest('a');
+        if (link) return; // let maps link open
+        e.preventDefault();
+        bizUnflip(idx);
+      }, { passive: false });
+    }
+  });
+})();
 
 function openBizLightbox(i) {
   const d = bizData[i];
@@ -4481,10 +4546,11 @@ function beginVisit() {
   }, 400);
 }
 
-// ── Excursion card hover sounds (wired via data-sound attribute) ──
+// ── Excursion card sounds — desktop hover + mobile tap ──
 document.querySelectorAll('.excursion-card[data-sound]').forEach(function(card) {
   var key = card.getAttribute('data-sound');
   card.addEventListener('mouseenter', function() { playFX(key); });
+  card.addEventListener('touchstart', function() { playFX(key); }, { passive: true });
 });
 
 // ── Upload Your Photo — coming soon message ──

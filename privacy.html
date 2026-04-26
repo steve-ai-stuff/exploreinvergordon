@@ -171,20 +171,20 @@
 <body>
 
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" onclick="setLang('de')">DE</button>
-  <button class="lang-btn" onclick="setLang('fr')">FR</button>
-  <button class="lang-btn" onclick="setLang('us')">US</button>
-  <button class="lang-btn" onclick="setLang('no')">NO</button>
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
 </div>
 
 <header class="page-header">
-  <a class="site-name" href="/">← Explore Invergordon</a>
-  <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 25 April 2026</p>
+  <a class="site-name" href="/" id="priv-back">← Explore Invergordon</a>
+  <h1 id="priv-h1">Privacy Policy</h1>
+  <p class="updated" id="priv-updated">Last updated: 25 April 2026</p>
 </header>
 
-<main class="content-wrap">
+<main class="content-wrap" id="priv-main">
 
   <div class="intro-box">
     This policy explains what information Explore Invergordon collects when you use this website, how we use it, and what rights you have. We keep things simple — this is a small, local website and we collect as little data as possible.
@@ -267,19 +267,235 @@
 </main>
 
 <footer class="page-footer">
-  <p>&copy; 2026 Explore Invergordon &nbsp;·&nbsp; <a href="/">Back to Homepage</a></p>
+  <p id="priv-footer">&copy; 2026 Explore Invergordon &nbsp;·&nbsp; <a href="/" id="priv-footer-home">Back to Homepage</a></p>
 </footer>
 
 <script>
+var privTranslations = {
+  en: {
+    back: "← Explore Invergordon", h1: "Privacy Policy", updated: "Last updated: 25 April 2026",
+    footerCopy: "&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href='/'>Back to Homepage</a>",
+    content: `<div class="intro-box">This policy explains what information Explore Invergordon collects when you use this website, how we use it, and what rights you have. We keep things simple — this is a small, local website and we collect as little data as possible.</div>
+<h2>1. Who We Are</h2>
+<p>Explore Invergordon is a local tourism guide for Invergordon, Scottish Highlands, Scotland. The website is operated by Steve Redford, based in Invergordon, Highland, Scotland.</p>
+<p>If you have any questions about this privacy policy, you can contact us at: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a></p>
+<h2>2. What Information We Collect</h2>
+<p>We collect minimal personal information. Here is what may be collected depending on how you use the site:</p>
+<p><strong>Contact form</strong><br>If you use the contact form on our website, you will be asked to provide your name and email address, along with your message. This information is used solely to respond to your enquiry and is not shared with third parties or used for marketing purposes.</p>
+<p><strong>Automatically collected information</strong><br>Like most websites, certain basic technical information may be collected automatically when you visit, including your IP address, browser type, and pages visited. This data is collected by the third-party services described below and is not stored directly by us.</p>
+<h2>3. Third-Party Services</h2>
+<p>This website uses the following third-party services. Each has its own privacy policy and data practices:</p>
+<p><strong>Google Maps</strong><br>We use the Google Maps API to display an interactive map. Google may collect data about your use of the map, including your IP address and location data if you permit it. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+<p><strong>Google Fonts</strong><br>We use Google Fonts, loaded from Google's servers. When you visit the site, your browser makes a request to Google's servers to load these fonts, which may include your IP address. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+<p><strong>Google Search Console</strong><br>We use Google Search Console to understand how our site performs in search results. This collects aggregate, anonymised data about site visitors. We do not have access to personally identifiable information through this service.</p>
+<p><strong>Cloudflare Pages</strong><br>Our website is hosted on Cloudflare Pages. Cloudflare may collect basic traffic data as part of its hosting and security services. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's Privacy Policy</a>.</p>
+<h2>4. Cookies</h2>
+<p>Explore Invergordon does not set any first-party cookies of its own. However, third-party services we use (Google Maps, Google Fonts) may set cookies in your browser. You can control or disable cookies through your browser settings at any time.</p>
+<p>We do not use cookies for advertising, tracking, or profiling.</p>
+<h2>5. How We Use Your Information</h2>
+<p>Any personal information you provide (such as through the contact form) is used only to:</p>
+<ul><li>Respond to your enquiry or message</li><li>Improve the website and its content</li></ul>
+<p>We do not sell, rent, or share your personal information with third parties for marketing purposes. We do not send unsolicited emails or newsletters.</p>
+<h2>6. How Long We Keep Your Data</h2>
+<p>Contact form submissions are retained only for as long as necessary to respond to your enquiry, and are then deleted. We do not maintain long-term databases of personal information.</p>
+<h2>7. Your Rights Under UK GDPR</h2>
+<p>As a UK-based website, we comply with the UK General Data Protection Regulation (UK GDPR). You have the following rights regarding your personal data:</p>
+<ul><li><strong>Right of access</strong> — you can request a copy of any personal data we hold about you</li><li><strong>Right to rectification</strong> — you can ask us to correct inaccurate data</li><li><strong>Right to erasure</strong> — you can ask us to delete your personal data</li><li><strong>Right to restrict processing</strong> — you can ask us to limit how we use your data</li><li><strong>Right to object</strong> — you can object to us processing your data</li><li><strong>Right to data portability</strong> — you can request your data in a portable format</li></ul>
+<p>To exercise any of these rights, please contact us at <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a>. We will respond within 30 days.</p>
+<p>If you are unhappy with how we handle your data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+<h2>8. Children's Privacy</h2>
+<p>This website is not directed at children under the age of 13. We do not knowingly collect personal data from children. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
+<h2>9. External Links</h2>
+<p>Our website contains links to external websites (such as local businesses, tourist attractions, and partner organisations). We are not responsible for the privacy practices of those sites and recommend you review their privacy policies before submitting any personal information.</p>
+<h2>10. Changes to This Policy</h2>
+<p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date at the top. We encourage you to review this policy periodically.</p>
+<h2>11. Contact Us</h2>
+<p>If you have any questions about this privacy policy or how we handle your data, please get in touch:</p>
+<p><strong>Explore Invergordon</strong><br>Invergordon, Highland, Scotland<br>Email: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a><br>Website: <a href="https://exploreinvergordon.scot">exploreinvergordon.scot</a></p>`
+  },
+  de: {
+    back: "← Explore Invergordon", h1: "Datenschutzrichtlinie", updated: "Zuletzt aktualisiert: 25. April 2026",
+    footerCopy: "&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href='/'>Zurück zur Startseite</a>",
+    content: `<div class="intro-box">Diese Richtlinie erklärt, welche Informationen Explore Invergordon sammelt, wenn Sie diese Website nutzen, wie wir diese verwenden und welche Rechte Sie haben. Wir halten es einfach — dies ist eine kleine, lokale Website und wir sammeln so wenig Daten wie möglich.</div>
+<h2>1. Wer wir sind</h2>
+<p>Explore Invergordon ist ein lokaler Reiseführer für Invergordon, Scottish Highlands, Schottland. Die Website wird von Steve Redford betrieben, ansässig in Invergordon, Highland, Schottland.</p>
+<p>Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns unter: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a></p>
+<h2>2. Welche Informationen wir sammeln</h2>
+<p>Wir sammeln minimale persönliche Informationen. Folgendes kann je nach Nutzung der Website gesammelt werden:</p>
+<p><strong>Kontaktformular</strong><br>Wenn Sie das Kontaktformular auf unserer Website verwenden, werden Sie gebeten, Ihren Namen und Ihre E-Mail-Adresse sowie Ihre Nachricht anzugeben. Diese Informationen werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben oder für Marketingzwecke genutzt.</p>
+<p><strong>Automatisch gesammelte Informationen</strong><br>Wie die meisten Websites können beim Besuch bestimmte grundlegende technische Informationen automatisch gesammelt werden, einschließlich Ihrer IP-Adresse, des Browser-Typs und der besuchten Seiten. Diese Daten werden von den unten beschriebenen Drittanbieterdiensten gesammelt und nicht direkt von uns gespeichert.</p>
+<h2>3. Dienste von Drittanbietern</h2>
+<p>Diese Website verwendet die folgenden Drittanbieterdienste. Jeder hat seine eigene Datenschutzrichtlinie und Datenpraktiken:</p>
+<p><strong>Google Maps</strong><br>Wir verwenden die Google Maps API zur Anzeige einer interaktiven Karte. Google kann Daten über Ihre Nutzung der Karte sammeln, einschließlich Ihrer IP-Adresse und Standortdaten, wenn Sie dies erlauben. Siehe <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googles Datenschutzrichtlinie</a>.</p>
+<p><strong>Google Fonts</strong><br>Wir verwenden Google Fonts, die von Googles Servern geladen werden. Wenn Sie die Website besuchen, stellt Ihr Browser eine Anfrage an Googles Server, um diese Schriftarten zu laden, was Ihre IP-Adresse einschließen kann. Siehe <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googles Datenschutzrichtlinie</a>.</p>
+<p><strong>Google Search Console</strong><br>Wir verwenden die Google Search Console, um zu verstehen, wie unsere Website in den Suchergebnissen abschneidet. Dies sammelt aggregierte, anonymisierte Daten über Website-Besucher. Wir haben keinen Zugang zu personenbezogenen Informationen über diesen Dienst.</p>
+<p><strong>Cloudflare Pages</strong><br>Unsere Website wird auf Cloudflare Pages gehostet. Cloudflare kann im Rahmen seiner Hosting- und Sicherheitsdienste grundlegende Verkehrsdaten sammeln. Siehe <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflares Datenschutzrichtlinie</a>.</p>
+<h2>4. Cookies</h2>
+<p>Explore Invergordon setzt keine eigenen Erstanbieter-Cookies. Allerdings können Drittanbieterdienste, die wir verwenden (Google Maps, Google Fonts), Cookies in Ihrem Browser setzen. Sie können Cookies jederzeit über Ihre Browser-Einstellungen kontrollieren oder deaktivieren.</p>
+<p>Wir verwenden keine Cookies für Werbung, Tracking oder Profiling.</p>
+<h2>5. Wie wir Ihre Informationen verwenden</h2>
+<p>Alle persönlichen Informationen, die Sie angeben (z. B. über das Kontaktformular), werden nur verwendet, um:</p>
+<ul><li>Auf Ihre Anfrage oder Nachricht zu antworten</li><li>Die Website und ihren Inhalt zu verbessern</li></ul>
+<p>Wir verkaufen, vermieten oder teilen Ihre persönlichen Informationen nicht mit Dritten zu Marketingzwecken. Wir versenden keine unerwünschten E-Mails oder Newsletter.</p>
+<h2>6. Wie lange wir Ihre Daten aufbewahren</h2>
+<p>Kontaktformulareinsendungen werden nur so lange aufbewahrt, wie es zur Beantwortung Ihrer Anfrage erforderlich ist, und werden dann gelöscht. Wir pflegen keine langfristigen Datenbanken mit persönlichen Informationen.</p>
+<h2>7. Ihre Rechte gemäß UK DSGVO</h2>
+<p>Als britische Website halten wir uns an die UK-Datenschutz-Grundverordnung (UK DSGVO). Sie haben folgende Rechte bezüglich Ihrer persönlichen Daten:</p>
+<ul><li><strong>Auskunftsrecht</strong> — Sie können eine Kopie der persönlichen Daten anfordern, die wir über Sie besitzen</li><li><strong>Recht auf Berichtigung</strong> — Sie können uns bitten, unrichtige Daten zu korrigieren</li><li><strong>Recht auf Löschung</strong> — Sie können uns bitten, Ihre persönlichen Daten zu löschen</li><li><strong>Recht auf Einschränkung der Verarbeitung</strong> — Sie können uns bitten, die Nutzung Ihrer Daten einzuschränken</li><li><strong>Widerspruchsrecht</strong> — Sie können der Verarbeitung Ihrer Daten widersprechen</li><li><strong>Recht auf Datenübertragbarkeit</strong> — Sie können Ihre Daten in einem portablen Format anfordern</li></ul>
+<p>Um eines dieser Rechte auszuüben, kontaktieren Sie uns bitte unter <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a>. Wir antworten innerhalb von 30 Tagen.</p>
+<p>Wenn Sie mit unserem Umgang mit Ihren Daten unzufrieden sind, haben Sie das Recht, eine Beschwerde beim Information Commissioner's Office (ICO) unter <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> einzulegen.</p>
+<h2>8. Datenschutz für Kinder</h2>
+<p>Diese Website richtet sich nicht an Kinder unter 13 Jahren. Wir sammeln wissentlich keine persönlichen Daten von Kindern. Wenn Sie glauben, dass ein Kind uns persönliche Informationen übermittelt hat, kontaktieren Sie uns bitte und wir werden diese umgehend löschen.</p>
+<h2>9. Externe Links</h2>
+<p>Unsere Website enthält Links zu externen Websites (wie lokale Unternehmen, Touristenattraktionen und Partnerorganisationen). Wir sind nicht verantwortlich für die Datenschutzpraktiken dieser Websites und empfehlen, deren Datenschutzrichtlinien zu überprüfen, bevor Sie persönliche Informationen übermitteln.</p>
+<h2>10. Änderungen dieser Richtlinie</h2>
+<p>Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Alle Änderungen werden auf dieser Seite mit einem aktualisierten Datum oben veröffentlicht. Wir empfehlen Ihnen, diese Richtlinie regelmäßig zu überprüfen.</p>
+<h2>11. Kontakt</h2>
+<p>Wenn Sie Fragen zu dieser Datenschutzrichtlinie oder zu unserem Umgang mit Ihren Daten haben, nehmen Sie bitte Kontakt auf:</p>
+<p><strong>Explore Invergordon</strong><br>Invergordon, Highland, Schottland<br>E-Mail: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a><br>Website: <a href="https://exploreinvergordon.scot">exploreinvergordon.scot</a></p>`
+  },
+  fr: {
+    back: "← Explore Invergordon", h1: "Politique de Confidentialité", updated: "Dernière mise à jour : 25 Avril 2026",
+    footerCopy: "&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href='/'>Retour à l'accueil</a>",
+    content: `<div class="intro-box">Cette politique explique quelles informations Explore Invergordon collecte lorsque vous utilisez ce site, comment nous les utilisons et quels sont vos droits. Nous gardons les choses simples — c'est un petit site local et nous collectons le moins de données possible.</div>
+<h2>1. Qui nous sommes</h2>
+<p>Explore Invergordon est un guide touristique local pour Invergordon, Scottish Highlands, Écosse. Le site est exploité par Steve Redford, basé à Invergordon, Highland, Écosse.</p>
+<p>Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter à : <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a></p>
+<h2>2. Informations collectées</h2>
+<p>Nous collectons un minimum d'informations personnelles. Voici ce qui peut être collecté selon votre utilisation du site :</p>
+<p><strong>Formulaire de contact</strong><br>Si vous utilisez le formulaire de contact sur notre site, il vous sera demandé de fournir votre nom et votre adresse e-mail, ainsi que votre message. Ces informations sont utilisées uniquement pour répondre à votre demande et ne sont pas partagées avec des tiers ni utilisées à des fins marketing.</p>
+<p><strong>Informations collectées automatiquement</strong><br>Comme la plupart des sites, certaines informations techniques de base peuvent être collectées automatiquement lors de votre visite, notamment votre adresse IP, le type de navigateur et les pages visitées. Ces données sont collectées par les services tiers décrits ci-dessous et ne sont pas stockées directement par nous.</p>
+<h2>3. Services tiers</h2>
+<p>Ce site utilise les services tiers suivants. Chacun a sa propre politique de confidentialité et ses pratiques en matière de données :</p>
+<p><strong>Google Maps</strong><br>Nous utilisons l'API Google Maps pour afficher une carte interactive. Google peut collecter des données sur votre utilisation de la carte, notamment votre adresse IP et vos données de localisation si vous le permettez. Voir <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">la Politique de confidentialité de Google</a>.</p>
+<p><strong>Google Fonts</strong><br>Nous utilisons Google Fonts, chargées depuis les serveurs de Google. Lorsque vous visitez le site, votre navigateur envoie une requête aux serveurs de Google pour charger ces polices, ce qui peut inclure votre adresse IP. Voir <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">la Politique de confidentialité de Google</a>.</p>
+<p><strong>Google Search Console</strong><br>Nous utilisons Google Search Console pour comprendre les performances de notre site dans les résultats de recherche. Cela collecte des données agrégées et anonymisées sur les visiteurs du site. Nous n'avons pas accès à des informations personnellement identifiables via ce service.</p>
+<p><strong>Cloudflare Pages</strong><br>Notre site est hébergé sur Cloudflare Pages. Cloudflare peut collecter des données de trafic de base dans le cadre de ses services d'hébergement et de sécurité. Voir <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">la Politique de confidentialité de Cloudflare</a>.</p>
+<h2>4. Cookies</h2>
+<p>Explore Invergordon ne dépose aucun cookie de première partie. Cependant, les services tiers que nous utilisons (Google Maps, Google Fonts) peuvent déposer des cookies dans votre navigateur. Vous pouvez contrôler ou désactiver les cookies via les paramètres de votre navigateur à tout moment.</p>
+<p>Nous n'utilisons pas de cookies à des fins publicitaires, de suivi ou de profilage.</p>
+<h2>5. Utilisation de vos informations</h2>
+<p>Toute information personnelle que vous fournissez (par exemple via le formulaire de contact) n'est utilisée que pour :</p>
+<ul><li>Répondre à votre demande ou message</li><li>Améliorer le site et son contenu</li></ul>
+<p>Nous ne vendons, ne louons ni ne partageons vos informations personnelles avec des tiers à des fins marketing. Nous n'envoyons pas d'e-mails non sollicités ni de newsletters.</p>
+<h2>6. Durée de conservation</h2>
+<p>Les soumissions via le formulaire de contact sont conservées uniquement le temps nécessaire pour répondre à votre demande, puis supprimées. Nous ne maintenons pas de bases de données à long terme d'informations personnelles.</p>
+<h2>7. Vos droits en vertu du RGPD britannique</h2>
+<p>En tant que site basé au Royaume-Uni, nous respectons le Règlement général sur la protection des données britannique (UK RGPD). Vous disposez des droits suivants concernant vos données personnelles :</p>
+<ul><li><strong>Droit d'accès</strong> — vous pouvez demander une copie de toute donnée personnelle que nous détenons vous concernant</li><li><strong>Droit de rectification</strong> — vous pouvez nous demander de corriger des données inexactes</li><li><strong>Droit à l'effacement</strong> — vous pouvez nous demander de supprimer vos données personnelles</li><li><strong>Droit à la limitation du traitement</strong> — vous pouvez nous demander de limiter l'utilisation de vos données</li><li><strong>Droit d'opposition</strong> — vous pouvez vous opposer au traitement de vos données</li><li><strong>Droit à la portabilité</strong> — vous pouvez demander vos données dans un format portable</li></ul>
+<p>Pour exercer l'un de ces droits, contactez-nous à <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a>. Nous répondrons dans les 30 jours.</p>
+<p>Si vous n'êtes pas satisfait de la façon dont nous gérons vos données, vous avez le droit de déposer une plainte auprès du Information Commissioner's Office (ICO) à <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+<h2>8. Protection des enfants</h2>
+<p>Ce site ne s'adresse pas aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de données personnelles auprès d'enfants. Si vous pensez qu'un enfant nous a fourni des informations personnelles, contactez-nous et nous les supprimerons rapidement.</p>
+<h2>9. Liens externes</h2>
+<p>Notre site contient des liens vers des sites externes (comme des entreprises locales, des attractions touristiques et des organisations partenaires). Nous ne sommes pas responsables des pratiques de confidentialité de ces sites et vous recommandons de consulter leurs politiques de confidentialité avant de soumettre des informations personnelles.</p>
+<h2>10. Modifications de cette politique</h2>
+<p>Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Toute modification sera publiée sur cette page avec une date mise à jour en haut. Nous vous encourageons à consulter cette politique périodiquement.</p>
+<h2>11. Nous contacter</h2>
+<p>Si vous avez des questions sur cette politique de confidentialité ou sur la façon dont nous gérons vos données, veuillez nous contacter :</p>
+<p><strong>Explore Invergordon</strong><br>Invergordon, Highland, Écosse<br>E-mail : <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a><br>Site web : <a href="https://exploreinvergordon.scot">exploreinvergordon.scot</a></p>`
+  },
+  us: {
+    back: "← Explore Invergordon", h1: "Privacy Policy", updated: "Last updated: April 25, 2026",
+    footerCopy: "&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href='/'>Back to Homepage</a>",
+    content: `<div class="intro-box">This policy explains what information Explore Invergordon collects when you use this website, how we use it, and what rights you have. We keep things simple — this is a small, local website and we collect as little data as possible.</div>
+<h2>1. Who We Are</h2>
+<p>Explore Invergordon is a local tourism guide for Invergordon, Scottish Highlands, Scotland. The website is operated by Steve Redford, based in Invergordon, Highland, Scotland.</p>
+<p>If you have any questions about this privacy policy, you can contact us at: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a></p>
+<h2>2. What Information We Collect</h2>
+<p>We collect minimal personal information. Here is what may be collected depending on how you use the site:</p>
+<p><strong>Contact form</strong><br>If you use the contact form on our website, you will be asked to provide your name and email address, along with your message. This information is used solely to respond to your inquiry and is not shared with third parties or used for marketing purposes.</p>
+<p><strong>Automatically collected information</strong><br>Like most websites, certain basic technical information may be collected automatically when you visit, including your IP address, browser type, and pages visited. This data is collected by the third-party services described below and is not stored directly by us.</p>
+<h2>3. Third-Party Services</h2>
+<p>This website uses the following third-party services. Each has its own privacy policy and data practices:</p>
+<p><strong>Google Maps</strong><br>We use the Google Maps API to display an interactive map. Google may collect data about your use of the map, including your IP address and location data if you permit it. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+<p><strong>Google Fonts</strong><br>We use Google Fonts, loaded from Google's servers. When you visit the site, your browser makes a request to Google's servers to load these fonts, which may include your IP address. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+<p><strong>Google Search Console</strong><br>We use Google Search Console to understand how our site performs in search results. This collects aggregate, anonymized data about site visitors. We do not have access to personally identifiable information through this service.</p>
+<p><strong>Cloudflare Pages</strong><br>Our website is hosted on Cloudflare Pages. Cloudflare may collect basic traffic data as part of its hosting and security services. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's Privacy Policy</a>.</p>
+<h2>4. Cookies</h2>
+<p>Explore Invergordon does not set any first-party cookies of its own. However, third-party services we use (Google Maps, Google Fonts) may set cookies in your browser. You can control or disable cookies through your browser settings at any time.</p>
+<p>We do not use cookies for advertising, tracking, or profiling.</p>
+<h2>5. How We Use Your Information</h2>
+<p>Any personal information you provide (such as through the contact form) is used only to:</p>
+<ul><li>Respond to your inquiry or message</li><li>Improve the website and its content</li></ul>
+<p>We do not sell, rent, or share your personal information with third parties for marketing purposes. We do not send unsolicited emails or newsletters.</p>
+<h2>6. How Long We Keep Your Data</h2>
+<p>Contact form submissions are retained only for as long as necessary to respond to your inquiry, and are then deleted. We do not maintain long-term databases of personal information.</p>
+<h2>7. Your Rights Under UK GDPR</h2>
+<p>As a UK-based website, we comply with the UK General Data Protection Regulation (UK GDPR). You have the following rights regarding your personal data:</p>
+<ul><li><strong>Right of access</strong> — you can request a copy of any personal data we hold about you</li><li><strong>Right to rectification</strong> — you can ask us to correct inaccurate data</li><li><strong>Right to erasure</strong> — you can ask us to delete your personal data</li><li><strong>Right to restrict processing</strong> — you can ask us to limit how we use your data</li><li><strong>Right to object</strong> — you can object to us processing your data</li><li><strong>Right to data portability</strong> — you can request your data in a portable format</li></ul>
+<p>To exercise any of these rights, please contact us at <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a>. We will respond within 30 days.</p>
+<p>If you are unhappy with how we handle your data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+<h2>8. Children's Privacy</h2>
+<p>This website is not directed at children under the age of 13. We do not knowingly collect personal data from children. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
+<h2>9. External Links</h2>
+<p>Our website contains links to external websites (such as local businesses, tourist attractions, and partner organizations). We are not responsible for the privacy practices of those sites and recommend you review their privacy policies before submitting any personal information.</p>
+<h2>10. Changes to This Policy</h2>
+<p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date at the top. We encourage you to review this policy periodically.</p>
+<h2>11. Contact Us</h2>
+<p>If you have any questions about this privacy policy or how we handle your data, please get in touch:</p>
+<p><strong>Explore Invergordon</strong><br>Invergordon, Highland, Scotland<br>Email: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a><br>Website: <a href="https://exploreinvergordon.scot">exploreinvergordon.scot</a></p>`
+  },
+  no: {
+    back: "← Explore Invergordon", h1: "Personvernregler", updated: "Sist oppdatert: 25. april 2026",
+    footerCopy: "&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href='/'>Tilbake til forsiden</a>",
+    content: `<div class="intro-box">Denne policyen forklarer hvilken informasjon Explore Invergordon samler inn når du bruker dette nettstedet, hvordan vi bruker det, og hvilke rettigheter du har. Vi holder det enkelt — dette er et lite, lokalt nettsted og vi samler inn så lite data som mulig.</div>
+<h2>1. Hvem vi er</h2>
+<p>Explore Invergordon er en lokal turistguide for Invergordon, Scottish Highlands, Skottland. Nettstedet drives av Steve Redford, basert i Invergordon, Highland, Skottland.</p>
+<p>Hvis du har spørsmål om denne personvernpolicyen, kan du kontakte oss på: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a></p>
+<h2>2. Hvilken informasjon vi samler inn</h2>
+<p>Vi samler inn minimal personlig informasjon. Her er hva som kan samles inn avhengig av hvordan du bruker nettstedet:</p>
+<p><strong>Kontaktskjema</strong><br>Hvis du bruker kontaktskjemaet på nettstedet vårt, vil du bli bedt om å oppgi navn og e-postadresse, samt meldingen din. Denne informasjonen brukes utelukkende til å svare på henvendelsen din og deles ikke med tredjeparter eller brukes til markedsformål.</p>
+<p><strong>Automatisk innsamlet informasjon</strong><br>Som de fleste nettsteder kan visse grunnleggende tekniske opplysninger samles inn automatisk når du besøker, inkludert IP-adressen din, nettlesertype og besøkte sider. Disse dataene samles inn av tredjepartstjenestene beskrevet nedenfor og lagres ikke direkte av oss.</p>
+<h2>3. Tredjepartstjenester</h2>
+<p>Dette nettstedet bruker følgende tredjepartstjenester. Hver har sin egen personvernpolicy og datapraksis:</p>
+<p><strong>Google Maps</strong><br>Vi bruker Google Maps API for å vise et interaktivt kart. Google kan samle inn data om din bruk av kartet, inkludert IP-adressen din og posisjonsdata hvis du tillater det. Se <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googles personvernpolicy</a>.</p>
+<p><strong>Google Fonts</strong><br>Vi bruker Google Fonts, lastet fra Googles servere. Når du besøker nettstedet, sender nettleseren din en forespørsel til Googles servere for å laste disse skriftene, som kan inkludere IP-adressen din. Se <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googles personvernpolicy</a>.</p>
+<p><strong>Google Search Console</strong><br>Vi bruker Google Search Console for å forstå hvordan nettstedet vårt presterer i søkeresultater. Dette samler inn aggregerte, anonymiserte data om besøkende. Vi har ikke tilgang til personlig identifiserbar informasjon gjennom denne tjenesten.</p>
+<p><strong>Cloudflare Pages</strong><br>Nettstedet vårt er hostet på Cloudflare Pages. Cloudflare kan samle inn grunnleggende trafikkdata som en del av hosting- og sikkerhetstjenestene. Se <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflares personvernpolicy</a>.</p>
+<h2>4. Informasjonskapsler (cookies)</h2>
+<p>Explore Invergordon setter ingen egne førstepartskapsler. Tredjepartstjenestene vi bruker (Google Maps, Google Fonts) kan imidlertid sette informasjonskapsler i nettleseren din. Du kan kontrollere eller deaktivere informasjonskapsler gjennom nettleserinnstillingene dine når som helst.</p>
+<p>Vi bruker ikke informasjonskapsler til reklame, sporing eller profilering.</p>
+<h2>5. Hvordan vi bruker informasjonen din</h2>
+<p>All personlig informasjon du oppgir (for eksempel via kontaktskjemaet) brukes kun til å:</p>
+<ul><li>Svare på henvendelsen eller meldingen din</li><li>Forbedre nettstedet og innholdet</li></ul>
+<p>Vi selger, leier ut eller deler ikke din personlige informasjon med tredjeparter for markedsformål. Vi sender ikke uønskede e-poster eller nyhetsbrev.</p>
+<h2>6. Hvor lenge vi lagrer dataene dine</h2>
+<p>Innsendinger via kontaktskjemaet beholdes kun så lenge det er nødvendig for å svare på henvendelsen din, og slettes deretter. Vi opprettholder ingen langsiktige databaser med personlig informasjon.</p>
+<h2>7. Dine rettigheter under UK GDPR</h2>
+<p>Som et britisk nettsted overholder vi UK General Data Protection Regulation (UK GDPR). Du har følgende rettigheter angående dine personopplysninger:</p>
+<ul><li><strong>Rett til innsyn</strong> — du kan be om en kopi av personopplysningene vi har om deg</li><li><strong>Rett til retting</strong> — du kan be oss om å korrigere unøyaktige data</li><li><strong>Rett til sletting</strong> — du kan be oss slette personopplysningene dine</li><li><strong>Rett til begrensning av behandling</strong> — du kan be oss om å begrense bruken av dataene dine</li><li><strong>Rett til å protestere</strong> — du kan protestere mot behandlingen av dataene dine</li><li><strong>Rett til dataportabilitet</strong> — du kan be om dataene dine i et bærbart format</li></ul>
+<p>For å utøve noen av disse rettighetene, kontakt oss på <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a>. Vi vil svare innen 30 dager.</p>
+<p>Hvis du er misfornøyd med hvordan vi håndterer dataene dine, har du rett til å klage til Information Commissioner's Office (ICO) på <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+<h2>8. Barns personvern</h2>
+<p>Dette nettstedet er ikke rettet mot barn under 13 år. Vi samler ikke bevisst inn personopplysninger fra barn. Hvis du tror et barn har gitt oss personlig informasjon, vennligst kontakt oss og vi vil slette det umiddelbart.</p>
+<h2>9. Eksterne lenker</h2>
+<p>Nettstedet vårt inneholder lenker til eksterne nettsteder (som lokale virksomheter, turistattraksjoner og partnerorganisasjoner). Vi er ikke ansvarlige for personvernpraksisen til disse nettstedene og anbefaler at du gjennomgår deres personvernregler før du sender inn personlig informasjon.</p>
+<h2>10. Endringer i denne policyen</h2>
+<p>Vi kan oppdatere denne personvernpolicyen fra tid til annen. Eventuelle endringer vil bli publisert på denne siden med en oppdatert dato øverst. Vi oppfordrer deg til å gjennomgå denne policyen med jevne mellomrom.</p>
+<h2>11. Kontakt oss</h2>
+<p>Hvis du har spørsmål om denne personvernpolicyen eller hvordan vi håndterer dataene dine, ta gjerne kontakt:</p>
+<p><strong>Explore Invergordon</strong><br>Invergordon, Highland, Skottland<br>E-post: <a href="mailto:info@exploreinvergordon.scot">info@exploreinvergordon.scot</a><br>Nettsted: <a href="https://exploreinvergordon.scot">exploreinvergordon.scot</a></p>`
+  }
+};
+
 function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.classList.remove('active');
-  });
+  var t = privTranslations[lang] || privTranslations.en;
+  document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
   var langs = ['en','de','fr','us','no'];
   var idx = langs.indexOf(lang);
-  if (idx > -1) {
-    document.querySelectorAll('.lang-btn')[idx].classList.add('active');
-  }
+  if (idx > -1) document.querySelectorAll('.lang-btn')[idx].classList.add('active');
+
+  var h1 = document.getElementById('priv-h1');
+  if (h1) h1.textContent = t.h1;
+  var upd = document.getElementById('priv-updated');
+  if (upd) upd.textContent = t.updated;
+  var back = document.getElementById('priv-back');
+  if (back) back.textContent = t.back;
+  var main = document.getElementById('priv-main');
+  if (main) main.innerHTML = t.content;
+  var footer = document.getElementById('priv-footer');
+  if (footer) footer.innerHTML = t.footerCopy;
 }
 </script>
 
