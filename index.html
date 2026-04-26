@@ -1129,6 +1129,28 @@
   footer a { color: var(--gold); text-decoration: none; }
   footer a:hover { color: var(--gold-light); }
 
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .footer-proton a {
+    color: var(--heather-light) !important;
+    text-decoration: none;
+  }
+
+  .footer-proton a:hover {
+    color: #c9a0e0 !important;
+    text-decoration: underline;
+  }
+
   .footer-credit {
     margin-top: 0.75rem;
     font-size: 0.65rem !important;
@@ -1200,7 +1222,7 @@
     top: 0; left: 0; right: 0;
     z-index: 200;
     background: rgba(8,12,24,0.98);
-    border-bottom: 1px solid rgba(29,79,168,0.35);
+    border-bottom: 1px solid rgba(107,74,126,0.55);
     padding: 0.4rem 2rem;
     display: flex;
     justify-content: center;
@@ -1235,7 +1257,17 @@
     }
   }
 
-  .lang-btn:hover, .lang-btn.active { color: var(--gold); }
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 6px rgba(201,168,76,0.35), 0 0 12px rgba(201,168,76,0.15); }
+    50%       { text-shadow: 0 0 12px rgba(201,168,76,0.75), 0 0 24px rgba(201,168,76,0.45), 0 0 40px rgba(201,168,76,0.20); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -4273,6 +4305,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
   <p>EXPLORE INVERGORDON · EASTER ROSS · SCOTTISH HIGHLANDS</p>
   <p style="margin-top:0.5rem;"><a href="https://invergordonoffthewall.org.uk" target="_blank">Invergordon Off the Wall</a> · <a href="https://www.invergordonmuseum.co.uk" target="_blank">Invergordon Museum</a> · <a href="https://pocf.co.uk/cruise/" target="_blank">Port of Cromarty Firth</a></p>
   <p style="margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid rgba(107,74,126,0.5); font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy Policy</a></p>
+  <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
   <p class="footer-credit" id="footer-credit">Created by a Local Resident using Modern Tools — Capturing his own Unique Images &amp; Video of the Town and Surrounding Areas · ExploreInvergordon.scot</p>
 </footer>
 
