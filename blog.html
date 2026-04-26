@@ -132,7 +132,22 @@
   .nav-links a.active { color: var(--gold); }
 
   @media (max-width: 600px) {
-    .nav-links { display: none; }
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
   }
 
   /* ── BLOG HERO ── */
@@ -308,6 +323,7 @@
   <ul class="nav-links">
     <li><a href="index.html" id="blog-nav-home">Home</a></li>
     <li><a href="blog.html" class="active" id="blog-nav-blog">Blog</a></li>
+    <li><a href="gallery.html" id="blog-nav-gallery">Gallery</a></li>
   </ul>
 </nav>
 
@@ -356,13 +372,13 @@
 <footer>
   <p id="blog-footer-tagline">EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS</p>
   <p><a href="index.html" id="blog-footer-back">&#8592; Back to main site</a></p>
-  <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html" id="blog-footer-privacy">Privacy Policy</a></p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy.html" id="blog-footer-privacy">Privacy Policy</a></p>
 </footer>
 
 <script>
 var blogTranslations = {
   en: {
-    navHome: "Home", navBlog: "Blog",
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
     heroLabel: "From the Highlands",
     heroTitle: "Stories from <em>Invergordon</em>",
     heroDesc: "Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.",
@@ -382,7 +398,7 @@ var blogTranslations = {
     footerPrivacy: "Privacy Policy"
   },
   de: {
-    navHome: "Startseite", navBlog: "Blog",
+    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie",
     heroLabel: "Aus dem Hochland",
     heroTitle: "Geschichten aus <em>Invergordon</em>",
     heroDesc: "Lokales Wissen, Geschichte, Neuigkeiten und Fotografie aus dem Herzen des schottischen Hochlands. Geschrieben von einem Einheimischen.",
@@ -402,7 +418,7 @@ var blogTranslations = {
     footerPrivacy: "Datenschutzrichtlinie"
   },
   fr: {
-    navHome: "Accueil", navBlog: "Blog",
+    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie",
     heroLabel: "Des Highlands",
     heroTitle: "Histoires d’<em>Invergordon</em>",
     heroDesc: "Savoir local, histoire, actualités et photographie depuis le cœur des Highlands écossaises. Écrit par un local.",
@@ -422,7 +438,7 @@ var blogTranslations = {
     footerPrivacy: "Politique de Confidentialité"
   },
   us: {
-    navHome: "Home", navBlog: "Blog",
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
     heroLabel: "From the Highlands",
     heroTitle: "Stories from <em>Invergordon</em>",
     heroDesc: "Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.",
@@ -442,7 +458,7 @@ var blogTranslations = {
     footerPrivacy: "Privacy Policy"
   },
   no: {
-    navHome: "Hjem", navBlog: "Blogg",
+    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri",
     heroLabel: "Fra høylandet",
     heroTitle: "Historier fra <em>Invergordon</em>",
     heroDesc: "Lokal kunnskap, historie, oppdateringer og fotografi fra hjertet av de skotske høylandene. Skrevet av en innbygger.",
@@ -477,6 +493,7 @@ function setLang(lang) {
 
   set('blog-nav-home', t.navHome);
   set('blog-nav-blog', t.navBlog);
+  set('blog-nav-gallery', t.navGallery);
   set('blog-hero-label', t.heroLabel);
   set('blog-hero-title', t.heroTitle);
   set('blog-hero-desc', t.heroDesc);

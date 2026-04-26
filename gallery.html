@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery — Invergordon, Scottish Highlands | Explore Invergordon</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="Photo gallery of Invergordon and the Scottish Highlands. Drone photography, harbour views, highland landscapes, street art murals and cruise ship arrivals captured by a local resident.">
+<meta name="keywords" content="Invergordon photos, Scottish Highlands photography, Invergordon drone photography, Invergordon harbour, Highland landscape photos, Invergordon cruise ships, Invergordon murals, Easter Ross photography">
+<meta name="author" content="Explore Invergordon">
+<link rel="canonical" href="https://exploreinvergordon.scot/gallery.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exploreinvergordon.scot/gallery.html">
+<meta property="og:title" content="Photo Gallery — Invergordon, Scottish Highlands">
+<meta property="og:description" content="Drone photography, harbour views, highland landscapes, murals and cruise ship arrivals captured by a local resident in Invergordon.">
+<meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/hero-bg.jpeg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Photo Gallery — Invergordon, Scottish Highlands">
+<meta name="twitter:description" content="Drone photography, harbour views, highland landscapes and cruise ship arrivals from Invergordon.">
+<meta name="twitter:image" content="https://exploreinvergordon.scot/website_image_files/background_images/hero-bg.jpeg">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "Invergordon Photo Gallery",
+  "description": "Drone photography, highland landscapes, harbour views and street art murals from Invergordon, Scottish Highlands.",
+  "url": "https://exploreinvergordon.scot/gallery.html",
+  "author": {
+    "@type": "Person",
+    "name": "Explore Invergordon"
+  },
+  "locationCreated": {
+    "@type": "Place",
+    "name": "Invergordon, Easter Ross, Scottish Highlands, Scotland"
+  }
+}
+</script>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANG BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+  .lang-btn.active { color: var(--gold); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,15,30,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.80rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+  }
+
+  /* ── GALLERY HERO ── */
+  .gallery-hero {
+    position: relative;
+    padding: 10rem 2rem 6rem;
+    text-align: center;
+    background-image: url('website_image_files/background_images/hero-bg.jpeg');
+    background-size: cover;
+    background-position: center 40%;
+    overflow: hidden;
+  }
+
+  .gallery-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.50) 0%,
+      rgba(8,15,30,0.65) 60%,
+      rgba(8,15,30,0.95) 100%);
+    z-index: 0;
+  }
+
+  .gallery-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gallery-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.80rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .gallery-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .gallery-hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .gallery-hero p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── GALLERY GRID ── */
+  .gallery-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+  }
+
+  .gallery-section-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 4rem;
+  }
+
+  .gallery-grid.featured {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .gallery-grid.featured .gallery-item:first-child {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 680px) {
+    .gallery-grid,
+    .gallery-grid.featured { grid-template-columns: 1fr; }
+    .gallery-grid.featured .gallery-item:first-child { grid-column: 1; }
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--highland-dark);
+    border: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.92);
+    transition: filter 0.3s ease, transform 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    filter: brightness(1.05);
+    transform: scale(1.03);
+  }
+
+  /* Image placeholder (shown when no image is set) */
+  .gallery-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #0e1e3a 0%, #0a1428 50%, #091530 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    border: 1px dashed rgba(201,168,76,0.18);
+    border-radius: 6px;
+  }
+
+  .gallery-placeholder.large {
+    aspect-ratio: 16/7;
+  }
+
+  .gallery-placeholder svg {
+    width: 36px;
+    height: 36px;
+    opacity: 0.28;
+  }
+
+  .gallery-placeholder span {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(8,15,30,0.92) 0%, transparent 100%);
+    padding: 2rem 1rem 0.85rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .gallery-item:hover .gallery-caption { opacity: 1; }
+
+  /* ── COMING SOON BANNER ── */
+  .coming-soon-strip {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin: 0 0 4rem;
+  }
+
+  .coming-soon-strip p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .coming-soon-strip a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .coming-soon-strip a:hover { color: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo" id="gal-nav-logo">Explore Invergordon</a>
+  <ul class="nav-links">
+    <li><a href="index.html" id="gal-nav-home">Home</a></li>
+    <li><a href="blog.html" id="gal-nav-blog">Blog</a></li>
+    <li><a href="gallery.html" id="gal-nav-gallery" class="active">Gallery</a></li>
+  </ul>
+</nav>
+
+<!-- GALLERY HERO -->
+<div class="gallery-hero">
+  <p class="gallery-label" id="gal-hero-label">Invergordon · Easter Ross · Scottish Highlands</p>
+  <h1 id="gal-hero-title">Through the <em>Lens</em></h1>
+  <p id="gal-hero-desc">Drone photography, harbour mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.</p>
+</div>
+
+<!-- GALLERY CONTENT -->
+<div class="gallery-section">
+
+  <!-- FEATURED / DRONE -->
+  <p class="gallery-section-title" id="gal-section-drone">Drone &amp; Aerial Photography</p>
+  <div class="gallery-grid featured">
+    <div class="gallery-item">
+      <div class="gallery-placeholder large">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="20" width="12" height="9" rx="2" stroke="white" stroke-width="1.5"/>
+          <circle cx="24" cy="24.5" r="3" stroke="white" stroke-width="1.5"/>
+          <path d="M8 22 L4 18 M8 22 H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M40 22 L44 18 M40 22 H35" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 28 L4 32 M8 28 H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M40 28 L44 32 M40 28 H35" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span id="gal-ph-drone-main">Aerial shot coming soon</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-drone-main">Invergordon from above · Cromarty Firth</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="20" width="12" height="9" rx="2" stroke="white" stroke-width="1.5"/>
+          <circle cx="24" cy="24.5" r="3" stroke="white" stroke-width="1.5"/>
+          <path d="M8 22 L4 18 M8 22 H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M40 22 L44 18 M40 22 H35" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 28 L4 32 M8 28 H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M40 28 L44 32 M40 28 H35" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span id="gal-ph-drone-2">Harbour aerial</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-drone-2">The Harbour · High Tide</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="20" width="12" height="9" rx="2" stroke="white" stroke-width="1.5"/>
+          <circle cx="24" cy="24.5" r="3" stroke="white" stroke-width="1.5"/>
+          <path d="M8 22 L4 18 M8 22 H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M40 22 L44 18 M40 22 H35" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 28 L4 32 M8 28 H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M40 28 L44 32 M40 28 H35" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span id="gal-ph-drone-3">Firth panorama</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-drone-3">Cromarty Firth Panorama</div>
+    </div>
+  </div>
+
+  <!-- CRUISE SHIPS -->
+  <p class="gallery-section-title" id="gal-section-cruise">Cruise Ships &amp; Port</p>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 32 Q12 28 24 30 Q36 32 42 28" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="14" y="18" width="20" height="12" rx="1" stroke="white" stroke-width="1.5"/>
+          <line x1="24" y1="18" x2="24" y2="12" stroke="white" stroke-width="1.5"/>
+          <line x1="20" y1="12" x2="28" y2="12" stroke="white" stroke-width="1.5"/>
+          <line x1="17" y1="22" x2="31" y2="22" stroke="white" stroke-width="1"/>
+          <line x1="17" y1="26" x2="31" y2="26" stroke="white" stroke-width="1"/>
+        </svg>
+        <span id="gal-ph-cruise-1">Cruise arrival shot</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-cruise-1">Cruise Ship Arrival · Dawn</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 32 Q12 28 24 30 Q36 32 42 28" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="14" y="18" width="20" height="12" rx="1" stroke="white" stroke-width="1.5"/>
+          <line x1="24" y1="18" x2="24" y2="12" stroke="white" stroke-width="1.5"/>
+          <line x1="20" y1="12" x2="28" y2="12" stroke="white" stroke-width="1.5"/>
+          <line x1="17" y1="22" x2="31" y2="22" stroke="white" stroke-width="1"/>
+          <line x1="17" y1="26" x2="31" y2="26" stroke="white" stroke-width="1"/>
+        </svg>
+        <span id="gal-ph-cruise-2">Port of Cromarty Firth</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-cruise-2">Port of Cromarty Firth</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 32 Q12 28 24 30 Q36 32 42 28" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="14" y="18" width="20" height="12" rx="1" stroke="white" stroke-width="1.5"/>
+          <line x1="24" y1="18" x2="24" y2="12" stroke="white" stroke-width="1.5"/>
+          <line x1="20" y1="12" x2="28" y2="12" stroke="white" stroke-width="1.5"/>
+          <line x1="17" y1="22" x2="31" y2="22" stroke="white" stroke-width="1"/>
+          <line x1="17" y1="26" x2="31" y2="26" stroke="white" stroke-width="1"/>
+        </svg>
+        <span id="gal-ph-cruise-3">Ships at anchor</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-cruise-3">Ships at Anchor · Firth</div>
+    </div>
+  </div>
+
+  <!-- HIGHLAND LANDSCAPE -->
+  <p class="gallery-section-title" id="gal-section-landscape">Highland Landscape</p>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 36 L14 20 L22 30 L28 18 L44 36 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="38" cy="14" r="5" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <span id="gal-ph-land-1">Highland landscape</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-land-1">Easter Ross Hills</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 36 L14 20 L22 30 L28 18 L44 36 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="38" cy="14" r="5" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <span id="gal-ph-land-2">Cromarty Firth view</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-land-2">Cromarty Firth · Morning Light</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 36 L14 20 L22 30 L28 18 L44 36 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="38" cy="14" r="5" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <span id="gal-ph-land-3">Golden hour</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-land-3">Golden Hour · Highlands</div>
+    </div>
+  </div>
+
+  <!-- STREET ART / MURALS -->
+  <p class="gallery-section-title" id="gal-section-murals">Street Art &amp; Murals</p>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="32" height="28" rx="2" stroke="white" stroke-width="1.5"/>
+          <path d="M8 28 Q16 18 24 24 Q32 30 40 20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span id="gal-ph-mural-1">Mural photography</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-mural-1">Invergordon Off the Wall</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="32" height="28" rx="2" stroke="white" stroke-width="1.5"/>
+          <path d="M8 28 Q16 18 24 24 Q32 30 40 20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span id="gal-ph-mural-2">Street art detail</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-mural-2">Street Art · High Street</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="32" height="28" rx="2" stroke="white" stroke-width="1.5"/>
+          <path d="M8 28 Q16 18 24 24 Q32 30 40 20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span id="gal-ph-mural-3">Mural close-up</span>
+      </div>
+      <div class="gallery-caption" id="gal-cap-mural-3">Mural Detail · Invergordon</div>
+    </div>
+  </div>
+
+  <!-- COMING SOON -->
+  <div class="coming-soon-strip">
+    <p id="gal-coming-soon-1">More images being added throughout the 2026 season</p>
+    <p><a href="index.html" id="gal-coming-soon-link">← Back to main site</a></p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p id="gal-footer-tagline">EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy.html" id="gal-footer-privacy">Privacy Policy</a></p>
+</footer>
+
+<script>
+var galTranslations = {
+  en: {
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
+    heroLabel: "Invergordon · Easter Ross · Scottish Highlands",
+    heroTitle: "Through the <em>Lens</em>",
+    heroDesc: "Drone photography, harbour mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.",
+    sectionDrone: "Drone &amp; Aerial Photography",
+    sectionCruise: "Cruise Ships &amp; Port",
+    sectionLandscape: "Highland Landscape",
+    sectionMurals: "Street Art &amp; Murals",
+    phDroneMain: "Aerial shot coming soon",
+    phDrone2: "Harbour aerial",
+    phDrone3: "Firth panorama",
+    phCruise1: "Cruise arrival shot",
+    phCruise2: "Port of Cromarty Firth",
+    phCruise3: "Ships at anchor",
+    phLand1: "Highland landscape",
+    phLand2: "Cromarty Firth view",
+    phLand3: "Golden hour",
+    phMural1: "Mural photography",
+    phMural2: "Street art detail",
+    phMural3: "Mural close-up",
+    capDroneMain: "Invergordon from above · Cromarty Firth",
+    capDrone2: "The Harbour · High Tide",
+    capDrone3: "Cromarty Firth Panorama",
+    capCruise1: "Cruise Ship Arrival · Dawn",
+    capCruise2: "Port of Cromarty Firth",
+    capCruise3: "Ships at Anchor · Firth",
+    capLand1: "Easter Ross Hills",
+    capLand2: "Cromarty Firth · Morning Light",
+    capLand3: "Golden Hour · Highlands",
+    capMural1: "Invergordon Off the Wall",
+    capMural2: "Street Art · High Street",
+    capMural3: "Mural Detail · Invergordon",
+    comingSoon: "More images being added throughout the 2026 season",
+    comingSoonLink: "← Back to main site",
+    footerTagline: "EXPLORE INVERGORDON · SCOTTISH HIGHLANDS",
+    footerPrivacy: "Privacy Policy"
+  },
+  de: {
+    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie",
+    heroLabel: "Invergordon · Easter Ross · Schottisches Hochland",
+    heroTitle: "Durch die <em>Linse</em>",
+    heroDesc: "Drohnenfotos, Hafenmorgen, Hochlandlandschaften und die Straßenkunst von Invergordon — von einem Einheimischen durch die Jahreszeiten festgehalten.",
+    sectionDrone: "Drohnen- &amp; Luftfotografie",
+    sectionCruise: "Kreuzfahrtschiffe &amp; Hafen",
+    sectionLandscape: "Hochlandlandschaft",
+    sectionMurals: "Straßenkunst &amp; Wandbilder",
+    phDroneMain: "Luftaufnahme folgt bald",
+    phDrone2: "Hafen aus der Luft",
+    phDrone3: "Firth-Panorama",
+    phCruise1: "Ankunft des Kreuzfahrtschiffs",
+    phCruise2: "Hafen von Cromarty Firth",
+    phCruise3: "Schiffe vor Anker",
+    phLand1: "Hochlandlandschaft",
+    phLand2: "Blick auf den Cromarty Firth",
+    phLand3: "Goldene Stunde",
+    phMural1: "Wandbild-Fotografie",
+    phMural2: "Straßenkunst-Detail",
+    phMural3: "Wandbild-Nahaufnahme",
+    capDroneMain: "Invergordon von oben · Cromarty Firth",
+    capDrone2: "Der Hafen · Hochwasser",
+    capDrone3: "Cromarty Firth Panorama",
+    capCruise1: "Ankunft des Kreuzfahrtschiffs · Morgengrauen",
+    capCruise2: "Hafen von Cromarty Firth",
+    capCruise3: "Schiffe vor Anker · Firth",
+    capLand1: "Hügel von Easter Ross",
+    capLand2: "Cromarty Firth · Morgenlicht",
+    capLand3: "Goldene Stunde · Hochland",
+    capMural1: "Invergordon Off the Wall",
+    capMural2: "Straßenkunst · High Street",
+    capMural3: "Wandbild-Detail · Invergordon",
+    comingSoon: "Weitere Bilder werden während der Saison 2026 hinzugefügt",
+    comingSoonLink: "← Zurück zur Hauptseite",
+    footerTagline: "EXPLORE INVERGORDON · SCHOTTISCHES HOCHLAND",
+    footerPrivacy: "Datenschutzrichtlinie"
+  },
+  fr: {
+    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie",
+    heroLabel: "Invergordon · Easter Ross · Highlands écossaises",
+    heroTitle: "À travers <em>l'Objectif</em>",
+    heroDesc: "Photos de drone, matins au port, paysages des Highlands et l'art de rue d'Invergordon — capturés par un résident local tout au long des saisons.",
+    sectionDrone: "Photographie par Drone &amp; Aérienne",
+    sectionCruise: "Bateaux de Croisière &amp; Port",
+    sectionLandscape: "Paysage des Highlands",
+    sectionMurals: "Art de Rue &amp; Fresques",
+    phDroneMain: "Vue aérienne à venir",
+    phDrone2: "Vue aérienne du port",
+    phDrone3: "Panorama du Firth",
+    phCruise1: "Arrivée du navire de croisière",
+    phCruise2: "Port de Cromarty Firth",
+    phCruise3: "Navires au mouillage",
+    phLand1: "Paysage des Highlands",
+    phLand2: "Vue sur le Cromarty Firth",
+    phLand3: "Heure dorée",
+    phMural1: "Photographie de fresque",
+    phMural2: "Détail d'art de rue",
+    phMural3: "Gros plan sur fresque",
+    capDroneMain: "Invergordon vu d'en haut · Cromarty Firth",
+    capDrone2: "Le Port · Marée haute",
+    capDrone3: "Panorama du Cromarty Firth",
+    capCruise1: "Arrivée du bateau · Aube",
+    capCruise2: "Port de Cromarty Firth",
+    capCruise3: "Navires au mouillage · Firth",
+    capLand1: "Collines d'Easter Ross",
+    capLand2: "Cromarty Firth · Lumière du matin",
+    capLand3: "Heure dorée · Highlands",
+    capMural1: "Invergordon Off the Wall",
+    capMural2: "Art de Rue · High Street",
+    capMural3: "Détail de Fresque · Invergordon",
+    comingSoon: "D'autres images sont ajoutées tout au long de la saison 2026",
+    comingSoonLink: "← Retour au site principal",
+    footerTagline: "EXPLORE INVERGORDON · HIGHLANDS ÉCOSSAISES",
+    footerPrivacy: "Politique de Confidentialité"
+  },
+  us: {
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
+    heroLabel: "Invergordon · Easter Ross · Scottish Highlands",
+    heroTitle: "Through the <em>Lens</em>",
+    heroDesc: "Drone photography, harbor mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.",
+    sectionDrone: "Drone &amp; Aerial Photography",
+    sectionCruise: "Cruise Ships &amp; Harbor",
+    sectionLandscape: "Highland Landscape",
+    sectionMurals: "Street Art &amp; Murals",
+    phDroneMain: "Aerial shot coming soon",
+    phDrone2: "Harbor aerial",
+    phDrone3: "Firth panorama",
+    phCruise1: "Cruise ship arrival",
+    phCruise2: "Port of Cromarty Firth",
+    phCruise3: "Ships at anchor",
+    phLand1: "Highland landscape",
+    phLand2: "Cromarty Firth view",
+    phLand3: "Golden hour",
+    phMural1: "Mural photography",
+    phMural2: "Street art detail",
+    phMural3: "Mural close-up",
+    capDroneMain: "Invergordon from above · Cromarty Firth",
+    capDrone2: "The Harbor · High Tide",
+    capDrone3: "Cromarty Firth Panorama",
+    capCruise1: "Cruise Ship Arrival · Dawn",
+    capCruise2: "Port of Cromarty Firth",
+    capCruise3: "Ships at Anchor · Firth",
+    capLand1: "Easter Ross Hills",
+    capLand2: "Cromarty Firth · Morning Light",
+    capLand3: "Golden Hour · Highlands",
+    capMural1: "Invergordon Off the Wall",
+    capMural2: "Street Art · Main Street",
+    capMural3: "Mural Detail · Invergordon",
+    comingSoon: "More images being added throughout the 2026 season",
+    comingSoonLink: "← Back to main site",
+    footerTagline: "EXPLORE INVERGORDON · SCOTTISH HIGHLANDS",
+    footerPrivacy: "Privacy Policy"
+  },
+  no: {
+    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri",
+    heroLabel: "Invergordon · Easter Ross · Skotske Høylander",
+    heroTitle: "Gjennom <em>Linsen</em>",
+    heroDesc: "Dronebilder, havnemorgen, høylandslandskaper og gatekunsten i Invergordon — fanget av en lokal innbygger gjennom årstidene.",
+    sectionDrone: "Drone- &amp; Luftfotografi",
+    sectionCruise: "Cruiseskip &amp; Havn",
+    sectionLandscape: "Høylandslandskap",
+    sectionMurals: "Gatekunst &amp; Veggmalerier",
+    phDroneMain: "Luftbilde kommer snart",
+    phDrone2: "Havn fra luften",
+    phDrone3: "Firth-panorama",
+    phCruise1: "Cruiseskipankomst",
+    phCruise2: "Havnen i Cromarty Firth",
+    phCruise3: "Skip til ankers",
+    phLand1: "Høylandslandskap",
+    phLand2: "Utsikt over Cromarty Firth",
+    phLand3: "Gyllen time",
+    phMural1: "Veggmaleri-fotografi",
+    phMural2: "Gatekunst-detalj",
+    phMural3: "Veggmaleri-nærbilde",
+    capDroneMain: "Invergordon sett ovenfra · Cromarty Firth",
+    capDrone2: "Havnen · Flo",
+    capDrone3: "Cromarty Firth Panorama",
+    capCruise1: "Cruiseskipankomst · Daggry",
+    capCruise2: "Havnen i Cromarty Firth",
+    capCruise3: "Skip til ankers · Firth",
+    capLand1: "Åser i Easter Ross",
+    capLand2: "Cromarty Firth · Morgenlys",
+    capLand3: "Gyllen time · Høylandet",
+    capMural1: "Invergordon Off the Wall",
+    capMural2: "Gatekunst · High Street",
+    capMural3: "Veggmaleri-detalj · Invergordon",
+    comingSoon: "Flere bilder legges til gjennom sesongen 2026",
+    comingSoonLink: "← Tilbake til hovedsiden",
+    footerTagline: "EXPLORE INVERGORDON · SKOTSKE HØYLANDER",
+    footerPrivacy: "Personvernregler"
+  }
+};
+
+var currentLang = 'en';
+
+function set(id, val, isHTML) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (isHTML === false) { el.textContent = val; } else { el.innerHTML = val; }
+}
+
+function setLang(lang) {
+  if (!galTranslations[lang]) return;
+  currentLang = lang;
+  var t = galTranslations[lang];
+
+  // Nav
+  set('gal-nav-home', t.navHome);
+  set('gal-nav-blog', t.navBlog);
+  set('gal-nav-gallery', t.navGallery);
+
+  // Hero
+  set('gal-hero-label', t.heroLabel);
+  set('gal-hero-title', t.heroTitle);
+  set('gal-hero-desc', t.heroDesc);
+
+  // Section titles
+  set('gal-section-drone', t.sectionDrone);
+  set('gal-section-cruise', t.sectionCruise);
+  set('gal-section-landscape', t.sectionLandscape);
+  set('gal-section-murals', t.sectionMurals);
+
+  // Placeholders
+  set('gal-ph-drone-main', t.phDroneMain);
+  set('gal-ph-drone-2', t.phDrone2);
+  set('gal-ph-drone-3', t.phDrone3);
+  set('gal-ph-cruise-1', t.phCruise1);
+  set('gal-ph-cruise-2', t.phCruise2);
+  set('gal-ph-cruise-3', t.phCruise3);
+  set('gal-ph-land-1', t.phLand1);
+  set('gal-ph-land-2', t.phLand2);
+  set('gal-ph-land-3', t.phLand3);
+  set('gal-ph-mural-1', t.phMural1);
+  set('gal-ph-mural-2', t.phMural2);
+  set('gal-ph-mural-3', t.phMural3);
+
+  // Captions
+  set('gal-cap-drone-main', t.capDroneMain);
+  set('gal-cap-drone-2', t.capDrone2);
+  set('gal-cap-drone-3', t.capDrone3);
+  set('gal-cap-cruise-1', t.capCruise1);
+  set('gal-cap-cruise-2', t.capCruise2);
+  set('gal-cap-cruise-3', t.capCruise3);
+  set('gal-cap-land-1', t.capLand1);
+  set('gal-cap-land-2', t.capLand2);
+  set('gal-cap-land-3', t.capLand3);
+  set('gal-cap-mural-1', t.capMural1);
+  set('gal-cap-mural-2', t.capMural2);
+  set('gal-cap-mural-3', t.capMural3);
+
+  // Footer / misc
+  set('gal-coming-soon-1', t.comingSoon);
+  set('gal-coming-soon-link', t.comingSoonLink);
+  set('gal-footer-tagline', t.footerTagline);
+  set('gal-footer-privacy', t.footerPrivacy);
+
+  // Active button
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  var langs = ['en','de','fr','us','no'];
+  var idx = langs.indexOf(lang);
+  var btns = document.querySelectorAll('.lang-btn');
+  if (btns[idx]) btns[idx].classList.add('active');
+}
+</script>
+</body>
+</html>

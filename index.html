@@ -1154,7 +1154,22 @@
   .nav-links a:hover { color: var(--gold); }
 
   @media (max-width: 600px) {
-    .nav-links { display: none; }
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
   }
 
   /* ── LANGUAGE BAR ── */
@@ -1762,6 +1777,7 @@
     <li><a href="javascript:void(0)" onclick="navTo('museum')" class="nav-museum">Museum</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('landscape')" class="nav-landscape">Landscape</a></li>
     <li><a href="blog.html" class="nav-blog">Blog</a></li>
+    <li><a href="gallery.html" class="nav-gallery">Gallery</a></li>
   </ul>
 </nav>
 
@@ -1789,6 +1805,16 @@
       </defs>
       <!-- Back mountains -->
       <path d="M0,400 L0,280 L120,180 L200,220 L320,120 L440,190 L560,100 L680,170 L800,80 L920,160 L1040,90 L1160,150 L1280,110 L1360,170 L1440,130 L1440,400 Z" fill="url(#mtnGrad1)" opacity="0.6"/>
+      <!-- Snow ridge line -->
+      <polyline points="0,280 120,180 200,220 320,120 440,190 560,100 680,170 800,80 920,160 1040,90 1160,150 1280,110 1360,170 1440,130" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linejoin="round"/>
+      <!-- Snow caps -->
+      <polygon points="75,218 120,180 165,203"   fill="rgba(255,255,255,0.82)"/>
+      <polygon points="275,158 320,120 365,146"  fill="rgba(255,255,255,0.82)"/>
+      <polygon points="515,134 560,100 605,126"  fill="rgba(255,255,255,0.82)"/>
+      <polygon points="755,114 800,80  845,110"  fill="rgba(255,255,255,0.88)"/>
+      <polygon points="995,116 1040,90 1085,113" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="1235,125 1280,110 1325,144" fill="rgba(255,255,255,0.78)"/>
+      <polygon points="1400,150 1440,130 1440,148" fill="rgba(255,255,255,0.70)"/>
       <!-- Mid mountains -->
       <path d="M0,400 L0,320 L80,260 L180,290 L280,220 L400,270 L500,210 L620,260 L720,190 L840,250 L960,200 L1080,260 L1180,210 L1300,255 L1440,220 L1440,400 Z" fill="url(#mtnGrad2)" opacity="0.8"/>
       <!-- Loch / water reflection -->
@@ -4225,7 +4251,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
   <p>EXPLORE INVERGORDON · EASTER ROSS · SCOTTISH HIGHLANDS</p>
   <p style="margin-top:0.5rem;"><a href="https://invergordonoffthewall.org.uk" target="_blank">Invergordon Off the Wall</a> · <a href="https://www.invergordonmuseum.co.uk" target="_blank">Invergordon Museum</a> · <a href="https://pocf.co.uk/cruise/" target="_blank">Port of Cromarty Firth</a></p>
   <p class="footer-credit" id="footer-credit">Created by a Local Resident using Modern Tools — Capturing his own Unique Images &amp; Video of the Town and Surrounding Areas · ExploreInvergordon.scot</p>
-  <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html">Privacy Policy</a></p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy Policy</a></p>
 </footer>
 
 <script>
