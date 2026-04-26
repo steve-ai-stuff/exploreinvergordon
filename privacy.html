@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://exploreinvergordon.scot/privacy.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --highland-deep: #080f1e;
@@ -30,7 +30,39 @@
     font-family: 'Crimson Pro', Georgia, serif;
     font-size: 18px;
     line-height: 1.8;
+    padding-top: 32px;
   }
+
+  /* ── LANG BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+  .lang-btn.active { color: var(--gold); }
 
   /* ── HEADER ── */
   .page-header {
@@ -138,6 +170,14 @@
 </head>
 <body>
 
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('de')">DE</button>
+  <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  <button class="lang-btn" onclick="setLang('us')">US</button>
+  <button class="lang-btn" onclick="setLang('no')">NO</button>
+</div>
+
 <header class="page-header">
   <a class="site-name" href="/">← Explore Invergordon</a>
   <h1>Privacy Policy</h1>
@@ -229,6 +269,19 @@
 <footer class="page-footer">
   <p>&copy; 2026 Explore Invergordon &nbsp;·&nbsp; <a href="/">Back to Homepage</a></p>
 </footer>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  var langs = ['en','de','fr','us','no'];
+  var idx = langs.indexOf(lang);
+  if (idx > -1) {
+    document.querySelectorAll('.lang-btn')[idx].classList.add('active');
+  }
+}
+</script>
 
 </body>
 </html>

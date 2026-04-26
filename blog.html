@@ -53,15 +53,46 @@
     background: var(--highland-deep);
     color: var(--text-light);
     font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.7;
     overflow-x: hidden;
   }
 
+  /* ── LANG BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+  .lang-btn.active { color: var(--gold); }
+
   /* ── NAV ── */
   nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 32px; left: 0; right: 0;
     z-index: 100;
     padding: 1rem 2rem;
     display: flex;
@@ -89,7 +120,7 @@
 
   .nav-links a {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.80rem;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     text-decoration: none;
@@ -139,7 +170,7 @@
 
   .blog-label {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.80rem;
     letter-spacing: 0.25em;
     color: var(--gold);
     text-transform: uppercase;
@@ -187,7 +218,7 @@
 
   .post-meta {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     letter-spacing: 0.2em;
     color: var(--gold);
     text-transform: uppercase;
@@ -235,7 +266,7 @@
 
   .post p {
     color: var(--text-light);
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.85;
     margin-bottom: 1rem;
   }
@@ -252,7 +283,7 @@
 
   footer p {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.78rem;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
@@ -263,6 +294,14 @@
 </style>
 </head>
 <body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('de')">DE</button>
+  <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  <button class="lang-btn" onclick="setLang('us')">US</button>
+  <button class="lang-btn" onclick="setLang('no')">NO</button>
+</div>
 
 <nav>
   <a href="index.html" class="nav-logo">Invergordon</a>
@@ -319,6 +358,19 @@
   <p><a href="index.html">&#8592; Back to main site</a></p>
   <p style="margin-top:0.8rem; font-size:0.8rem;"><a href="/privacy.html">Privacy Policy</a></p>
 </footer>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(function(btn, i) {
+    btn.classList.remove('active');
+  });
+  var langs = ['en','de','fr','us','no'];
+  var idx = langs.indexOf(lang);
+  if (idx > -1) {
+    document.querySelectorAll('.lang-btn')[idx].classList.add('active');
+  }
+}
+</script>
 
 </body>
 </html>

@@ -448,7 +448,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid rgba(29,79,168,0.2);
+    border: 1px solid rgba(201,168,76,0.4);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
   }
   .mural-face::after {
@@ -733,7 +733,7 @@
   /* Front */
   .biz-face {
     background: var(--highland-deep);
-    border: 1px solid rgba(29,79,168,0.2);
+    border: 1px solid rgba(201,168,76,0.4);
     padding: 1.1rem 1.25rem;
     display: flex;
     flex-direction: column;
@@ -1109,8 +1109,8 @@
     margin-top: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255,255,255,0.05);
-    font-size: 0.6rem !important;
-    color: rgba(154,144,128,0.5) !important;
+    font-size: 0.78rem !important;
+    color: rgba(154,144,128,0.65) !important;
   }
 
   /* ── NAV ── */
@@ -1129,7 +1129,7 @@
 
   .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--gold);
     text-decoration: none;
@@ -1143,7 +1143,7 @@
 
   .nav-links a {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     text-decoration: none;
@@ -1175,7 +1175,7 @@
 
   .lang-btn {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.82rem;
     letter-spacing: 0.1em;
     color: var(--text-muted);
     background: none;
@@ -1236,6 +1236,8 @@
     max-width: 1000px;
     margin: 0 auto;
     background: var(--highland-deep);
+    border: 1px solid rgba(201,168,76,0.45);
+    border-radius: 4px;
   }
 
   .arrival-info-bar {
@@ -1620,7 +1622,7 @@
 
   .tip-item {
     background: rgba(29,79,168,0.1);
-    border: 1px solid rgba(29,79,168,0.2);
+    border: 1px solid rgba(201,168,76,0.45);
     margin-bottom: 0.75rem;
     border-radius: 4px;
     overflow: hidden;
@@ -1754,9 +1756,9 @@
   <a href="javascript:void(0)" onclick="scrollTo('nav-logo-top')" class="nav-logo">Invergordon</a>
   <ul class="nav-links">
     <li><a href="javascript:void(0)" onclick="scrollTo('cruise-hub')" class="nav-cruise">Cruise</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollTo('welcome')" class="nav-arrive">Arrive</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('getting-started')" class="nav-arrive">Arrive</a></li>
     <li><a href="javascript:void(0)" onclick="scrollTo('murals')" class="nav-murals">Murals</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollTo('town')" class="nav-town">Town</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('welcome')" class="nav-town">Town</a></li>
     <li><a href="javascript:void(0)" onclick="scrollTo('museum')" class="nav-museum">Museum</a></li>
     <li><a href="javascript:void(0)" onclick="scrollTo('landscape')" class="nav-landscape">Landscape</a></li>
     <li><a href="blog.html" class="nav-blog">Blog</a></li>
@@ -1822,44 +1824,44 @@
 
 <!-- CRUISE HUB -->
 <section id="cruise-hub" class="cruise-hub-section">
-  <p class="section-label">Port of Cromarty Firth</p>
-  <h2 class="section-title">Cruise Passenger <em>Hub</em></h2>
+  <p class="section-label" id="cruise-hub-label">Port of Cromarty Firth</p>
+  <h2 class="section-title" id="cruise-hub-title">Cruise Passenger <em>Hub</em></h2>
   <div class="divider"></div>
-  <p class="intro-text">Everything you need to make the most of your time in Invergordon — from the moment your anchor drops to the moment you reboard.</p>
+  <p class="intro-text" id="cruise-hub-intro">Everything you need to make the most of your time in Invergordon — from the moment your anchor drops to the moment you reboard.</p>
 
   <!-- ARRIVAL INFO BAR -->
   <div class="arrival-info-bar">
     <div class="arrival-stat">
       <div class="arrival-stat-icon">🚶</div>
-      <div class="arrival-stat-value">5 min walk</div>
-      <div class="arrival-stat-label">Town Centre from terminal</div>
+      <div class="arrival-stat-value" id="arrival-val-1">5 min walk</div>
+      <div class="arrival-stat-label" id="arrival-lbl-1">Town Centre from terminal</div>
     </div>
     <div class="arrival-stat">
       <div class="arrival-stat-icon">⏱️</div>
-      <div class="arrival-stat-value">8–12 hours</div>
-      <div class="arrival-stat-label">Typical port stay</div>
+      <div class="arrival-stat-value" id="arrival-val-2">8–12 hours</div>
+      <div class="arrival-stat-label" id="arrival-lbl-2">Typical port stay</div>
     </div>
     <div class="arrival-stat">
       <div class="arrival-stat-icon">💰</div>
-      <div class="arrival-stat-value">Free entry</div>
-      <div class="arrival-stat-label">Mural trail, town, High Street</div>
+      <div class="arrival-stat-value" id="arrival-val-3">Free entry</div>
+      <div class="arrival-stat-label" id="arrival-lbl-3">Mural trail, town, High Street</div>
     </div>
     <div class="arrival-stat">
       <div class="arrival-stat-icon">🗺️</div>
-      <div class="arrival-stat-value">No tour needed</div>
-      <div class="arrival-stat-label">Everything is walkable</div>
+      <div class="arrival-stat-value" id="arrival-val-4">No tour needed</div>
+      <div class="arrival-stat-label" id="arrival-lbl-4">Everything is walkable</div>
     </div>
   </div>
 
   <!-- TIME-OPTIMISED ITINERARY CARDS -->
-  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem; text-align: center;">How to Spend Your Time</h3>
+  <h3 id="cruise-time-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem; text-align: center;">How to Spend Your Time</h3>
 
   <div class="itinerary-cards">
     <!-- 2 HOUR CARD -->
     <div class="itinerary-card card-2h">
-      <div class="card-time-badge">2 Hours</div>
-      <h3>Don't Panic</h3>
-      <p class="intro-text">You can still have an unforgettable experience.</p>
+      <div class="card-time-badge" id="itin-2h-badge">2 Hours</div>
+      <h3 id="itin-2h-heading">Don't Panic</h3>
+      <p class="intro-text" id="itin-2h-intro">You can still have an unforgettable experience.</p>
       <ul>
         <li>Walk from terminal to High Street (5 min)</li>
         <li>Coffee at a local café (20 min)</li>
@@ -1874,9 +1876,9 @@
 
     <!-- 4-5 HOUR CARD -->
     <div class="itinerary-card card-4h">
-      <div class="card-time-badge">4–5 Hours</div>
-      <h3>The Ideal Day</h3>
-      <p class="intro-text">You'll leave wishing you had more time.</p>
+      <div class="card-time-badge" id="itin-4h-badge">4–5 Hours</div>
+      <h3 id="itin-4h-heading">The Ideal Day</h3>
+      <p class="intro-text" id="itin-4h-intro">You'll leave wishing you had more time.</p>
       <ul>
         <li>Full Mural Trail (60–90 min — all 12 murals)</li>
         <li>Visit Invergordon Museum & Heritage Centre (45 min)</li>
@@ -1891,9 +1893,9 @@
 
     <!-- 8+ HOUR CARD -->
     <div class="itinerary-card card-8h">
-      <div class="card-time-badge">8+ Hours</div>
-      <h3>Full Day</h3>
-      <p class="intro-text">You are in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.</p>
+      <div class="card-time-badge" id="itin-8h-badge">8+ Hours</div>
+      <h3 id="itin-8h-heading">Full Day</h3>
+      <p class="intro-text" id="itin-8h-intro">You are in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.</p>
 
       <div class="card-option">
         <strong>Option A — The Highland Explorer</strong>
@@ -1917,11 +1919,11 @@
   </div>
 
   <!-- PORT ARRIVAL GUIDE -->
-  <div class="port-arrival-guide">
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin-bottom: 1.5rem;">Getting Started</h3>
+  <div class="port-arrival-guide" id="getting-started">
+    <h3 id="getting-started-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin-bottom: 1.5rem;">Getting Started</h3>
     <div class="port-arrival-grid">
       <div class="port-column">
-        <h3>Getting from Ship to Town</h3>
+        <h3 id="port-col-1-heading">Getting from Ship to Town</h3>
         <p>Your ship docks at the <strong>Port of Cromarty Firth terminal</strong></p>
         <p>The town centre is a <strong>5-minute flat walk</strong> along the waterfront</p>
         <p>Follow the signs or simply walk with the crowd — everyone's heading the same way</p>
@@ -1929,7 +1931,7 @@
         <p>The <strong>High Street runs parallel to the water</strong> — you'll find it instantly</p>
       </div>
       <div class="port-column">
-        <h3>What to Bring Ashore</h3>
+        <h3 id="port-col-2-heading">What to Bring Ashore</h3>
         <p><strong>Comfortable walking shoes</strong> — flat terrain, no hills needed for town</p>
         <p><strong>Light waterproof layer</strong> — even in summer, this is Scotland</p>
         <p><strong>A small amount of cash</strong> — some small businesses prefer it</p>
@@ -1941,15 +1943,15 @@
 
   <!-- SHIP SCHEDULE CALLOUT -->
   <div class="ship-schedule-callout">
-    <p class="section-label">This Season</p>
-    <h3>Ships Expected at Port of Cromarty Firth</h3>
-    <p>The 2026 cruise season runs from March through October, with ships calling 2–3 times per week at peak. The Port of Cromarty Firth publishes the full schedule on their official website.</p>
-    <a href="https://www.pocf.co.uk/cruise/cruise-schedule/" target="_blank" class="ship-schedule-btn">View Official Ship Schedule ↗</a>
-    <p class="ship-operators">Look out for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many more calling throughout the season.</p>
+    <p class="section-label" id="ship-sched-label">This Season</p>
+    <h3 id="ship-sched-heading">Ships Expected at Port of Cromarty Firth</h3>
+    <p id="ship-sched-text">The 2026 cruise season runs from March through October, with ships calling 2–3 times per week at peak. The Port of Cromarty Firth publishes the full schedule on their official website.</p>
+    <a href="https://pocf.co.uk/cruise/#cruisetimetable" target="_blank" class="ship-schedule-btn" id="ship-sched-btn">View Official Ship Schedule ↗</a>
+    <p class="ship-operators" id="ship-sched-ops">Look out for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many more calling throughout the season.</p>
   </div>
 
   <!-- LOCAL EXCURSION DIRECTORY -->
-  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Popular Excursions</h3>
+  <h3 id="excursions-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Popular Excursions</h3>
 
   <div class="excursion-grid">
     <div class="excursion-card" data-sound="wind">
@@ -1957,7 +1959,7 @@
       <h3>Fyrish Monument</h3>
       <div class="excursion-distance">25 min drive</div>
       <p>A replica of the Gates of Nagapatnam, built in 1782 to provide employment for local people after the Highland Clearances. Panoramic views over the Cromarty Firth.</p>
-      <a href="https://www.walkhighlands.co.uk/north-highlands/fyrish-monument.shtml" target="_blank" rel="noopener">Learn more ↗</a>
+      <a href="https://www.walkhighlands.co.uk/ullapool/fyrish-monument.shtml" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
     <div class="excursion-card" data-sound="whisky">
@@ -1973,11 +1975,11 @@
       <h3>Dalmore Distillery</h3>
       <div class="excursion-distance">12 min drive</div>
       <p>Legendary for its complex, sherry-influenced expressions. One of the world's most collectable whiskies, made just minutes from the port.</p>
-      <a href="https://thedalmore.com/visit/" target="_blank" rel="noopener">Learn more ↗</a>
+      <a href="https://www.thedalmore.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
     <div class="excursion-card" data-sound="sword">
-      <div class="excursion-icon">🏰</div>
+      <div class="excursion-icon">⚔️</div>
       <h3>Culloden Battlefield</h3>
       <div class="excursion-distance">45 min drive</div>
       <p>The site of the last pitched battle on British soil (1746). A haunting, beautifully managed National Trust for Scotland site. Essential Highland history.</p>
@@ -1989,7 +1991,7 @@
       <h3>Loch Ness</h3>
       <div class="excursion-distance">60 min drive</div>
       <p>Home of the world's most famous mystery. The Great Glen and the loch itself are breathtaking regardless of what lurks beneath. Urquhart Castle on the shore is stunning.</p>
-      <a href="https://www.visitlochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
+      <a href="https://lochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
     <div class="excursion-card" data-sound="horn">
@@ -1997,7 +1999,7 @@
       <h3>Inverness City Centre</h3>
       <div class="excursion-distance">40 min drive</div>
       <p>The capital of the Highlands. Victorian Market, Inverness Castle, the River Ness, independent shops, and excellent food. A full half-day destination.</p>
-      <a href="https://www.visitinverness.com/" target="_blank" rel="noopener">Learn more ↗</a>
+      <a href="https://www.visitinvernesslochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
     <div class="excursion-card" data-sound="fanfare">
@@ -2009,7 +2011,7 @@
     </div>
 
     <div class="excursion-card" data-sound="fanfare">
-      <div class="excursion-icon">🏯</div>
+      <div class="excursion-icon">🏰</div>
       <h3>Urquhart Castle</h3>
       <div class="excursion-distance">65 min drive</div>
       <p>One of Scotland's most dramatic castle ruins, perched on the banks of Loch Ness with the famous loch stretching out behind it. A Historic Environment Scotland site with a modern visitor centre. The most photographed castle in the Highlands — and for good reason.</p>
@@ -2021,77 +2023,77 @@
       <h3>Inverness Castle Experience</h3>
       <div class="excursion-distance">40 min drive</div>
       <p>Scotland's newest major visitor attraction, newly opened in the heart of Inverness with breathtaking views over the River Ness, the historic bridges, and the city centre below. An immersive Highland journey through 10,000 years of history, culture, and landscape — right on your doorstep.</p>
-      <a href="https://www.invernesscastle.com/" target="_blank" rel="noopener">Learn more ↗</a>
+      <a href="https://invernesscastle.scot/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
   </div>
 
   <!-- PRACTICAL TIPS ACCORDION -->
-  <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Practical Tips</h3>
+  <h3 id="tips-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Practical Tips</h3>
 
   <div class="tips-accordion">
     <div class="tip-item">
       <div class="tip-header">
         <span class="tip-header-icon">💷</span>
-        <span class="tip-header-text">Money & Payments</span>
+        <span class="tip-header-text" id="tip-h-1">Money & Payments</span>
         <span class="tip-toggle">▼</span>
       </div>
       <div class="tip-body">
-        <p>Scotland uses British Pounds Sterling (£). Cards are widely accepted. A small amount of cash is useful for market stalls, small cafés, and tips.</p>
+        <p id="tip-b-1">Scotland uses British Pounds Sterling (£). Cards are widely accepted. A small amount of cash is useful for market stalls, small cafés, and tips.</p>
       </div>
     </div>
 
     <div class="tip-item">
       <div class="tip-header">
         <span class="tip-header-icon">🌤️</span>
-        <span class="tip-header-text">Weather</span>
+        <span class="tip-header-text" id="tip-h-2">Weather</span>
         <span class="tip-toggle">▼</span>
       </div>
       <div class="tip-body">
-        <p>Even in summer, the Highlands can be unpredictable. A light waterproof layer is always wise. July and August are the warmest months, averaging 17–19°C.</p>
+        <p id="tip-b-2">Even in summer, the Highlands can be unpredictable. A light waterproof layer is always wise. July and August are the warmest months, averaging 17–19°C.</p>
       </div>
     </div>
 
     <div class="tip-item">
       <div class="tip-header">
         <span class="tip-header-icon">📱</span>
-        <span class="tip-header-text">Mobile & Wi-Fi</span>
+        <span class="tip-header-text" id="tip-h-3">Mobile & Wi-Fi</span>
         <span class="tip-toggle">▼</span>
       </div>
       <div class="tip-body">
-        <p>UK mobile networks (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available in some cafés. Download offline maps before you arrive.</p>
+        <p id="tip-b-3">UK mobile networks (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available in some cafés. Download offline maps before you arrive.</p>
       </div>
     </div>
 
     <div class="tip-item">
       <div class="tip-header">
         <span class="tip-header-icon">🚕</span>
-        <span class="tip-header-text">Getting Around</span>
+        <span class="tip-header-text" id="tip-h-4">Getting Around</span>
         <span class="tip-toggle">▼</span>
       </div>
       <div class="tip-body">
-        <p>Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.</p>
+        <p id="tip-b-4">Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.</p>
       </div>
     </div>
 
     <div class="tip-item">
       <div class="tip-header">
         <span class="tip-header-icon">🛒</span>
-        <span class="tip-header-text">Shopping Tips</span>
+        <span class="tip-header-text" id="tip-h-5">Shopping Tips</span>
         <span class="tip-toggle">▼</span>
       </div>
       <div class="tip-body">
-        <p>Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.</p>
+        <p id="tip-b-5">Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.</p>
       </div>
     </div>
 
     <div class="tip-item">
       <div class="tip-header">
         <span class="tip-header-icon">🐾</span>
-        <span class="tip-header-text">A Scottish Welcome</span>
+        <span class="tip-header-text" id="tip-h-6">A Scottish Welcome</span>
         <span class="tip-toggle">▼</span>
       </div>
       <div class="tip-body">
-        <p>Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.</p>
+        <p id="tip-b-6">Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.</p>
       </div>
     </div>
   </div>
@@ -2099,9 +2101,9 @@
   <!-- PHOTO UPLOAD TEASER -->
   <div class="photo-upload-teaser">
     <div class="photo-upload-teaser-icon">📸</div>
-    <h3>Did you visit Invergordon today?</h3>
-    <p>Upload your favourite photo from your visit and we'll feature it in our Visitor Gallery — shared with travellers from around the world.</p>
-    <button class="upload-btn" onclick="showUploadComingSoon(this)">Upload Your Photo</button>
+    <h3 id="upload-title">Did you visit Invergordon today?</h3>
+    <p id="upload-text">Upload your favourite photo from your visit and we'll feature it in our Visitor Gallery — shared with travellers from around the world.</p>
+    <button class="upload-btn" onclick="showUploadComingSoon(this)" id="upload-btn-text">Upload Your Photo</button>
   </div>
 </section>
 
@@ -2157,7 +2159,7 @@
       <a href="https://www.invergordonmuseum.co.uk" target="_blank" rel="noopener" class="btn-primary" id="museum-btn1">Visit the Museum ↗</a>
       <a href="https://invergordonoffthewall.org.uk/app/" target="_blank" rel="noopener" class="btn-secondary" id="museum-btn2">Download Mural App ↗</a>
     </div>
-    <p style="font-size:0.78rem; color:var(--text-muted); margin-top:1rem; font-style:italic; opacity:0.7;">* These links open official third-party websites. Explore Invergordon is not affiliated with these organisations — we simply recommend them as genuinely excellent local resources.</p>
+    <p style="font-size:0.78rem; color:var(--cream); margin-top:1rem; font-style:italic; opacity:0.85;">* These links open official third-party websites. Explore Invergordon is not affiliated with these organisations — we simply recommend them as genuinely excellent local resources.</p>
   </div>
 </section>
 
@@ -2625,7 +2627,7 @@
   <div style="display:flex; justify-content:center; margin-bottom: 1rem;">
     <div class="trail-stat" style="max-width:600px; width:100%;">
       <div class="stat-number" style="min-width:5rem;">In Town</div>
-      <div class="stat-label">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
+      <div class="stat-label" style="color:var(--heather-light);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
     </div>
   </div>
   <div class="biz-inner">
@@ -3223,6 +3225,40 @@ function closeMural(id) {
 const translations = {
   en: {
     heroTag: "Port of Cromarty Firth · Scottish Highlands",
+    // Cruise Hub
+    cruiseHubLabel: "Port of Cromarty Firth",
+    cruiseHubTitle: "Cruise Passenger <em>Hub</em>",
+    cruiseHubIntro: "Everything you need to make the most of your time in Invergordon — from the moment your anchor drops to the moment you reboard.",
+    arrivalVal1: "5 min walk", arrivalLbl1: "Town Centre from terminal",
+    arrivalVal2: "8–12 hours", arrivalLbl2: "Typical port stay",
+    arrivalVal3: "Free entry", arrivalLbl3: "Mural trail, town, High Street",
+    arrivalVal4: "No tour needed", arrivalLbl4: "Everything is walkable",
+    cruiseTimeHeading: "How to Spend Your Time",
+    itin2hBadge: "2 Hours", itin2hHeading: "Don't Panic", itin2hIntro: "You can still have an unforgettable experience.",
+    itin4hBadge: "4–5 Hours", itin4hHeading: "The Ideal Day", itin4hIntro: "You'll leave wishing you had more time.",
+    itin8hBadge: "8+ Hours", itin8hHeading: "Full Day", itin8hIntro: "You are in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.",
+    gettingStartedHeading: "Getting Started",
+    portCol1Heading: "Getting from Ship to Town",
+    portCol2Heading: "What to Bring Ashore",
+    shipSchedLabel: "This Season",
+    shipSchedHeading: "Ships Expected at Port of Cromarty Firth",
+    shipSchedText: "The 2026 cruise season runs from March through October, with ships calling 2–3 times per week at peak. The Port of Cromarty Firth publishes the full schedule on their official website.",
+    shipSchedBtn: "View Official Ship Schedule ↗",
+    shipSchedOps: "Look out for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many more calling throughout the season.",
+    excursionsHeading: "Popular Excursions",
+    tipsHeading: "Practical Tips",
+    tipH1: "Money & Payments", tipB1: "Scotland uses British Pounds Sterling (£). Cards are widely accepted. A small amount of cash is useful for market stalls, small cafés, and tips.",
+    tipH2: "Weather", tipB2: "Even in summer, the Highlands can be unpredictable. A light waterproof layer is always wise. July and August are the warmest months, averaging 17–19°C.",
+    tipH3: "Mobile & Wi-Fi", tipB3: "UK mobile networks (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available in some cafés. Download offline maps before you arrive.",
+    tipH4: "Getting Around", tipB4: "Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.",
+    tipH5: "Shopping Tips", tipB5: "Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.",
+    tipH6: "A Scottish Welcome", tipB6: "Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.",
+    uploadTitle: "Did you visit Invergordon today?",
+    uploadText: "Upload your favourite photo from your visit and we'll feature it in our Visitor Gallery — shared with travellers from around the world.",
+    uploadBtn: "Upload Your Photo",
+    contactLabelId: "Get in Touch",
+    contactTitleId: "We'd Love to Hear From You",
+    contactSubtitleId: "Whether you're planning your first visit, a local business wanting to be listed, or simply want to share your Highland memories — drop us a message below.",
     heroSub: "Gateway to the Highlands — just a 5-minute walk from your ship",
     heroCta: "Begin Your Visit",
     walkBanner: "🚶 <strong>Town Centre is just a 5-minute walk</strong> from the cruise terminal — no bus needed, no taxis required",
@@ -3326,6 +3362,40 @@ const translations = {
     footerCredit: "Ein digitales Gemeinschaftsprojekt für Invergordon · Mit KI von einem Einheimischen erstellt · ExploreInvergordon.scot",
     navArrive: "Ankommen", navMurals: "Wandbilder", navTown: "Stadt", navMuseum: "Museum", navLandscape: "Landschaft",
     scroll: "Scrollen",
+    // Cruise Hub — German
+    cruiseHubLabel: "Port of Cromarty Firth",
+    cruiseHubTitle: "Kreuzfahrt&shy;passagier <em>Zentrum</em>",
+    cruiseHubIntro: "Alles, was Sie brauchen, um Ihre Zeit in Invergordon optimal zu nutzen — vom Moment, in dem der Anker fällt, bis zur Rückkehr an Bord.",
+    arrivalVal1: "5 Min. zu Fuß", arrivalLbl1: "Stadtzentrum vom Terminal",
+    arrivalVal2: "8–12 Stunden", arrivalLbl2: "Typischer Hafenaufenthalt",
+    arrivalVal3: "Kostenlos", arrivalLbl3: "Muralpfad, Stadt, Hauptstraße",
+    arrivalVal4: "Keine Tour nötig", arrivalLbl4: "Alles fußläufig erreichbar",
+    cruiseTimeHeading: "Wie Sie Ihre Zeit verbringen",
+    itin2hBadge: "2 Stunden", itin2hHeading: "Keine Panik", itin2hIntro: "Sie können trotzdem ein unvergessliches Erlebnis haben.",
+    itin4hBadge: "4–5 Stunden", itin4hHeading: "Der ideale Tag", itin4hIntro: "Sie werden gehen und sich wünschen, mehr Zeit zu haben.",
+    itin8hBadge: "8+ Stunden", itin8hHeading: "Ganzer Tag", itin8hIntro: "Sie sind genau richtig hier. Das ist Easter Ross — eine der schönsten Ecken Schottlands.",
+    gettingStartedHeading: "Erste Schritte",
+    portCol1Heading: "Vom Schiff in die Stadt",
+    portCol2Heading: "Was Sie an Land mitnehmen sollten",
+    shipSchedLabel: "Diese Saison",
+    shipSchedHeading: "Erwartete Schiffe im Port of Cromarty Firth",
+    shipSchedText: "Die Kreuzfahrtsaison 2026 läuft von März bis Oktober, mit Schiffen 2–3 Mal pro Woche in der Hauptsaison. Der Port of Cromarty Firth veröffentlicht den vollständigen Fahrplan auf ihrer offiziellen Website.",
+    shipSchedBtn: "Offiziellen Schiffsplan anzeigen ↗",
+    shipSchedOps: "Achten Sie auf: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> und viele mehr in der Saison.",
+    excursionsHeading: "Beliebte Ausflüge",
+    tipsHeading: "Praktische Tipps",
+    tipH1: "Geld & Zahlungen", tipB1: "Schottland verwendet Britische Pfund Sterling (£). Karten werden weitgehend akzeptiert. Ein kleiner Bargeldbetrag ist für Marktstände, kleine Cafés und Trinkgelder nützlich.",
+    tipH2: "Wetter", tipB2: "Selbst im Sommer kann das Hochland unberechenbar sein. Eine leichte wasserdichte Schicht ist immer klug. Juli und August sind die wärmsten Monate, durchschnittlich 17–19°C.",
+    tipH3: "Mobilfunk & WLAN", tipB3: "Britische Mobilfunknetze (EE, O2, Vodafone) versorgen die Stadt gut. Kostenloses WLAN ist in einigen Cafés verfügbar. Laden Sie Offline-Karten herunter, bevor Sie ankommen.",
+    tipH4: "Fortbewegung", tipB4: "Das Stadtzentrum ist vollständig fußläufig. Für Ausflüge bedienen lokale Taxis und vorgebuchte Busse den Hafen. Der Port of Cromarty Firth kann über zugelassene Betreiber beraten.",
+    tipH5: "Einkaufstipps", tipB5: "Suchen Sie nach echten schottischen Waren — Harris Tweed, Kaschmir, lokal hergestellte Handwerksprodukte. Vermeiden Sie alles mit 'Made in China' auf dem Etikett, wenn Sie das Original möchten.",
+    tipH6: "Ein schottischer Empfang", tipB6: "Invergordon ist eine freundliche, authentische Stadt — kein Touristenfalle. Die Einheimischen sind stolz auf ihren Wohnort und teilen ihn gerne mit Besuchern. Seien Sie nicht schüchtern — sagen Sie Hallo.",
+    uploadTitle: "Haben Sie Invergordon heute besucht?",
+    uploadText: "Laden Sie Ihr Lieblingsfoto von Ihrem Besuch hoch und wir zeigen es in unserer Besuchergalerie — geteilt mit Reisenden aus aller Welt.",
+    uploadBtn: "Ihr Foto hochladen",
+    contactLabelId: "Kontakt aufnehmen",
+    contactTitleId: "Wir würden gerne von Ihnen hören",
+    contactSubtitleId: "Ob Sie Ihren ersten Besuch planen, ein lokales Unternehmen sind, das gelistet werden möchte, oder einfach Ihre Highland-Erinnerungen teilen möchten — hinterlassen Sie uns eine Nachricht.",
   },
   fr: {
     heroTag: "Port of Cromarty Firth · Hautes-Terres d'Écosse",
@@ -3379,6 +3449,40 @@ const translations = {
     footerCredit: "Un projet numérique communautaire pour Invergordon · Créé avec l'IA par un résident local · ExploreInvergordon.scot",
     navArrive: "Arriver", navMurals: "Fresques", navTown: "Ville", navMuseum: "Musée", navLandscape: "Paysage",
     scroll: "Défiler",
+    // Cruise Hub — French
+    cruiseHubLabel: "Port of Cromarty Firth",
+    cruiseHubTitle: "Centre <em>Croisiériste</em>",
+    cruiseHubIntro: "Tout ce dont vous avez besoin pour profiter au maximum de votre temps à Invergordon — du moment où l'ancre tombe jusqu'au réembarquement.",
+    arrivalVal1: "5 min à pied", arrivalLbl1: "Centre-ville depuis le terminal",
+    arrivalVal2: "8–12 heures", arrivalLbl2: "Escale typique au port",
+    arrivalVal3: "Entrée gratuite", arrivalLbl3: "Fresques, ville, Grand-Rue",
+    arrivalVal4: "Sans circuit guidé", arrivalLbl4: "Tout est accessible à pied",
+    cruiseTimeHeading: "Comment profiter de votre temps",
+    itin2hBadge: "2 Heures", itin2hHeading: "Pas de panique", itin2hIntro: "Vous pouvez quand même vivre une expérience inoubliable.",
+    itin4hBadge: "4–5 Heures", itin4hHeading: "La journée idéale", itin4hIntro: "Vous repartirez en souhaitant avoir plus de temps.",
+    itin8hBadge: "8+ Heures", itin8hHeading: "Journée complète", itin8hIntro: "Vous êtes au bon endroit. C'est l'Easter Ross — l'un des plus beaux coins d'Écosse.",
+    gettingStartedHeading: "Pour commencer",
+    portCol1Heading: "Du navire à la ville",
+    portCol2Heading: "Ce qu'il faut apporter à terre",
+    shipSchedLabel: "Cette Saison",
+    shipSchedHeading: "Navires attendus au Port of Cromarty Firth",
+    shipSchedText: "La saison de croisière 2026 court de mars à octobre, avec des navires faisant escale 2–3 fois par semaine à la haute saison. Le Port of Cromarty Firth publie le programme complet sur leur site officiel.",
+    shipSchedBtn: "Voir le calendrier officiel ↗",
+    shipSchedOps: "Attendez-vous à voir : <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> et bien d'autres tout au long de la saison.",
+    excursionsHeading: "Excursions Populaires",
+    tipsHeading: "Conseils Pratiques",
+    tipH1: "Argent & Paiements", tipB1: "L'Écosse utilise la Livre Sterling (£). Les cartes sont largement acceptées. Un peu d'argent liquide est utile pour les marchés, petits cafés et pourboires.",
+    tipH2: "Météo", tipB2: "Même en été, les Highlands peuvent être imprévisibles. Une couche imperméable légère est toujours conseillée. Juillet et août sont les mois les plus chauds, avec 17–19°C en moyenne.",
+    tipH3: "Mobile & Wi-Fi", tipB3: "Les réseaux mobiles britanniques (EE, O2, Vodafone) couvrent bien la ville. Le Wi-Fi gratuit est disponible dans certains cafés. Téléchargez des cartes hors ligne avant d'arriver.",
+    tipH4: "Déplacements", tipB4: "Le centre-ville est entièrement accessible à pied. Pour les excursions, des taxis locaux et des cars pré-réservés desservent le port. Le Port of Cromarty Firth peut conseiller sur les opérateurs agréés.",
+    tipH5: "Conseils Shopping", tipB5: "Cherchez des articles écossais authentiques — Harris Tweed, cachemire, artisanat local. Évitez tout ce qui dit 'Made in China' si vous voulez l'authentique.",
+    tipH6: "Un accueil écossais", tipB6: "Invergordon est une ville chaleureuse et authentique — pas un piège à touristes. Les habitants sont fiers de leur ville et adorent la partager avec les visiteurs. N'hésitez pas — dites bonjour.",
+    uploadTitle: "Avez-vous visité Invergordon aujourd'hui ?",
+    uploadText: "Téléchargez votre photo préférée de votre visite et nous la mettrons en avant dans notre Galerie des Visiteurs — partagée avec des voyageurs du monde entier.",
+    uploadBtn: "Télécharger votre photo",
+    contactLabelId: "Nous contacter",
+    contactTitleId: "Nous adorerions vous entendre",
+    contactSubtitleId: "Que vous planifiiez votre première visite, soyez une entreprise locale souhaitant être référencée, ou vouliez simplement partager vos souvenirs des Highlands — laissez-nous un message.",
   },
   us: {
     heroTag: "Port of Cromarty Firth · Scottish Highlands",
@@ -3432,6 +3536,40 @@ const translations = {
     footerCredit: "A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot",
     navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Scenery",
     scroll: "Scroll",
+    // Cruise Hub — US English
+    cruiseHubLabel: "Port of Cromarty Firth",
+    cruiseHubTitle: "Cruise Passenger <em>Hub</em>",
+    cruiseHubIntro: "Everything you need to make the most of your time in Invergordon — from the moment your ship docks to the moment you head back aboard.",
+    arrivalVal1: "5 min walk", arrivalLbl1: "Downtown from the terminal",
+    arrivalVal2: "8–12 hours", arrivalLbl2: "Typical time in port",
+    arrivalVal3: "Free admission", arrivalLbl3: "Mural trail, town, Main Street",
+    arrivalVal4: "No tour needed", arrivalLbl4: "Everything is walkable",
+    cruiseTimeHeading: "How to Spend Your Day",
+    itin2hBadge: "2 Hours", itin2hHeading: "Don't Worry", itin2hIntro: "You can still have an amazing time.",
+    itin4hBadge: "4–5 Hours", itin4hHeading: "The Perfect Day", itin4hIntro: "You'll wish you had more time.",
+    itin8hBadge: "8+ Hours", itin8hHeading: "Full Day", itin8hIntro: "You're in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.",
+    gettingStartedHeading: "Getting Started",
+    portCol1Heading: "Getting from Ship to Town",
+    portCol2Heading: "What to Bring Ashore",
+    shipSchedLabel: "This Season",
+    shipSchedHeading: "Ships Coming to Port of Cromarty Firth",
+    shipSchedText: "The 2026 cruise season runs from March through October, with ships calling 2–3 times a week during peak season. The Port of Cromarty Firth posts the full schedule on their official website.",
+    shipSchedBtn: "View Official Ship Schedule ↗",
+    shipSchedOps: "Watch for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many others throughout the season.",
+    excursionsHeading: "Popular Day Trips",
+    tipsHeading: "Practical Tips",
+    tipH1: "Money & Payments", tipB1: "Scotland uses British Pounds Sterling (£). Credit cards are widely accepted. A little cash is handy for market stalls, small cafés, and tips.",
+    tipH2: "Weather", tipB2: "Even in summer, the Highlands can be unpredictable. A light rain layer is always smart. July and August are the warmest months, averaging 63–66°F.",
+    tipH3: "Cell Service & Wi-Fi", tipB3: "UK carriers (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available at some cafés. Download offline maps before you arrive.",
+    tipH4: "Getting Around", tipB4: "Downtown is totally walkable. For day trips, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can recommend authorized operators.",
+    tipH5: "Shopping Tips", tipB5: "Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Skip anything with 'Made in China' on the label if you want the real thing.",
+    tipH6: "Scottish Hospitality", tipB6: "Invergordon is a warm, genuine town — not a tourist trap. Locals are proud of their home and love sharing it with visitors. Don't be shy — say hi.",
+    uploadTitle: "Did you visit Invergordon today?",
+    uploadText: "Upload your favorite photo from your visit and we'll feature it in our Visitor Gallery — shared with travelers from around the world.",
+    uploadBtn: "Upload Your Photo",
+    contactLabelId: "Get in Touch",
+    contactTitleId: "We'd Love to Hear From You",
+    contactSubtitleId: "Whether you're planning your first visit, a local business that wants to be listed, or just want to share your Highland memories — drop us a message below.",
   },
   no: {
     heroTag: "Port of Cromarty Firth · Skotske Høylandet",
@@ -3485,6 +3623,40 @@ const translations = {
     footerCredit: "Et digitalt fellesskapsprosjekt for Invergordon · Bygget med KI av en lokal innbygger · ExploreInvergordon.scot",
     navArrive: "Ankomst", navMurals: "Muraler", navTown: "By", navMuseum: "Museum", navLandscape: "Landskap",
     scroll: "Rull",
+    // Cruise Hub — Norwegian
+    cruiseHubLabel: "Port of Cromarty Firth",
+    cruiseHubTitle: "Cruise&shy;passasjer <em>Senter</em>",
+    cruiseHubIntro: "Alt du trenger for å gjøre mest mulig ut av tiden din i Invergordon — fra ankeret faller til du er tilbake om bord.",
+    arrivalVal1: "5 min gange", arrivalLbl1: "Bysentrum fra terminalen",
+    arrivalVal2: "8–12 timer", arrivalLbl2: "Typisk havneopphold",
+    arrivalVal3: "Gratis inngang", arrivalLbl3: "Mural-rute, by, High Street",
+    arrivalVal4: "Ingen tur nødvendig", arrivalLbl4: "Alt er tilgjengelig til fots",
+    cruiseTimeHeading: "Slik bruker du tiden din",
+    itin2hBadge: "2 Timer", itin2hHeading: "Ikke panikk", itin2hIntro: "Du kan fortsatt ha en uforglemmelig opplevelse.",
+    itin4hBadge: "4–5 Timer", itin4hHeading: "Den ideelle dagen", itin4hIntro: "Du vil dra og ønske du hadde mer tid.",
+    itin8hBadge: "8+ Timer", itin8hHeading: "Full Dag", itin8hIntro: "Du er på rett sted. Dette er Easter Ross — et av de vakreste hjørnene i Skottland.",
+    gettingStartedHeading: "Kom i gang",
+    portCol1Heading: "Fra skipet til byen",
+    portCol2Heading: "Hva du bør ta med i land",
+    shipSchedLabel: "Denne Sesongen",
+    shipSchedHeading: "Skip forventet til Port of Cromarty Firth",
+    shipSchedText: "Cruisesesongen 2026 går fra mars til oktober, med skip 2–3 ganger i uken i høysesongen. Port of Cromarty Firth publiserer den fullstendige tidsplanen på sin offisielle nettside.",
+    shipSchedBtn: "Se offisiell skipstidtabell ↗",
+    shipSchedOps: "Se etter: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> og mange flere gjennom sesongen.",
+    excursionsHeading: "Populære Utflukter",
+    tipsHeading: "Praktiske Tips",
+    tipH1: "Penger & Betaling", tipB1: "Skottland bruker Britiske Pund Sterling (£). Kort aksepteres bredt. Litt kontanter er nyttig for markedsboder, små kafeer og tips.",
+    tipH2: "Vær", tipB2: "Selv om sommeren kan Høylandet være uforutsigbart. Et lett vanntett lag er alltid lurt. Juli og august er de varmeste månedene med 17–19°C i gjennomsnitt.",
+    tipH3: "Mobil & Wi-Fi", tipB3: "Britiske mobilnett (EE, O2, Vodafone) dekker byen godt. Gratis Wi-Fi er tilgjengelig på noen kafeer. Last ned offline kart før du ankommer.",
+    tipH4: "Komme seg rundt", tipB4: "Bysentrum er fullt tilgjengelig til fots. For utflukter betjener lokale taxier og forhåndsbestilte busser havnen. Port of Cromarty Firth kan gi råd om godkjente operatører.",
+    tipH5: "Handleråd", tipB5: "Se etter ekte skotske varer — Harris Tweed, kashmir, lokalt håndverk. Unngå alt med 'Made in China' på etiketten hvis du vil ha det ekte.",
+    tipH6: "Et skotsk mottak", tipB6: "Invergordon er en vennlig, ekte by — ikke en turistfelle. Lokalbefolkningen er stolte av hjemstedet sitt og elsker å dele det med besøkende. Vær ikke sjenert — si hei.",
+    uploadTitle: "Besøkte du Invergordon i dag?",
+    uploadText: "Last opp favoritten din fra besøket og vi vil fremheve det i vårt Besøksgalleri — delt med reisende fra hele verden.",
+    uploadBtn: "Last opp ditt bilde",
+    contactLabelId: "Ta kontakt",
+    contactTitleId: "Vi vil gjerne høre fra deg",
+    contactSubtitleId: "Enten du planlegger ditt første besøk, er en lokal bedrift som vil bli listet, eller bare vil dele dine Highland-minner — send oss en melding.",
   }
 };
 
@@ -3564,7 +3736,7 @@ function setLang(lang) {
   set('museum-btn1', t.museumBtn1, false);
   set('museum-btn2', t.museumBtn2, false);
 
-  // Tips
+  // Tips (bottom cruise section)
   set('tip1-title', t.tip1Title, false);
   set('tip1-text', t.tip1Text, false);
   set('tip2-title', t.tip2Title, false);
@@ -3574,6 +3746,44 @@ function setLang(lang) {
 
   // Footer
   set('footer-credit', t.footerCredit, false);
+
+  // ── CRUISE HUB SECTION ──
+  if (t.cruiseHubLabel !== undefined) {
+    set('cruise-hub-label', t.cruiseHubLabel, false);
+    set('cruise-hub-title', t.cruiseHubTitle);
+    set('cruise-hub-intro', t.cruiseHubIntro, false);
+    set('arrival-val-1', t.arrivalVal1, false); set('arrival-lbl-1', t.arrivalLbl1, false);
+    set('arrival-val-2', t.arrivalVal2, false); set('arrival-lbl-2', t.arrivalLbl2, false);
+    set('arrival-val-3', t.arrivalVal3, false); set('arrival-lbl-3', t.arrivalLbl3, false);
+    set('arrival-val-4', t.arrivalVal4, false); set('arrival-lbl-4', t.arrivalLbl4, false);
+    set('cruise-time-heading', t.cruiseTimeHeading, false);
+    set('itin-2h-badge', t.itin2hBadge, false); set('itin-2h-heading', t.itin2hHeading, false); set('itin-2h-intro', t.itin2hIntro, false);
+    set('itin-4h-badge', t.itin4hBadge, false); set('itin-4h-heading', t.itin4hHeading, false); set('itin-4h-intro', t.itin4hIntro, false);
+    set('itin-8h-badge', t.itin8hBadge, false); set('itin-8h-heading', t.itin8hHeading, false); set('itin-8h-intro', t.itin8hIntro, false);
+    set('getting-started-heading', t.gettingStartedHeading, false);
+    set('port-col-1-heading', t.portCol1Heading, false);
+    set('port-col-2-heading', t.portCol2Heading, false);
+    set('ship-sched-label', t.shipSchedLabel, false);
+    set('ship-sched-heading', t.shipSchedHeading, false);
+    set('ship-sched-text', t.shipSchedText, false);
+    set('ship-sched-btn', t.shipSchedBtn, false);
+    set('ship-sched-ops', t.shipSchedOps);
+    set('excursions-heading', t.excursionsHeading, false);
+    set('tips-heading', t.tipsHeading, false);
+    set('tip-h-1', t.tipH1, false); set('tip-b-1', t.tipB1, false);
+    set('tip-h-2', t.tipH2, false); set('tip-b-2', t.tipB2, false);
+    set('tip-h-3', t.tipH3, false); set('tip-b-3', t.tipB3, false);
+    set('tip-h-4', t.tipH4, false); set('tip-b-4', t.tipB4, false);
+    set('tip-h-5', t.tipH5, false); set('tip-b-5', t.tipB5, false);
+    set('tip-h-6', t.tipH6, false); set('tip-b-6', t.tipB6, false);
+    set('upload-title', t.uploadTitle, false);
+    set('upload-text', t.uploadText, false);
+    set('upload-btn-text', t.uploadBtn, false);
+    // Contact form
+    set('contact-label-id', t.contactLabelId, false);
+    set('contact-title-id', t.contactTitleId, false);
+    set('contact-subtitle-id', t.contactSubtitleId, false);
+  }
 }
 
 // ── SUBTLE SCROLL FADE IN ──
@@ -3639,12 +3849,12 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    color: var(--cream);
+    color: var(--heather-light);
     margin-bottom: 1rem;
     line-height: 1.2;
   }
   .contact-subtitle {
-    color: var(--text-muted);
+    color: var(--cream);
     font-size: 1rem;
     margin-bottom: 2.5rem;
     line-height: 1.7;
@@ -3883,9 +4093,9 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 <section class="contact-section" id="contact">
   <div class="contact-inner">
 
-    <div class="contact-label">Get in Touch</div>
-    <h2 class="contact-title">We'd Love to Hear From You</h2>
-    <p class="contact-subtitle">
+    <div class="contact-label" id="contact-label-id">Get in Touch</div>
+    <h2 class="contact-title" id="contact-title-id">We'd Love to Hear From You</h2>
+    <p class="contact-subtitle" id="contact-subtitle-id">
       Whether you're planning your first visit, a local business wanting to be listed, or
       simply want to share your Highland memories — drop us a message below.
     </p>
