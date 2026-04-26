@@ -62,7 +62,16 @@
   }
 
   .lang-btn:hover { color: var(--gold); }
-  .lang-btn.active { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
 
   /* ── HEADER ── */
   .page-header {
