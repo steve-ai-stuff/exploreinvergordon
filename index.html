@@ -4299,37 +4299,6 @@ function closeLightboxBtn() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightboxBtn(); });
 
-// ── Mobile two-tap flip for mural cards ──
-(function() {
-  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-  if (!isTouchDevice) return;
-  document.querySelectorAll('.mural-face .flip-front').forEach(function(front) {
-    var card = front.closest('[id^="flip-"]');
-    if (!card) return;
-    var idx = card.id.replace('flip-', '');
-    front.addEventListener('touchend', function(e) {
-      if (!card.classList.contains('flipped')) {
-        e.preventDefault();
-        // Unflip any other open mural card first
-        document.querySelectorAll('[id^="flip-"].flipped').forEach(function(other) {
-          if (other !== card) { other.classList.remove('flipped'); playFX('whooshBck'); }
-        });
-        flipCard(idx);
-      }
-    }, { passive: false });
-  });
-  document.querySelectorAll('.mural-face .flip-back').forEach(function(back) {
-    var card = back.closest('[id^="flip-"]');
-    if (!card) return;
-    var idx = card.id.replace('flip-', '');
-    back.addEventListener('touchend', function(e) {
-      var link = e.target.closest('a');
-      if (link) return; // let the link open naturally
-      e.preventDefault();
-      unflipCard(idx);
-    }, { passive: false });
-  });
-})();
 </script>
 
 
@@ -4392,39 +4361,6 @@ const bizData = [
 function bizFlip(i) { document.getElementById('biz-flip-'+i)?.classList.add('biz-flipped'); playFX('whooshFwd'); }
 function bizUnflip(i) { document.getElementById('biz-flip-'+i)?.classList.remove('biz-flipped'); playFX('whooshBck'); }
 
-// ── Mobile two-tap flip for business cards ──
-(function() {
-  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-  if (!isTouchDevice) return;
-  document.querySelectorAll('[id^="biz-flip-"]').forEach(function(card) {
-    var idx = card.id.replace('biz-flip-', '');
-    var front = card.querySelector('.biz-face-front');
-    var back  = card.querySelector('.biz-face-back');
-    if (front) {
-      front.addEventListener('touchend', function(e) {
-        if (!card.classList.contains('biz-flipped')) {
-          e.preventDefault();
-          // Unflip any other open biz card first
-          document.querySelectorAll('[id^="biz-flip-"].biz-flipped').forEach(function(other) {
-            if (other !== card) {
-              var oi = other.id.replace('biz-flip-', '');
-              bizUnflip(oi);
-            }
-          });
-          bizFlip(idx);
-        }
-      }, { passive: false });
-    }
-    if (back) {
-      back.addEventListener('touchend', function(e) {
-        var link = e.target.closest('a');
-        if (link) return; // let maps link open
-        e.preventDefault();
-        bizUnflip(idx);
-      }, { passive: false });
-    }
-  });
-})();
 
 function openBizLightbox(i) {
   const d = bizData[i];
@@ -4545,6 +4481,85 @@ function beginVisit() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 400);
 }
+
+// ── Mobile two-tap flip cards (mural + business) ──
+(function() {
+  var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  if (!isTouch) return;
+
+  // --- MURAL CARDS (1-12) ---
+  for (var mi = 1; mi <= 12; mi++) {
+    (function(idx) {
+      var card = document.getElementById('flip-' + idx);
+      if (!card) return;
+      // Remove inline ontouchstart that was causing immediate flip+click together
+      card.ontouchstart = null;
+      var wasPreviouslyFlipped = false;
+
+      card.addEventListener('touchstart', function() {
+        wasPreviouslyFlipped = card.classList.contains('flipped');
+        if (!wasPreviouslyFlipped) {
+          // Unflip any other open mural card
+          for (var j = 1; j <= 12; j++) {
+            if (j !== idx) {
+              var other = document.getElementById('flip-' + j);
+              if (other && other.classList.contains('flipped')) {
+                other.classList.remove('flipped');
+              }
+            }
+          }
+          flipCard(idx);
+        }
+      }, { passive: true });
+
+      // Override onclick: only open lightbox if card was ALREADY flipped at touch time
+      card.onclick = function() {
+        if (wasPreviouslyFlipped) {
+          openLightbox(idx);
+        }
+        // else: first tap just flipped the card — don't open lightbox
+      };
+    })(mi);
+  }
+
+  // --- BUSINESS CARDS ---
+  document.querySelectorAll('.biz-flip-wrap').forEach(function(card) {
+    var idx = parseInt(card.id.replace('biz-flip-', ''));
+    var wasPreviouslyFlipped = false;
+
+    card.addEventListener('touchstart', function() {
+      wasPreviouslyFlipped = card.classList.contains('biz-flipped');
+      if (!wasPreviouslyFlipped) {
+        // Unflip any other open biz card
+        document.querySelectorAll('.biz-flip-wrap.biz-flipped').forEach(function(other) {
+          if (other !== card) bizUnflip(parseInt(other.id.replace('biz-flip-', '')));
+        });
+        bizFlip(idx);
+      }
+    }, { passive: true });
+
+    // Override onclick: only open lightbox if card was ALREADY flipped at touch time
+    card.onclick = function() {
+      if (wasPreviouslyFlipped) {
+        openBizLightbox(idx);
+      }
+      // else: first tap just flipped the card — don't open lightbox
+    };
+  });
+
+  // Tap outside any flip card → unflip all
+  document.addEventListener('touchstart', function(e) {
+    if (!e.target.closest('.mural-flip-wrap, .biz-flip-wrap')) {
+      for (var j = 1; j <= 12; j++) {
+        var mc = document.getElementById('flip-' + j);
+        if (mc && mc.classList.contains('flipped')) mc.classList.remove('flipped');
+      }
+      document.querySelectorAll('.biz-flip-wrap.biz-flipped').forEach(function(c) {
+        bizUnflip(parseInt(c.id.replace('biz-flip-', '')));
+      });
+    }
+  }, { passive: true });
+})();
 
 // ── Excursion card sounds — desktop hover + mobile tap ──
 document.querySelectorAll('.excursion-card[data-sound]').forEach(function(card) {
