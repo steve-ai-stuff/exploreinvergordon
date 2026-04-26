@@ -151,34 +151,59 @@
     animation: fadeUp 0.8s ease forwards 0.7s;
   }
 
+  @keyframes beginFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-9px); }
+  }
+
+  @keyframes beginGlow {
+    0%, 100% {
+      box-shadow:   0 0 12px rgba(201,168,76,0.25),
+                    0 0 24px rgba(201,168,76,0.10),
+                    0 6px 20px rgba(0,0,0,0.50);
+      border-color: rgba(201,168,76,0.65);
+    }
+    50% {
+      box-shadow:   0 0 22px rgba(201,168,76,0.60),
+                    0 0 50px rgba(201,168,76,0.30),
+                    0 0 80px rgba(201,168,76,0.13),
+                    0 12px 35px rgba(0,0,0,0.40);
+      border-color: rgba(201,168,76,0.98);
+    }
+  }
+
   .hero-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background: transparent;
+    background: rgba(201,168,76,0.07);
     color: var(--gold);
-    padding: 0.85rem 2.5rem;
+    padding: 0.95rem 3rem;
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid rgba(201,168,76,0.6);
+    border: 1.5px solid rgba(201,168,76,0.65);
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.35s ease;
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.9s;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
+    animation:
+      fadeUp     0.8s ease         forwards  0.9s,
+      beginFloat 3.0s ease-in-out  infinite  1.8s,
+      beginGlow  2.5s ease-in-out  infinite  1.8s;
   }
 
   .hero-cta:hover {
-    background: rgba(201,168,76,0.12);
+    background: rgba(201,168,76,0.18);
     border-color: var(--gold);
     color: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(201,168,76,0.2);
+    box-shadow:   0 0 30px rgba(201,168,76,0.70),
+                  0 0 65px rgba(201,168,76,0.40),
+                  0 0 100px rgba(201,168,76,0.15),
+                  0 14px 40px rgba(0,0,0,0.40);
   }
 
   .hero-cta svg { display: none; }
@@ -214,8 +239,8 @@
   /* ── WALK BANNER ── */
   .walk-banner {
     background: linear-gradient(to right, rgba(8,15,30,0.6), rgba(107,74,126,0.15), rgba(8,15,30,0.6));
-    border-top: 1px solid rgba(107,74,126,0.3);
-    border-bottom: 1px solid rgba(107,74,126,0.3);
+    border-top: 2px solid rgba(201,168,76,0.55);
+    border-bottom: 2px solid rgba(201,168,76,0.55);
     color: var(--mist);
     padding: 1rem 2rem;
     text-align: center;
@@ -1250,7 +1275,7 @@
   .cruise-hub-section {
     padding: 2rem 1.5rem;
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 3rem auto 0;
     background: var(--highland-deep);
     border: 1px solid rgba(201,168,76,0.45);
     border-radius: 4px;
@@ -1834,7 +1859,7 @@
     <p class="hero-subtitle" id="hero-sub">Your guide to Invergordon, Scottish Highlands — just a 5-minute walk from your cruise ship</p>
     <a href="javascript:void(0)" onclick="beginVisit()" class="hero-cta">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      <span id="hero-cta-text">Begin Your Visit</span>
+      <span id="hero-cta-text">Begin Here</span>
     </a>
   </div>
 
@@ -2026,7 +2051,7 @@
       <h3>Inverness City Centre</h3>
       <div class="excursion-distance">40 min drive</div>
       <p>The capital of the Highlands. Victorian Market, Inverness Castle, the River Ness, independent shops, and excellent food. A full half-day destination.</p>
-      <a href="https://www.visitinvernesslochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
+      <a href="https://www.explore-inverness.com" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
 
     <div class="excursion-card" data-sound="fanfare">
@@ -2635,6 +2660,24 @@
   </div>
 </div>
 
+<!-- CRUISE TIPS -->
+<div class="cruise-section">
+  <div class="cruise-inner">
+    <div class="cruise-tip">
+      <h4 id="tip1-title">Getting Into Town</h4>
+      <p id="tip1-text">The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you're on the High Street. No shuttle, no cost.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip2-title">How Long Do You Need?</h4>
+      <p id="tip2-text">The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip3-title">Before You Sail Away</h4>
+      <p id="tip3-text">Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.</p>
+    </div>
+  </div>
+</div>
+
 <!-- LANDSCAPE SECTION -->
 <div class="landscape-section" id="landscape" style="display:none;">
   <div class="landscape-inner">
@@ -3194,25 +3237,6 @@
 
 <!-- MUSEUM -->
 
-
-<!-- CRUISE TIPS -->
-<div class="cruise-section">
-  <div class="cruise-inner">
-    <div class="cruise-tip">
-      <h4 id="tip1-title">Getting Into Town</h4>
-      <p id="tip1-text">The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you're on the High Street. No shuttle, no cost.</p>
-    </div>
-    <div class="cruise-tip">
-      <h4 id="tip2-title">How Long Do You Need?</h4>
-      <p id="tip2-text">The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.</p>
-    </div>
-    <div class="cruise-tip">
-      <h4 id="tip3-title">Before You Sail Away</h4>
-      <p id="tip3-text">Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.</p>
-    </div>
-  </div>
-</div>
-
 <script>
 // ── SMOOTH SCROLL (iframe-safe, avoids conflict with window.scrollTo) ──
 function navTo(id) {
@@ -3279,7 +3303,7 @@ const translations = {
     contactTitleId: "We'd Love to Hear From You",
     contactSubtitleId: "Whether you're planning your first visit, a local business wanting to be listed, or simply want to share your Highland memories — drop us a message below.",
     heroSub: "Gateway to the Highlands — just a 5-minute walk from your ship",
-    heroCta: "Begin Your Visit",
+    heroCta: "Begin Here",
     walkBanner: "🚶 <strong>Town Centre is just a 5-minute walk</strong> from the cruise terminal — no bus needed, no taxis required",
     welcomeLabel: "Welcome Aboard",
     welcomeTitle: "Your day in <em>Invergordon</em>",
@@ -3332,7 +3356,7 @@ const translations = {
   de: {
     heroTag: "Port of Cromarty Firth · Schottisches Hochland",
     heroSub: "Tor zu den Highlands — nur 5 Minuten zu Fuß von Ihrem Schiff",
-    heroCta: "Beginnen Sie Ihren Besuch",
+    heroCta: "Hier Beginnen",
     walkBanner: "🚶 <strong>Das Stadtzentrum ist nur 5 Minuten zu Fuß</strong> vom Kreuzfahrtterminal entfernt — kein Bus, kein Taxi nötig",
     welcomeLabel: "Willkommen an Bord",
     welcomeTitle: "Ihr Tag in <em>Invergordon</em>",
@@ -3419,7 +3443,7 @@ const translations = {
   fr: {
     heroTag: "Port of Cromarty Firth · Hautes-Terres d'Écosse",
     heroSub: "La porte des Highlands — à seulement 5 minutes à pied de votre navire",
-    heroCta: "Commencez votre visite",
+    heroCta: "Commencer Ici",
     walkBanner: "🚶 <strong>Le centre-ville est à seulement 5 minutes à pied</strong> du terminal de croisière — pas besoin de bus ni de taxi",
     welcomeLabel: "Bienvenue à bord",
     welcomeTitle: "Votre journée à <em>Invergordon</em>",
@@ -3506,7 +3530,7 @@ const translations = {
   us: {
     heroTag: "Port of Cromarty Firth · Scottish Highlands",
     heroSub: "Gateway to the Scottish Highlands — just a 5-minute walk from your ship",
-    heroCta: "Start Exploring",
+    heroCta: "Begin Here",
     walkBanner: "🚶 <strong>Downtown is just a 5-minute walk</strong> from the cruise terminal — no shuttle, no taxi, no charge",
     welcomeLabel: "Welcome Ashore",
     welcomeTitle: "Your day in <em>Invergordon</em>",
@@ -3593,7 +3617,7 @@ const translations = {
   no: {
     heroTag: "Port of Cromarty Firth · Skotske Høylandet",
     heroSub: "Porten til Høylandet — bare 5 minutters gange fra skipet ditt",
-    heroCta: "Start besøket ditt",
+    heroCta: "Begynn Her",
     walkBanner: "🚶 <strong>Bysentrum er bare 5 minutters gange</strong> fra cruiseterminalen — ingen buss eller taxi nødvendig",
     welcomeLabel: "Velkommen om bord",
     welcomeTitle: "Din dag i <em>Invergordon</em>",
