@@ -4848,17 +4848,21 @@ document.querySelectorAll('.excursion-card[data-sound]').forEach(function(card) 
   card.addEventListener('touchstart', function() { playFX(key); }, { passive: true });
 });
 
-// ── Upload Your Photo — coming soon message ──
+// ── Upload Your Photo — navigate to Visitor Gallery ──
 function showUploadComingSoon(btn) {
   playFX('camera');
   var teaser = btn.closest('.photo-upload-teaser');
   if (!teaser) return;
-  if (teaser.querySelector('.upload-msg')) return; // already shown
-  var msg = document.createElement('p');
-  msg.className = 'upload-msg';
-  msg.style.cssText = 'color:var(--gold);font-family:"Overpass Mono",monospace;font-size:0.75rem;letter-spacing:0.1em;margin-top:0.9rem;text-align:center;';
-  msg.textContent = '📸 Visitor photo gallery coming soon — check back after the 2026 cruise season opens!';
-  teaser.appendChild(msg);
+  if (!teaser.querySelector('.upload-msg')) {
+    var msg = document.createElement('p');
+    msg.className = 'upload-msg';
+    msg.style.cssText = 'color:var(--gold);font-family:"Overpass Mono",monospace;font-size:0.75rem;letter-spacing:0.1em;margin-top:0.9rem;text-align:center;';
+    msg.textContent = '📸 Taking you to the Visitor Gallery…';
+    teaser.appendChild(msg);
+  }
+  setTimeout(function() {
+    window.location.href = 'gallery.html#visitor';
+  }, 650);
 }
 </script>
 

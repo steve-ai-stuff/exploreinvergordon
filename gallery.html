@@ -911,7 +911,7 @@
       <div class="upload-success" id="uploadSuccess">
         <div class="upload-success-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
         <h3 id="gal-upload-success-title">Photo Received — Thank You!</h3>
-        <p id="gal-upload-success-desc">Your snap will appear in the Visitor Gallery once reviewed. We really appreciate you sharing Invergordon with the world.</p>
+        <p id="gal-upload-success-desc">Your snap will appear in the Visitor Gallery once reviewed. Come back soon to see your image right here — and thank you for sharing Invergordon with the world. 🏴󠁧󠁢󠁳󠁣󠁴󠁿</p>
       </div>
     </div>
   </div>
@@ -1141,6 +1141,25 @@ var galTranslations = {
 
 var currentLang = 'en';
 
+/* ── CAMERA SOUND ENGINE (gallery page only) ── */
+(function() {
+  var audio = null;
+  var ready = false;
+  function init() {
+    if (ready) return;
+    ready = true;
+    audio = new Audio('sounds/camera-shutter.mp3');
+    audio.preload = 'auto';
+  }
+  document.addEventListener('click',      init, { once: true });
+  document.addEventListener('touchstart', init, { once: true });
+  window.playCameraFX = function() {
+    init();
+    if (!audio) return;
+    try { audio.currentTime = 0; audio.play().catch(function(){}); } catch(e) {}
+  };
+})();
+
 /* ── GALLERY TAB SWITCHING ── */
 function switchGalleryTab(tab) {
   ['mine','visitor'].forEach(function(t) {
@@ -1152,6 +1171,11 @@ function switchGalleryTab(tab) {
 }
 
 /* ── VISITOR UPLOAD ── */
+// Open visitor tab if arrived via #visitor hash (e.g. from homepage button)
+if (window.location.hash === '#visitor') {
+  switchGalleryTab('visitor');
+}
+
 var IMGBB_KEY = '579f3586a5476f82a60598eb6440a29f';
 var GALLERY_FS_ID = 'mpqkepnd';
 var selectedFile = null;
@@ -1197,6 +1221,7 @@ function showFilePreview(file) {
 
 function handleVisitorUpload(event) {
   event.preventDefault();
+  playCameraFX();
   var name    = document.getElementById('visitorName').value.trim();
   var caption = document.getElementById('visitorCaption').value.trim();
   var file    = selectedFile || (document.getElementById('visitorPhoto').files[0]);
