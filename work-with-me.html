@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work With Me — Website Design, AI Advice & More | Explore Invergordon</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="Work with Steve — website design and build, AI consultancy for local businesses, and resources from the Highlands of Scotland.">
+<meta name="keywords" content="Highland website design, AI consultancy Scotland, Invergordon web developer, AI guide Scotland, Highland business AI advice">
+<meta name="author" content="Explore Invergordon">
+<link rel="canonical" href="https://exploreinvergordon.scot/work-with-me.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exploreinvergordon.scot/work-with-me.html">
+<meta property="og:title" content="Work With Me — Explore Invergordon">
+<meta property="og:description" content="Website design and build, AI consultancy for local businesses, and resources from the Scottish Highlands.">
+<meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/hero-bg.jpeg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Work With Me — Explore Invergordon">
+<meta name="twitter:description" content="Website design, AI consultancy and resources from the Scottish Highlands.">
+<meta name="twitter:image" content="https://exploreinvergordon.scot/website_image_files/background_images/hero-bg.jpeg">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANG BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,15,30,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.80rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+  }
+
+  /* ── HERO ── */
+  .page-hero {
+    position: relative;
+    padding: 10rem 2rem 6rem;
+    text-align: center;
+    background-image: url('website_image_files/background_images/hero-bg.jpeg');
+    background-size: cover;
+    background-position: center 40%;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.55) 0%,
+      rgba(8,15,30,0.70) 60%,
+      rgba(8,15,30,0.97) 100%);
+    z-index: 0;
+  }
+
+  .page-hero > * { position: relative; z-index: 1; }
+
+  .hero-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.80rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 em { color: var(--gold); font-style: italic; }
+
+  .page-hero p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* ── PAGE CONTENT ── */
+  .page-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+  }
+
+  .section-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── SERVICE CARDS ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+  }
+
+  @media (max-width: 520px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-card {
+    background: var(--highland-dark);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .service-card:hover {
+    border-color: rgba(201,168,76,0.45);
+    transform: translateY(-3px);
+  }
+
+  .service-card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+    color: var(--cream);
+    margin-bottom: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .service-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-btn {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.65rem 1.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .service-btn-gold {
+    background: var(--gold);
+    color: var(--highland-deep);
+  }
+
+  .service-btn-gold:hover { background: var(--gold-light); }
+
+  .service-btn-outline {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.5);
+  }
+
+  .service-btn-outline:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+  }
+
+  .service-btn-heather {
+    background: var(--heather);
+    color: var(--cream);
+  }
+
+  .service-btn-heather:hover { background: #7d5891; }
+
+  /* ── BOOK CARD SPECIAL ── */
+  .book-card {
+    background: linear-gradient(135deg, #0e1a2e 0%, #1a1030 100%);
+    border-color: rgba(107,74,126,0.4);
+  }
+
+  .book-card:hover { border-color: rgba(168,124,192,0.6); }
+
+  /* ── PROTON CARD ── */
+  .proton-card {
+    background: linear-gradient(135deg, #0e1628 0%, #0a1520 100%);
+    border-color: rgba(107,74,126,0.3);
+  }
+
+  /* ── ENQUIRY FORM SECTION ── */
+  .enquiry-section {
+    max-width: 700px;
+    margin: 0 auto 5rem;
+  }
+
+  .enquiry-card {
+    background: var(--highland-dark);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+  }
+
+  .enquiry-field { margin-bottom: 1.2rem; }
+
+  .enquiry-field label {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.45rem;
+  }
+
+  .enquiry-field input,
+  .enquiry-field select,
+  .enquiry-field textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px;
+    padding: 0.7rem 0.9rem;
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .enquiry-field input:focus,
+  .enquiry-field select:focus,
+  .enquiry-field textarea:focus { border-color: rgba(201,168,76,0.45); }
+
+  .enquiry-field select option { background: #0e1628; color: var(--text-light); }
+
+  .enquiry-field textarea { resize: vertical; min-height: 110px; }
+
+  .enquiry-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--highland-deep);
+    border: none;
+    border-radius: 5px;
+    padding: 0.88rem 1.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.4rem;
+    transition: background 0.2s, opacity 0.2s;
+  }
+
+  .enquiry-submit:hover { background: var(--gold-light); }
+  .enquiry-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .enquiry-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .enquiry-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+  .enquiry-success h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .enquiry-success p { color: var(--text-muted); font-size: 0.95rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 2px solid rgba(201,168,76,0.55);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .footer-proton a {
+    color: var(--heather-light) !important;
+    text-decoration: none;
+  }
+
+  .footer-proton a:hover {
+    color: #c9a0e0 !important;
+    text-decoration: underline;
+  }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Explore Invergordon</a>
+  <ul class="nav-links">
+    <li><a href="index.html" id="wwm-nav-home">Home</a></li>
+    <li><a href="blog.html" id="wwm-nav-blog">Blog</a></li>
+    <li><a href="gallery.html" id="wwm-nav-gallery">Gallery</a></li>
+    <li><a href="work-with-me.html" id="wwm-nav-wwm" class="active">Work With Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <p class="hero-label" id="wwm-hero-label">Invergordon · Scottish Highlands</p>
+  <h1 id="wwm-hero-title">Work <em>With Me</em></h1>
+  <p id="wwm-hero-desc">Whether you need a stunning website, guidance on AI for your business, or a resource to help you navigate the world of artificial intelligence — let's talk.</p>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-content">
+
+  <!-- SERVICES -->
+  <p class="section-label" id="wwm-section-services">Services &amp; Resources</p>
+  <div class="services-grid">
+
+    <!-- WEBSITE DESIGN -->
+    <div class="service-card">
+      <div class="service-card-icon">💻</div>
+      <p class="service-card-tag" id="wwm-tag-web">Website Design &amp; Build</p>
+      <h2 id="wwm-title-web">Like This Website? I Can Build One For You.</h2>
+      <p id="wwm-desc-web">From local businesses and tourism sites to personal brands and online stores — I design and build fast, beautiful, mobile-friendly websites tailored to the Scottish Highlands and beyond. No templates, no shortcuts. Every site is built from scratch to stand out.</p>
+      <button class="service-btn service-btn-gold" onclick="openEnquiry('Website Design & Build')" id="wwm-btn-web">Enquire Now →</button>
+    </div>
+
+    <!-- AI CONSULTANCY -->
+    <div class="service-card">
+      <div class="service-card-icon">🤖</div>
+      <p class="service-card-tag" id="wwm-tag-ai">AI Consultancy</p>
+      <h2 id="wwm-title-ai">Using AI in Your Business — Without the Overwhelm</h2>
+      <p id="wwm-desc-ai">AI is transforming how local businesses work — but knowing where to start is the hard part. I work with Highland businesses to identify practical, affordable ways to use AI tools that save time, cut costs, and open new opportunities. No jargon, no hype. Just results.</p>
+      <button class="service-btn service-btn-outline" onclick="openEnquiry('AI Consultancy')" id="wwm-btn-ai">Enquire Now →</button>
+    </div>
+
+    <!-- BOOK -->
+    <div class="service-card book-card">
+      <div class="service-card-icon">📗</div>
+      <p class="service-card-tag" id="wwm-tag-book">My Book</p>
+      <h2 id="wwm-title-book">The Definitive Guide to AI</h2>
+      <p id="wwm-desc-book">Written from the Highlands of Scotland, this is the plain-English guide to understanding and using artificial intelligence in your everyday life and work. No computer science degree required — just curiosity and a desire to get ahead of the curve.</p>
+      <a href="https://highlandcreative.gumroad.com/l/TheDefinitiveGuidetoAI" target="_blank" rel="noopener" class="service-btn service-btn-heather" id="wwm-btn-book">Get Your Copy →</a>
+    </div>
+
+    <!-- PROTON -->
+    <div class="service-card proton-card">
+      <div class="service-card-icon">🔒</div>
+      <p class="service-card-tag" id="wwm-tag-proton">Privacy Tools</p>
+      <h2 id="wwm-title-proton">Take Back Your Online Privacy with Proton</h2>
+      <p id="wwm-desc-proton">I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. If you're tired of Big Tech reading your emails and tracking your every move, Proton is the answer. Use my referral link for a bonus when you sign up.</p>
+      <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener" class="service-btn service-btn-outline" id="wwm-btn-proton">Try Proton Free →</a>
+    </div>
+
+  </div>
+
+  <!-- ENQUIRY FORM -->
+  <p class="section-label" id="wwm-section-enquiry">Get in Touch</p>
+  <div class="enquiry-section">
+    <div class="enquiry-card">
+      <div id="enquiryForm">
+        <div class="enquiry-field">
+          <label for="enquiryService" id="wwm-enq-service-label">I'm Interested In</label>
+          <select id="enquiryService">
+            <option value="Website Design &amp; Build" id="wwm-opt-web">Website Design &amp; Build</option>
+            <option value="AI Consultancy" id="wwm-opt-ai">AI Consultancy</option>
+            <option value="Other" id="wwm-opt-other">Something Else</option>
+          </select>
+        </div>
+        <div class="enquiry-field">
+          <label for="enquiryName" id="wwm-enq-name-label">Your Name</label>
+          <input type="text" id="enquiryName" placeholder="e.g. John MacKenzie" maxlength="80">
+        </div>
+        <div class="enquiry-field">
+          <label for="enquiryEmail" id="wwm-enq-email-label">Your Email Address</label>
+          <input type="email" id="enquiryEmail" placeholder="your@email.com" maxlength="120">
+        </div>
+        <div class="enquiry-field">
+          <label for="enquiryMessage" id="wwm-enq-msg-label">Tell Me a Bit About What You Need</label>
+          <textarea id="enquiryMessage" placeholder="e.g. I run a small B&amp;B in Easter Ross and need a website…" maxlength="1000"></textarea>
+        </div>
+        <button class="enquiry-submit" id="enquirySubmit" onclick="handleEnquirySubmit(event)" id="wwm-enq-btn">Send Enquiry →</button>
+      </div>
+      <div class="enquiry-success" id="enquirySuccess">
+        <div class="enquiry-success-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <h3 id="wwm-success-title">Message Received!</h3>
+        <p id="wwm-success-desc">Thanks for getting in touch — I'll get back to you as soon as I can, usually within a day or two.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy Policy</a></p>
+  <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
+</footer>
+
+<script>
+/* ── ENQUIRY FORM ── */
+var WWM_FS_ID = 'mpqkepnd';
+
+function openEnquiry(service) {
+  var sel = document.getElementById('enquiryService');
+  for (var i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === service) { sel.selectedIndex = i; break; }
+  }
+  document.getElementById('enquiryForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(function() { document.getElementById('enquiryName').focus(); }, 600);
+}
+
+function handleEnquirySubmit(event) {
+  event.preventDefault();
+  var service = document.getElementById('enquiryService').value;
+  var name    = document.getElementById('enquiryName').value.trim();
+  var email   = document.getElementById('enquiryEmail').value.trim();
+  var message = document.getElementById('enquiryMessage').value.trim();
+
+  if (!name)    { alert('Please enter your name.');          return; }
+  if (!email)   { alert('Please enter your email address.'); return; }
+  if (!message) { alert('Please tell me a bit about what you need.'); return; }
+
+  var btn = document.getElementById('enquirySubmit');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  var fd = new FormData();
+  fd.append('_subject', '💼 New Enquiry: ' + service + ' — Explore Invergordon');
+  fd.append('service',  service);
+  fd.append('name',     name);
+  fd.append('email',    email);
+  fd.append('message',  message);
+  fd.append('source',   'Work With Me page');
+
+  fetch('https://formspree.io/f/' + WWM_FS_ID, {
+    method: 'POST',
+    body: fd,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(r) {
+    if (!r.ok) throw new Error('failed');
+    document.getElementById('enquiryForm').style.display    = 'none';
+    document.getElementById('enquirySuccess').style.display = 'block';
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Send Enquiry →';
+    alert('Something went wrong — please try again.');
+  });
+}
+
+/* ── LANG SWITCHING ── */
+var wwmTranslations = {
+  en: {
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
+    heroLabel: "Invergordon · Scottish Highlands",
+    heroTitle: "Work <em>With Me</em>",
+    heroDesc: "Whether you need a stunning website, guidance on AI for your business, or a resource to help you navigate the world of artificial intelligence — let's talk.",
+    sectionServices: "Services &amp; Resources",
+    sectionEnquiry: "Get in Touch",
+    tagWeb: "Website Design &amp; Build", titleWeb: "Like This Website? I Can Build One For You.",
+    descWeb: "From local businesses and tourism sites to personal brands and online stores — I design and build fast, beautiful, mobile-friendly websites tailored to the Scottish Highlands and beyond. No templates, no shortcuts. Every site is built from scratch to stand out.",
+    btnWeb: "Enquire Now →",
+    tagAi: "AI Consultancy", titleAi: "Using AI in Your Business — Without the Overwhelm",
+    descAi: "AI is transforming how local businesses work — but knowing where to start is the hard part. I work with Highland businesses to identify practical, affordable ways to use AI tools that save time, cut costs, and open new opportunities. No jargon, no hype. Just results.",
+    btnAi: "Enquire Now →",
+    tagBook: "My Book", titleBook: "The Definitive Guide to AI",
+    descBook: "Written from the Highlands of Scotland, this is the plain-English guide to understanding and using artificial intelligence in your everyday life and work. No computer science degree required — just curiosity and a desire to get ahead of the curve.",
+    btnBook: "Get Your Copy →",
+    tagProton: "Privacy Tools", titleProton: "Take Back Your Online Privacy with Proton",
+    descProton: "I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. If you're tired of Big Tech reading your emails and tracking your every move, Proton is the answer. Use my referral link for a bonus when you sign up.",
+    btnProton: "Try Proton Free →",
+    enqServiceLabel: "I'm Interested In", enqNameLabel: "Your Name",
+    enqEmailLabel: "Your Email Address", enqMsgLabel: "Tell Me a Bit About What You Need",
+    enqBtn: "Send Enquiry →", successTitle: "Message Received!",
+    successDesc: "Thanks for getting in touch — I'll get back to you as soon as I can, usually within a day or two.",
+    optWeb: "Website Design &amp; Build", optAi: "AI Consultancy", optOther: "Something Else"
+  },
+  de: {
+    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie", navWwm: "Zusammenarbeiten",
+    heroLabel: "Invergordon · Schottisches Hochland",
+    heroTitle: "Arbeite <em>Mit Mir</em>",
+    heroDesc: "Ob du eine Website benötigst, Beratung zu KI für dein Unternehmen oder eine Ressource zur künstlichen Intelligenz — lass uns sprechen.",
+    sectionServices: "Dienstleistungen &amp; Ressourcen", sectionEnquiry: "Kontakt aufnehmen",
+    tagWeb: "Website-Design &amp; Entwicklung", titleWeb: "Gefällt dir diese Website? Ich kann eine für dich bauen.",
+    descWeb: "Von lokalen Unternehmen bis hin zu persönlichen Marken — ich designe und entwickle schnelle, schöne, mobilfreundliche Websites, maßgeschneidert für das Schottische Hochland und darüber hinaus.",
+    btnWeb: "Jetzt anfragen →",
+    tagAi: "KI-Beratung", titleAi: "KI in deinem Unternehmen — ohne Überwältigung",
+    descAi: "KI verändert die Arbeit lokaler Unternehmen. Ich helfe Hochlandbetrieben, praktische, erschwingliche Wege zu finden, KI-Tools einzusetzen, die Zeit sparen und neue Möglichkeiten eröffnen.",
+    btnAi: "Jetzt anfragen →",
+    tagBook: "Mein Buch", titleBook: "Der umfassende Leitfaden zur KI",
+    descBook: "Geschrieben aus den Highlands Schottlands — der Leitfaden in einfachem Deutsch zum Verstehen und Nutzen von künstlicher Intelligenz im Alltag.",
+    btnBook: "Exemplar holen →",
+    tagProton: "Datenschutz-Tools", titleProton: "Hol dir deine Online-Privatsphäre zurück mit Proton",
+    descProton: "Ich nutze Proton täglich — verschlüsselte E-Mails, VPN, Cloud-Speicher und mehr, alles auf Datenschutz ausgelegt. Nutze meinen Empfehlungslink für einen Bonus.",
+    btnProton: "Proton kostenlos testen →",
+    enqServiceLabel: "Ich interessiere mich für", enqNameLabel: "Dein Name",
+    enqEmailLabel: "Deine E-Mail-Adresse", enqMsgLabel: "Erzähl mir, was du brauchst",
+    enqBtn: "Anfrage senden →", successTitle: "Nachricht erhalten!",
+    successDesc: "Danke für deine Nachricht — ich melde mich so bald wie möglich bei dir.",
+    optWeb: "Website-Design &amp; Entwicklung", optAi: "KI-Beratung", optOther: "Etwas anderes"
+  },
+  fr: {
+    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie", navWwm: "Travailler Avec Moi",
+    heroLabel: "Invergordon · Highlands écossaises",
+    heroTitle: "Travaillez <em>Avec Moi</em>",
+    heroDesc: "Que vous ayez besoin d'un site web, de conseils sur l'IA pour votre entreprise, ou d'une ressource pour naviguer dans le monde de l'intelligence artificielle — parlons-en.",
+    sectionServices: "Services &amp; Ressources", sectionEnquiry: "Prendre Contact",
+    tagWeb: "Conception &amp; Développement Web", titleWeb: "Vous aimez ce site ? Je peux en créer un pour vous.",
+    descWeb: "Des entreprises locales aux marques personnelles — je conçois et développe des sites web rapides, beaux et adaptés aux mobiles, sur mesure pour les Highlands écossaises.",
+    btnWeb: "Demander un devis →",
+    tagAi: "Conseil en IA", titleAi: "L'IA dans votre entreprise — sans la complexité",
+    descAi: "L'IA transforme le travail des entreprises locales. J'aide les entreprises des Highlands à identifier des moyens pratiques et abordables d'utiliser les outils d'IA.",
+    btnAi: "Demander un devis →",
+    tagBook: "Mon Livre", titleBook: "Le Guide Définitif de l'IA",
+    descBook: "Écrit depuis les Highlands d'Écosse, ce guide en langage clair vous aide à comprendre et à utiliser l'intelligence artificielle dans votre vie quotidienne.",
+    btnBook: "Obtenir votre exemplaire →",
+    tagProton: "Outils de Confidentialité", titleProton: "Reprenez le contrôle de votre vie privée en ligne avec Proton",
+    descProton: "J'utilise Proton tous les jours — e-mails chiffrés, VPN, stockage cloud, tout axé sur la confidentialité. Utilisez mon lien de parrainage pour un bonus.",
+    btnProton: "Essayer Proton gratuitement →",
+    enqServiceLabel: "Je suis intéressé par", enqNameLabel: "Votre Nom",
+    enqEmailLabel: "Votre Adresse E-mail", enqMsgLabel: "Dites-moi ce dont vous avez besoin",
+    enqBtn: "Envoyer la demande →", successTitle: "Message reçu !",
+    successDesc: "Merci de nous avoir contactés — je vous répondrai dès que possible.",
+    optWeb: "Conception &amp; Développement Web", optAi: "Conseil en IA", optOther: "Autre chose"
+  },
+  us: {
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
+    heroLabel: "Invergordon · Scottish Highlands",
+    heroTitle: "Work <em>With Me</em>",
+    heroDesc: "Whether you need a stunning website, guidance on AI for your business, or a resource to help you navigate artificial intelligence — let's connect.",
+    sectionServices: "Services &amp; Resources", sectionEnquiry: "Get in Touch",
+    tagWeb: "Website Design &amp; Build", titleWeb: "Like This Website? I Can Build One For You.",
+    descWeb: "From local businesses and tourism sites to personal brands and online stores — I design and build fast, beautiful, mobile-friendly websites. No templates, no shortcuts. Every site is built from scratch to stand out.",
+    btnWeb: "Inquire Now →",
+    tagAi: "AI Consulting", titleAi: "Using AI in Your Business — Without the Overwhelm",
+    descAi: "AI is transforming how local businesses operate. I work with businesses to identify practical, affordable ways to use AI tools that save time, cut costs, and open new opportunities.",
+    btnAi: "Inquire Now →",
+    tagBook: "My Book", titleBook: "The Definitive Guide to AI",
+    descBook: "Written from the Highlands of Scotland, this is the plain-English guide to understanding and using AI in your everyday life and work. No tech degree required.",
+    btnBook: "Get Your Copy →",
+    tagProton: "Privacy Tools", titleProton: "Take Back Your Online Privacy with Proton",
+    descProton: "I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. Use my referral link for a bonus when you sign up.",
+    btnProton: "Try Proton Free →",
+    enqServiceLabel: "I'm Interested In", enqNameLabel: "Your Name",
+    enqEmailLabel: "Your Email Address", enqMsgLabel: "Tell Me a Bit About What You Need",
+    enqBtn: "Send Inquiry →", successTitle: "Message Received!",
+    successDesc: "Thanks for reaching out — I'll get back to you as soon as I can, usually within a day or two.",
+    optWeb: "Website Design &amp; Build", optAi: "AI Consulting", optOther: "Something Else"
+  },
+  no: {
+    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri", navWwm: "Samarbeid Med Meg",
+    heroLabel: "Invergordon · Skotske Høylander",
+    heroTitle: "Samarbeid <em>Med Meg</em>",
+    heroDesc: "Enten du trenger et imponerende nettsted, veiledning om KI for bedriften din, eller en ressurs for å navigere i verden av kunstig intelligens — la oss snakke.",
+    sectionServices: "Tjenester &amp; Ressurser", sectionEnquiry: "Ta Kontakt",
+    tagWeb: "Nettstedsdesign &amp; Utvikling", titleWeb: "Liker du denne nettsiden? Jeg kan bygge en for deg.",
+    descWeb: "Fra lokale bedrifter til personlige merkevarer — jeg designer og bygger raske, vakre, mobilevennlige nettsteder tilpasset de skotske høylandene.",
+    btnWeb: "Forespørsel nå →",
+    tagAi: "KI-rådgivning", titleAi: "Bruk KI i bedriften din — uten å bli overveldet",
+    descAi: "KI forandrer måten lokale bedrifter jobber på. Jeg hjelper bedrifter med å finne praktiske, rimelige måter å bruke KI-verktøy som sparer tid og åpner nye muligheter.",
+    btnAi: "Forespørsel nå →",
+    tagBook: "Min Bok", titleBook: "Den Definitive Guiden til KI",
+    descBook: "Skrevet fra Høylandet i Skottland — en lettlest guide til å forstå og bruke kunstig intelligens i hverdagen og på jobben.",
+    btnBook: "Få ditt eksemplar →",
+    tagProton: "Personvernverktøy", titleProton: "Ta tilbake ditt online personvern med Proton",
+    descProton: "Jeg bruker Proton hver dag — kryptert e-post, VPN, skyslagring og mer, alt bygget rundt personvern. Bruk min henvisningslenke for en bonus.",
+    btnProton: "Prøv Proton gratis →",
+    enqServiceLabel: "Jeg er interessert i", enqNameLabel: "Ditt Navn",
+    enqEmailLabel: "Din E-postadresse", enqMsgLabel: "Fortell meg litt om hva du trenger",
+    enqBtn: "Send forespørsel →", successTitle: "Melding mottatt!",
+    successDesc: "Takk for at du tok kontakt — jeg svarer så snart jeg kan, vanligvis innen en dag eller to.",
+    optWeb: "Nettstedsdesign &amp; Utvikling", optAi: "KI-rådgivning", optOther: "Noe annet"
+  }
+};
+
+var currentLang = 'en';
+
+function set(id, val, isHTML) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (isHTML === false) { el.textContent = val; } else { el.innerHTML = val; }
+}
+
+function setLang(lang) {
+  if (!wwmTranslations[lang]) return;
+  currentLang = lang;
+  var t = wwmTranslations[lang];
+
+  set('wwm-nav-home', t.navHome); set('wwm-nav-blog', t.navBlog);
+  set('wwm-nav-gallery', t.navGallery); set('wwm-nav-wwm', t.navWwm);
+  set('wwm-hero-label', t.heroLabel); set('wwm-hero-title', t.heroTitle);
+  set('wwm-hero-desc', t.heroDesc);
+  set('wwm-section-services', t.sectionServices); set('wwm-section-enquiry', t.sectionEnquiry);
+  set('wwm-tag-web', t.tagWeb); set('wwm-title-web', t.titleWeb);
+  set('wwm-desc-web', t.descWeb); set('wwm-btn-web', t.btnWeb);
+  set('wwm-tag-ai', t.tagAi); set('wwm-title-ai', t.titleAi);
+  set('wwm-desc-ai', t.descAi); set('wwm-btn-ai', t.btnAi);
+  set('wwm-tag-book', t.tagBook); set('wwm-title-book', t.titleBook);
+  set('wwm-desc-book', t.descBook); set('wwm-btn-book', t.btnBook);
+  set('wwm-tag-proton', t.tagProton); set('wwm-title-proton', t.titleProton);
+  set('wwm-desc-proton', t.descProton); set('wwm-btn-proton', t.btnProton);
+  set('wwm-enq-service-label', t.enqServiceLabel);
+  set('wwm-enq-name-label', t.enqNameLabel);
+  set('wwm-enq-email-label', t.enqEmailLabel);
+  set('wwm-enq-msg-label', t.enqMsgLabel);
+  set('wwm-success-title', t.successTitle); set('wwm-success-desc', t.successDesc);
+  set('wwm-opt-web', t.optWeb); set('wwm-opt-ai', t.optAi); set('wwm-opt-other', t.optOther);
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  var langs = ['en','de','fr','us','no'];
+  var idx = langs.indexOf(lang);
+  var btns = document.querySelectorAll('.lang-btn');
+  if (btns[idx]) btns[idx].classList.add('active');
+}
+</script>
+</body>
+</html>
