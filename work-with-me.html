@@ -249,6 +249,7 @@
     flex-direction: column;
     transition: border-color 0.25s, transform 0.25s, box-shadow 0.3s;
     box-shadow: 0 0 0 rgba(0,0,0,0);
+    touch-action: manipulation; /* prevent double-tap zoom on mobile */
   }
 
   .service-card:hover,
@@ -307,6 +308,7 @@
     user-select: none;
     overflow: hidden;    /* clip beam characters at card border edge */
     display: block;
+    contain: layout style; /* scope reflow — stops viewport jumping on mobile during animation */
   }
 
   .service-card-icon {
@@ -1211,11 +1213,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, { passive: true });
 
-    card.addEventListener('click', function(e) {
-      if (wasActive && primaryActionEl && !e.target.closest('button, a')) {
-        primaryActionEl.click();
-      }
-    });
+    /* Second tap anywhere on card (not directly on a button/link) does nothing.
+       Buttons and links inside the card handle their own native tap events. */
   }
 
   /* ── WEBSITE DESIGN ── */
