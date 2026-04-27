@@ -467,6 +467,13 @@
     text-transform: uppercase;
   }
 
+  /* Anchor wrapper — transparent to flex layout, captures taps on mobile */
+  .torch-item-link {
+    display: contents;
+    text-decoration: none;
+    color: inherit;
+  }
+
   /* ── PRODUCT HIGHLIGHTS LIST ── */
   .product-highlights {
     list-style: none;
@@ -792,20 +799,28 @@
         <p id="wwm-desc-olight">Seven Olight products and counting — I bought my first after going down a rabbit hole of torch reviews and I've genuinely never looked back. Rugged, rechargeable, waterproof, shockproof, all shapes and sizes. My four most-used, every single day:</p>
         <ul class="product-highlights">
           <li>
-            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/ArkPro-Ultra.jpg" alt="Olight ArkPro Ultra — spotlight, floodlight, UV and green laser">
-            <div class="ph-text"><strong>ArkPro Ultra</strong>Spotlight, floodlight, UV &amp; green laser — the Swiss Army knife of torches. Lives permanently holstered in the car. Knowing it's always there when my partner and kids are out on dark Highland roads is genuine peace of mind.</div>
+            <a class="torch-item-link" href="https://uk.olight.com/?shareUid=1727791464019361795&amp;shareChannel=EP_copylink" target="_blank" rel="noopener">
+              <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/ArkPro-Ultra.jpg" alt="Olight ArkPro Ultra — spotlight, floodlight, UV and green laser">
+              <div class="ph-text"><strong>ArkPro Ultra</strong>Spotlight, floodlight, UV &amp; green laser — the Swiss Army knife of torches. Lives permanently holstered in the car. Knowing it's always there when my partner and kids are out on dark Highland roads is genuine peace of mind.</div>
+            </a>
           </li>
           <li>
-            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/Baton4-Pro.jpg" alt="Olight Baton 4 Pro — EDC torch">
-            <div class="ph-text"><strong>Baton 4 Pro</strong>My EDC. Always in my bag, used almost daily. Compact, powerful, and it's never once let me down.</div>
+            <a class="torch-item-link" href="https://uk.olight.com/?shareUid=1727791464019361795&amp;shareChannel=EP_copylink" target="_blank" rel="noopener">
+              <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/Baton4-Pro.jpg" alt="Olight Baton 4 Pro — EDC torch">
+              <div class="ph-text"><strong>Baton 4 Pro</strong>My EDC. Always in my bag, used almost daily. Compact, powerful, and it's never once let me down.</div>
+            </a>
           </li>
           <li>
-            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/Marauder-Mini.jpg" alt="Olight Marauder Mini — floodlight for home and camping">
-            <div class="ph-text"><strong>Marauder Mini</strong>Stays in the house ready for power cuts. On low floodlight mode it lights up my entire garden — and it's outstanding for camping. Overkill in the best possible way.</div>
+            <a class="torch-item-link" href="https://uk.olight.com/?shareUid=1727791464019361795&amp;shareChannel=EP_copylink" target="_blank" rel="noopener">
+              <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/Marauder-Mini.jpg" alt="Olight Marauder Mini — floodlight for home and camping">
+              <div class="ph-text"><strong>Marauder Mini</strong>Stays in the house ready for power cuts. On low floodlight mode it lights up my entire garden — and it's outstanding for camping. Overkill in the best possible way.</div>
+            </a>
           </li>
           <li>
-            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/iUltra-Keychain.jpg" alt="Olight iUltra OAL keychain torch">
-            <div class="ph-text"><strong>iUltra OAL Keychain Torch</strong>Never leaves my keys. If I walk out the door, this comes with me. Small, dependable, and surprisingly bright for its size.</div>
+            <a class="torch-item-link" href="https://uk.olight.com/?shareUid=1727791464019361795&amp;shareChannel=EP_copylink" target="_blank" rel="noopener">
+              <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/iUltra-Keychain.jpg" alt="Olight iUltra OAL keychain torch">
+              <div class="ph-text"><strong>iUltra OAL Keychain Torch</strong>Never leaves my keys. If I walk out the door, this comes with me. Small, dependable, and surprisingly bright for its size.</div>
+            </a>
           </li>
         </ul>
         <a href="https://uk.olight.com/?shareUid=1727791464019361795&amp;shareChannel=EP_copylink" target="_blank" rel="noopener" class="service-btn service-btn-gold" id="wwm-btn-olight">Shop Olight →</a>
@@ -1223,9 +1238,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cardOlight.addEventListener('mouseleave', playTorchSound);
     cardOlight.querySelectorAll('.product-highlights li').forEach(function(li) {
       li.addEventListener('mouseenter', playTorchSound);
-      li.addEventListener('click', function() {
-        window.open(OLIGHT_URL, '_blank', 'noopener');
-      });
+      /* click handled natively by the <a class="torch-item-link"> inside each li */
     });
   }
 
