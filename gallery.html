@@ -421,6 +421,241 @@
 
   footer a { color: var(--gold); text-decoration: none; }
   footer a:hover { color: var(--gold-light); }
+
+  /* ── GALLERY TABS ── */
+  .gallery-tabs-wrap {
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem;
+  }
+
+  .gallery-tabs {
+    display: flex;
+    gap: 0;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .gallery-tab {
+    flex: 1;
+    padding: 1rem 1.2rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .gallery-tab:hover { color: var(--gold); }
+
+  .gallery-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── VISITOR GALLERY EMPTY STATE ── */
+  .visitor-empty {
+    text-align: center;
+    padding: 4rem 2rem 1rem;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .visitor-empty-icon { font-size: 3rem; margin-bottom: 1.2rem; }
+
+  .visitor-empty h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .visitor-empty p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ── UPLOAD FORM ── */
+  .upload-section {
+    max-width: 640px;
+    margin: 2.5rem auto 5rem;
+    padding: 0 2rem;
+  }
+
+  .upload-card {
+    background: var(--highland-dark);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+  }
+
+  .upload-card-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    margin-bottom: 1.8rem;
+  }
+
+  .upload-field { margin-bottom: 1.2rem; }
+
+  .upload-field label {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.45rem;
+  }
+
+  .upload-field input[type="text"],
+  .upload-field textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px;
+    padding: 0.7rem 0.9rem;
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .upload-field input[type="text"]:focus,
+  .upload-field textarea:focus { border-color: rgba(201,168,76,0.45); }
+
+  .upload-field textarea { resize: vertical; min-height: 80px; }
+
+  .file-drop {
+    width: 100%;
+    border: 2px dashed rgba(201,168,76,0.28);
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: rgba(201,168,76,0.025);
+    position: relative;
+  }
+
+  .file-drop:hover, .file-drop.drag-over {
+    border-color: rgba(201,168,76,0.65);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .file-drop input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .file-drop-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  .file-drop-text {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .file-drop-hint {
+    font-size: 0.68rem;
+    color: rgba(122,144,184,0.55);
+    font-family: 'Overpass Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+
+  .file-preview {
+    display: none;
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-top: 0.9rem;
+    border: 1px solid rgba(201,168,76,0.22);
+  }
+
+  .file-preview.visible { display: block; }
+
+  .upload-progress {
+    display: none;
+    text-align: center;
+    padding: 0.8rem 0;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .upload-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--highland-deep);
+    border: none;
+    border-radius: 5px;
+    padding: 0.88rem 1.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.4rem;
+    transition: background 0.2s, opacity 0.2s;
+  }
+
+  .upload-submit:hover { background: var(--gold-light); }
+  .upload-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .upload-notice {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.10em;
+    color: rgba(122,144,184,0.6);
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.65;
+  }
+
+  .upload-success {
+    display: none;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .upload-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+  .upload-success h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .upload-success p { color: var(--text-muted); font-size: 0.95rem; }
 </style>
 </head>
 <body>
@@ -451,7 +686,16 @@
   <p id="gal-hero-desc">Drone photography, harbour mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.</p>
 </div>
 
-<!-- GALLERY CONTENT -->
+<!-- GALLERY TABS -->
+<div class="gallery-tabs-wrap">
+  <div class="gallery-tabs">
+    <button class="gallery-tab active" id="tab-btn-mine" onclick="switchGalleryTab('mine')">📷 <span id="gal-tab-mine">My Gallery</span></button>
+    <button class="gallery-tab" id="tab-btn-visitor" onclick="switchGalleryTab('visitor')">🌍 <span id="gal-tab-visitor">Visitor Gallery</span></button>
+  </div>
+</div>
+
+<!-- MY GALLERY PANEL -->
+<div id="tab-panel-mine" class="tab-panel active">
 <div class="gallery-section">
 
   <!-- FEATURED / DRONE -->
@@ -625,6 +869,54 @@
   </div>
 
 </div>
+</div><!-- /tab-panel-mine -->
+
+<!-- VISITOR GALLERY PANEL -->
+<div id="tab-panel-visitor" class="tab-panel">
+
+  <div class="visitor-empty">
+    <div class="visitor-empty-icon">📸</div>
+    <h2 id="gal-visitor-empty-title">Be the First to Share!</h2>
+    <p id="gal-visitor-empty-desc">No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below. Once reviewed it'll appear right here.</p>
+  </div>
+
+  <div class="upload-section">
+    <div class="upload-card">
+      <p class="upload-card-title" id="gal-upload-title">Share Your Photo</p>
+
+      <div id="uploadForm">
+        <div class="upload-field">
+          <label for="visitorName" id="gal-upload-name-label">Your Name</label>
+          <input type="text" id="visitorName" placeholder="e.g. Sarah from Oslo" maxlength="80">
+        </div>
+        <div class="upload-field">
+          <label for="visitorCaption" id="gal-upload-caption-label">Caption — What did you see?</label>
+          <textarea id="visitorCaption" placeholder="e.g. Spotted this beautiful sunset from the harbour wall…" maxlength="300"></textarea>
+        </div>
+        <div class="upload-field">
+          <label id="gal-upload-photo-label">Your Photo</label>
+          <div class="file-drop" id="fileDrop">
+            <input type="file" id="visitorPhoto" accept="image/jpeg,image/png,image/webp,image/heic" onchange="handleFileSelect(this)">
+            <div class="file-drop-icon">🖼️</div>
+            <span class="file-drop-text" id="gal-upload-drop-label">Click or drag to upload</span>
+            <span class="file-drop-hint" id="gal-upload-drop-hint">JPG · PNG · WebP · max 32MB</span>
+          </div>
+          <img id="photoPreview" class="file-preview" alt="Your photo preview">
+        </div>
+        <div class="upload-progress" id="uploadProgress">⏳ &nbsp;Uploading your photo…</div>
+        <button class="upload-submit" id="uploadSubmit" onclick="handleVisitorUpload(event)">Submit Photo ↑</button>
+        <p class="upload-notice" id="gal-upload-notice">Your photo will be reviewed before appearing in the Visitor Gallery. By submitting you confirm you took the photo and give permission to display it on this site.</p>
+      </div>
+
+      <div class="upload-success" id="uploadSuccess">
+        <div class="upload-success-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <h3 id="gal-upload-success-title">Photo Received — Thank You!</h3>
+        <p id="gal-upload-success-desc">Your snap will appear in the Visitor Gallery once reviewed. We really appreciate you sharing Invergordon with the world.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-panel-visitor -->
 
 <!-- FOOTER -->
 <footer>
@@ -671,7 +963,11 @@ var galTranslations = {
     comingSoon: "More images being added throughout the 2026 season",
     comingSoonLink: "← Back to main site",
     footerTagline: "EXPLORE INVERGORDON · SCOTTISH HIGHLANDS",
-    footerPrivacy: "Privacy Policy"
+    footerPrivacy: "Privacy Policy",
+    tabMine: "My Gallery",
+    tabVisitor: "Visitor Gallery",
+    visitorEmptyTitle: "Be the First to Share!",
+    visitorEmptyDesc: "No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below. Once reviewed it'll appear right here."
   },
   de: {
     navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie",
@@ -709,7 +1005,11 @@ var galTranslations = {
     comingSoon: "Weitere Bilder werden während der Saison 2026 hinzugefügt",
     comingSoonLink: "← Zurück zur Hauptseite",
     footerTagline: "EXPLORE INVERGORDON · SCHOTTISCHES HOCHLAND",
-    footerPrivacy: "Datenschutzrichtlinie"
+    footerPrivacy: "Datenschutzrichtlinie",
+    tabMine: "Meine Galerie",
+    tabVisitor: "Besuchergalerie",
+    visitorEmptyTitle: "Sei der Erste!",
+    visitorEmptyDesc: "Noch keine Besucherfotos — Deins könnte das erste sein. Teile etwas, das du in Invergordon geliebt hast."
   },
   fr: {
     navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie",
@@ -747,7 +1047,11 @@ var galTranslations = {
     comingSoon: "D'autres images sont ajoutées tout au long de la saison 2026",
     comingSoonLink: "← Retour au site principal",
     footerTagline: "EXPLORE INVERGORDON · HIGHLANDS ÉCOSSAISES",
-    footerPrivacy: "Politique de Confidentialité"
+    footerPrivacy: "Politique de Confidentialité",
+    tabMine: "Ma Galerie",
+    tabVisitor: "Galerie des Visiteurs",
+    visitorEmptyTitle: "Soyez le Premier !",
+    visitorEmptyDesc: "Pas encore de photos de visiteurs — la vôtre pourrait être la première. Partagez quelque chose que vous avez aimé à Invergordon."
   },
   us: {
     navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
@@ -785,7 +1089,11 @@ var galTranslations = {
     comingSoon: "More images being added throughout the 2026 season",
     comingSoonLink: "← Back to main site",
     footerTagline: "EXPLORE INVERGORDON · SCOTTISH HIGHLANDS",
-    footerPrivacy: "Privacy Policy"
+    footerPrivacy: "Privacy Policy",
+    tabMine: "My Gallery",
+    tabVisitor: "Visitor Gallery",
+    visitorEmptyTitle: "Be the First to Share!",
+    visitorEmptyDesc: "No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below."
   },
   no: {
     navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri",
@@ -823,11 +1131,134 @@ var galTranslations = {
     comingSoon: "Flere bilder legges til gjennom sesongen 2026",
     comingSoonLink: "← Tilbake til hovedsiden",
     footerTagline: "EXPLORE INVERGORDON · SKOTSKE HØYLANDER",
-    footerPrivacy: "Personvernregler"
+    footerPrivacy: "Personvernregler",
+    tabMine: "Min Galleri",
+    tabVisitor: "Besøksgalleri",
+    visitorEmptyTitle: "Bli den Første!",
+    visitorEmptyDesc: "Ingen besøksbilder ennå — ditt kan bli det første. Del noe du elsket med Invergordon her nedenfor."
   }
 };
 
 var currentLang = 'en';
+
+/* ── GALLERY TAB SWITCHING ── */
+function switchGalleryTab(tab) {
+  ['mine','visitor'].forEach(function(t) {
+    document.getElementById('tab-panel-' + t).classList.remove('active');
+    document.getElementById('tab-btn-' + t).classList.remove('active');
+  });
+  document.getElementById('tab-panel-' + tab).classList.add('active');
+  document.getElementById('tab-btn-' + tab).classList.add('active');
+}
+
+/* ── VISITOR UPLOAD ── */
+var IMGBB_KEY = '579f3586a5476f82a60598eb6440a29f';
+var GALLERY_FS_ID = 'mpqkepnd';
+var selectedFile = null;
+
+function handleFileSelect(input) {
+  var file = input.files[0];
+  if (!file) return;
+  selectedFile = file;
+  showFilePreview(file);
+}
+
+function showFilePreview(file) {
+  var preview = document.getElementById('photoPreview');
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    preview.src = e.target.result;
+    preview.classList.add('visible');
+  };
+  reader.readAsDataURL(file);
+}
+
+// Drag-and-drop support
+(function() {
+  var drop = document.getElementById('fileDrop');
+  if (!drop) return;
+  drop.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    drop.classList.add('drag-over');
+  });
+  drop.addEventListener('dragleave', function() {
+    drop.classList.remove('drag-over');
+  });
+  drop.addEventListener('drop', function(e) {
+    e.preventDefault();
+    drop.classList.remove('drag-over');
+    var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      selectedFile = file;
+      showFilePreview(file);
+    }
+  });
+})();
+
+function handleVisitorUpload(event) {
+  event.preventDefault();
+  var name    = document.getElementById('visitorName').value.trim();
+  var caption = document.getElementById('visitorCaption').value.trim();
+  var file    = selectedFile || (document.getElementById('visitorPhoto').files[0]);
+
+  if (!name)    { alert('Please enter your name.');              return; }
+  if (!caption) { alert('Please add a caption.');                return; }
+  if (!file)    { alert('Please choose a photo to upload.');     return; }
+  if (file.size > 32 * 1024 * 1024) { alert('File too large — max 32MB.'); return; }
+
+  var btn      = document.getElementById('uploadSubmit');
+  var progress = document.getElementById('uploadProgress');
+  btn.disabled = true;
+  btn.textContent = 'Uploading…';
+  progress.style.display = 'block';
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var base64 = e.target.result.split(',')[1];
+    var fd = new FormData();
+    fd.append('image', base64);
+    fd.append('name', 'Visitor: ' + name.substring(0, 40));
+
+    fetch('https://api.imgbb.com/1/upload?key=' + IMGBB_KEY, {
+      method: 'POST',
+      body: fd
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.success) throw new Error('Image upload failed');
+      var imageUrl = data.data.url;
+
+      progress.textContent = '📨  Sending details…';
+
+      var sf = new FormData();
+      sf.append('_subject', '📸 New Visitor Photo — Explore Invergordon');
+      sf.append('name',       name);
+      sf.append('caption',    caption);
+      sf.append('image_url',  imageUrl);
+      sf.append('source',     'Visitor Gallery Upload');
+
+      return fetch('https://formspree.io/f/' + GALLERY_FS_ID, {
+        method: 'POST',
+        body: sf,
+        headers: { 'Accept': 'application/json' }
+      });
+    })
+    .then(function(r) {
+      if (!r.ok) throw new Error('Notification failed');
+      progress.style.display = 'none';
+      document.getElementById('uploadForm').style.display    = 'none';
+      document.getElementById('uploadSuccess').style.display = 'block';
+    })
+    .catch(function(err) {
+      console.error(err);
+      progress.style.display = 'none';
+      btn.disabled = false;
+      btn.textContent = 'Submit Photo ↑';
+      alert('Something went wrong — please try again. If the problem persists, email us directly.');
+    });
+  };
+  reader.readAsDataURL(file);
+}
 
 function set(id, val, isHTML) {
   var el = document.getElementById(id);
@@ -889,6 +1320,12 @@ function setLang(lang) {
   set('gal-coming-soon-link', t.comingSoonLink);
   set('gal-footer-tagline', t.footerTagline);
   set('gal-footer-privacy', t.footerPrivacy);
+
+  // Tabs & visitor gallery
+  set('gal-tab-mine', t.tabMine);
+  set('gal-tab-visitor', t.tabVisitor);
+  set('gal-visitor-empty-title', t.visitorEmptyTitle);
+  set('gal-visitor-empty-desc', t.visitorEmptyDesc);
 
   // Active button
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
