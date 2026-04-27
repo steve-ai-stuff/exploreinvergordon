@@ -308,7 +308,9 @@
     user-select: none;
     overflow: hidden;    /* clip beam characters at card border edge */
     display: block;
-    contain: layout style; /* scope reflow — stops viewport jumping on mobile during animation */
+    contain: layout style; /* scope reflow to this element */
+    will-change: contents; /* hint browser to pre-composite this layer */
+    transform: translateZ(0); /* promote to GPU compositor layer — text changes won't trigger viewport reflow on iOS */
   }
 
   .service-card-icon {
@@ -1255,6 +1257,13 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cardOlight) {
     cardOlight.addEventListener('mouseenter', playTorchSound);
     cardOlight.addEventListener('mouseleave', playTorchSound);
+
+    /* Mobile: touchstart on main card area (not on li items — they have their own handler) */
+    cardOlight.addEventListener('touchstart', function(e) {
+      if (!e.target.closest('.product-highlights li')) {
+        playTorchSound();
+      }
+    }, { passive: true });
 
     cardOlight.querySelectorAll('.product-highlights li').forEach(function(li) {
       var wasTorchActive = false;
