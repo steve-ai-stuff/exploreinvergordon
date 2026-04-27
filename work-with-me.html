@@ -251,16 +251,17 @@
     box-shadow: 0 0 0 rgba(0,0,0,0);
   }
 
-  .service-card:hover {
+  .service-card:hover,
+  .service-card.card-active {
     border-color: rgba(201,168,76,0.45);
     transform: translateY(-3px);
   }
 
-  /* Per-card glow shadows on hover */
-  #card-web:hover   { box-shadow: 0 10px 36px rgba(201,168,76,0.45); }
-  #card-ai:hover    { box-shadow: 0 10px 36px rgba(201,168,76,0.45); }
-  #card-book:hover  { box-shadow: 0 10px 36px rgba(138,79,177,0.55); }
-  #card-proton:hover { box-shadow: 0 10px 36px rgba(255,220,50,0.4); }
+  /* Per-card glow shadows on hover + touch-active */
+  #card-web:hover,   #card-web.card-active   { box-shadow: 0 10px 36px rgba(201,168,76,0.45); }
+  #card-ai:hover,    #card-ai.card-active     { box-shadow: 0 10px 36px rgba(201,168,76,0.45); }
+  #card-book:hover,  #card-book.card-active   { box-shadow: 0 10px 36px rgba(138,79,177,0.55); }
+  #card-proton:hover,#card-proton.card-active { box-shadow: 0 10px 36px rgba(255,220,50,0.4); }
 
   /* Icon glow effects — text-shadow gives true radial glow on emoji */
   .service-card-icon span {
@@ -499,7 +500,8 @@
     cursor: pointer;
   }
 
-  .product-highlights li:hover {
+  .product-highlights li:hover,
+  .product-highlights li.torch-li-active {
     transform: translateY(-4px);
     background: rgba(140,210,255,0.07);
     border-left-color: rgba(160,225,255,0.8);
@@ -1177,69 +1179,123 @@ function _fireLaser() {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  /* ── WEBSITE DESIGN — gold icon glow + Mac bong ── */
-  var cardWeb = document.getElementById('card-web');
+  /* ── Helper: deactivate a service card ── */
+  function deactivateCard(card) {
+    card.classList.remove('card-active');
+    var iw = card.querySelector('#icon-web');  if (iw) iw.classList.remove('icon-glow-gold');
+    var ia = card.querySelector('#icon-ai');   if (ia) ia.classList.remove('icon-glow-red');
+    var ib = card.querySelector('#icon-book'); if (ib) ib.textContent = '📗';
+    var ip = card.querySelector('#icon-proton'); if (ip) ip.textContent = '🔒';
+  }
+  function deactivateAllCards() {
+    document.querySelectorAll('.service-card.card-active').forEach(deactivateCard);
+  }
+
+  /* ── Generic two-tap setup for each service card ── */
+  function setupServiceCard(cardId, onActivate, primaryActionEl) {
+    var card = document.getElementById(cardId);
+    if (!card) return;
+    var wasActive = false;
+
+    /* Desktop hover */
+    card.addEventListener('mouseenter', function() { onActivate(); });
+    card.addEventListener('mouseleave', function() { deactivateCard(card); });
+
+    /* Mobile: tap 1 = activate, tap 2 = trigger CTA */
+    card.addEventListener('touchstart', function() {
+      wasActive = card.classList.contains('card-active');
+      if (!wasActive) {
+        deactivateAllCards();
+        card.classList.add('card-active');
+        onActivate();
+      }
+    }, { passive: true });
+
+    card.addEventListener('click', function(e) {
+      if (wasActive && primaryActionEl && !e.target.closest('button, a')) {
+        primaryActionEl.click();
+      }
+    });
+  }
+
+  /* ── WEBSITE DESIGN ── */
   var iconWeb = document.getElementById('icon-web');
-  if (cardWeb && iconWeb) {
-    cardWeb.addEventListener('mouseenter', function() {
-      iconWeb.classList.add('icon-glow-gold');
-      playMacBong();
-    });
-    cardWeb.addEventListener('mouseleave', function() {
-      iconWeb.classList.remove('icon-glow-gold');
-    });
-  }
+  setupServiceCard('card-web',
+    function() { if (iconWeb) iconWeb.classList.add('icon-glow-gold'); playMacBong(); },
+    document.getElementById('wwm-btn-web')
+  );
 
-  /* ── AI CONSULTANCY — red icon glow + laser + zap ── */
-  var cardAi = document.getElementById('card-ai');
+  /* ── AI CONSULTANCY ── */
   var iconAi = document.getElementById('icon-ai');
-  if (cardAi && iconAi) {
-    cardAi.addEventListener('mouseenter', function() {
-      iconAi.classList.add('icon-glow-red');
-      playLaserZap();
-      _fireLaser();
-    });
-    cardAi.addEventListener('mouseleave', function() {
-      iconAi.classList.remove('icon-glow-red');
-    });
-  }
+  setupServiceCard('card-ai',
+    function() { if (iconAi) iconAi.classList.add('icon-glow-red'); playLaserZap(); _fireLaser(); },
+    document.getElementById('wwm-btn-ai')
+  );
 
-  /* ── BOOK — emoji swap 📗→📖 + page flip sound ── */
-  var cardBook = document.getElementById('card-book');
+  /* ── BOOK ── */
   var iconBook = document.getElementById('icon-book');
-  if (cardBook && iconBook) {
-    cardBook.addEventListener('mouseenter', function() {
-      iconBook.textContent = '📖';
-      playPageFlip();
-    });
-    cardBook.addEventListener('mouseleave', function() {
-      iconBook.textContent = '📗';
-    });
-  }
+  setupServiceCard('card-book',
+    function() { if (iconBook) iconBook.textContent = '📖'; playPageFlip(); },
+    document.getElementById('wwm-btn-book')
+  );
 
-  /* ── PROTON — emoji swap 🔒→🔓 + lock clunk ── */
-  var cardProton = document.getElementById('card-proton');
+  /* ── PROTON ── */
   var iconProton = document.getElementById('icon-proton');
-  if (cardProton && iconProton) {
-    cardProton.addEventListener('mouseenter', function() {
-      iconProton.textContent = '🔓';
-      playLockClunk();
-    });
-    cardProton.addEventListener('mouseleave', function() {
-      iconProton.textContent = '🔒';
-    });
-  }
+  setupServiceCard('card-proton',
+    function() { if (iconProton) iconProton.textContent = '🔓'; playLockClunk(); },
+    document.getElementById('wwm-btn-proton')
+  );
 
-  /* ── O-LIGHT — torch sound + referral link on each li ── */
-  var OLIGHT_URL = 'https://uk.olight.com/?shareUid=1727791464019361795&shareChannel=EP_copylink';
+  /* Tap outside any service card → deactivate all */
+  document.addEventListener('touchstart', function(e) {
+    if (!e.target.closest('.service-card')) deactivateAllCards();
+  }, { passive: true });
+
+  /* ── O-LIGHT — torch sound + two-tap mobile pattern (mirrors biz cards on index) ── */
   var cardOlight = document.getElementById('card-olight');
   if (cardOlight) {
     cardOlight.addEventListener('mouseenter', playTorchSound);
     cardOlight.addEventListener('mouseleave', playTorchSound);
+
     cardOlight.querySelectorAll('.product-highlights li').forEach(function(li) {
+      var wasTorchActive = false;
+
+      /* Desktop: sound on hover */
       li.addEventListener('mouseenter', playTorchSound);
-      /* click handled natively by the <a class="torch-item-link"> inside each li */
+
+      /* Mobile tap 1: activate (glow), tap 2: open link */
+      li.addEventListener('touchstart', function() {
+        wasTorchActive = li.classList.contains('torch-li-active');
+        if (!wasTorchActive) {
+          /* Deactivate any other active li first */
+          cardOlight.querySelectorAll('.product-highlights li.torch-li-active').forEach(function(other) {
+            other.classList.remove('torch-li-active');
+          });
+          li.classList.add('torch-li-active');
+          playTorchSound();
+        }
+      }, { passive: true });
+
+      /* click fires after touchstart — only navigate if card was already active */
+      var link = li.querySelector('.torch-item-link');
+      if (link) {
+        link.addEventListener('click', function(e) {
+          if (!wasTorchActive) {
+            e.preventDefault(); /* first tap: just activate, don't navigate */
+          }
+          /* second tap: wasTorchActive true → anchor href navigates naturally */
+        });
+      }
     });
+
+    /* Tap outside all torch cards → deactivate all */
+    document.addEventListener('touchstart', function(e) {
+      if (!e.target.closest('#card-olight .product-highlights li')) {
+        cardOlight.querySelectorAll('.product-highlights li.torch-li-active').forEach(function(li) {
+          li.classList.remove('torch-li-active');
+        });
+      }
+    }, { passive: true });
   }
 
 });
