@@ -247,12 +247,65 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    transition: border-color 0.25s, transform 0.25s;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.3s;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
   }
 
   .service-card:hover {
     border-color: rgba(201,168,76,0.45);
     transform: translateY(-3px);
+  }
+
+  /* Per-card glow shadows on hover */
+  #card-web:hover   { box-shadow: 0 10px 36px rgba(201,168,76,0.45); }
+  #card-ai:hover    { box-shadow: 0 10px 36px rgba(201,168,76,0.45); }
+  #card-book:hover  { box-shadow: 0 10px 36px rgba(138,79,177,0.55); }
+  #card-proton:hover { box-shadow: 0 10px 36px rgba(255,220,50,0.4); }
+
+  /* Icon glow effects — text-shadow gives true radial glow on emoji */
+  .service-card-icon span {
+    display: inline-block;
+    transition: text-shadow 0.3s;
+  }
+  #icon-ai {
+    transition: text-shadow 0.3s;
+  }
+  .icon-glow-gold {
+    text-shadow:
+      0 0 10px rgba(201,168,76,1),
+      0 0 22px rgba(201,168,76,0.8),
+      0 0 44px rgba(201,168,76,0.5),
+      0 0 70px rgba(201,168,76,0.25);
+  }
+  .icon-glow-red {
+    text-shadow:
+      0 0 10px rgba(255,45,45,1),
+      0 0 22px rgba(255,45,45,0.8),
+      0 0 44px rgba(255,45,45,0.5),
+      0 0 70px rgba(255,45,45,0.25);
+  }
+
+  /* AI card — icon + laser row */
+  .ai-icon-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    min-height: 2.8rem;
+    overflow: visible;   /* was hidden — was clipping glow above/left of robot */
+    margin-right: -2rem; /* extend to actual card border so beam travels the full width */
+  }
+  #ai-laser-beam {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.92rem;
+    color: #ff4040;
+    text-shadow: 0 0 6px #ff4040, 0 0 14px #ff6060;
+    letter-spacing: -0.05em;
+    white-space: pre;
+    flex: 1;
+    line-height: 2.2rem;
+    user-select: none;
+    overflow: hidden;    /* clip beam characters at card border edge */
+    display: block;
   }
 
   .service-card-icon {
@@ -338,6 +391,185 @@
   .proton-card {
     background: linear-gradient(135deg, #0e1628 0%, #0a1520 100%);
     border-color: rgba(107,74,126,0.3);
+  }
+
+  /* ── PRODUCT CARDS (Products I Use & Trust) ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+  }
+
+  @media (max-width: 520px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+
+  .product-card {
+    background: var(--highland-dark);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.3s;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+
+  .product-card:hover {
+    border-color: rgba(201,168,76,0.55);
+    transform: translateY(-3px);
+  }
+
+  #card-olight:hover {
+    box-shadow: 0 10px 36px rgba(201,168,76,0.45);
+  }
+
+  .product-card-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .product-card-body {
+    padding: 1.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .product-card-body .service-card-tag { margin-bottom: 0.5rem; }
+
+  .product-card-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+    color: var(--cream);
+    margin-bottom: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .product-card-body p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-affiliate-note {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-top: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  /* ── PRODUCT HIGHLIGHTS LIST ── */
+  .product-highlights {
+    list-style: none;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .product-highlights li {
+    padding: 0.65rem 0.9rem;
+    background: rgba(201,168,76,0.05);
+    border-left: 2px solid rgba(201,168,76,0.35);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.90rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.25s, background 0.25s, border-left-color 0.25s;
+    cursor: pointer;
+  }
+
+  .product-highlights li:hover {
+    transform: translateY(-4px);
+    background: rgba(140,210,255,0.07);
+    border-left-color: rgba(160,225,255,0.8);
+    box-shadow:
+      0 0 16px rgba(150,218,255,0.65),
+      0 0 36px rgba(120,200,255,0.30),
+      inset 0 0 14px rgba(150,218,255,0.07);
+  }
+
+  .product-highlights li img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    border: 1px solid rgba(201,168,76,0.18);
+  }
+
+  .product-highlights li .ph-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .product-highlights li strong {
+    color: var(--gold-light);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  /* ── TORCH TAG ROW & BEAM ── */
+  .torch-tag-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.45em;
+    margin-bottom: 0.5rem;
+    overflow: visible;
+  }
+  .torch-tag-row .service-card-tag {
+    margin-bottom: 0;
+  }
+  .torch-icon-emoji {
+    font-size: 1.1em;
+    flex-shrink: 0;
+    line-height: 1;
+    display: inline-block;
+    /* Rotate emoji so torch lens/front points at 3 o'clock (right) */
+    transform: rotate(-136deg);
+  }
+  .torch-beam-el {
+    position: absolute;
+    left: 1.05em;   /* nudged left to sit closer to torch head */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 180px;
+    height: 66px;
+    /* Trapezoid: ~20% wide at source (torch end), ~90% wide at far end — points must be clockwise */
+    clip-path: polygon(0% 40%, 100% 5%, 100% 95%, 0% 60%);
+    background: linear-gradient(
+      to right,
+      rgba(255,253,210,0.95) 0%,
+      rgba(210,242,255,0.80) 35%,
+      rgba(185,228,255,0.40) 65%,
+      transparent 100%
+    );
+    filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.38s;
+    pointer-events: none;
+    z-index: 3;
+  }
+  #card-olight:hover .torch-beam-el {
+    opacity: 1;
   }
 
   /* ── ENQUIRY FORM SECTION ── */
@@ -506,8 +738,8 @@
   <div class="services-grid">
 
     <!-- WEBSITE DESIGN -->
-    <div class="service-card">
-      <div class="service-card-icon">💻</div>
+    <div class="service-card" id="card-web">
+      <div class="service-card-icon"><span id="icon-web">💻</span></div>
       <p class="service-card-tag" id="wwm-tag-web">Website Design &amp; Build</p>
       <h2 id="wwm-title-web">Like This Website? I Can Build One For You.</h2>
       <p id="wwm-desc-web">From local businesses and tourism sites to personal brands and online stores — I design and build fast, beautiful, mobile-friendly websites tailored to the Scottish Highlands and beyond. No templates, no shortcuts. Every site is built from scratch to stand out.</p>
@@ -515,8 +747,8 @@
     </div>
 
     <!-- AI CONSULTANCY -->
-    <div class="service-card">
-      <div class="service-card-icon">🤖</div>
+    <div class="service-card" id="card-ai">
+      <div class="ai-icon-row"><span id="icon-ai" style="font-size:2.2rem;transition:filter 0.3s;">🤖</span><span id="ai-laser-beam"></span></div>
       <p class="service-card-tag" id="wwm-tag-ai">AI Consultancy</p>
       <h2 id="wwm-title-ai">Using AI in Your Business — Without the Overwhelm</h2>
       <p id="wwm-desc-ai">AI is transforming how local businesses work — but knowing where to start is the hard part. I work with Highland businesses to identify practical, affordable ways to use AI tools that save time, cut costs, and open new opportunities. No jargon, no hype. Just results.</p>
@@ -524,8 +756,8 @@
     </div>
 
     <!-- BOOK -->
-    <div class="service-card book-card">
-      <div class="service-card-icon">📗</div>
+    <div class="service-card book-card" id="card-book">
+      <div class="service-card-icon"><span id="icon-book">📗</span></div>
       <p class="service-card-tag" id="wwm-tag-book">My Book</p>
       <h2 id="wwm-title-book">The Definitive Guide to AI</h2>
       <p id="wwm-desc-book">Written from the Highlands of Scotland, this is the plain-English guide to understanding and using artificial intelligence in your everyday life and work. No computer science degree required — just curiosity and a desire to get ahead of the curve.</p>
@@ -533,12 +765,52 @@
     </div>
 
     <!-- PROTON -->
-    <div class="service-card proton-card">
-      <div class="service-card-icon">🔒</div>
+    <div class="service-card proton-card" id="card-proton">
+      <div class="service-card-icon"><span id="icon-proton">🔒</span></div>
       <p class="service-card-tag" id="wwm-tag-proton">Privacy Tools</p>
       <h2 id="wwm-title-proton">Take Back Your Online Privacy with Proton</h2>
       <p id="wwm-desc-proton">I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. If you're tired of Big Tech reading your emails and tracking your every move, Proton is the answer. Use my referral link for a bonus when you sign up.</p>
       <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener" class="service-btn service-btn-outline" id="wwm-btn-proton">Try Proton Free →</a>
+    </div>
+
+  </div>
+
+  <!-- PRODUCTS I USE & TRUST -->
+  <p class="section-label" id="wwm-section-products">Products I Use &amp; Trust</p>
+  <div class="products-grid">
+
+    <!-- OLIGHT -->
+    <div class="product-card" id="card-olight">
+      <img class="product-card-image" src="website_image_files/Work%20With%20Me/O-Light%20Promo/O-Light%20Torch%20Promo.webp" alt="Olight torches — rugged, rechargeable EDC lighting carried every day in the Scottish Highlands">
+      <div class="product-card-body">
+        <div class="torch-tag-row">
+          <span class="torch-icon-emoji">🔦</span>
+          <p class="service-card-tag" id="wwm-tag-olight">Everyday Carry · Lighting</p>
+          <span class="torch-beam-el"></span>
+        </div>
+        <h2 id="wwm-title-olight">The Best Torches I've Ever Owned — Olight</h2>
+        <p id="wwm-desc-olight">Seven Olight products and counting — I bought my first after going down a rabbit hole of torch reviews and I've genuinely never looked back. Rugged, rechargeable, waterproof, shockproof, all shapes and sizes. My four most-used, every single day:</p>
+        <ul class="product-highlights">
+          <li>
+            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/ArkPro-Ultra.jpg" alt="Olight ArkPro Ultra — spotlight, floodlight, UV and green laser">
+            <div class="ph-text"><strong>ArkPro Ultra</strong>Spotlight, floodlight, UV &amp; green laser — the Swiss Army knife of torches. Lives permanently holstered in the car. Knowing it's always there when my partner and kids are out on dark Highland roads is genuine peace of mind.</div>
+          </li>
+          <li>
+            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/Baton4-Pro.jpg" alt="Olight Baton 4 Pro — EDC torch">
+            <div class="ph-text"><strong>Baton 4 Pro</strong>My EDC. Always in my bag, used almost daily. Compact, powerful, and it's never once let me down.</div>
+          </li>
+          <li>
+            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/Marauder-Mini.jpg" alt="Olight Marauder Mini — floodlight for home and camping">
+            <div class="ph-text"><strong>Marauder Mini</strong>Stays in the house ready for power cuts. On low floodlight mode it lights up my entire garden — and it's outstanding for camping. Overkill in the best possible way.</div>
+          </li>
+          <li>
+            <img src="website_image_files/Work%20With%20Me/O-Light%20Promo/iUltra-Keychain.jpg" alt="Olight iUltra OAL keychain torch">
+            <div class="ph-text"><strong>iUltra OAL Keychain Torch</strong>Never leaves my keys. If I walk out the door, this comes with me. Small, dependable, and surprisingly bright for its size.</div>
+          </li>
+        </ul>
+        <a href="https://uk.olight.com/?shareUid=1727791464019361795&amp;shareChannel=EP_copylink" target="_blank" rel="noopener" class="service-btn service-btn-gold" id="wwm-btn-olight">Shop Olight →</a>
+        <p class="product-affiliate-note" id="wwm-note-olight">Referral link — I may earn a small reward if you make a purchase.</p>
+      </div>
     </div>
 
   </div>
@@ -661,6 +933,12 @@ var wwmTranslations = {
     tagProton: "Privacy Tools", titleProton: "Take Back Your Online Privacy with Proton",
     descProton: "I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. If you're tired of Big Tech reading your emails and tracking your every move, Proton is the answer. Use my referral link for a bonus when you sign up.",
     btnProton: "Try Proton Free →",
+    sectionProducts: "Products I Use &amp; Trust",
+    tagOlight: "Everyday Carry · Lighting",
+    titleOlight: "The Best Torches I've Ever Owned — Olight",
+    descOlight: "Seven Olight products and counting — I bought my first after going down a rabbit hole of torch reviews and I've genuinely never looked back. Rugged, rechargeable, waterproof, shockproof, all shapes and sizes. My four most-used, every single day:",
+    btnOlight: "Shop Olight →",
+    noteOlight: "Referral link — I may earn a small reward if you make a purchase.",
     enqServiceLabel: "I'm Interested In", enqNameLabel: "Your Name",
     enqEmailLabel: "Your Email Address", enqMsgLabel: "Tell Me a Bit About What You Need",
     enqBtn: "Send Enquiry →", successTitle: "Message Received!",
@@ -685,6 +963,12 @@ var wwmTranslations = {
     tagProton: "Datenschutz-Tools", titleProton: "Hol dir deine Online-Privatsphäre zurück mit Proton",
     descProton: "Ich nutze Proton täglich — verschlüsselte E-Mails, VPN, Cloud-Speicher und mehr, alles auf Datenschutz ausgelegt. Nutze meinen Empfehlungslink für einen Bonus.",
     btnProton: "Proton kostenlos testen →",
+    sectionProducts: "Produkte, die ich nutze &amp; empfehle",
+    tagOlight: "Alltagsbegleiter · Beleuchtung",
+    titleOlight: "Die besten Taschenlampen, die ich je besessen habe — Olight",
+    descOlight: "Sieben Olight-Produkte und noch mehr — ich kaufte mein erstes nach einer intensiven Recherche und habe es nie bereut. Robust, wiederaufladbar, wasserdicht, stoßfest — in allen Formen und Größen. Meine vier meistgenutzten, jeden Tag:",
+    btnOlight: "Olight entdecken →",
+    noteOlight: "Empfehlungslink — ich erhalte möglicherweise eine kleine Vergütung bei einem Kauf.",
     enqServiceLabel: "Ich interessiere mich für", enqNameLabel: "Dein Name",
     enqEmailLabel: "Deine E-Mail-Adresse", enqMsgLabel: "Erzähl mir, was du brauchst",
     enqBtn: "Anfrage senden →", successTitle: "Nachricht erhalten!",
@@ -709,6 +993,12 @@ var wwmTranslations = {
     tagProton: "Outils de Confidentialité", titleProton: "Reprenez le contrôle de votre vie privée en ligne avec Proton",
     descProton: "J'utilise Proton tous les jours — e-mails chiffrés, VPN, stockage cloud, tout axé sur la confidentialité. Utilisez mon lien de parrainage pour un bonus.",
     btnProton: "Essayer Proton gratuitement →",
+    sectionProducts: "Produits que j'utilise &amp; en qui j'ai confiance",
+    tagOlight: "Équipement quotidien · Éclairage",
+    titleOlight: "Les meilleures lampes torches que j'aie jamais possédées — Olight",
+    descOlight: "Sept produits Olight et ce n'est pas fini — j'ai acheté le premier après de nombreuses recherches et je ne l'ai jamais regretté. Robustes, rechargeables, imperméables, résistants aux chocs — toutes formes et tailles. Mes quatre plus utilisés, chaque jour :",
+    btnOlight: "Découvrir Olight →",
+    noteOlight: "Lien de parrainage — je peux recevoir une petite récompense si vous effectuez un achat.",
     enqServiceLabel: "Je suis intéressé par", enqNameLabel: "Votre Nom",
     enqEmailLabel: "Votre Adresse E-mail", enqMsgLabel: "Dites-moi ce dont vous avez besoin",
     enqBtn: "Envoyer la demande →", successTitle: "Message reçu !",
@@ -733,6 +1023,12 @@ var wwmTranslations = {
     tagProton: "Privacy Tools", titleProton: "Take Back Your Online Privacy with Proton",
     descProton: "I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. Use my referral link for a bonus when you sign up.",
     btnProton: "Try Proton Free →",
+    sectionProducts: "Products I Use &amp; Trust",
+    tagOlight: "Everyday Carry · Lighting",
+    titleOlight: "The Best Flashlights I've Ever Owned — Olight",
+    descOlight: "Seven Olight products and counting — I bought my first after going down a rabbit hole of flashlight reviews and I've genuinely never looked back. Rugged, rechargeable, waterproof, shockproof, all shapes and sizes. My four most-used, every single day:",
+    btnOlight: "Shop Olight →",
+    noteOlight: "Referral link — I may earn a small reward if you make a purchase.",
     enqServiceLabel: "I'm Interested In", enqNameLabel: "Your Name",
     enqEmailLabel: "Your Email Address", enqMsgLabel: "Tell Me a Bit About What You Need",
     enqBtn: "Send Inquiry →", successTitle: "Message Received!",
@@ -757,6 +1053,12 @@ var wwmTranslations = {
     tagProton: "Personvernverktøy", titleProton: "Ta tilbake ditt online personvern med Proton",
     descProton: "Jeg bruker Proton hver dag — kryptert e-post, VPN, skyslagring og mer, alt bygget rundt personvern. Bruk min henvisningslenke for en bonus.",
     btnProton: "Prøv Proton gratis →",
+    sectionProducts: "Produkter jeg bruker &amp; stoler på",
+    tagOlight: "Daglig utstyr · Belysning",
+    titleOlight: "De beste lommelykterne jeg noensinne har eid — Olight",
+    descOlight: "Syv Olight-produkter og stadig flere — jeg kjøpte min første etter grundig research og har aldri angret. Robuste, oppladbare, vanntette, støtsikre — i alle former og størrelser. Mine fire mest brukte, hver eneste dag:",
+    btnOlight: "Utforsk Olight →",
+    noteOlight: "Henvisningslenke — jeg kan motta en liten belønning hvis du gjør et kjøp.",
     enqServiceLabel: "Jeg er interessert i", enqNameLabel: "Ditt Navn",
     enqEmailLabel: "Din E-postadresse", enqMsgLabel: "Fortell meg litt om hva du trenger",
     enqBtn: "Send forespørsel →", successTitle: "Melding mottatt!",
@@ -791,6 +1093,10 @@ function setLang(lang) {
   set('wwm-desc-book', t.descBook); set('wwm-btn-book', t.btnBook);
   set('wwm-tag-proton', t.tagProton); set('wwm-title-proton', t.titleProton);
   set('wwm-desc-proton', t.descProton); set('wwm-btn-proton', t.btnProton);
+  set('wwm-section-products', t.sectionProducts);
+  set('wwm-tag-olight', t.tagOlight); set('wwm-title-olight', t.titleOlight);
+  set('wwm-desc-olight', t.descOlight); set('wwm-btn-olight', t.btnOlight);
+  set('wwm-note-olight', t.noteOlight);
   set('wwm-enq-service-label', t.enqServiceLabel);
   set('wwm-enq-name-label', t.enqNameLabel);
   set('wwm-enq-email-label', t.enqEmailLabel);
@@ -806,6 +1112,124 @@ function setLang(lang) {
   var btns = document.querySelectorAll('.lang-btn');
   if (btns[idx]) btns[idx].classList.add('active');
 }
+
+/* ── CARD HOVER SOUNDS & EFFECTS ── */
+function _playSound(path, vol) {
+  try {
+    var a = new Audio(path);
+    a.volume = vol !== undefined ? vol : 0.7;
+    a.play().catch(function(){});
+  } catch(e) {}
+}
+
+function playMacBong()    { _playSound('sounds/Mac%20Startup%20Bong.mp3', 0.75); }
+function playPageFlip()   { _playSound('sounds/Book%20Page%20Turning.mp3', 0.7); }
+function playLaserZap()   { _playSound('sounds/AI%20Robot%20Zap.mp3', 0.7); }
+function playLockClunk()  { _playSound('sounds/Padlock%20Sound.mp3', 0.75); }
+function playTorchSound() { _playSound('sounds/Torch%20Switch%20On.mp3', 0.75); }
+
+/* Laser beam animation: head/tail pointer travelling right */
+var _laserRunning = false;
+function _fireLaser() {
+  if (_laserRunning) return;
+  _laserRunning = true;
+  var el = document.getElementById('ai-laser-beam');
+  if (!el) { _laserRunning = false; return; }
+  /* Calculate chars — use 7.5px to account for letter-spacing: -0.05em on chars */
+  var CHAR_W = 7.5;
+  var TOTAL = Math.max(55, Math.ceil((el.offsetWidth || 420) / CHAR_W));
+  var BEAM = 14, TICK = 16;
+  var step = 0;
+  function frame() {
+    if (step > TOTAL + BEAM) {
+      el.textContent = '';
+      _laserRunning = false;
+      return;
+    }
+    var out = '';
+    for (var i = 0; i < TOTAL; i++) {
+      var inBeam = (i >= step - BEAM) && (i < step);
+      if (!inBeam)            { out += ' '; }
+      else if (i === step - 1) { out += '●'; }
+      else                    { out += '─'; }
+    }
+    el.textContent = out;
+    step++;
+    setTimeout(frame, TICK);
+  }
+  frame();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* ── WEBSITE DESIGN — gold icon glow + Mac bong ── */
+  var cardWeb = document.getElementById('card-web');
+  var iconWeb = document.getElementById('icon-web');
+  if (cardWeb && iconWeb) {
+    cardWeb.addEventListener('mouseenter', function() {
+      iconWeb.classList.add('icon-glow-gold');
+      playMacBong();
+    });
+    cardWeb.addEventListener('mouseleave', function() {
+      iconWeb.classList.remove('icon-glow-gold');
+    });
+  }
+
+  /* ── AI CONSULTANCY — red icon glow + laser + zap ── */
+  var cardAi = document.getElementById('card-ai');
+  var iconAi = document.getElementById('icon-ai');
+  if (cardAi && iconAi) {
+    cardAi.addEventListener('mouseenter', function() {
+      iconAi.classList.add('icon-glow-red');
+      playLaserZap();
+      _fireLaser();
+    });
+    cardAi.addEventListener('mouseleave', function() {
+      iconAi.classList.remove('icon-glow-red');
+    });
+  }
+
+  /* ── BOOK — emoji swap 📗→📖 + page flip sound ── */
+  var cardBook = document.getElementById('card-book');
+  var iconBook = document.getElementById('icon-book');
+  if (cardBook && iconBook) {
+    cardBook.addEventListener('mouseenter', function() {
+      iconBook.textContent = '📖';
+      playPageFlip();
+    });
+    cardBook.addEventListener('mouseleave', function() {
+      iconBook.textContent = '📗';
+    });
+  }
+
+  /* ── PROTON — emoji swap 🔒→🔓 + lock clunk ── */
+  var cardProton = document.getElementById('card-proton');
+  var iconProton = document.getElementById('icon-proton');
+  if (cardProton && iconProton) {
+    cardProton.addEventListener('mouseenter', function() {
+      iconProton.textContent = '🔓';
+      playLockClunk();
+    });
+    cardProton.addEventListener('mouseleave', function() {
+      iconProton.textContent = '🔒';
+    });
+  }
+
+  /* ── O-LIGHT — torch sound + referral link on each li ── */
+  var OLIGHT_URL = 'https://uk.olight.com/?shareUid=1727791464019361795&shareChannel=EP_copylink';
+  var cardOlight = document.getElementById('card-olight');
+  if (cardOlight) {
+    cardOlight.addEventListener('mouseenter', playTorchSound);
+    cardOlight.addEventListener('mouseleave', playTorchSound);
+    cardOlight.querySelectorAll('.product-highlights li').forEach(function(li) {
+      li.addEventListener('mouseenter', playTorchSound);
+      li.addEventListener('click', function() {
+        window.open(OLIGHT_URL, '_blank', 'noopener');
+      });
+    });
+  }
+
+});
 </script>
 </body>
 </html>
