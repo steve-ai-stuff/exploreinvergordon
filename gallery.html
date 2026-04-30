@@ -486,6 +486,27 @@
     line-height: 1.7;
   }
 
+  /* ── VISITOR PHOTO CREDIT ── */
+  .visitor-credit {
+    padding: 0.55rem 0.25rem 0.2rem;
+    text-align: center;
+  }
+  .visitor-credit-name {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--heather-light);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  .visitor-credit-caption {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--heather-light);
+    opacity: 0.8;
+  }
+
   /* ── UPLOAD FORM ── */
   .upload-section {
     max-width: 640px;
@@ -875,10 +896,22 @@
 <!-- VISITOR GALLERY PANEL -->
 <div id="tab-panel-visitor" class="tab-panel">
 
-  <div class="visitor-empty">
-    <div class="visitor-empty-icon">📸</div>
-    <h2 id="gal-visitor-empty-title">Be the First to Share!</h2>
-    <p id="gal-visitor-empty-desc">No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below. Once reviewed it'll appear right here.</p>
+  <!-- Approved visitor photos — add new entries here as they come in -->
+  <div class="gallery-section">
+    <p class="gallery-section-title">Shared by Our Visitors</p>
+    <div class="gallery-grid">
+
+      <div class="gallery-item" style="overflow:visible;">
+        <img src="website_image_files/visitor_gallery_uploads/Visitor-Bartholomew-the-Great.webp"
+             alt="Near the beach — photo by Bartholomew the Great"
+             loading="lazy">
+        <div class="visitor-credit">
+          <span class="visitor-credit-name">📸 Bartholomew the Great</span>
+          <span class="visitor-credit-caption">"Near the beach"</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class="upload-section">
