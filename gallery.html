@@ -280,14 +280,14 @@
     grid-template-rows: auto;
   }
 
-  .gallery-grid.featured .gallery-item:first-child {
+  .gallery-grid.featured .gallery-item-wrap:first-child {
     grid-column: 1 / -1;
   }
 
   @media (max-width: 680px) {
     .gallery-grid,
     .gallery-grid.featured { grid-template-columns: 1fr; }
-    .gallery-grid.featured .gallery-item:first-child { grid-column: 1; }
+    .gallery-grid.featured .gallery-item-wrap:first-child { grid-column: 1; }
   }
 
   .gallery-item {
@@ -693,18 +693,19 @@
 
   .upload-success p { color: var(--text-muted); font-size: 0.95rem; }
 
-  /* ── GALLERY SHARE OVERLAY ── */
-  .gal-share {
-    position: absolute;
-    top: 0.6rem; right: 0.6rem;
+  /* ── GALLERY ITEM WRAPPER ── */
+  .gallery-item-wrap {
     display: flex;
-    gap: 0.35rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    pointer-events: none;
+    flex-direction: column;
   }
-  .gallery-item:hover .gal-share { opacity: 1; pointer-events: auto; }
+
+  /* ── GALLERY SHARE BAR ── */
+  .gal-share {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.25rem 0.25rem;
+  }
 
   .gal-share-btn {
     font-family: 'Overpass Mono', monospace;
@@ -1674,7 +1675,12 @@ document.addEventListener('DOMContentLoaded', function() {
         '<button class="gal-share-btn gal-share-btn-wa" onclick="galShareWa(this);event.stopPropagation()">WhatsApp</button>' +
         '<button class="gal-share-btn gal-share-btn-copy gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">&#128279; Copy</button>';
     }
-    item.appendChild(share);
+    // Wrap item + share bar in a flex column container
+    var wrap = document.createElement('div');
+    wrap.className = 'gallery-item-wrap';
+    item.parentNode.insertBefore(wrap, item);
+    wrap.appendChild(item);
+    wrap.appendChild(share);
 
     // Lightbox click handler
     item.addEventListener('click', function(e) {
