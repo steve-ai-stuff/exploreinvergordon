@@ -4779,7 +4779,12 @@ function beginVisit() {
   playFX('bagpipes');
   setTimeout(function() {
     var el = document.getElementById('cruise-hub');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!el) return;
+    var langBar = document.querySelector('.lang-bar');
+    var nav     = document.querySelector('nav');
+    var offset  = (langBar ? langBar.offsetHeight : 0) + (nav ? nav.offsetHeight : 0) + 12;
+    var top     = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
   }, 400);
 }
 

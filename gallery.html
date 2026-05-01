@@ -677,6 +677,115 @@
   }
 
   .upload-success p { color: var(--text-muted); font-size: 0.95rem; }
+
+  /* ── GALLERY SHARE OVERLAY ── */
+  .gal-share {
+    position: absolute;
+    top: 0.6rem; right: 0.6rem;
+    display: flex;
+    gap: 0.35rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .gallery-item:hover .gal-share { opacity: 1; pointer-events: auto; }
+
+  .gal-share-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: rgba(8,15,30,0.85);
+    border: 1px solid rgba(107,74,126,0.45);
+    border-radius: 20px;
+    padding: 0.28rem 0.65rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .gal-share-btn:hover { color: var(--gold); border-color: rgba(201,168,76,0.5); background: rgba(8,15,30,0.95); }
+  .gal-share-btn.copied { color: var(--heather-light); border-color: var(--heather-light); }
+
+  /* ── LIGHTBOX ── */
+  #gal-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(5,10,22,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: zoom-out;
+  }
+  #gal-lightbox.active { display: flex; }
+
+  .lb-inner {
+    position: relative;
+    max-width: 90vw;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+  }
+  #lb-img {
+    max-width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.75);
+    display: block;
+  }
+  #lb-caption {
+    margin-top: 0.9rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .lb-close {
+    position: fixed;
+    top: 1rem; right: 1.4rem;
+    font-size: 2rem;
+    color: rgba(122,144,184,0.6);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    z-index: 501;
+  }
+  .lb-close:hover { color: var(--gold); }
+
+  .lb-nav {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    font-size: 2.2rem;
+    color: rgba(122,144,184,0.45);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0.9rem;
+    transition: color 0.2s;
+    z-index: 501;
+    display: none;
+    line-height: 1;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .lb-nav.visible { display: block; }
+  .lb-nav:hover { color: var(--gold); }
+  #lb-prev { left: 0.4rem; }
+  #lb-next { right: 0.4rem; }
 </style>
 </head>
 <body>
@@ -951,6 +1060,17 @@
   </div>
 
 </div><!-- /tab-panel-visitor -->
+
+<!-- LIGHTBOX -->
+<div id="gal-lightbox" onclick="lbClickOverlay(event)">
+  <button class="lb-close" onclick="lbClose()">&#215;</button>
+  <button class="lb-nav" id="lb-prev" onclick="lbNav(-1);event.stopPropagation()">&#8249;</button>
+  <button class="lb-nav" id="lb-next" onclick="lbNav(1);event.stopPropagation()">&#8250;</button>
+  <div class="lb-inner" onclick="event.stopPropagation()">
+    <img id="lb-img" src="" alt="">
+    <p id="lb-caption"></p>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1396,6 +1516,153 @@ function setLang(lang) {
   var btns = document.querySelectorAll('.lang-btn');
   if (btns[idx]) btns[idx].classList.add('active');
 }
+
+/* ── GALLERY SHARE ── */
+function galGetShareData(btn) {
+  var c = btn.closest('.gal-share');
+  return { url: c.getAttribute('data-url'), title: c.getAttribute('data-title') };
+}
+function galShareX(btn) {
+  var d = galGetShareData(btn);
+  window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(d.url) + '&text=' + encodeURIComponent(d.title), '_blank', 'width=620,height=420');
+}
+function galShareWa(btn) {
+  var d = galGetShareData(btn);
+  window.open('https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.url), '_blank');
+}
+function galFallbackCopy(text, callback) {
+  var ta = document.createElement('textarea');
+  ta.value = text; ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, 99999);
+  try { document.execCommand('copy'); callback(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+function galCopyLink(btn) {
+  var d = galGetShareData(btn);
+  if (navigator.share) { navigator.share({ title: d.title, url: d.url }).catch(function(){}); return; }
+  var orig = btn.innerHTML;
+  function done() {
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(d.url).then(done).catch(function() { galFallbackCopy(d.url, done); });
+  } else { galFallbackCopy(d.url, done); }
+}
+
+/* ── LIGHTBOX ── */
+var lbItems = [];
+var lbIndex = 0;
+
+function lbOpen(item) {
+  var img = item.querySelector('img');
+  if (!img) return;
+  lbItems = Array.from(document.querySelectorAll('.gallery-item img'));
+  lbIndex = lbItems.indexOf(img);
+  lbShow(img, item);
+  document.getElementById('gal-lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  lbNavUpdate();
+}
+function lbShow(img, item) {
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb-img').alt = img.alt || '';
+  var capEl = item ? item.querySelector('.gallery-caption') : null;
+  var creditEl = item ? item.querySelector('.visitor-credit-caption') : null;
+  var text = capEl ? capEl.textContent.trim()
+           : creditEl ? creditEl.textContent.trim().replace(/^"(.*)"$/, '$1')
+           : '';
+  document.getElementById('lb-caption').textContent = text;
+}
+function lbNav(dir) {
+  lbIndex = Math.max(0, Math.min(lbItems.length - 1, lbIndex + dir));
+  var img = lbItems[lbIndex];
+  lbShow(img, img.closest('.gallery-item'));
+  lbNavUpdate();
+}
+function lbNavUpdate() {
+  document.getElementById('lb-prev').classList[lbIndex > 0 ? 'add' : 'remove']('visible');
+  document.getElementById('lb-next').classList[lbIndex < lbItems.length - 1 ? 'add' : 'remove']('visible');
+}
+function lbClose() {
+  document.getElementById('gal-lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function lbClickOverlay(e) {
+  if (e.target === document.getElementById('gal-lightbox')) lbClose();
+}
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('gal-lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape')      lbClose();
+  if (e.key === 'ArrowLeft')   lbNav(-1);
+  if (e.key === 'ArrowRight')  lbNav(1);
+});
+
+/* ── WIRE UP SHARE + LIGHTBOX ON PAGE LOAD ── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Assign IDs to My Gallery items via their caption elements
+  var galItemIds = {
+    'gal-cap-drone-main': 'gal-item-drone-main',
+    'gal-cap-drone-2':    'gal-item-drone-2',
+    'gal-cap-drone-3':    'gal-item-drone-3',
+    'gal-cap-cruise-1':   'gal-item-cruise-1',
+    'gal-cap-cruise-2':   'gal-item-cruise-2',
+    'gal-cap-cruise-3':   'gal-item-cruise-3',
+    'gal-cap-land-1':     'gal-item-land-1',
+    'gal-cap-land-2':     'gal-item-land-2',
+    'gal-cap-land-3':     'gal-item-land-3',
+    'gal-cap-mural-1':    'gal-item-mural-1',
+    'gal-cap-mural-2':    'gal-item-mural-2',
+    'gal-cap-mural-3':    'gal-item-mural-3'
+  };
+  Object.keys(galItemIds).forEach(function(capId) {
+    var capEl = document.getElementById(capId);
+    if (capEl) {
+      var item = capEl.closest('.gallery-item');
+      if (item) item.id = galItemIds[capId];
+    }
+  });
+  // Bartholomew visitor item
+  var bartImg = document.querySelector('.gallery-item img[alt*="Bartholomew"]');
+  if (bartImg) bartImg.closest('.gallery-item').id = 'gal-item-bartholomew';
+
+  var baseUrl = 'https://exploreinvergordon.scot/gallery.html';
+  var isMobile = !!navigator.share;
+
+  document.querySelectorAll('.gallery-item').forEach(function(item) {
+    // Caption text for share title
+    var capEl = item.querySelector('.gallery-caption');
+    var creditEl = item.querySelector('.visitor-credit-caption');
+    var captionText = capEl ? capEl.textContent.trim()
+                    : creditEl ? creditEl.textContent.trim().replace(/^"(.*)"$/, '$1')
+                    : 'Invergordon Gallery';
+    var shareUrl   = baseUrl + (item.id ? '#' + item.id : '');
+    var shareTitle = captionText + ' — Explore Invergordon';
+
+    // Build share overlay
+    var share = document.createElement('div');
+    share.className = 'gal-share';
+    share.setAttribute('data-url', shareUrl);
+    share.setAttribute('data-title', shareTitle);
+    if (isMobile) {
+      share.innerHTML = '<button class="gal-share-btn gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">Share &#8599;</button>';
+    } else {
+      share.innerHTML =
+        '<button class="gal-share-btn" onclick="galShareX(this);event.stopPropagation()">&#x1D54F; Share</button>' +
+        '<button class="gal-share-btn" onclick="galShareWa(this);event.stopPropagation()">WhatsApp</button>' +
+        '<button class="gal-share-btn gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">&#128279; Copy</button>';
+    }
+    item.appendChild(share);
+
+    // Lightbox click handler
+    item.addEventListener('click', function(e) {
+      if (e.target.closest('.gal-share')) return;
+      lbOpen(item);
+    });
+  });
+});
 </script>
 </body>
 </html>
