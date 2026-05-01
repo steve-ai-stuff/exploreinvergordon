@@ -697,7 +697,7 @@
     <li><a href="index.html" id="gal-nav-home">Home</a></li>
     <li><a href="blog.html" id="gal-nav-blog">Blog</a></li>
     <li><a href="gallery.html" id="gal-nav-gallery" class="active">Gallery</a></li>
-    <li><a href="work-with-me.html">Work With Me</a></li>
+    <li><a href="work-with-me.html" id="gal-nav-wwm">Work With Me</a></li>
   </ul>
 </nav>
 
@@ -962,7 +962,7 @@
 <script>
 var galTranslations = {
   en: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWorkWithMe: "Work With Me",
     heroLabel: "Invergordon · Easter Ross · Scottish Highlands",
     heroTitle: "Through the <em>Lens</em>",
     heroDesc: "Drone photography, harbour mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.",
@@ -1004,7 +1004,7 @@ var galTranslations = {
     visitorEmptyDesc: "No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below. Once reviewed it'll appear right here."
   },
   de: {
-    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie",
+    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie", navWorkWithMe: "Mit Mir Arbeiten",
     heroLabel: "Invergordon · Easter Ross · Schottisches Hochland",
     heroTitle: "Durch die <em>Linse</em>",
     heroDesc: "Drohnenfotos, Hafenmorgen, Hochlandlandschaften und die Straßenkunst von Invergordon — von einem Einheimischen durch die Jahreszeiten festgehalten.",
@@ -1046,7 +1046,7 @@ var galTranslations = {
     visitorEmptyDesc: "Noch keine Besucherfotos — Deins könnte das erste sein. Teile etwas, das du in Invergordon geliebt hast."
   },
   fr: {
-    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie",
+    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie", navWorkWithMe: "Travailler Avec Moi",
     heroLabel: "Invergordon · Easter Ross · Highlands écossaises",
     heroTitle: "À travers <em>l'Objectif</em>",
     heroDesc: "Photos de drone, matins au port, paysages des Highlands et l'art de rue d'Invergordon — capturés par un résident local tout au long des saisons.",
@@ -1088,7 +1088,7 @@ var galTranslations = {
     visitorEmptyDesc: "Pas encore de photos de visiteurs — la vôtre pourrait être la première. Partagez quelque chose que vous avez aimé à Invergordon."
   },
   us: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWorkWithMe: "Work With Me",
     heroLabel: "Invergordon · Easter Ross · Scottish Highlands",
     heroTitle: "Through the <em>Lens</em>",
     heroDesc: "Drone photography, harbor mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.",
@@ -1130,7 +1130,7 @@ var galTranslations = {
     visitorEmptyDesc: "No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below."
   },
   no: {
-    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri",
+    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri", navWorkWithMe: "Jobb Med Meg",
     heroLabel: "Invergordon · Easter Ross · Skotske Høylander",
     heroTitle: "Gjennom <em>Linsen</em>",
     heroDesc: "Dronebilder, havnemorgen, høylandslandskaper og gatekunsten i Invergordon — fanget av en lokal innbygger gjennom årstidene.",
@@ -1334,6 +1334,7 @@ function setLang(lang) {
   set('gal-nav-home', t.navHome);
   set('gal-nav-blog', t.navBlog);
   set('gal-nav-gallery', t.navGallery);
+  set('gal-nav-wwm', t.navWorkWithMe);
 
   // Hero
   set('gal-hero-label', t.heroLabel);

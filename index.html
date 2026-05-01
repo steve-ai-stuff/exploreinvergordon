@@ -1831,12 +1831,12 @@
   <ul class="nav-links">
     <li><a href="javascript:void(0)" onclick="navTo('cruise-hub')" class="nav-cruise">Cruise</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('getting-started')" class="nav-arrive">Arrive</a></li>
-    <li><a href="javascript:void(0)" onclick="navTo('murals')" class="nav-murals">Murals</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('welcome')" class="nav-town">Town</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('museum')" class="nav-museum">Museum</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('murals')" class="nav-murals">Murals</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('landscape')" class="nav-landscape">Landscape</a></li>
-    <li><a href="blog.html" class="nav-blog">Blog</a></li>
     <li><a href="gallery.html" class="nav-gallery">Gallery</a></li>
+    <li><a href="blog.html" class="nav-blog">Blog</a></li>
     <li><a href="work-with-me.html" id="nav-wwm">Work With Me</a></li>
   </ul>
 </nav>
@@ -3429,7 +3429,12 @@
 // ── SMOOTH SCROLL (iframe-safe, avoids conflict with window.scrollTo) ──
 function navTo(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!el) return;
+  const langBar = document.querySelector('.lang-bar');
+  const nav     = document.querySelector('nav');
+  const offset  = (langBar ? langBar.offsetHeight : 0) + (nav ? nav.offsetHeight : 0) + 12;
+  const top     = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top: top, behavior: 'smooth' });
 }
 
 // ── MURAL TOGGLE ──
@@ -3539,6 +3544,7 @@ const translations = {
     tip3Text: "Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.",
     footerCredit: "Created by a Local Resident using Modern Tools — Capturing his own Unique Images & Video of the Town and Surrounding Areas · ExploreInvergordon.scot",
     navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Landscape",
+    navCruise: "Cruise", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
     scroll: "Scroll",
   },
   de: {
@@ -3592,6 +3598,7 @@ const translations = {
     tip3Text: "Erwägen Sie, dem Invergordon Wandbild-Pfad zu spenden — eine von Freiwilligen betriebene schottische Wohltätigkeitsorganisation, die diese außergewöhnliche Galerie durch Gemeinschaftsarbeit erhält.",
     footerCredit: "Ein digitales Gemeinschaftsprojekt für Invergordon · Mit KI von einem Einheimischen erstellt · ExploreInvergordon.scot",
     navArrive: "Ankommen", navMurals: "Wandbilder", navTown: "Stadt", navMuseum: "Museum", navLandscape: "Landschaft",
+    navCruise: "Kreuzfahrt", navBlog: "Blog", navGallery: "Galerie", navWwm: "Mit Mir Arbeiten",
     scroll: "Scrollen",
     // Cruise Hub — German
     cruiseHubLabel: "Port of Cromarty Firth",
@@ -3679,6 +3686,7 @@ const translations = {
     tip3Text: "Pensez à faire un don au Parcours des Fresques d'Invergordon — une association caritative écossaise gérée par des bénévoles qui entretient cette galerie extraordinaire grâce à l'effort communautaire.",
     footerCredit: "Un projet numérique communautaire pour Invergordon · Créé avec l'IA par un résident local · ExploreInvergordon.scot",
     navArrive: "Arriver", navMurals: "Fresques", navTown: "Ville", navMuseum: "Musée", navLandscape: "Paysage",
+    navCruise: "Croisière", navBlog: "Blog", navGallery: "Galerie", navWwm: "Travailler Avec Moi",
     scroll: "Défiler",
     // Cruise Hub — French
     cruiseHubLabel: "Port of Cromarty Firth",
@@ -3766,6 +3774,7 @@ const translations = {
     tip3Text: "Consider making a donation to the Invergordon Mural Trail — a volunteer-run Scottish charity that keeps this amazing outdoor gallery going entirely through community effort.",
     footerCredit: "A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot",
     navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Scenery",
+    navCruise: "Cruise", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
     scroll: "Scroll",
     // Cruise Hub — US English
     cruiseHubLabel: "Port of Cromarty Firth",
@@ -3853,6 +3862,7 @@ const translations = {
     tip3Text: "Vurder å donere til Invergordon Muralsruten — en frivilligdrevet skotsk veldedighet som vedlikeholder dette ekstraordinære galleriet gjennom fellesskapsinnsats.",
     footerCredit: "Et digitalt fellesskapsprosjekt for Invergordon · Bygget med KI av en lokal innbygger · ExploreInvergordon.scot",
     navArrive: "Ankomst", navMurals: "Muraler", navTown: "By", navMuseum: "Museum", navLandscape: "Landskap",
+    navCruise: "Cruise", navBlog: "Blogg", navGallery: "Galleri", navWwm: "Jobb Med Meg",
     scroll: "Rull",
     // Cruise Hub — Norwegian
     cruiseHubLabel: "Port of Cromarty Firth",
@@ -3909,6 +3919,10 @@ function setLang(lang) {
   document.querySelectorAll('.nav-town').forEach(el => el.textContent = t.navTown);
   document.querySelectorAll('.nav-museum').forEach(el => el.textContent = t.navMuseum);
   document.querySelectorAll('.nav-landscape').forEach(el => el.textContent = t.navLandscape);
+  document.querySelectorAll('.nav-cruise').forEach(el => el.textContent = t.navCruise);
+  document.querySelectorAll('.nav-blog').forEach(el => el.textContent = t.navBlog);
+  document.querySelectorAll('.nav-gallery').forEach(el => el.textContent = t.navGallery);
+  set('nav-wwm', t.navWwm, false);
   document.querySelectorAll('.t-scroll').forEach(el => el.textContent = t.scroll);
 
   // Hero

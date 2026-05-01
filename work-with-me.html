@@ -861,7 +861,7 @@
           <label for="enquiryMessage" id="wwm-enq-msg-label">Tell Me a Bit About What You Need</label>
           <textarea id="enquiryMessage" placeholder="e.g. I run a small B&amp;B in Easter Ross and need a website…" maxlength="1000"></textarea>
         </div>
-        <button class="enquiry-submit" id="enquirySubmit" onclick="handleEnquirySubmit(event)" id="wwm-enq-btn">Send Enquiry →</button>
+        <button class="enquiry-submit" id="enquirySubmit" onclick="handleEnquirySubmit(event)">Send Enquiry →</button>
       </div>
       <div class="enquiry-success" id="enquirySuccess">
         <div class="enquiry-success-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
@@ -1122,6 +1122,7 @@ function setLang(lang) {
   set('wwm-enq-name-label', t.enqNameLabel);
   set('wwm-enq-email-label', t.enqEmailLabel);
   set('wwm-enq-msg-label', t.enqMsgLabel);
+  set('enquirySubmit', t.enqBtn, false);
   set('wwm-success-title', t.successTitle); set('wwm-success-desc', t.successDesc);
   set('wwm-opt-web', t.optWeb); set('wwm-opt-ai', t.optAi); set('wwm-opt-other', t.optOther);
 
