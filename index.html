@@ -325,12 +325,12 @@
   }
 
   .welcome-card {
-    background: rgba(86,194,123,0.16);
+    background: rgba(86,194,123,0.26);
     border: 1px solid rgba(86,194,123,0.35);
     padding: 1.75rem;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
 
   .welcome-card::before {
@@ -341,10 +341,17 @@
     background: linear-gradient(to bottom, var(--spring-green), var(--spring-yellow));
   }
 
-  .welcome-card:hover {
-    background: rgba(86,194,123,0.26);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  .card-cta-btn {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.65rem 1.25rem;
+    background: var(--heather);
+    color: var(--cream);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .card-icon {
@@ -1091,7 +1098,7 @@
   .cruise-section {
     background: rgba(8,15,30,0.95);
     border-bottom: 2px solid var(--gold);
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.5rem 2.5rem;
   }
 
   .cruise-inner {
@@ -2236,25 +2243,25 @@
       <span class="card-icon">🎨</span>
       <div class="card-title" id="card1-title">The Mural Trail</div>
       <p class="card-text" id="card1-text">11 extraordinary large-scale murals tell the story of Invergordon's remarkable history. Allow 60–90 minutes. Starts at the railway station, ends at the museum.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card1-cta">Explore ↓</p>
+      <p class="card-cta-btn" id="card1-cta">Explore ↓</p>
     </a>
     <a href="javascript:void(0)" onclick="document.querySelector('footer').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🏔️</span>
       <div class="card-title" id="card2-title">Highland Scenery</div>
       <p class="card-text" id="card2-text">Mountains, sea lochs, ancient forests and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes in Europe.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card2-cta">Discover ↓</p>
+      <p class="card-cta-btn" id="card2-cta">Discover ↓</p>
     </a>
     <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🍽️</span>
       <div class="card-title" id="card3-title">Eat & Drink Locally</div>
       <p class="card-text" id="card3-text">From a legendary full Scottish breakfast to award-winning Indian cuisine, the High Street offers genuine local flavours. No tourist traps — just good food.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card3-cta">See the Guide ↓</p>
+      <p class="card-cta-btn" id="card3-cta">See the Guide ↓</p>
     </a>
     <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🛍️</span>
       <div class="card-title" id="card4-title">Shop Local</div>
       <p class="card-text" id="card4-text">Scottish gifts, handmade crafts, tartan and local art. Support real independent businesses, not chain stores. Everything is a short stroll from the port.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card4-cta">Browse ↓</p>
+      <p class="card-cta-btn" id="card4-cta">Browse ↓</p>
     </a>
   </div>
 </section>
@@ -2759,7 +2766,7 @@
 <!-- BUSINESSES -->
 <div class="businesses-section" id="town">
   <div style="display:flex; justify-content:center; margin-bottom: 1rem;">
-    <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.18); border:1px solid rgba(86,194,123,0.38); border-left:3px solid var(--spring-green);">
+    <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.26); border:1px solid rgba(86,194,123,0.45); border-left:3px solid var(--spring-green);">
       <div class="stat-number" style="min-width:5rem; color:var(--spring-green);">In Town</div>
       <div class="stat-label" style="color:var(--spring-yellow);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
     </div>
