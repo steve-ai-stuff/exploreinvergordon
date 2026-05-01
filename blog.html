@@ -407,8 +407,8 @@
   <a href="index.html" class="nav-logo">Invergordon</a>
   <ul class="nav-links">
     <li><a href="index.html" id="blog-nav-home">Home</a></li>
-    <li><a href="blog.html" class="active" id="blog-nav-blog">Blog</a></li>
     <li><a href="gallery.html" id="blog-nav-gallery">Gallery</a></li>
+    <li><a href="blog.html" class="active" id="blog-nav-blog">Blog</a></li>
     <li><a href="work-with-me.html" id="blog-nav-wwm">Work With Me</a></li>
   </ul>
 </nav>
@@ -704,11 +704,16 @@ function setLang(lang) {
 
 function getShareData(btn) {
   var c = btn.closest('.post-share');
-  return { url: c.getAttribute('data-url'), title: c.getAttribute('data-title') };
+  var url = c.getAttribute('data-url');
+  return {
+    url: url,
+    pageUrl: url.split('#')[0],
+    title: c.getAttribute('data-title')
+  };
 }
 function shareFb(btn) {
   var d = getShareData(btn);
-  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(d.url), '_blank', 'width=620,height=420');
+  window.open('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(d.pageUrl), '_blank', 'width=620,height=420');
 }
 function shareX(btn) {
   var d = getShareData(btn);
@@ -718,26 +723,45 @@ function shareWa(btn) {
   var d = getShareData(btn);
   window.open('https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.url), '_blank');
 }
+function fallbackCopy(text, callback) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  ta.setSelectionRange(0, 99999);
+  try { document.execCommand('copy'); callback(); } catch(e) {}
+  document.body.removeChild(ta);
+}
 function copyPostLink(btn) {
   var d = getShareData(btn);
+  // On mobile use native share sheet — far more reliable than clipboard API
+  if (navigator.share) {
+    navigator.share({ title: d.title, url: d.url }).catch(function() {});
+    return;
+  }
   var orig = btn.innerHTML;
   function done() {
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
     setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
   }
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(d.url).then(done);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(d.url).then(done).catch(function() { fallbackCopy(d.url, done); });
   } else {
-    var ta = document.createElement('textarea');
-    ta.value = d.url;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    done();
+    fallbackCopy(d.url, done);
   }
 }
+// Rename Copy Link to Share on devices that support native share
+document.addEventListener('DOMContentLoaded', function() {
+  if (navigator.share) {
+    document.querySelectorAll('.post-share-buttons .share-btn:last-child').forEach(function(btn) {
+      btn.innerHTML = btn.innerHTML.replace('Copy Link', 'Share');
+    });
+  }
+});
 </script>
 
 </body>
