@@ -325,8 +325,8 @@
   }
 
   .welcome-card {
-    background: rgba(86,194,123,0.07);
-    border: 1px solid rgba(86,194,123,0.25);
+    background: rgba(86,194,123,0.16);
+    border: 1px solid rgba(86,194,123,0.35);
     padding: 1.75rem;
     position: relative;
     overflow: hidden;
@@ -342,7 +342,7 @@
   }
 
   .welcome-card:hover {
-    background: rgba(86,194,123,0.15);
+    background: rgba(86,194,123,0.26);
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
@@ -370,7 +370,8 @@
   /* ── MURAL TRAIL ── */
   .trail-section {
     background: rgba(8,15,30,0.95);
-    border-top: 1px solid rgba(29,79,168,0.25);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
     padding: 2rem 1.5rem 0;
   }
 
@@ -411,6 +412,10 @@
     padding: 1.25rem;
     background: rgba(29,79,168,0.1);
     border: 1px solid rgba(29,79,168,0.2);
+  }
+
+  .trail-stats .trail-stat {
+    border: 1px solid rgba(168,124,192,0.45);
   }
 
   .stat-number {
@@ -1221,6 +1226,7 @@
   }
 
   .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
 
   @media (max-width: 600px) {
     .nav-links {
@@ -1858,7 +1864,7 @@
     <li><a href="javascript:void(0)" onclick="navTo('welcome')" class="nav-town">Town</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('museum')" class="nav-museum">Museum</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('murals')" class="nav-murals">Murals</a></li>
-    <li><a href="javascript:void(0)" onclick="navTo('landscape')" class="nav-landscape">Landscape</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('contact')" class="nav-landscape">Contact</a></li>
     <li><a href="gallery.html" class="nav-gallery">Gallery</a></li>
     <li><a href="blog.html" class="nav-blog">Blog</a></li>
     <li><a href="work-with-me.html" id="nav-wwm">Work With Me</a></li>
@@ -2753,7 +2759,7 @@
 <!-- BUSINESSES -->
 <div class="businesses-section" id="town">
   <div style="display:flex; justify-content:center; margin-bottom: 1rem;">
-    <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.08); border:1px solid rgba(86,194,123,0.28); border-left:3px solid var(--spring-green);">
+    <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.18); border:1px solid rgba(86,194,123,0.38); border-left:3px solid var(--spring-green);">
       <div class="stat-number" style="min-width:5rem; color:var(--spring-green);">In Town</div>
       <div class="stat-label" style="color:var(--spring-yellow);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
     </div>
@@ -3451,6 +3457,39 @@
 
 <script>
 // ── SMOOTH SCROLL (iframe-safe, avoids conflict with window.scrollTo) ──
+// ── SCROLL SPY ──
+const navSpyMap = [
+  { id: 'cruise-hub',      cls: 'nav-cruise'    },
+  { id: 'getting-started', cls: 'nav-arrive'    },
+  { id: 'welcome',         cls: 'nav-town'      },
+  { id: 'museum',          cls: 'nav-museum'    },
+  { id: 'murals',          cls: 'nav-murals'    },
+  { id: 'contact',         cls: 'nav-landscape' },
+];
+
+function setActiveNav(cls) {
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('nav-active'));
+  if (cls) document.querySelectorAll('.' + cls).forEach(a => a.classList.add('nav-active'));
+}
+
+function updateScrollSpy() {
+  const nav     = document.querySelector('nav');
+  const langBar = document.querySelector('.lang-bar');
+  const threshold = (nav ? nav.offsetHeight : 0) + (langBar ? langBar.offsetHeight : 0) + 40;
+  let active = null;
+  for (const entry of navSpyMap) {
+    const el = document.getElementById(entry.id);
+    if (!el) continue;
+    if (el.getBoundingClientRect().top <= threshold) {
+      active = entry.cls;
+    }
+  }
+  setActiveNav(active);
+}
+
+window.addEventListener('scroll', updateScrollSpy, { passive: true });
+document.addEventListener('DOMContentLoaded', updateScrollSpy);
+
 function navTo(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -3459,6 +3498,9 @@ function navTo(id) {
   const offset  = (langBar ? langBar.offsetHeight : 0) + (nav ? nav.offsetHeight : 0) + 12;
   const top     = el.getBoundingClientRect().top + window.pageYOffset - offset;
   window.scrollTo({ top: top, behavior: 'smooth' });
+  // Immediately reflect the active state without waiting for scroll events
+  const entry = navSpyMap.find(m => m.id === id);
+  if (entry) setActiveNav(entry.cls);
 }
 
 // ── MURAL TOGGLE ──
@@ -3567,7 +3609,7 @@ const translations = {
     tip3Title: "Before You Sail Away",
     tip3Text: "Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.",
     footerCredit: "Created by a Local Resident using Modern Tools — Capturing his own Unique Images & Video of the Town and Surrounding Areas · ExploreInvergordon.scot",
-    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Landscape",
+    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Contact",
     navCruise: "Cruise", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
     scroll: "Scroll",
   },
@@ -3621,7 +3663,7 @@ const translations = {
     tip3Title: "Bevor Sie absegeln",
     tip3Text: "Erwägen Sie, dem Invergordon Wandbild-Pfad zu spenden — eine von Freiwilligen betriebene schottische Wohltätigkeitsorganisation, die diese außergewöhnliche Galerie durch Gemeinschaftsarbeit erhält.",
     footerCredit: "Ein digitales Gemeinschaftsprojekt für Invergordon · Mit KI von einem Einheimischen erstellt · ExploreInvergordon.scot",
-    navArrive: "Ankommen", navMurals: "Wandbilder", navTown: "Stadt", navMuseum: "Museum", navLandscape: "Landschaft",
+    navArrive: "Ankommen", navMurals: "Wandbilder", navTown: "Stadt", navMuseum: "Museum", navLandscape: "Kontakt",
     navCruise: "Kreuzfahrt", navBlog: "Blog", navGallery: "Galerie", navWwm: "Mit Mir Arbeiten",
     scroll: "Scrollen",
     // Cruise Hub — German
@@ -3709,7 +3751,7 @@ const translations = {
     tip3Title: "Avant de reprendre la mer",
     tip3Text: "Pensez à faire un don au Parcours des Fresques d'Invergordon — une association caritative écossaise gérée par des bénévoles qui entretient cette galerie extraordinaire grâce à l'effort communautaire.",
     footerCredit: "Un projet numérique communautaire pour Invergordon · Créé avec l'IA par un résident local · ExploreInvergordon.scot",
-    navArrive: "Arriver", navMurals: "Fresques", navTown: "Ville", navMuseum: "Musée", navLandscape: "Paysage",
+    navArrive: "Arriver", navMurals: "Fresques", navTown: "Ville", navMuseum: "Musée", navLandscape: "Contact",
     navCruise: "Croisière", navBlog: "Blog", navGallery: "Galerie", navWwm: "Travailler Avec Moi",
     scroll: "Défiler",
     // Cruise Hub — French
@@ -3797,7 +3839,7 @@ const translations = {
     tip3Title: "Before You Head Back",
     tip3Text: "Consider making a donation to the Invergordon Mural Trail — a volunteer-run Scottish charity that keeps this amazing outdoor gallery going entirely through community effort.",
     footerCredit: "A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot",
-    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Scenery",
+    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Contact",
     navCruise: "Cruise", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
     scroll: "Scroll",
     // Cruise Hub — US English
@@ -3885,7 +3927,7 @@ const translations = {
     tip3Title: "Før du seiler av",
     tip3Text: "Vurder å donere til Invergordon Muralsruten — en frivilligdrevet skotsk veldedighet som vedlikeholder dette ekstraordinære galleriet gjennom fellesskapsinnsats.",
     footerCredit: "Et digitalt fellesskapsprosjekt for Invergordon · Bygget med KI av en lokal innbygger · ExploreInvergordon.scot",
-    navArrive: "Ankomst", navMurals: "Muraler", navTown: "By", navMuseum: "Museum", navLandscape: "Landskap",
+    navArrive: "Ankomst", navMurals: "Muraler", navTown: "By", navMuseum: "Museum", navLandscape: "Kontakt",
     navCruise: "Cruise", navBlog: "Blogg", navGallery: "Galleri", navWwm: "Jobb Med Meg",
     scroll: "Rull",
     // Cruise Hub — Norwegian
