@@ -108,19 +108,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(8,15,30,0.97);
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
   }
 
   .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--gold);
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+  .nav-follow-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav-social-btn:hover { opacity: 0.75; transform: scale(1.12); }
+  @media (max-width: 600px) { .nav-follow-label { display: none; } }
 
   .nav-links {
     display: flex;
@@ -404,7 +419,11 @@
 </div>
 
 <nav>
-  <a href="index.html" class="nav-logo">Invergordon</a>
+  <div class="nav-logo">
+    <span class="nav-follow-label">Follow us here:</span>
+    <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook"><svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad-b" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad-b)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+  </div>
   <ul class="nav-links">
     <li><a href="index.html" id="blog-nav-home">Home</a></li>
     <li><a href="gallery.html" id="blog-nav-gallery">Gallery</a></li>
@@ -437,14 +456,24 @@
     <p class="post-meta" id="p4-meta">1 May 2026 &middot; About This Site</p>
     <h2 id="p4-title">Welcome to Explore Invergordon — Here's Why We Exist</h2>
     <img src="website_image_files/blog_images/welcome-to-invergordon-scottish-highlands-tourism-explore-invergordon-blog.webp" class="post-image" alt="The iconic Invergordon anchor and Welcome to Invergordon sign at the foot of the High Street, Scottish Highlands">
-    <p id="p4-body1">Whether you've just stepped off a cruise ship and you're standing on the quayside wondering where to start, you've pulled over on the NC500 and you're not quite sure what you'll find here, or you've lived in and around Invergordon your whole life and never quite seen the town the way a visitor would — this post is for you. Explore Invergordon was built for all three.</p>
-    <p id="p4-body2">Invergordon doesn't shout about itself. It never has. The town has a deep-water port that handles some of the largest cruise ships in the world. It has one of the most impressive outdoor mural trails in Scotland. It sits at the gateway to some of the finest Highland scenery, whisky distilleries, castles and wildlife in the country. And most people driving past on the A9 have no idea any of it is there. A local resident decided it was time to do something about that.</p>
-    <p id="p4-body3">That anchor and the Welcome to Invergordon sign in the photo above? You'll find it right at the foot of the High Street as you head into town from the Dalmore &amp; Alness direction — well worth stopping for a look and a photograph. It's full of local history, and for cruise passengers walking in from the port, it's one of the first landmarks you'll come across.</p>
-    <p id="p4-body4">This site is written by a local resident — someone who grew up knowing these streets, knows the people, and knows what's genuinely worth seeing. It isn't produced by a tourist board or a marketing agency. There are no press trips, no paid placements, no sponsored opinions. Just honest local knowledge.</p>
-    <p id="p4-body5">Our goal is simple: to be the most useful, honest and genuinely inspiring guide to Invergordon and the surrounding area that exists. The Mural Trail. The distilleries. The history. The walks. The food. The places worth the drive within an hour of here. The hidden gems that don't have a sign on the main road. And the warm welcome that this town offers every visitor who actually stops.</p>
-    <p id="p4-body6">The site is growing all the time — walking route maps, a visitor photo gallery where anyone can share their shots of the area, a five-language translator so that cruise passengers from across Europe feel genuinely at home, and a growing library of local knowledge across this blog.</p>
-    <p id="p4-body7">More content is coming throughout the 2026 season and beyond — more posts, more photography, more stories about the Highlands and the people who call this place home. If you're visiting: welcome. We hope you find everything you need here and that Invergordon surprises you. If you're local: this is your town. Help us tell its story.</p>
-    <p id="p4-body8">Invergordon has far more to offer than most people realise. We're here to make sure the world finds out.</p>
+    <p id="p4-body1">If you've ever stepped off a cruise ship here and headed straight for a coach to Inverness or Loch Ness, heading back to the ship without getting to see our town — this page is for you.</p>
+    <p id="p4-body2">If you've ever driven the NC500 and watched the signs for Invergordon flash past without stopping — this page is for you too.</p>
+    <p id="p4-body3">And if you already live here, work here, or keep coming back year after year because you know exactly what this town is quietly capable of — then you already know exactly why this page exists.</p>
+    <p id="p4-body4">Invergordon doesn't shout about itself. It never has. It sits on the stunning shore of one of the most beautiful firths in Scotland, welcoming hundreds of thousands of visitors every single year — many of whom pass through without ever realising just how much they almost missed. A local resident decided it was time to change that.</p>
+    <p id="p4-body5">Explore Invergordon was created by someone who lives here, raises a family here, and walks these streets every day. Not a tourist board. Not a council initiative. Just a local who fell in love with this town — its history, its people, its murals, its port, and the incredible landscapes that surround it — and who genuinely believes Invergordon deserves its place on the map.</p>
+    <p id="p4-body6">Our goal is simple: to be the most useful, honest, and inspiring guide to everything Invergordon has to offer. The hidden gems most visitors never find. The Mural Trail that stops people in their tracks. The history that runs deeper than most realise. The walks, the views, the food, and the warm welcome that's waiting for anyone who takes the time to stop and look around our unique town.</p>
+    <p id="p4-body7">The website has been carefully designed to be genuinely useful — whether you're planning your visit from home before you've even set sail, or you've just stepped ashore and you're figuring out how to make the most of your day. Interactive maps, a full five-language translator, photo galleries, local highlights, and plenty more still to come.</p>
+    <p id="p4-body8">That anchor and Welcome sign in the photo? You'll find it right at the foot of the High Street as you head into town from the Dalmore &amp; Alness direction — well worth a look and a photo. Consider it your first landmark when you come ashore, and this page your second.</p>
+    <p id="p4-body9">Go and have an explore — and if you like what you find, let us know using the contact form at the bottom of the homepage.</p>
+    <p id="p4-body10">This is just the beginning. There's a great deal more to come — new content, local stories, partnerships, promotions, and plenty more reasons to visit, stay a little longer, and come back again.</p>
+    <p id="p4-body11">If you're a visitor — welcome. We're genuinely glad you found us and we hope this becomes your go-to guide every time you head this way.</p>
+    <p id="p4-body12">If you're local — this is your town. Follow along, share us with someone heading to Invergordon, and if you have something to contribute — a photo, some local knowledge, or just a good tip — we'd love to hear from you.</p>
+    <p id="p4-body13">Invergordon has far more to offer than most people realise. We're here to make sure the world finds out.</p>
+    <div style="margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid rgba(255,255,255,0.06);">
+      <p id="p4-links-label" style="color:var(--gold-light); font-family:'Overpass Mono',monospace; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.6rem;">Be part of our journey:</p>
+      <p>📸 <a href="gallery.html#visitor" style="color:var(--gold);text-decoration:none;">Share your photos on our visitor gallery</a></p>
+      <p>📩 <a href="index.html" style="color:var(--gold);text-decoration:none;">Contact us via the homepage</a> (scroll to the bottom)</p>
+    </div>
     <div class="post-share" data-url="https://exploreinvergordon.scot/blog.html#post-about" data-title="Welcome to Explore Invergordon — Here's Why We Exist">
       <span class="post-share-label">Share this post</span>
       <div class="post-share-buttons">
@@ -545,14 +574,20 @@ var blogTranslations = {
     p3Body7: "The NC500 is one of the great things to do in the Highlands of Scotland. Drive it properly. Take the shore roads. Stop in the towns that don't have the big signs. Pull over when the sheep tell you to. And when you see the sign for Invergordon — don't drive past. You'll be glad you didn't.",
     p4Meta: "1 May 2026 &middot; About This Site",
     p4Title: "Welcome to Explore Invergordon — Here's Why We Exist",
-    p4Body1: "Whether you've just stepped off a cruise ship and you're standing on the quayside wondering where to start, you've pulled over on the NC500 and you're not quite sure what you'll find here, or you've lived in and around Invergordon your whole life and never quite seen the town the way a visitor would — this post is for you. Explore Invergordon was built for all three.",
-    p4Body2: "Invergordon doesn't shout about itself. It never has. The town has a deep-water port that handles some of the largest cruise ships in the world. It has one of the most impressive outdoor mural trails in Scotland. It sits at the gateway to some of the finest Highland scenery, whisky distilleries, castles and wildlife in the country. And most people driving past on the A9 have no idea any of it is there. A local resident decided it was time to do something about that.",
-    p4Body3: "That anchor and the Welcome to Invergordon sign in the photo above? You'll find it right at the foot of the High Street as you head into town from the Dalmore &amp; Alness direction — well worth stopping for a look and a photograph. It's full of local history, and for cruise passengers walking in from the port, it's one of the first landmarks you'll come across.",
-    p4Body4: "This site is written by a local resident — someone who grew up knowing these streets, knows the people, and knows what's genuinely worth seeing. It isn't produced by a tourist board or a marketing agency. There are no press trips, no paid placements, no sponsored opinions. Just honest local knowledge.",
-    p4Body5: "Our goal is simple: to be the most useful, honest and genuinely inspiring guide to Invergordon and the surrounding area that exists. The Mural Trail. The distilleries. The history. The walks. The food. The places worth the drive within an hour of here. The hidden gems that don't have a sign on the main road. And the warm welcome that this town offers every visitor who actually stops.",
-    p4Body6: "The site is growing all the time — walking route maps, a visitor photo gallery where anyone can share their shots of the area, a five-language translator so that cruise passengers from across Europe feel genuinely at home, and a growing library of local knowledge across this blog.",
-    p4Body7: "More content is coming throughout the 2026 season and beyond — more posts, more photography, more stories about the Highlands and the people who call this place home. If you're visiting: welcome. We hope you find everything you need here and that Invergordon surprises you. If you're local: this is your town. Help us tell its story.",
-    p4Body8: "Invergordon has far more to offer than most people realise. We're here to make sure the world finds out.",
+    p4Body1: "If you've ever stepped off a cruise ship here and headed straight for a coach to Inverness or Loch Ness, heading back to the ship without getting to see our town — this page is for you.",
+    p4Body2: "If you've ever driven the NC500 and watched the signs for Invergordon flash past without stopping — this page is for you too.",
+    p4Body3: "And if you already live here, work here, or keep coming back year after year because you know exactly what this town is quietly capable of — then you already know exactly why this page exists.",
+    p4Body4: "Invergordon doesn't shout about itself. It never has. It sits on the stunning shore of one of the most beautiful firths in Scotland, welcoming hundreds of thousands of visitors every single year — many of whom pass through without ever realising just how much they almost missed. A local resident decided it was time to change that.",
+    p4Body5: "Explore Invergordon was created by someone who lives here, raises a family here, and walks these streets every day. Not a tourist board. Not a council initiative. Just a local who fell in love with this town — its history, its people, its murals, its port, and the incredible landscapes that surround it — and who genuinely believes Invergordon deserves its place on the map.",
+    p4Body6: "Our goal is simple: to be the most useful, honest, and inspiring guide to everything Invergordon has to offer. The hidden gems most visitors never find. The Mural Trail that stops people in their tracks. The history that runs deeper than most realise. The walks, the views, the food, and the warm welcome that's waiting for anyone who takes the time to stop and look around our unique town.",
+    p4Body7: "The website has been carefully designed to be genuinely useful — whether you're planning your visit from home before you've even set sail, or you've just stepped ashore and you're figuring out how to make the most of your day. Interactive maps, a full five-language translator, photo galleries, local highlights, and plenty more still to come.",
+    p4Body8: "That anchor and Welcome sign in the photo? You'll find it right at the foot of the High Street as you head into town from the Dalmore &amp; Alness direction — well worth a look and a photo. Consider it your first landmark when you come ashore, and this page your second.",
+    p4Body9: "Go and have an explore — and if you like what you find, let us know using the contact form at the bottom of the homepage.",
+    p4Body10: "This is just the beginning. There's a great deal more to come — new content, local stories, partnerships, promotions, and plenty more reasons to visit, stay a little longer, and come back again.",
+    p4Body11: "If you're a visitor — welcome. We're genuinely glad you found us and we hope this becomes your go-to guide every time you head this way.",
+    p4Body12: "If you're local — this is your town. Follow along, share us with someone heading to Invergordon, and if you have something to contribute — a photo, some local knowledge, or just a good tip — we'd love to hear from you.",
+    p4Body13: "Invergordon has far more to offer than most people realise. We're here to make sure the world finds out.",
+    p4LinksLabel: "Be part of our journey:",
     p1Meta: "24 April 2026 &middot; Cruise Season",
     p1Title: "The Renaissance Calls In — First Drone Shots of the Season",
     p1Body1: "Today was one of those days that reminds you exactly why living in Invergordon is something special. The Fred. Olsen Renaissance was in port — and for the first time this season, the weather, the schedule, and a charged drone all lined up at the same moment.",
@@ -596,14 +631,20 @@ var blogTranslations = {
     p3Body7: "Der NC500 ist eine der großartigen Aktivitäten in den Highlands von Schottland. Fahren Sie ihn richtig. Nehmen Sie die Küstenstraßen. Halten Sie in den Städten an, die keine großen Schilder haben. Halten Sie an, wenn die Schafe es Ihnen sagen. Und wenn Sie das Schild für Invergordon sehen — fahren Sie nicht vorbei. Sie werden froh sein, dass Sie es nicht getan haben.",
     p4Meta: "1. Mai 2026 &middot; Über Diese Website",
     p4Title: "Willkommen bei Explore Invergordon — Warum wir existieren",
-    p4Body1: "Ob Sie gerade von einem Kreuzfahrtschiff gestiegen sind und am Kai stehen und sich fragen, wo Sie anfangen sollen, ob Sie auf dem NC500 angehalten haben und nicht ganz sicher sind, was Sie hier finden werden, oder ob Sie Ihr ganzes Leben in und um Invergordon gelebt haben und die Stadt noch nie mit den Augen eines Besuchers gesehen haben — dieser Beitrag ist für Sie. Explore Invergordon wurde für alle drei gebaut.",
-    p4Body2: "Invergordon schreit nicht über sich selbst. Das hat es nie getan. Die Stadt hat einen Tiefwasserhafen, der einige der größten Kreuzfahrtschiffe der Welt abfertigt. Sie hat einen der beeindruckendsten Freiluft-Mural-Trails in Schottland. Sie liegt am Tor zu einigen der schönsten Hochlandlandschaften, Whisky-Destillerien, Schlössern und Wildtieren im Land. Und die meisten Menschen, die auf der A9 vorbeifahren, haben keine Ahnung, dass es das alles gibt. Ein Einwohner beschloss, dass es Zeit war, etwas dagegen zu tun.",
-    p4Body3: "Dieser Anker und das Schild 'Welcome to Invergordon' auf dem obigen Foto? Sie finden es genau am Ende der High Street, wenn Sie von der Richtung Dalmore &amp; Alness in die Stadt fahren — es lohnt sich, anzuhalten, zu schauen und ein Foto zu machen. Es steckt voller lokaler Geschichte, und für Kreuzfahrtpassagiere, die vom Hafen hereinkommen, ist es eines der ersten Wahrzeichen, auf die Sie stoßen werden.",
-    p4Body4: "Diese Website wird von einem Einwohner geschrieben — jemandem, der in diesen Straßen aufgewachsen ist, die Menschen kennt und weiß, was wirklich sehenswert ist. Sie wird nicht von einer Tourismusbehörde oder einer Marketingagentur produziert. Es gibt keine Pressereisen, keine bezahlten Platzierungen, keine gesponserten Meinungen. Nur ehrliches lokales Wissen.",
-    p4Body5: "Unser Ziel ist einfach: der nützlichste, ehrlichste und wirklich inspirierendste Führer zu Invergordon und der umliegenden Region zu sein, der existiert. Der Mural Trail. Die Destillerien. Die Geschichte. Die Spazierwege. Das Essen. Die Orte, die eine Fahrt bis zu einer Stunde von hier lohnen. Die versteckten Schätze ohne Schild an der Hauptstraße. Und der herzliche Empfang, den diese Stadt jedem Besucher bietet, der wirklich anhält.",
-    p4Body6: "Die Website wächst ständig — Wanderkarten, eine Besucher-Fotogalerie, in der jeder seine Aufnahmen der Region teilen kann, ein Fünf-Sprachen-Übersetzer, damit sich Kreuzfahrtpassagiere aus ganz Europa wirklich zu Hause fühlen, und eine wachsende Wissensbibliothek in diesem Blog.",
-    p4Body7: "Im Laufe der Saison 2026 und darüber hinaus kommen weitere Inhalte — mehr Beiträge, mehr Fotografie, mehr Geschichten über die Highlands und die Menschen, die diesen Ort ihr Zuhause nennen. Wenn Sie zu Besuch sind: willkommen. Wir hoffen, dass Sie hier alles finden, was Sie brauchen, und dass Invergordon Sie überrascht. Wenn Sie Einheimischer sind: Das ist Ihre Stadt. Helfen Sie uns, ihre Geschichte zu erzählen.",
-    p4Body8: "Invergordon hat weit mehr zu bieten, als die meisten Menschen erkennen. Wir sind hier, um sicherzustellen, dass die Welt das herausfindet.",
+    p4Body1: "Wenn Sie jemals von einem Kreuzfahrtschiff hier gestiegen sind und direkt in einen Bus nach Inverness oder Loch Ness gestiegen sind, ohne unsere Stadt zu sehen — diese Seite ist für Sie.",
+    p4Body2: "Wenn Sie jemals den NC500 gefahren sind und die Schilder für Invergordon vorbeiziehen gesehen haben, ohne anzuhalten — diese Seite ist auch für Sie.",
+    p4Body3: "Und wenn Sie bereits hier leben, hier arbeiten oder immer wieder zurückkehren, weil Sie genau wissen, wozu diese Stadt fähig ist — dann wissen Sie bereits genau, warum diese Seite existiert.",
+    p4Body4: "Invergordon schreit nicht über sich selbst. Das hat es nie getan. Es liegt am atemberaubenden Ufer eines der schönsten Fjorde Schottlands und empfängt jedes Jahr Hunderttausende von Besuchern — viele von ihnen passieren, ohne je zu merken, wie viel sie fast verpasst hätten. Ein Einwohner beschloss, dass es Zeit war, das zu ändern.",
+    p4Body5: "Explore Invergordon wurde von jemandem gegründet, der hier lebt, hier eine Familie großzieht und jeden Tag durch diese Straßen geht. Keine Tourismusbehörde. Keine Kommunalinitiative. Nur ein Einwohner, der sich in diese Stadt verliebt hat — ihre Geschichte, ihre Menschen, ihre Wandmalereien, ihren Hafen und die unglaublichen Landschaften, die sie umgeben — und der aufrichtig glaubt, dass Invergordon seinen Platz auf der Karte verdient.",
+    p4Body6: "Unser Ziel ist einfach: der nützlichste, ehrlichste und inspirierendste Reiseführer zu allem zu sein, was Invergordon zu bieten hat. Die versteckten Schätze, die die meisten Besucher nie finden. Der Mural Trail, der Menschen zum Stehen bringt. Die Geschichte, die tiefer reicht, als die meisten ahnen. Die Spazierwege, die Aussichten, das Essen und der herzliche Empfang, der jeden erwartet, der sich die Zeit nimmt, anzuhalten.",
+    p4Body7: "Die Website wurde sorgfältig so gestaltet, dass sie wirklich nützlich ist — ob Sie Ihren Besuch von zu Hause aus planen, bevor Sie überhaupt ablegen, oder ob Sie gerade an Land gegangen sind und herausfinden möchten, wie Sie das Beste aus Ihrem Tag machen können. Interaktive Karten, ein vollständiger Fünf-Sprachen-Übersetzer, Fotogalerien, lokale Highlights und noch vieles mehr.",
+    p4Body8: "Dieser Anker und das Willkommensschild auf dem Foto? Sie finden es genau am Ende der High Street, wenn Sie von der Richtung Dalmore &amp; Alness in die Stadt fahren — auf jeden Fall einen Blick und ein Foto wert. Betrachten Sie es als Ihr erstes Wahrzeichen beim Anlanden und diese Seite als Ihr zweites.",
+    p4Body9: "Erkunden Sie die Stadt — und wenn Ihnen gefällt, was Sie finden, lassen Sie es uns über das Kontaktformular am unteren Ende der Startseite wissen.",
+    p4Body10: "Dies ist erst der Anfang. Es gibt noch vieles mehr — neue Inhalte, lokale Geschichten, Partnerschaften, Aktionen und noch mehr Gründe zu besuchen, länger zu bleiben und wiederzukommen.",
+    p4Body11: "Wenn Sie Besucher sind — willkommen. Wir freuen uns wirklich, dass Sie uns gefunden haben, und hoffen, dass dies Ihr ständiger Begleiter wird, jedes Mal, wenn Sie hierher kommen.",
+    p4Body12: "Wenn Sie Einwohner sind — das ist Ihre Stadt. Folgen Sie uns, teilen Sie uns mit jemandem, der nach Invergordon fährt, und wenn Sie etwas beizutragen haben — ein Foto, lokales Wissen oder einfach einen guten Tipp — würden wir uns freuen, von Ihnen zu hören.",
+    p4Body13: "Invergordon hat weit mehr zu bieten, als die meisten Menschen erkennen. Wir sind hier, um sicherzustellen, dass die Welt das herausfindet.",
+    p4LinksLabel: "Werden Sie Teil unserer Reise:",
     footerTagline: "EXPLORE INVERGORDON &middot; SCHOTTISCHES HOCHLAND",
     footerBack: "← Zurück zur Hauptseite",
     footerPrivacy: "Datenschutzrichtlinie"
@@ -636,14 +677,20 @@ var blogTranslations = {
     p3Body7: "Le NC500 est l’une des grandes choses à faire dans les Highlands d’Écosse. Conduisez-le correctement. Prenez les routes côtières. Arrêtez-vous dans les villes qui n’ont pas les grandes enseignes. Arrêtez-vous quand les moutons vous le disent. Et quand vous voyez le panneau pour Invergordon — ne passez pas. Vous serez content de ne pas l’avoir fait.",
     p4Meta: "1er Mai 2026 &middot; À propos de ce site",
     p4Title: "Bienvenue sur Explore Invergordon — Voici pourquoi nous existons",
-    p4Body1: "Que vous veniez de descendre d’un bateau de croisière et que vous vous teniez sur le quai en vous demandant par où commencer, que vous vous soyez arrêté sur le NC500 sans trop savoir ce que vous allez trouver ici, ou que vous ayez vécu toute votre vie à Invergordon et dans ses environs sans jamais vraiment voir la ville comme un visiteur — cet article est pour vous. Explore Invergordon a été conçu pour tous les trois.",
-    p4Body2: "Invergordon ne se vante pas d’elle-même. Elle ne l’a jamais fait. La ville possède un port en eau profonde qui accueille certains des plus grands paquebots au monde. Elle dispose de l’un des parcours de fresques en plein air les plus impressionnants d’Écosse. Elle se trouve à la porte de certains des plus beaux paysages des Highlands, distilleries de whisky, châteaux et faune du pays. Et la plupart des gens qui passent sur l’A9 n’ont aucune idée de tout cela. Un habitant a décidé qu’il était temps de changer les choses.",
-    p4Body3: "Cette ancre et le panneau ‘Welcome to Invergordon’ sur la photo ci-dessus ? Vous les trouverez exactement au bas de la High Street en entrant dans la ville depuis la direction de Dalmore &amp; Alness — ça vaut la peine de s’arrêter pour regarder et prendre une photo. C’est riche d’histoire locale, et pour les passagers de croisière qui entrent depuis le port, c’est l’un des premiers monuments que vous rencontrerez.",
-    p4Body4: "Ce site est écrit par un habitant — quelqu’un qui a grandi en connaissant ces rues, qui connaît les gens et sait ce qui mérite vraiment d’être vu. Il n’est pas produit par un office de tourisme ou une agence de marketing. Il n’y a pas de voyages de presse, pas de placements payants, pas d’opinions sponsorisées. Juste une connaissance locale honnête.",
-    p4Body5: "Notre objectif est simple : être le guide le plus utile, le plus honnête et le plus véritablement inspirant d’Invergordon et de la région environnante. Le Mural Trail. Les distilleries. L’histoire. Les promenades. La nourriture. Les endroits qui valent le déplacement à une heure d’ici. Les joyaux cachés sans panneau sur la route principale. Et l’accueil chaleureux que cette ville offre à chaque visiteur qui s’arrête vraiment.",
-    p4Body6: "Le site est en constante évolution — des cartes de promenades, une galerie de photos de visiteurs où chacun peut partager ses clichés de la région, un traducteur en cinq langues pour que les passagers de croisière de toute l’Europe se sentent vraiment chez eux, et une bibliothèque croissante de connaissances locales dans ce blog.",
-    p4Body7: "Plus de contenu arrive tout au long de la saison 2026 et au-delà — plus d’articles, plus de photographie, plus d’histoires sur les Highlands et les gens qui appellent cet endroit leur maison. Si vous êtes en visite : bienvenue. Nous espérons que vous trouverez ici tout ce dont vous avez besoin et qu’Invergordon vous surprendra. Si vous êtes local : c’est votre ville. Aidez-nous à raconter son histoire.",
-    p4Body8: "Invergordon a bien plus à offrir que la plupart des gens ne le réalisent. Nous sommes ici pour faire en sorte que le monde le découvre.",
+    p4Body1: "Si vous avez déjà débarqué d’un bateau de croisière ici et êtes monté directement dans un car vers Inverness ou le Loch Ness, en rentrant à bord sans avoir eu la chance de voir notre ville — cette page est pour vous.",
+    p4Body2: "Si vous avez déjà conduit le NC500 et regardé les panneaux pour Invergordon défiler sans vous arrêter — cette page est pour vous aussi.",
+    p4Body3: "Et si vous vivez ici, y travaillez, ou revenez année après année parce que vous savez exactement ce dont cette ville est secrètement capable — alors vous savez déjà exactement pourquoi cette page existe.",
+    p4Body4: "Invergordon ne se vante pas d’elle-même. Elle ne l’a jamais fait. Elle est située sur le rivage magnifique de l’un des plus beaux fjords d’Écosse, accueillant des centaines de milliers de visiteurs chaque année — dont beaucoup passent sans jamais réaliser ce qu’ils ont failli manquer. Un habitant a décidé qu’il était temps de changer cela.",
+    p4Body5: "Explore Invergordon a été créé par quelqu’un qui vit ici, y élève une famille et parcourt ces rues chaque jour. Pas un office de tourisme. Pas une initiative municipale. Juste un habitant qui est tombé amoureux de cette ville — son histoire, ses habitants, ses fresques, son port et les paysages incroyables qui l’entourent — et qui croit sincèrement qu’Invergordon mérite sa place sur la carte.",
+    p4Body6: "Notre objectif est simple : être le guide le plus utile, le plus honnête et le plus inspirant de tout ce qu’Invergordon a à offrir. Les trésors cachés que la plupart des visiteurs ne trouvent jamais. Le Mural Trail qui arrête les gens dans leurs pas. L’histoire qui va plus loin que la plupart ne le réalisent. Les promenades, les vues, la nourriture et l’accueil chaleureux qui attend quiconque prend le temps de s’arrêter.",
+    p4Body7: "Le site a été soigneusement conçu pour être véritablement utile — que vous planifiiez votre visite depuis chez vous avant même d’embarquer, ou que vous veniez de débarquer et cherchez à profiter au maximum de votre journée. Cartes interactives, traducteur complet en cinq langues, galeries photos, points forts locaux, et bien plus à venir.",
+    p4Body8: "Cette ancre et le panneau de bienvenue dans la photo ? Vous les trouverez au bas de la High Street en entrant dans la ville depuis la direction de Dalmore &amp; Alness — ça vaut vraiment le coup de s’arrêter pour regarder et prendre une photo. Considérez-le comme votre premier repère en débarquant, et cette page comme votre deuxième.",
+    p4Body9: "Allez explorer — et si vous aimez ce que vous trouvez, faites-le nous savoir via le formulaire de contact en bas de la page d’accueil.",
+    p4Body10: "Ce n’est que le début. Il y a encore beaucoup à venir — nouveaux contenus, histoires locales, partenariats, promotions et bien d’autres raisons de visiter, de rester un peu plus longtemps et de revenir.",
+    p4Body11: "Si vous êtes visiteur — bienvenue. Nous sommes vraiment heureux que vous nous ayez trouvés et espérons que cela deviendra votre guide incontournable chaque fois que vous venez par ici.",
+    p4Body12: "Si vous êtes local — c’est votre ville. Suivez-nous, partagez-nous avec quelqu’un qui se dirige vers Invergordon, et si vous avez quelque chose à contribuer — une photo, des connaissances locales, ou juste un bon conseil — nous serions ravis de vous entendre.",
+    p4Body13: "Invergordon a bien plus à offrir que la plupart des gens ne le réalisent. Nous sommes ici pour faire en sorte que le monde le découvre.",
+    p4LinksLabel: "Faites partie de notre aventure :",
     footerTagline: "EXPLORE INVERGORDON &middot; HIGHLANDS ÉCOSSAISES",
     footerBack: "← Retour au site principal",
     footerPrivacy: "Politique de Confidentialité"
@@ -676,14 +723,20 @@ var blogTranslations = {
     p3Body7: "The NC500 is one of the great things to do in the Highlands of Scotland. Drive it properly. Take the shore roads. Stop in the towns that don't have the big signs. Pull over when the sheep tell you to. And when you see the sign for Invergordon — don't drive past. You'll be glad you didn't.",
     p4Meta: "May 1, 2026 &middot; About This Site",
     p4Title: "Welcome to Explore Invergordon — Here's Why We Exist",
-    p4Body1: "Whether you've just stepped off a cruise ship and you're standing on the dock wondering where to start, you've pulled over on the NC500 and you're not quite sure what you'll find here, or you've lived in and around Invergordon your whole life and never quite seen the town the way a visitor would — this post is for you. Explore Invergordon was built for all three.",
-    p4Body2: "Invergordon doesn't shout about itself. It never has. The town has a deep-water port that handles some of the largest cruise ships in the world. It has one of the most impressive outdoor mural trails in Scotland. It sits at the gateway to some of the finest Highland scenery, whisky distilleries, castles and wildlife in the country. And most people driving past on the A9 have no idea any of it is there. A local resident decided it was time to do something about that.",
-    p4Body3: "That anchor and the Welcome to Invergordon sign in the photo above? You'll find it right at the foot of the High Street as you head into town from the Dalmore &amp; Alness direction — well worth stopping for a look and a photograph. It's full of local history, and for cruise passengers walking in from the port, it's one of the first landmarks you'll come across.",
-    p4Body4: "This site is written by a local resident — someone who grew up knowing these streets, knows the people, and knows what's genuinely worth seeing. It isn't produced by a tourist board or a marketing agency. There are no press trips, no paid placements, no sponsored opinions. Just honest local knowledge.",
-    p4Body5: "Our goal is simple: to be the most useful, honest and genuinely inspiring guide to Invergordon and the surrounding area out there. The Mural Trail. The distilleries. The history. The walks. The food. The places worth the drive within an hour of here. The hidden gems that don't have a sign on the main road. And the warm welcome that this town offers every visitor who actually stops.",
-    p4Body6: "The site is growing all the time — walking route maps, a visitor photo gallery where anyone can share their shots of the area, a five-language translator so that cruise passengers from across Europe feel genuinely at home, and a growing library of local knowledge across this blog.",
-    p4Body7: "More content is coming throughout the 2026 season and beyond — more posts, more photography, more stories about the Highlands and the people who call this place home. If you're visiting: welcome. We hope you find everything you need here and that Invergordon surprises you. If you're local: this is your town. Help us tell its story.",
-    p4Body8: "Invergordon has far more to offer than most people realize. We're here to make sure the world finds out.",
+    p4Body1: "If you've ever stepped off a cruise ship here and headed straight for a bus to Inverness or Loch Ness, heading back to the ship without getting to see our town — this page is for you.",
+    p4Body2: "If you've ever driven the NC500 and watched the signs for Invergordon flash past without stopping — this page is for you too.",
+    p4Body3: "And if you already live here, work here, or keep coming back year after year because you know exactly what this town is quietly capable of — then you already know exactly why this page exists.",
+    p4Body4: "Invergordon doesn't shout about itself. It never has. It sits on the stunning shore of one of the most beautiful sea lochs in Scotland, welcoming hundreds of thousands of visitors every single year — many of whom pass through without ever realizing just how much they almost missed. A local resident decided it was time to change that.",
+    p4Body5: "Explore Invergordon was created by someone who lives here, raises a family here, and walks these streets every day. Not a tourist board. Not a government initiative. Just a local who fell in love with this town — its history, its people, its murals, its port, and the incredible landscapes that surround it — and who genuinely believes Invergordon deserves its place on the map.",
+    p4Body6: "Our goal is simple: to be the most useful, honest, and inspiring guide to everything Invergordon has to offer. The hidden gems most visitors never find. The Mural Trail that stops people in their tracks. The history that runs deeper than most realize. The walks, the views, the food, and the warm welcome that's waiting for anyone who takes the time to stop and look around this unique town.",
+    p4Body7: "The website has been carefully designed to be genuinely useful — whether you're planning your visit from home before you've even set sail, or you've just come ashore and you're figuring out how to make the most of your day. Interactive maps, a full five-language translator, photo galleries, local highlights, and plenty more still to come.",
+    p4Body8: "That anchor and Welcome sign in the photo? You'll find it right at the foot of the High Street as you head into town from the Dalmore &amp; Alness direction — well worth stopping for a look and a photo. Consider it your first landmark when you come ashore, and this page your second.",
+    p4Body9: "Go and have an explore — and if you like what you find, let us know using the contact form at the bottom of the homepage.",
+    p4Body10: "This is just the beginning. There's a great deal more to come — new content, local stories, partnerships, promotions, and plenty more reasons to visit, stay a little longer, and come back again.",
+    p4Body11: "If you're a visitor — welcome. We're genuinely glad you found us and we hope this becomes your go-to guide every time you head this way.",
+    p4Body12: "If you're local — this is your town. Follow along, share us with someone heading to Invergordon, and if you have something to contribute — a photo, some local knowledge, or just a good tip — we'd love to hear from you.",
+    p4Body13: "Invergordon has far more to offer than most people realize. We're here to make sure the world finds out.",
+    p4LinksLabel: "Be part of our journey:",
     footerTagline: "EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS",
     footerBack: "← Back to main site",
     footerPrivacy: "Privacy Policy"
@@ -716,14 +769,20 @@ var blogTranslations = {
     p3Body7: "NC500 er en av de store tingene å gjøre i de skotske høylandene. Kjør den skikkelig. Ta kystruten. Stopp i byene som ikke har de store skiltene. Stopp når sauene forteller deg det. Og når du ser skiltet for Invergordon — ikke kjør forbi. Du vil være glad for at du ikke gjorde det.",
     p4Meta: "1. mai 2026 &middot; Om denne nettsiden",
     p4Title: "Velkommen til Explore Invergordon — Her er grunnen til at vi finnes",
-    p4Body1: "Enten du nettopp har gått av et cruiseskip og står på kaia og lurer på hvor du skal begynne, har stoppet på NC500 og ikke er helt sikker på hva du vil finne her, eller har bodd i og rundt Invergordon hele livet uten å helt ha sett byen slik en besøkende ville gjort det — dette innlegget er for deg. Explore Invergordon ble bygget for alle tre.",
-    p4Body2: "Invergordon skryter ikke av seg selv. Det har det aldri gjort. Byen har en dypvannshavn som håndterer noen av verdens største cruiseskip. Den har en av de mest imponerende utendørs muraltrailene i Skottland. Den ligger ved porten til noe av det fineste Høylandslandskapet, whisky-destilleriene, slottene og dyrelivet i landet. Og de fleste som kjører forbi på A9 har ingen anelse om at noe av dette er der. En innbygger bestemte seg for at det var på tide å gjøre noe med det.",
-    p4Body3: "Det ankeret og 'Welcome to Invergordon'-skiltet på bildet ovenfor? Du finner det rett ved foten av High Street når du kjører inn til byen fra Dalmore &amp; Alness-retningen — vel verdt å stoppe for å se og ta et bilde. Det er fullt av lokal historie, og for cruisepassasjerer som går inn fra havnen, er det et av de første landemerkene du vil komme over.",
-    p4Body4: "Dette nettstedet skrives av en innbygger — noen som vokste opp med å kjenne disse gatene, kjenner folket, og vet hva som faktisk er verdt å se. Det produseres ikke av et turistkontor eller et markedsføringsbyrå. Det er ingen pressereiser, ingen betalte plasseringer, ingen sponsede meninger. Bare ærlig lokal kunnskap.",
-    p4Body5: "Målet vårt er enkelt: å være den mest nyttige, ærlige og genuint inspirerende guiden til Invergordon og det omkringliggende området som finnes. Mural Trail. Destilleriene. Historien. Turene. Maten. Stedene som er verdt turen innen en time herfra. De skjulte perlene uten skilt på hovedveien. Og den varme velkomsten denne byen tilbyr enhver besøkende som faktisk stopper.",
-    p4Body6: "Nettstedet vokser hele tiden — vandrerutekart, et besøkende fotogalleri der alle kan dele bildene sine fra området, en femsproket oversetter slik at cruisepassasjerer fra hele Europa føler seg genuint hjemme, og et voksende bibliotek av lokal kunnskap i denne bloggen.",
-    p4Body7: "Mer innhold kommer gjennom 2026-sesongen og videre — flere innlegg, mer fotografi, flere historier om Høylandet og menneskene som kaller dette stedet hjem. Hvis du besøker: velkommen. Vi håper du finner alt du trenger her og at Invergordon overrasker deg. Hvis du er lokal: dette er din by. Hjelp oss å fortelle dens historie.",
-    p4Body8: "Invergordon har langt mer å tilby enn de fleste mennesker innser. Vi er her for å sørge for at verden finner ut av det.",
+    p4Body1: "Har du noen gang gått av et cruiseskip her og gått rett om bord i en buss til Inverness eller Loch Ness, og vendt tilbake til skipet uten å ha sett byen vår — denne siden er for deg.",
+    p4Body2: "Har du noen gang kjørt NC500 og sett skiltene for Invergordon fare forbi uten å stoppe — denne siden er for deg også.",
+    p4Body3: "Og hvis du allerede bor her, jobber her, eller stadig vekk kommer tilbake fordi du vet nøyaktig hva denne byen er i stand til — da vet du allerede nøyaktig hvorfor denne siden finnes.",
+    p4Body4: "Invergordon skryter ikke av seg selv. Det har det aldri gjort. Den ligger ved den fantastiske bredden av en av de vakreste fjordene i Skottland og ønsker hundretusenvis av besøkende velkommen hvert eneste år — mange av dem passerer uten noen gang å innse hvor mye de nesten gikk glipp av. En innbygger bestemte seg for at det var på tide å endre det.",
+    p4Body5: "Explore Invergordon ble opprettet av noen som bor her, oppdrar en familie her og går gjennom disse gatene hver dag. Ikke et turistkontor. Ikke et kommunalt initiativ. Bare en innbygger som forelsket seg i denne byen — dens historie, dens mennesker, dens veggmalerier, dens havn og de utrolige landskapene som omgir den — og som genuint tror at Invergordon fortjener sin plass på kartet.",
+    p4Body6: "Målet vårt er enkelt: å være den mest nyttige, ærlige og inspirerende guiden til alt Invergordon har å tilby. De skjulte perlene de fleste besøkende aldri finner. Mural Trail som får folk til å stoppe opp. Historien som stikker dypere enn de fleste aner. Turene, utsiktene, maten og den varme velkomsten som venter på enhver som tar seg tid til å stoppe og se seg rundt.",
+    p4Body7: "Nettstedet er nøye utformet for å være genuint nyttig — enten du planlegger besøket ditt hjemmefra før du har gått om bord, eller du nettopp har gått i land og prøver å finne ut hvordan du kan få mest mulig ut av dagen. Interaktive kart, en fullstendig femsproket oversetter, fotogallerier, lokale høydepunkter og mye mer som kommer.",
+    p4Body8: "Det ankeret og velkomstskiltene på bildet? Du finner dem rett ved foten av High Street når du kjører inn til byen fra Dalmore &amp; Alness-retningen — definitivt verdt et stopp for en titt og et bilde. Betrakt det som ditt første landemerke når du kommer i land, og denne siden som ditt andre.",
+    p4Body9: "Gå og utforsk — og hvis du liker det du finner, gi oss beskjed via kontaktskjemaet nederst på hjemmesiden.",
+    p4Body10: "Dette er bare begynnelsen. Det er mye mer som kommer — nytt innhold, lokale historier, partnerskap, kampanjer og mange flere grunner til å besøke, bli litt lenger og komme tilbake.",
+    p4Body11: "Hvis du er besøkende — velkommen. Vi er genuint glade for at du fant oss og håper dette blir din foretrukne guide hver gang du er på vei hit.",
+    p4Body12: "Hvis du er lokal — dette er din by. Følg med, del oss med noen som er på vei til Invergordon, og hvis du har noe å bidra med — et bilde, lokal kunnskap, eller bare et godt tips — vil vi gjerne høre fra deg.",
+    p4Body13: "Invergordon har langt mer å tilby enn de fleste mennesker innser. Vi er her for å sørge for at verden finner ut av det.",
+    p4LinksLabel: "Bli en del av reisen vår:",
     footerTagline: "EXPLORE INVERGORDON &middot; SKOTSKE HØYLANDER",
     footerBack: "← Tilbake til hovedsiden",
     footerPrivacy: "Personvernregler"
@@ -760,6 +819,12 @@ function setLang(lang) {
   set('p4-body6', t.p4Body6);
   set('p4-body7', t.p4Body7);
   set('p4-body8', t.p4Body8);
+  set('p4-body9', t.p4Body9);
+  set('p4-body10', t.p4Body10);
+  set('p4-body11', t.p4Body11);
+  set('p4-body12', t.p4Body12);
+  set('p4-body13', t.p4Body13);
+  set('p4-links-label', t.p4LinksLabel);
   set('p3-meta', t.p3Meta);
   set('p3-title', t.p3Title);
   set('p3-body1', t.p3Body1);
