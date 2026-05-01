@@ -50,6 +50,9 @@
     --text-muted: #7a90b8;
     --saltire: #1d4fa8;
     --saltire-deep: #0f2d6e;
+    --spring-green: #56c27b;
+    --spring-yellow: #e8d44a;
+    --spring-lime: #8dc440;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -150,7 +153,7 @@
     font-size: clamp(1.1rem, 3vw, 1.5rem);
     font-weight: 300;
     font-style: italic;
-    color: var(--mist);
+    color: var(--heather-light);
     margin: 1.5rem 0 2.5rem;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.7s;
@@ -256,6 +259,7 @@
     font-size: 1.05rem;
     font-style: italic;
     letter-spacing: 0.03em;
+    color: var(--heather-light);
   }
 
   .walk-banner strong {
@@ -321,8 +325,8 @@
   }
 
   .welcome-card {
-    background: rgba(29,79,168,0.12);
-    border: 1px solid rgba(46,106,173,0.25);
+    background: rgba(86,194,123,0.07);
+    border: 1px solid rgba(86,194,123,0.25);
     padding: 1.75rem;
     position: relative;
     overflow: hidden;
@@ -334,11 +338,11 @@
     position: absolute;
     top: 0; left: 0;
     width: 3px; height: 100%;
-    background: linear-gradient(to bottom, var(--gold), var(--saltire));
+    background: linear-gradient(to bottom, var(--spring-green), var(--spring-yellow));
   }
 
   .welcome-card:hover {
-    background: rgba(29,79,168,0.22);
+    background: rgba(86,194,123,0.15);
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
@@ -353,7 +357,7 @@
   .card-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
-    color: var(--gold-light);
+    color: var(--spring-green);
     margin-bottom: 0.5rem;
   }
 
@@ -1001,8 +1005,8 @@
   }
 
   .museum-card {
-    background: linear-gradient(135deg, rgba(29,79,168,0.15), rgba(107,74,126,0.12));
-    border: 1px solid rgba(29,79,168,0.25);
+    background: linear-gradient(135deg, rgba(86,194,123,0.10), rgba(232,212,74,0.07));
+    border: 1px solid rgba(86,194,123,0.28);
     padding: 1.25rem;
     position: relative;
     overflow: hidden;
@@ -1014,13 +1018,13 @@
     top: -50%; right: -20%;
     width: 300px; height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(29,79,168,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(86,194,123,0.10) 0%, transparent 70%);
   }
 
   .museum-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
-    color: var(--cream);
+    color: var(--spring-green);
     margin-bottom: 1rem;
   }
 
@@ -1185,7 +1189,7 @@
     font-family: 'Overpass Mono', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.12em;
-    color: var(--text-muted);
+    color: var(--heather-light);
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -1844,7 +1848,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <span class="nav-follow-label">Follow us here:</span>
+    <span class="nav-follow-label">Check Our Socials:</span>
     <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook"><svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
     <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad-i" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad-i)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
   </div>
@@ -1910,7 +1914,7 @@
       Explore
       <em>Invergordon</em>
     </h1>
-    <p class="hero-subtitle" id="hero-sub">Your guide to Invergordon, Scottish Highlands — just a 5-minute walk from your cruise ship</p>
+    <p class="hero-subtitle" id="hero-sub">Your guide to Invergordon, Scottish Highlands and surrounding area</p>
     <a href="javascript:void(0)" onclick="beginVisit()" class="hero-cta">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       <span id="hero-cta-text">Begin Here</span>
@@ -2226,25 +2230,25 @@
       <span class="card-icon">🎨</span>
       <div class="card-title" id="card1-title">The Mural Trail</div>
       <p class="card-text" id="card1-text">11 extraordinary large-scale murals tell the story of Invergordon's remarkable history. Allow 60–90 minutes. Starts at the railway station, ends at the museum.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card1-cta">Explore ↓</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card1-cta">Explore ↓</p>
     </a>
     <a href="javascript:void(0)" onclick="document.querySelector('footer').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🏔️</span>
       <div class="card-title" id="card2-title">Highland Scenery</div>
       <p class="card-text" id="card2-text">Mountains, sea lochs, ancient forests and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes in Europe.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card2-cta">Discover ↓</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card2-cta">Discover ↓</p>
     </a>
     <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🍽️</span>
       <div class="card-title" id="card3-title">Eat & Drink Locally</div>
       <p class="card-text" id="card3-text">From a legendary full Scottish breakfast to award-winning Indian cuisine, the High Street offers genuine local flavours. No tourist traps — just good food.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card3-cta">See the Guide ↓</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card3-cta">See the Guide ↓</p>
     </a>
     <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🛍️</span>
       <div class="card-title" id="card4-title">Shop Local</div>
       <p class="card-text" id="card4-text">Scottish gifts, handmade crafts, tartan and local art. Support real independent businesses, not chain stores. Everything is a short stroll from the port.</p>
-      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-top:0.75rem;text-transform:uppercase;" id="card4-cta">Browse ↓</p>
+      <p style="font-family:'Overpass Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--spring-yellow);margin-top:0.75rem;text-transform:uppercase;" id="card4-cta">Browse ↓</p>
     </a>
   </div>
 </section>
@@ -2749,9 +2753,9 @@
 <!-- BUSINESSES -->
 <div class="businesses-section" id="town">
   <div style="display:flex; justify-content:center; margin-bottom: 1rem;">
-    <div class="trail-stat" style="max-width:600px; width:100%;">
-      <div class="stat-number" style="min-width:5rem;">In Town</div>
-      <div class="stat-label" style="color:var(--heather-light);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
+    <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.08); border:1px solid rgba(86,194,123,0.28); border-left:3px solid var(--spring-green);">
+      <div class="stat-number" style="min-width:5rem; color:var(--spring-green);">In Town</div>
+      <div class="stat-label" style="color:var(--spring-yellow);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
     </div>
   </div>
   <div class="biz-inner">
@@ -3515,7 +3519,7 @@ const translations = {
     contactLabelId: "Get in Touch",
     contactTitleId: "We'd Love to Hear From You",
     contactSubtitleId: "Whether you're planning your first visit, a local business wanting to be listed, or simply want to share your Highland memories — drop us a message below.",
-    heroSub: "Gateway to the Highlands — just a 5-minute walk from your ship",
+    heroSub: "Your guide to Invergordon, Scottish Highlands and surrounding area",
     heroCta: "Begin Here",
     walkBanner: "🚶 <strong>Town Centre is just a 5-minute walk</strong> from the cruise terminal — no bus needed, no taxis required",
     welcomeLabel: "Welcome Aboard",
@@ -3569,7 +3573,7 @@ const translations = {
   },
   de: {
     heroTag: "Port of Cromarty Firth · Schottisches Hochland",
-    heroSub: "Tor zu den Highlands — nur 5 Minuten zu Fuß von Ihrem Schiff",
+    heroSub: "Ihr Reiseführer für Invergordon, Schottisches Hochland und Umgebung",
     heroCta: "Hier Beginnen",
     walkBanner: "🚶 <strong>Das Stadtzentrum ist nur 5 Minuten zu Fuß</strong> vom Kreuzfahrtterminal entfernt — kein Bus, kein Taxi nötig",
     welcomeLabel: "Willkommen an Bord",
@@ -3657,7 +3661,7 @@ const translations = {
   },
   fr: {
     heroTag: "Port of Cromarty Firth · Hautes-Terres d'Écosse",
-    heroSub: "La porte des Highlands — à seulement 5 minutes à pied de votre navire",
+    heroSub: "Votre guide pour Invergordon, les Highlands écossaises et la région environnante",
     heroCta: "Commencer Ici",
     walkBanner: "🚶 <strong>Le centre-ville est à seulement 5 minutes à pied</strong> du terminal de croisière — pas besoin de bus ni de taxi",
     welcomeLabel: "Bienvenue à bord",
@@ -3745,7 +3749,7 @@ const translations = {
   },
   us: {
     heroTag: "Port of Cromarty Firth · Scottish Highlands",
-    heroSub: "Gateway to the Scottish Highlands — just a 5-minute walk from your ship",
+    heroSub: "Your guide to Invergordon, Scottish Highlands and surrounding area",
     heroCta: "Begin Here",
     walkBanner: "🚶 <strong>Downtown is just a 5-minute walk</strong> from the cruise terminal — no shuttle, no taxi, no charge",
     welcomeLabel: "Welcome Ashore",
@@ -3833,7 +3837,7 @@ const translations = {
   },
   no: {
     heroTag: "Port of Cromarty Firth · Skotske Høylandet",
-    heroSub: "Porten til Høylandet — bare 5 minutters gange fra skipet ditt",
+    heroSub: "Din guide til Invergordon, Skotske Høylander og omliggende område",
     heroCta: "Begynn Her",
     walkBanner: "🚶 <strong>Bysentrum er bare 5 minutters gange</strong> fra cruiseterminalen — ingen buss eller taxi nødvendig",
     welcomeLabel: "Velkommen om bord",
