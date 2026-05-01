@@ -298,6 +298,59 @@
 
   .post p:last-of-type { margin-bottom: 0; }
 
+  /* ── SHARE BUTTONS ── */
+  .post-share {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .post-share-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid rgba(107,74,126,0.35);
+    border-radius: 20px;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    line-height: 1;
+  }
+
+  .share-btn:hover {
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.5);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .share-btn.copied {
+    color: var(--heather-light);
+    border-color: var(--heather-light);
+  }
+
   /* ── FOOTER ── */
   footer {
     background: var(--highland-deep);
@@ -356,7 +409,7 @@
     <li><a href="index.html" id="blog-nav-home">Home</a></li>
     <li><a href="blog.html" class="active" id="blog-nav-blog">Blog</a></li>
     <li><a href="gallery.html" id="blog-nav-gallery">Gallery</a></li>
-    <li><a href="work-with-me.html">Work With Me</a></li>
+    <li><a href="work-with-me.html" id="blog-nav-wwm">Work With Me</a></li>
   </ul>
 </nav>
 
@@ -380,7 +433,7 @@
   -->
 
   <!-- POST: 30 April 2026 — NC500 -->
-  <article class="post">
+  <article class="post" id="post-nc500">
     <p class="post-meta" id="p3-meta">30 April 2026 &middot; NC500 &amp; Scottish Highlands</p>
     <h2 id="p3-title">The NC500: It's a World-Class Drive — But There's No Need to Race</h2>
     <img src="website_image_files/blog_images/Highland_Sheep_NC500_Scotland_ExploreInvergordon.webp" class="post-image" alt="Highland sheep walking along a single-track road in the Scottish Highlands on the NC500 route">
@@ -391,20 +444,38 @@
     <p id="p3-body5"><strong>What You'll Find When You Arrive</strong><br>The Invergordon Mural Trail is one of the largest collections of outdoor murals in Scotland — dozens of large-scale artworks covering buildings across the town, each one telling a story of the Highlands, its people, its history and its character. Free, outdoors, and guaranteed to make you reach for your camera. The Dalmore Distillery, one of the most recognised single malt Scotch whisky brands in the world, sits right on the shoreline. The Invergordon Museum tells the story of a town that has witnessed a remarkable slice of Scottish history — from a major naval base in two World Wars to one of Europe's most significant deep-water cruise ports. And out on the Firth, dolphins and seals are regular visitors. Find a quiet spot on the shore and give it a few minutes.</p>
     <p id="p3-body6"><strong>The Practical Stuff — Because This Is What NC500 Drivers Actually Search For</strong><br>Public toilets — yes, we have them. Fuel — available in town. Supermarkets — Co-op, Farmfoods and Morrisons are all here if you need to restock the snacks and supplies for the rest of the route. Takeaways, cafés and hot food — plenty of options for a proper meal or a coffee before heading back onto the road. Parking is easy too — whether you're arriving in a car or a motorhome, you'll find space without the stress. Invergordon is a working town, not just a tourist stop, and that means it has everything you actually need.</p>
     <p id="p3-body7">The NC500 is one of the great things to do in the Highlands of Scotland. Drive it properly. Take the shore roads. Stop in the towns that don't have the big signs. Pull over when the sheep tell you to. And when you see the sign for Invergordon — don't drive past. You'll be glad you didn't.</p>
+    <div class="post-share" data-url="https://exploreinvergordon.scot/blog.html#post-nc500" data-title="The NC500: It's a World-Class Drive — But There's No Need to Race">
+      <span class="post-share-label">Share this post</span>
+      <div class="post-share-buttons">
+        <a href="#" class="share-btn" onclick="shareFb(this);return false;" title="Share on Facebook"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>
+        <a href="#" class="share-btn" onclick="shareX(this);return false;" title="Share on X / Twitter"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X / Twitter</a>
+        <a href="#" class="share-btn" onclick="shareWa(this);return false;" title="Share on WhatsApp"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <button class="share-btn" onclick="copyPostLink(this)" title="Copy link to this post"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copy Link</button>
+      </div>
+    </div>
   </article>
 
   <!-- POST: 24 April 2026 -->
-  <article class="post">
+  <article class="post" id="post-renaissance">
     <p class="post-meta" id="p1-meta">24 April 2026 &middot; Cruise Season</p>
     <h2 id="p1-title">The Renaissance Calls In — First Drone Shots of the Season</h2>
     <img src="website_image_files/blog_images/renaissance-invergordon-april-2026.jpeg" class="post-image" alt="The Fred. Olsen Renaissance docked at Invergordon with cherry blossom in the foreground, April 2026">
     <p id="p1-body1">Today was one of those days that reminds you exactly why living in Invergordon is something special. The Fred. Olsen Renaissance was in port — and for the first time this season, the weather, the schedule, and a charged drone all lined up at the same moment.</p>
     <p id="p1-body2">Getting airborne over the Cromarty Firth with a ship of that scale in the frame is a different thing entirely. The contrast between the quiet rooftops of the town, the cherry blossom in full bloom, and the Renaissance sitting at the quayside is the kind of image that tells the whole story of Invergordon without needing a caption.</p>
     <p id="p1-body3">More shots to follow as the season gets underway. The 2026 cruise schedule brings some big ships to the Firth this year — plenty of opportunities ahead.</p>
+    <div class="post-share" data-url="https://exploreinvergordon.scot/blog.html#post-renaissance" data-title="The Renaissance Calls In — First Drone Shots of the Season">
+      <span class="post-share-label">Share this post</span>
+      <div class="post-share-buttons">
+        <a href="#" class="share-btn" onclick="shareFb(this);return false;" title="Share on Facebook"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>
+        <a href="#" class="share-btn" onclick="shareX(this);return false;" title="Share on X / Twitter"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X / Twitter</a>
+        <a href="#" class="share-btn" onclick="shareWa(this);return false;" title="Share on WhatsApp"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <button class="share-btn" onclick="copyPostLink(this)" title="Copy link to this post"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copy Link</button>
+      </div>
+    </div>
   </article>
 
   <!-- POST: April 2026 — Welcome -->
-  <article class="post">
+  <article class="post" id="post-welcome">
     <p class="post-meta" id="p2-meta">April 2026 &middot; Welcome</p>
     <h2 id="p2-title">Welcome to Explore Invergordon</h2>
     <img src="website_image_files/blog_images/welcome-invergordon.jpeg" class="post-image" alt="Two cruise ships and an oil rig in the Cromarty Firth, Invergordon, Scottish Highlands">
@@ -412,6 +483,15 @@
     <p id="p2-body2">This blog is written by a local. The aim is simple: to share what makes this town worth exploring, beyond the obvious. The Mural Trail, the distilleries, the history, the food, the people. The things that don't make it onto the generic tourist leaflets.</p>
     <p id="p2-body3">If you've arrived by ship and you're wondering what to do with your day ashore — start here. If you're planning a visit by road — also start here. And if you already know Invergordon and want to keep up with what's happening in and around the town, this is the place to check back.</p>
     <p id="p2-body4">More posts coming regularly throughout the season.</p>
+    <div class="post-share" data-url="https://exploreinvergordon.scot/blog.html#post-welcome" data-title="Welcome to Explore Invergordon">
+      <span class="post-share-label">Share this post</span>
+      <div class="post-share-buttons">
+        <a href="#" class="share-btn" onclick="shareFb(this);return false;" title="Share on Facebook"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>
+        <a href="#" class="share-btn" onclick="shareX(this);return false;" title="Share on X / Twitter"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.27 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X / Twitter</a>
+        <a href="#" class="share-btn" onclick="shareWa(this);return false;" title="Share on WhatsApp"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <button class="share-btn" onclick="copyPostLink(this)" title="Copy link to this post"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copy Link</button>
+      </div>
+    </div>
   </article>
 
 </div>
@@ -426,7 +506,8 @@
 <script>
 var blogTranslations = {
   en: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWorkWithMe: "Work With Me",
+    shareLabel: "Share this post",
     heroLabel: "From the Highlands",
     heroTitle: "Stories from <em>Invergordon</em>",
     heroDesc: "Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.",
@@ -455,7 +536,8 @@ var blogTranslations = {
     footerPrivacy: "Privacy Policy"
   },
   de: {
-    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie",
+    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie", navWorkWithMe: "Mit Mir Arbeiten",
+    shareLabel: "Diesen Beitrag teilen",
     heroLabel: "Aus dem Hochland",
     heroTitle: "Geschichten aus <em>Invergordon</em>",
     heroDesc: "Lokales Wissen, Geschichte, Neuigkeiten und Fotografie aus dem Herzen des schottischen Hochlands. Geschrieben von einem Einheimischen.",
@@ -484,7 +566,8 @@ var blogTranslations = {
     footerPrivacy: "Datenschutzrichtlinie"
   },
   fr: {
-    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie",
+    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie", navWorkWithMe: "Travailler Avec Moi",
+    shareLabel: "Partager cet article",
     heroLabel: "Des Highlands",
     heroTitle: "Histoires d’<em>Invergordon</em>",
     heroDesc: "Savoir local, histoire, actualités et photographie depuis le cœur des Highlands écossaises. Écrit par un local.",
@@ -513,7 +596,8 @@ var blogTranslations = {
     footerPrivacy: "Politique de Confidentialité"
   },
   us: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery",
+    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWorkWithMe: "Work With Me",
+    shareLabel: "Share this post",
     heroLabel: "From the Highlands",
     heroTitle: "Stories from <em>Invergordon</em>",
     heroDesc: "Local knowledge, history, updates and photography from the heart of the Scottish Highlands. Written by a local.",
@@ -542,7 +626,8 @@ var blogTranslations = {
     footerPrivacy: "Privacy Policy"
   },
   no: {
-    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri",
+    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri", navWorkWithMe: "Jobb Med Meg",
+    shareLabel: "Del dette innlegget",
     heroLabel: "Fra høylandet",
     heroTitle: "Historier fra <em>Invergordon</em>",
     heroDesc: "Lokal kunnskap, historie, oppdateringer og fotografi fra hjertet av de skotske høylandene. Skrevet av en innbygger.",
@@ -587,6 +672,8 @@ function setLang(lang) {
   set('blog-nav-home', t.navHome);
   set('blog-nav-blog', t.navBlog);
   set('blog-nav-gallery', t.navGallery);
+  set('blog-nav-wwm', t.navWorkWithMe);
+  document.querySelectorAll('.post-share-label').forEach(function(el) { el.textContent = t.shareLabel; });
   set('blog-hero-label', t.heroLabel);
   set('blog-hero-title', t.heroTitle);
   set('blog-hero-desc', t.heroDesc);
@@ -613,6 +700,43 @@ function setLang(lang) {
   set('blog-footer-tagline', t.footerTagline);
   set('blog-footer-back', t.footerBack);
   set('blog-footer-privacy', t.footerPrivacy);
+}
+
+function getShareData(btn) {
+  var c = btn.closest('.post-share');
+  return { url: c.getAttribute('data-url'), title: c.getAttribute('data-title') };
+}
+function shareFb(btn) {
+  var d = getShareData(btn);
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(d.url), '_blank', 'width=620,height=420');
+}
+function shareX(btn) {
+  var d = getShareData(btn);
+  window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(d.url) + '&text=' + encodeURIComponent(d.title), '_blank', 'width=620,height=420');
+}
+function shareWa(btn) {
+  var d = getShareData(btn);
+  window.open('https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.url), '_blank');
+}
+function copyPostLink(btn) {
+  var d = getShareData(btn);
+  var orig = btn.innerHTML;
+  function done() {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+  }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(d.url).then(done);
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = d.url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    done();
+  }
 }
 </script>
 
