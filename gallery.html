@@ -711,19 +711,19 @@
     font-size: 0.55rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    background: rgba(8,15,30,0.85);
-    border: 1px solid rgba(107,74,126,0.45);
+    color: #ffffff;
+    border: none;
     border-radius: 20px;
     padding: 0.28rem 0.65rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: opacity 0.2s ease;
     white-space: nowrap;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
   }
-  .gal-share-btn:hover { color: var(--gold); border-color: rgba(201,168,76,0.5); background: rgba(8,15,30,0.95); }
-  .gal-share-btn.copied { color: var(--heather-light); border-color: var(--heather-light); }
+  .gal-share-btn:hover { opacity: 0.85; }
+  .gal-share-btn-x { background: #000000; color: #ffffff; }
+  .gal-share-btn-wa { background: #25D366; color: #ffffff; }
+  .gal-share-btn-copy { background: var(--heather); color: var(--cream); }
+  .gal-share-btn.copied { opacity: 0.7; }
 
   /* ── LIGHTBOX ── */
   #gal-lightbox {
@@ -1667,12 +1667,12 @@ document.addEventListener('DOMContentLoaded', function() {
     share.setAttribute('data-url', shareUrl);
     share.setAttribute('data-title', shareTitle);
     if (isMobile) {
-      share.innerHTML = '<button class="gal-share-btn gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">Share &#8599;</button>';
+      share.innerHTML = '<button class="gal-share-btn gal-share-btn-copy gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">Share &#8599;</button>';
     } else {
       share.innerHTML =
-        '<button class="gal-share-btn" onclick="galShareX(this);event.stopPropagation()">&#x1D54F; Share</button>' +
-        '<button class="gal-share-btn" onclick="galShareWa(this);event.stopPropagation()">WhatsApp</button>' +
-        '<button class="gal-share-btn gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">&#128279; Copy</button>';
+        '<button class="gal-share-btn gal-share-btn-x" onclick="galShareX(this);event.stopPropagation()">&#x1D54F; Share</button>' +
+        '<button class="gal-share-btn gal-share-btn-wa" onclick="galShareWa(this);event.stopPropagation()">WhatsApp</button>' +
+        '<button class="gal-share-btn gal-share-btn-copy gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">&#128279; Copy</button>';
     }
     item.appendChild(share);
 

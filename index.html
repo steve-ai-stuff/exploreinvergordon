@@ -345,13 +345,17 @@
     display: block;
     text-align: center;
     margin-top: 1rem;
-    padding: 0.65rem 1.25rem;
-    background: var(--heather);
-    color: var(--cream);
+    padding: 0.65rem 1.5rem;
+    background: rgba(201,168,76,0.10);
+    color: var(--gold);
+    border: 1.5px solid rgba(201,168,76,0.65);
+    border-radius: 50px;
     font-family: 'Overpass Mono', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(201,168,76,0.20), 0 2px 8px rgba(0,0,0,0.30);
+    cursor: default;
   }
 
   .card-icon {
@@ -1098,7 +1102,8 @@
   .cruise-section {
     background: rgba(8,15,30,0.95);
     border-bottom: 2px solid var(--gold);
-    padding: 1rem 1.5rem 2.5rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2.5rem;
   }
 
   .cruise-inner {
@@ -2224,8 +2229,8 @@
   <!-- PHOTO UPLOAD TEASER -->
   <div class="photo-upload-teaser">
     <div class="photo-upload-teaser-icon">📸</div>
-    <h3 id="upload-title">Did you visit Invergordon today?</h3>
-    <p id="upload-text">Upload your favourite photo from your visit and we'll feature it in our Visitor Gallery — shared with travellers from around the world.</p>
+    <h3 id="upload-title">Do you have any photos you have taken anywhere around Invergordon or the Highlands that you love?</h3>
+    <p id="upload-text">Maybe you visited us from overseas and want to share an image from where you live instead? We would love to see those too. Upload your favourite photo and we'll feature it in our Visitor Gallery — so it can be enjoyed with other travellers from around the world.</p>
     <button class="upload-btn" onclick="showUploadComingSoon(this)" id="upload-btn-text">Upload Your Photo</button>
   </div>
 </section>
@@ -3562,8 +3567,8 @@ const translations = {
     tipH4: "Getting Around", tipB4: "Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.",
     tipH5: "Shopping Tips", tipB5: "Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.",
     tipH6: "A Scottish Welcome", tipB6: "Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.",
-    uploadTitle: "Did you visit Invergordon today?",
-    uploadText: "Upload your favourite photo from your visit and we'll feature it in our Visitor Gallery — shared with travellers from around the world.",
+    uploadTitle: "Do you have any photos you have taken anywhere around Invergordon or the Highlands that you love?",
+    uploadText: "Maybe you visited us from overseas and want to share an image from where you live instead? We would love to see those too. Upload your favourite photo and we'll feature it in our Visitor Gallery — so it can be enjoyed with other travellers from around the world.",
     uploadBtn: "Upload Your Photo",
     contactLabelId: "Get in Touch",
     contactTitleId: "We'd Love to Hear From You",
@@ -3701,8 +3706,8 @@ const translations = {
     tipH4: "Fortbewegung", tipB4: "Das Stadtzentrum ist vollständig fußläufig. Für Ausflüge bedienen lokale Taxis und vorgebuchte Busse den Hafen. Der Port of Cromarty Firth kann über zugelassene Betreiber beraten.",
     tipH5: "Einkaufstipps", tipB5: "Suchen Sie nach echten schottischen Waren — Harris Tweed, Kaschmir, lokal hergestellte Handwerksprodukte. Vermeiden Sie alles mit 'Made in China' auf dem Etikett, wenn Sie das Original möchten.",
     tipH6: "Ein schottischer Empfang", tipB6: "Invergordon ist eine freundliche, authentische Stadt — kein Touristenfalle. Die Einheimischen sind stolz auf ihren Wohnort und teilen ihn gerne mit Besuchern. Seien Sie nicht schüchtern — sagen Sie Hallo.",
-    uploadTitle: "Haben Sie Invergordon heute besucht?",
-    uploadText: "Laden Sie Ihr Lieblingsfoto von Ihrem Besuch hoch und wir zeigen es in unserer Besuchergalerie — geteilt mit Reisenden aus aller Welt.",
+    uploadTitle: "Haben Sie Fotos aus Invergordon, den Highlands oder vielleicht sogar aus Ihrer Heimat, die Sie lieben?",
+    uploadText: "Vielleicht haben Sie uns aus dem Ausland besucht und möchten ein Bild aus Ihrer Heimat teilen? Wir würden uns sehr freuen! Laden Sie Ihr Lieblingsfoto hoch und wir zeigen es in unserer Besuchergalerie — damit andere Reisende aus aller Welt es genießen können.",
     uploadBtn: "Ihr Foto hochladen",
     contactLabelId: "Kontakt aufnehmen",
     contactTitleId: "Wir würden gerne von Ihnen hören",
@@ -3789,8 +3794,8 @@ const translations = {
     tipH4: "Déplacements", tipB4: "Le centre-ville est entièrement accessible à pied. Pour les excursions, des taxis locaux et des cars pré-réservés desservent le port. Le Port of Cromarty Firth peut conseiller sur les opérateurs agréés.",
     tipH5: "Conseils Shopping", tipB5: "Cherchez des articles écossais authentiques — Harris Tweed, cachemire, artisanat local. Évitez tout ce qui dit 'Made in China' si vous voulez l'authentique.",
     tipH6: "Un accueil écossais", tipB6: "Invergordon est une ville chaleureuse et authentique — pas un piège à touristes. Les habitants sont fiers de leur ville et adorent la partager avec les visiteurs. N'hésitez pas — dites bonjour.",
-    uploadTitle: "Avez-vous visité Invergordon aujourd'hui ?",
-    uploadText: "Téléchargez votre photo préférée de votre visite et nous la mettrons en avant dans notre Galerie des Visiteurs — partagée avec des voyageurs du monde entier.",
+    uploadTitle: "Avez-vous des photos prises à Invergordon, dans les Highlands, ou même chez vous, que vous aimez particulièrement ?",
+    uploadText: "Vous nous avez peut-être rendu visite depuis l'étranger et souhaitez partager une image de votre pays d'origine ? Nous serions ravis de les voir ! Téléchargez votre photo préférée et nous la mettrons en avant dans notre Galerie des Visiteurs — pour qu'elle soit appréciée par d'autres voyageurs du monde entier.",
     uploadBtn: "Télécharger votre photo",
     contactLabelId: "Nous contacter",
     contactTitleId: "Nous adorerions vous entendre",
@@ -3877,8 +3882,8 @@ const translations = {
     tipH4: "Getting Around", tipB4: "Downtown is totally walkable. For day trips, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can recommend authorized operators.",
     tipH5: "Shopping Tips", tipB5: "Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Skip anything with 'Made in China' on the label if you want the real thing.",
     tipH6: "Scottish Hospitality", tipB6: "Invergordon is a warm, genuine town — not a tourist trap. Locals are proud of their home and love sharing it with visitors. Don't be shy — say hi.",
-    uploadTitle: "Did you visit Invergordon today?",
-    uploadText: "Upload your favorite photo from your visit and we'll feature it in our Visitor Gallery — shared with travelers from around the world.",
+    uploadTitle: "Do you have any photos you have taken anywhere around Invergordon or the Highlands that you love?",
+    uploadText: "Maybe you visited us from overseas and want to share an image from where you live instead? We would love to see those too. Upload your favorite photo and we'll feature it in our Visitor Gallery — so it can be enjoyed with other travelers from around the world.",
     uploadBtn: "Upload Your Photo",
     contactLabelId: "Get in Touch",
     contactTitleId: "We'd Love to Hear From You",
@@ -3965,8 +3970,8 @@ const translations = {
     tipH4: "Komme seg rundt", tipB4: "Bysentrum er fullt tilgjengelig til fots. For utflukter betjener lokale taxier og forhåndsbestilte busser havnen. Port of Cromarty Firth kan gi råd om godkjente operatører.",
     tipH5: "Handleråd", tipB5: "Se etter ekte skotske varer — Harris Tweed, kashmir, lokalt håndverk. Unngå alt med 'Made in China' på etiketten hvis du vil ha det ekte.",
     tipH6: "Et skotsk mottak", tipB6: "Invergordon er en vennlig, ekte by — ikke en turistfelle. Lokalbefolkningen er stolte av hjemstedet sitt og elsker å dele det med besøkende. Vær ikke sjenert — si hei.",
-    uploadTitle: "Besøkte du Invergordon i dag?",
-    uploadText: "Last opp favoritten din fra besøket og vi vil fremheve det i vårt Besøksgalleri — delt med reisende fra hele verden.",
+    uploadTitle: "Har du bilder du har tatt rundt Invergordon, i Highlands, eller kanskje hjemmefra som du er glad i?",
+    uploadText: "Kanskje du besøkte oss fra utlandet og ønsker å dele et bilde fra der du bor? Vi vil gjerne se dem også! Last opp favoritten din og vi vil fremheve det i vårt Besøksgalleri — slik at det kan nytes av andre reisende fra hele verden.",
     uploadBtn: "Last opp ditt bilde",
     contactLabelId: "Ta kontakt",
     contactTitleId: "Vi vil gjerne høre fra deg",
