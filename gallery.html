@@ -307,7 +307,7 @@
 
   .gallery-item img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     display: block;
     filter: brightness(0.92);
@@ -1650,7 +1650,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (bartImg) bartImg.closest('.gallery-item').id = 'gal-item-bartholomew';
 
   var baseUrl = 'https://exploreinvergordon.scot/gallery.html';
-  var isMobile = !!navigator.share;
 
   document.querySelectorAll('.gallery-item').forEach(function(item) {
     // Caption text for share title
@@ -1662,19 +1661,16 @@ document.addEventListener('DOMContentLoaded', function() {
     var shareUrl   = baseUrl + (item.id ? '#' + item.id : '');
     var shareTitle = captionText + ' — Explore Invergordon';
 
-    // Build share overlay
+    // Build share bar (always show all three buttons)
     var share = document.createElement('div');
     share.className = 'gal-share';
     share.setAttribute('data-url', shareUrl);
     share.setAttribute('data-title', shareTitle);
-    if (isMobile) {
-      share.innerHTML = '<button class="gal-share-btn gal-share-btn-copy gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">Share &#8599;</button>';
-    } else {
-      share.innerHTML =
-        '<button class="gal-share-btn gal-share-btn-x" onclick="galShareX(this);event.stopPropagation()">&#x1D54F; Share</button>' +
-        '<button class="gal-share-btn gal-share-btn-wa" onclick="galShareWa(this);event.stopPropagation()">WhatsApp</button>' +
-        '<button class="gal-share-btn gal-share-btn-copy gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">&#128279; Copy</button>';
-    }
+    share.innerHTML =
+      '<button class="gal-share-btn gal-share-btn-x" onclick="galShareX(this);event.stopPropagation()">&#x1D54F; Share</button>' +
+      '<button class="gal-share-btn gal-share-btn-wa" onclick="galShareWa(this);event.stopPropagation()">WhatsApp</button>' +
+      '<button class="gal-share-btn gal-share-btn-copy gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">&#128279; Copy</button>';
+
     // Wrap item + share bar in a flex column container
     var wrap = document.createElement('div');
     wrap.className = 'gallery-item-wrap';
