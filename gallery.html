@@ -503,8 +503,10 @@
 
   /* ── VISITOR PHOTO CREDIT ── */
   .visitor-credit {
-    padding: 0.55rem 0.25rem 0.2rem;
+    padding: 0.65rem 0.75rem 0.55rem;
     text-align: center;
+    background: #000000;
+    border-top: 1px solid rgba(201,168,76,0.25);
   }
   .visitor-credit-name {
     font-family: 'Crimson Pro', serif;
@@ -1649,7 +1651,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var bartImg = document.querySelector('.gallery-item img[alt*="Bartholomew"]');
   if (bartImg) bartImg.closest('.gallery-item').id = 'gal-item-bartholomew';
 
-  var baseUrl = 'https://exploreinvergordon.scot/gallery.html';
+  var baseUrl = window.location.origin + window.location.pathname;
 
   document.querySelectorAll('.gallery-item').forEach(function(item) {
     // Caption text for share title
@@ -1684,6 +1686,26 @@ document.addEventListener('DOMContentLoaded', function() {
       lbOpen(item);
     });
   });
+
+  // ── DEEP LINK HANDLER ──
+  // If the URL contains a hash matching a gallery item, switch to the right
+  // tab, scroll to the image, and open it in the lightbox automatically.
+  var deepHash = window.location.hash.replace('#', '');
+  if (deepHash && deepHash !== 'visitor') {
+    var deepTarget = document.getElementById(deepHash);
+    if (deepTarget && deepTarget.classList.contains('gallery-item')) {
+      // Switch to whichever tab contains this item
+      var deepPanel = deepTarget.closest('.tab-panel');
+      if (deepPanel) {
+        switchGalleryTab(deepPanel.id.replace('tab-panel-', ''));
+      }
+      // Short delay so the tab is visible before we scroll + open lightbox
+      setTimeout(function() {
+        deepTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        lbOpen(deepTarget);
+      }, 150);
+    }
+  }
 });
 </script>
 </body>
