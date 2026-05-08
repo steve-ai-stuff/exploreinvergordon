@@ -1085,7 +1085,7 @@
             <span class="file-drop-text" id="gal-upload-drop-label">Click or drag to upload</span>
             <span class="file-drop-hint" id="gal-upload-drop-hint">JPG · PNG · WebP · max 32MB</span>
           </div>
-          <img id="photoPreview" class="file-preview" alt="Your photo preview">
+          <img id="photoPreview" class="file-preview" alt="Your photo preview" loading="lazy">
         </div>
         <div class="upload-progress" id="uploadProgress">⏳ &nbsp;Uploading your photo…</div>
         <button class="upload-submit" id="uploadSubmit" onclick="handleVisitorUpload(event)">Submit Photo ↑</button>
@@ -1108,7 +1108,7 @@
   <button class="lb-nav" id="lb-prev" onclick="lbNav(-1);event.stopPropagation()">&#8249;</button>
   <button class="lb-nav" id="lb-next" onclick="lbNav(1);event.stopPropagation()">&#8250;</button>
   <div class="lb-inner" onclick="event.stopPropagation()">
-    <img id="lb-img" src="" alt="">
+    <img id="lb-img" src="" alt="" loading="lazy">
     <p id="lb-caption"></p>
   </div>
 </div>
