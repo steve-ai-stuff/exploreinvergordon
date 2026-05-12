@@ -3,26 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cruise Hub — Shore Day Concierge | Explore Invergordon</title>
+<title>Shore Day Concierge — Explore Invergordon</title>
 
 <!-- SEO Meta -->
-<meta name="description" content="Book a personalised Shore Day itinerary for your Invergordon cruise visit. Expert local recommendations tailored to your group's interests, fitness level, and budget.">
-<meta name="keywords" content="Invergordon shore excursions, cruise itinerary, Shore Day Concierge, personalised tour, cruise passenger guide, Scottish Highlands, NC500">
+<meta name="description" content="Make the most of your day in port. Get a personalised shore day itinerary for Invergordon, Scottish Highlands, delivered by email within 24 hours. Just £15.">
+<meta name="keywords" content="Invergordon shore excursions, cruise port Invergordon, shore day guide, Port of Cromarty Firth, Scottish Highlands cruise, Invergordon itinerary">
 <meta name="author" content="Explore Invergordon">
-<link rel="canonical" href="https://exploreinvergordon.scot/cruise-hub.html">
+<link rel="canonical" href="https://exploreinvergordon.scot/cruise-hub">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://exploreinvergordon.scot/cruise-hub.html">
-<meta property="og:title" content="Shore Day Concierge — Personalised Invergordon Itineraries">
-<meta property="og:description" content="Book a bespoke half-day itinerary tailored to your group. Expert local recommendations, no generic tours.">
+<meta property="og:url" content="https://exploreinvergordon.scot/cruise-hub">
+<meta property="og:title" content="Shore Day Concierge — Explore Invergordon">
+<meta property="og:description" content="Get a personalised shore day itinerary for Invergordon, delivered by email within 24 hours. Perfect for cruise passengers at the Port of Cromarty Firth.">
 <meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Shore Day Concierge — Personalised Invergordon Itineraries">
-<meta name="twitter:description" content="Book a bespoke half-day itinerary tailored to your group.">
-<meta name="twitter:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -46,12 +42,11 @@
     --spring-green: #56c27b;
     --spring-yellow: #e8d44a;
     --spring-lime: #8dc440;
-    --error: #e74c3c;
-    --success: #27ae60;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+
   body {
     background: var(--highland-deep);
     color: var(--text-light);
@@ -61,9 +56,106 @@
     overflow-x: hidden;
   }
 
+  /* ── LANGUAGE BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: var(--highland-dark);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .lang-bar span { opacity: 0.6; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-follow-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav-social-btn:hover { opacity: 0.75; transform: scale(1.12); }
+  @media (max-width: 600px) { .nav-follow-label { display: none; } }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+  }
+
   /* ── HERO ── */
   .hero {
-    min-height: 60vh;
+    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -76,10 +168,7 @@
 
   .hero-bg {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60vh;
+    inset: 0;
     background: url('website_image_files/background_images/background_image.jpg') center 30% / cover no-repeat;
     z-index: -1;
   }
@@ -89,779 +178,1008 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom,
-      rgba(8,15,30,0.55) 0%,
-      rgba(8,15,30,0.3) 40%,
-      rgba(8,15,30,0.75) 100%);
+      rgba(8,15,30,0.65) 0%,
+      rgba(8,15,30,0.4) 40%,
+      rgba(8,15,30,0.85) 100%);
     z-index: 1;
   }
 
+  .hero-mountains {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+  }
+  .hero-mountains svg { width: 100%; height: 100%; }
+
   .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     max-width: 800px;
   }
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 8vw, 4rem);
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes beginFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-9px); }
+  }
+
+  @keyframes beginGlow {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(201,168,76,0.25), 0 0 24px rgba(201,168,76,0.10), 0 6px 20px rgba(0,0,0,0.50);
+      border-color: rgba(201,168,76,0.65);
+    }
+    50% {
+      box-shadow: 0 0 22px rgba(201,168,76,0.60), 0 0 50px rgba(201,168,76,0.30), 0 0 80px rgba(201,168,76,0.13), 0 12px 35px rgba(0,0,0,0.40);
+      border-color: rgba(201,168,76,0.98);
+    }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .hero-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
     font-weight: 900;
+    line-height: 1;
     color: var(--cream);
-    margin-bottom: 1rem;
-    text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
   }
 
   .hero-subtitle {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    color: var(--gold-light);
-    margin-bottom: 2rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
     font-style: italic;
+    color: var(--heather-light);
+    margin: 1.5rem 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
   }
 
-  .hero-description {
-    font-size: 1.1rem;
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(201,168,76,0.07);
+    color: var(--gold);
+    padding: 0.95rem 3rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid rgba(201,168,76,0.65);
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    backdrop-filter: blur(6px);
+    animation:
+      fadeUp     0.8s ease         forwards  0.9s,
+      beginFloat 3.0s ease-in-out  infinite  1.8s,
+      beginGlow  2.5s ease-in-out  infinite  1.8s;
+  }
+
+  .hero-cta:hover {
+    background: rgba(201,168,76,0.18);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    box-shadow: 0 0 30px rgba(201,168,76,0.70), 0 0 65px rgba(201,168,76,0.40), 0 14px 40px rgba(0,0,0,0.40);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .scroll-hint span {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite 1.5s;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: linear-gradient(to right, rgba(8,15,30,0.6), rgba(107,74,126,0.15), rgba(8,15,30,0.6));
+    border-top: 2px solid rgba(201,168,76,0.55);
+    border-bottom: 2px solid rgba(201,168,76,0.55);
     color: var(--mist);
-    margin-bottom: 2rem;
-    line-height: 1.8;
+    padding: 1.25rem 2rem;
+    text-align: center;
   }
 
-  /* ── SECTION CONTAINER ── */
-  .section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, var(--highland-deep) 0%, var(--loch-blue) 50%, var(--highland-deep) 100%);
+  .trust-bar p {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    letter-spacing: 0.03em;
+    color: var(--heather-light);
   }
 
-  .section:nth-child(even) {
-    background: var(--highland-dark);
+  /* ── SECTION COMMON ── */
+  .section-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
 
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    color: var(--gold-light);
-    margin-bottom: 2rem;
-    text-align: center;
-    border-bottom: 2px solid var(--heather-light);
-    padding-bottom: 1rem;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
   }
 
-  /* ── FORM STYLING ── */
-  .form-container {
-    background: rgba(30, 60, 110, 0.3);
-    border: 1px solid var(--heather-light);
-    border-radius: 8px;
-    padding: 2rem;
-    max-width: 900px;
-    margin: 2rem auto;
-    backdrop-filter: blur(10px);
+  .section-title em {
+    font-style: italic;
+    color: var(--heather-light);
+  }
+
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    padding: 5rem 1.5rem 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .step-card {
+    background: rgba(26,58,110,0.18);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  .step-card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--heather));
+  }
+
+  .step-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-text {
+    font-size: 1rem;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .what-section {
+    background: rgba(14,22,40,0.95);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid rgba(201,168,76,0.2);
+    padding: 4rem 1.5rem;
+  }
+
+  .what-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(86,194,123,0.08);
+    border: 1px solid rgba(86,194,123,0.2);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .include-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .include-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--spring-green);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .include-text span {
+    font-size: 0.95rem;
+    color: var(--mist);
+    line-height: 1.5;
+  }
+
+  /* ── PRICE CALLOUT ── */
+  .price-callout {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(107,74,126,0.12));
+    border: 2px solid rgba(201,168,76,0.45);
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-callout::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .price-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .price-detail {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--heather-light);
+    margin-top: 1rem;
+  }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    padding: 5rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .form-card {
+    background: rgba(14,22,40,0.90);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--heather));
+  }
+
+  .form-intro {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--heather-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
   }
 
   .form-group {
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
   }
 
-  label {
+  .form-group label {
     display: block;
-    font-weight: 600;
-    color: var(--gold-light);
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="date"],
-  input[type="number"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: rgba(14, 22, 40, 0.6);
-    border: 1px solid var(--loch-light);
-    border-radius: 4px;
-    color: var(--text-light);
-    font-family: 'Crimson Pro', serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    transition: all 0.3s ease;
-  }
-
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  input[type="date"]:focus,
-  input[type="number"]:focus,
-  select:focus,
-  textarea:focus {
-    background: rgba(46, 106, 173, 0.2);
-    border-color: var(--gold-light);
-    outline: none;
-    box-shadow: 0 0 8px rgba(201, 168, 76, 0.3);
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  /* ── CHECKBOX & RADIO STYLING ── */
-  .checkbox-group,
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .checkbox-item,
-  .radio-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  input[type="checkbox"],
-  input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: var(--gold-light);
-  }
-
-  .checkbox-item label,
-  .radio-item label {
-    margin: 0;
-    cursor: pointer;
-    font-weight: normal;
-    color: var(--text-light);
-  }
-
-  /* ── GROUPED FIELDS ── */
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 768px) {
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* ── FIELDSET (GROUPED SECTIONS) ── */
-  fieldset {
-    border: 1px solid var(--heather);
-    border-radius: 4px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    background: rgba(107, 74, 126, 0.1);
-  }
-
-  fieldset legend {
-    color: var(--heather-light);
-    font-weight: 600;
-    padding: 0 0.5rem;
-  }
-
-  /* ── BUTTONS ── */
-  .btn {
-    padding: 0.875rem 2rem;
-    border: none;
-    border-radius: 4px;
-    font-family: 'Crimson Pro', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
   }
 
-  .btn-primary {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-    color: var(--highland-deep);
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(8,15,30,0.8);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--text-light);
+    padding: 0.75rem 1rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
   }
 
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(201, 168, 76, 0.4);
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(201,168,76,0.65);
+    background: rgba(8,15,30,0.95);
   }
 
-  .btn-primary:active {
-    transform: translateY(0);
-  }
-
-  /* ── FORM HELP TEXT ── */
-  .help-text {
-    font-size: 0.85rem;
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
     color: var(--text-muted);
-    margin-top: 0.35rem;
     font-style: italic;
   }
 
-  /* ── VALIDATION ── */
-  input:invalid:not(:placeholder-shown),
-  select:invalid:not(:placeholder-shown) {
-    border-color: var(--error);
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select option { background: #0e1628; color: var(--text-light); }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 
-  .error-message {
-    color: var(--error);
-    font-size: 0.85rem;
-    margin-top: 0.35rem;
-    display: none;
-  }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
-  .form-group.error .error-message {
+  .form-note {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
     display: block;
   }
 
-  /* ── HEADER ── */
-  header {
-    background: var(--highland-dark);
-    border-bottom: 1px solid var(--heather-light);
-    padding: 1.5rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  .form-submit {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: rgba(201,168,76,0.10);
+    color: var(--gold);
+    border: 1.5px solid rgba(201,168,76,0.65);
+    border-radius: 50px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
   }
 
-  .header-content {
-    max-width: 1200px;
+  .form-submit:hover {
+    background: rgba(201,168,76,0.20);
+    border-color: var(--gold);
+    box-shadow: 0 0 25px rgba(201,168,76,0.35);
+  }
+
+  .form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* ── PAYMENT NOTE ── */
+  .payment-note {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: rgba(26,58,110,0.15);
+    border-left: 3px solid var(--loch-light);
+    font-size: 0.92rem;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  .payment-note strong {
+    color: var(--gold);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  /* ── SUCCESS ── */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .form-success .success-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .form-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--spring-green);
+    margin-bottom: 0.75rem;
+  }
+
+  .form-success p {
+    font-size: 1rem;
+    color: var(--mist);
+    font-style: italic;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    padding: 4rem 1.5rem 5rem;
+    max-width: 700px;
     margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 1.25rem 0;
+  }
+
+  .faq-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--cream);
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    user-select: none;
   }
 
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--gold-light);
-    text-decoration: none;
+  .faq-toggle {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.2s;
   }
 
-  nav a {
-    color: var(--text-light);
-    text-decoration: none;
-    margin-left: 2rem;
-    transition: color 0.3s ease;
+  .faq-q.open .faq-toggle { transform: rotate(45deg); }
+
+  .faq-a {
+    display: none;
+    font-size: 1rem;
+    color: var(--mist);
+    line-height: 1.7;
+    padding-top: 0.75rem;
   }
 
-  nav a:hover {
-    color: var(--gold-light);
-  }
+  .faq-a.open { display: block; }
 
   /* ── FOOTER ── */
   footer {
     background: var(--highland-dark);
-    border-top: 1px solid var(--heather-light);
-    padding: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 3rem 2rem;
     text-align: center;
-    color: var(--text-muted);
-    font-size: 0.95rem;
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-    }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
 
-    .hero {
-      min-height: 50vh;
-      padding: 1rem;
-    }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
 
-    .form-container {
-      padding: 1.5rem;
-    }
+  .footer-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
 
-    .header-content {
-      flex-direction: column;
-      gap: 1rem;
-    }
+  .footer-links a:hover { color: var(--gold); }
 
-    nav a {
-      margin-left: 1rem;
-    }
+  .footer-copy {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    opacity: 0.6;
   }
 </style>
 </head>
-
 <body>
 
-<!-- ── HEADER ── -->
-<header>
-  <div class="header-content">
-    <a href="index.html" class="logo">Explore Invergordon</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="blog.html">Blog</a>
-      <a href="work-with-me.html">Work With Me</a>
-    </nav>
-  </div>
-</header>
+<!-- Language / info bar -->
+<div class="lang-bar">
+  <span>🚢</span>
+  <span>Cruise Passenger Service</span>
+  <span>·</span>
+  <span>Port of Cromarty Firth, Invergordon</span>
+  <span>·</span>
+  <span>Scottish Highlands</span>
+</div>
 
-<!-- ── HERO ── -->
-<div class="hero">
+<!-- Nav — identical to main site -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-follow-label">Check Our Socials:</span>
+    <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-cruise">Home</a></li>
+    <li><a href="index.html#getting-started" class="nav-arrive">Arrive</a></li>
+    <li><a href="index.html#welcome" class="nav-town">Town</a></li>
+    <li><a href="index.html#museum" class="nav-museum">Museum</a></li>
+    <li><a href="index.html#murals" class="nav-murals">Murals</a></li>
+    <li><a href="index.html#contact" class="nav-landscape">Contact</a></li>
+    <li><a href="gallery.html" class="nav-gallery">Gallery</a></li>
+    <li><a href="blog.html" class="nav-blog">Blog</a></li>
+    <li><a href="work-with-me.html" id="nav-wwm">Work With Me</a></li>
+    <li><a href="cruise-hub.html" class="nav-active">Concierge</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:0; max-width:100%;">
   <div class="hero-bg"></div>
+
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mtnGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0e2040;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="mtnGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#091530;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,400 L0,280 L120,180 L200,220 L320,120 L440,190 L560,100 L680,170 L800,80 L920,160 L1040,90 L1160,150 L1280,110 L1360,170 L1440,130 L1440,400 Z" fill="url(#mtnGrad1)" opacity="0.6"/>
+      <polyline points="0,280 120,180 200,220 320,120 440,190 560,100 680,170 800,80 920,160 1040,90 1160,150 1280,110 1360,170 1440,130" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon points="75,218 120,180 165,203"  fill="rgba(255,255,255,0.82)"/>
+      <polygon points="275,158 320,120 365,146" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="515,134 560,100 605,126" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="755,114 800,80  845,110" fill="rgba(255,255,255,0.88)"/>
+      <path d="M0,400 L0,320 L80,290 L200,310 L320,270 L440,295 L560,260 L680,285 L800,250 L920,275 L1040,240 L1160,265 L1280,255 L1440,270 L1440,400 Z" fill="url(#mtnGrad2)" opacity="0.9"/>
+    </svg>
+  </div>
+
   <div class="hero-content">
-    <h1>Plan Your Shore Day</h1>
-    <p class="hero-subtitle">Personalised Itineraries for Cruise Passengers</p>
-    <p class="hero-description">
-      Don't settle for a generic tour. Book a bespoke half-day itinerary tailored to your group's interests, fitness level, and budget. Expert local recommendations from someone who lives here.
-    </p>
+    <p class="hero-tag">Shore Day Concierge — Explore Invergordon</p>
+    <h1 class="hero-title">
+      Your Perfect<br>
+      <em>Shore Day</em>
+    </h1>
+    <p class="hero-subtitle">A personalised itinerary built around your interests, your pace, and your time in port — delivered to your inbox within 24 hours.</p>
+    <a href="#order" class="hero-cta">Get My Itinerary — £15</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Find Out More</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <p>Local knowledge. Real recommendations. Written by someone who lives here — not a travel algorithm.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section" id="how">
+  <p class="section-label">The Simple Process</p>
+  <h2 class="section-title">How It <em>Works</em></h2>
+  <div class="divider"></div>
+  <p style="color:var(--mist); font-size:1.05rem; max-width:600px;">Four easy steps between you and a perfect day in the Scottish Highlands.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <span class="step-number">01</span>
+      <p class="step-title">Tell Us About You</p>
+      <p class="step-text">Fill in the short form below. Your ship, your arrival time, what you enjoy, and who's coming with you.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-number">02</span>
+      <p class="step-title">We Build Your Plan</p>
+      <p class="step-text">We craft a personalised itinerary using real local knowledge — timed to your exact port hours, tailored to your group.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-number">03</span>
+      <p class="step-title">Pay Securely</p>
+      <p class="step-text">We reply with a secure £15 payment link. Once confirmed, your itinerary is written and on its way to your inbox.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-number">04</span>
+      <p class="step-title">Enjoy Your Day</p>
+      <p class="step-text">Step off the ship with a plan. No scrambling, no decision fatigue — just the best of Invergordon and the Highlands, at your pace.</p>
+    </div>
   </div>
 </div>
 
-<!-- ── SECTION: ABOUT SHORE DAY CONCIERGE ── -->
-<section class="section">
-  <h2 class="section-title">How It Works</h2>
-  
-  <div style="max-width: 900px; margin: 2rem auto; text-align: center;">
-    <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
-      We build your itinerary based on what matters to you — history, food, outdoor adventures, local secrets, or just a relaxed wander. You arrive with a clear plan and insider tips that typical shore excursions don't offer.
-    </p>
+<!-- WHAT YOU GET -->
+<div class="what-section">
+  <div class="what-inner">
+    <p class="section-label">What's Included</p>
+    <h2 class="section-title">Everything You Need <em>Ashore</em></h2>
+    <div class="divider"></div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 2rem 0;">
-      <div>
-        <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">1. Tell Us About Your Group</h3>
-        <p style="font-size: 0.95rem; color: var(--text-muted);">Fill out our simple form with your interests, fitness level, and preferences.</p>
+    <div class="includes-grid">
+      <div class="include-item">
+        <span class="include-icon">🗺️</span>
+        <div class="include-text">
+          <strong>Hour-by-Hour Itinerary</strong>
+          <span>Timed precisely to your arrival and all-aboard, so you never cut it close getting back to the ship.</span>
+        </div>
       </div>
-      <div>
-        <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">2. Review & Book</h3>
-        <p style="font-size: 0.95rem; color: var(--text-muted);">See a price quote and secure your itinerary with a simple payment.</p>
+      <div class="include-item">
+        <span class="include-icon">🍽️</span>
+        <div class="include-text">
+          <strong>Local Food & Drink Picks</strong>
+          <span>Where the locals actually eat — cafés, pubs, bakeries and lunch stops with honest descriptions.</span>
+        </div>
       </div>
-      <div>
-        <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">3. Get Your Plan</h3>
-        <p style="font-size: 0.95rem; color: var(--text-muted);">Receive a detailed itinerary within 24 hours before your ship docks.</p>
+      <div class="include-item">
+        <span class="include-icon">🎨</span>
+        <div class="include-text">
+          <strong>The Mural Trail Guide</strong>
+          <span>Invergordon's famous 18 giant murals mapped in the right order, with the stories behind each one.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🚗</span>
+        <div class="include-text">
+          <strong>Getting Around</strong>
+          <span>Bus routes, taxi info, walking distances — everything you need before you step off the gangway.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🏔️</span>
+        <div class="include-text">
+          <strong>Highlands Excursion Options</strong>
+          <span>Day trips to Loch Ness, Culloden, Dornoch Cathedral and more — with realistic timing for port days.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">💡</span>
+        <div class="include-text">
+          <strong>Insider Tips</strong>
+          <span>What to watch for, what to avoid, what to buy — advice you'd only get from someone who actually lives here.</span>
+        </div>
       </div>
     </div>
+
+    <!-- Price -->
+    <div class="price-callout" id="order">
+      <span class="price-amount">£15</span>
+      <span class="price-label">Per Itinerary · One-Time</span>
+      <p class="price-detail">Delivered by email within 24 hours of your request.<br>Order at least one day before your port call for best results.</p>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- ── SECTION: BOOKING FORM ── -->
-<section class="section">
-  <h2 class="section-title">Request Your Itinerary</h2>
+<!-- FORM -->
+<div class="form-section">
+  <p class="section-label">Book Your Concierge</p>
+  <h2 class="section-title">Tell Us About <em>Your Day</em></h2>
+  <div class="divider"></div>
 
-  <form id="bookingForm" class="form-container">
-    
-    <!-- PART 1: GROUP BASICS -->
-    <fieldset>
-      <legend>📋 Your Group Details</legend>
+  <div class="form-card">
+    <p class="form-intro">Fill in the details below and we'll put together your personalised shore day itinerary. The more you tell us, the better we can tailor it.</p>
+
+    <form id="shore-day-form" action="https://formspree.io/f/mpqkepnd" method="POST">
+      <!-- Anti-spam honeypot -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_subject" value="🚢 Shore Day Concierge Request — Explore Invergordon">
 
       <div class="form-row">
         <div class="form-group">
-          <label for="shipName">Ship Name</label>
-          <input type="text" id="shipName" name="shipName" required placeholder="e.g., P&O Britannia">
-          <div class="error-message">Ship name is required</div>
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Sarah Thompson" required>
         </div>
         <div class="form-group">
-          <label for="visitDate">Date of Invergordon Visit</label>
-          <input type="date" id="visitDate" name="visitDate" required>
-          <div class="error-message">Visit date is required</div>
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <span class="form-note">Your itinerary will be sent here.</span>
         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="partySize">Party Size (Number of People)</label>
-        <input type="number" id="partySize" name="partySize" min="1" max="50" required placeholder="e.g., 4">
-        <div class="error-message">Please enter a valid party size (1–50)</div>
-      </div>
-    </fieldset>
-
-    <!-- PART 2: CONTACT INFORMATION -->
-    <fieldset>
-      <legend>📧 Contact Information</legend>
-
-      <div class="form-group">
-        <label for="primaryContactName">Primary Contact Name</label>
-        <input type="text" id="primaryContactName" name="primaryContactName" required placeholder="Full name">
-        <div class="error-message">Name is required</div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required placeholder="your@email.com">
-          <p class="help-text">We'll send your itinerary to this email</p>
-          <div class="error-message">Valid email is required</div>
+          <label for="ship">Cruise Ship *</label>
+          <input type="text" id="ship" name="ship_name" placeholder="e.g. Norwegian Getaway" required>
         </div>
         <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="text" id="phone" name="phone" required placeholder="+44 7700 900000">
-          <p class="help-text">In case we need to clarify details</p>
-          <div class="error-message">Phone number is required</div>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- PART 3: ACTIVITY PREFERENCES -->
-    <fieldset>
-      <legend>🏔️ Activity Preferences</legend>
-
-      <!-- Indoor vs Outdoor -->
-      <div class="form-group">
-        <label>Indoor vs Outdoor (Choose one)</label>
-        <div class="radio-group">
-          <div class="radio-item">
-            <input type="radio" id="indoor" name="indoorOutdoor" value="Mostly Indoors" required>
-            <label for="indoor">Mostly Indoors (museums, shops, galleries, cafés)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="balanced" name="indoorOutdoor" value="Balanced Mix" required>
-            <label for="balanced">Balanced Mix (both indoors and outdoors)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="outdoor" name="indoorOutdoor" value="Mostly Outdoors" required>
-            <label for="outdoor">Mostly Outdoors (nature, scenery, walking)</label>
-          </div>
+          <label for="port-date">Date in Port *</label>
+          <input type="date" id="port-date" name="port_date" required>
         </div>
       </div>
 
-      <!-- Travel Distance -->
-      <div class="form-group">
-        <label>How Far Are You Willing to Travel?</label>
-        <div class="radio-group">
-          <div class="radio-item">
-            <input type="radio" id="close" name="travelDistance" value="Close to Invergordon (15 mins)" required>
-            <label for="close">Close to Invergordon (15 mins drive max)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="moderate" name="travelDistance" value="Moderate (15-30 mins)" required>
-            <label for="moderate">Moderate (15–30 mins drive)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="far" name="travelDistance" value="Far (30+ mins / full day)" required>
-            <label for="far">Far (30+ mins / willing for full-day trip e.g. Loch Ness, Skye)</label>
-          </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="arrival">Ship Arrives (approx) *</label>
+          <input type="time" id="arrival" name="arrival_time" required>
+          <span class="form-note">Check your ship's schedule.</span>
         </div>
-      </div>
-
-      <!-- Destinations -->
-      <div class="form-group">
-        <label>Preferred Itinerary Style</label>
-        <div class="radio-group">
-          <div class="radio-item">
-            <input type="radio" id="singleDest" name="itineraryStyle" value="Single main destination with multiple activities there" required>
-            <label for="singleDest">Single main destination with multiple activities (e.g., Inverness with museum, shopping, castle)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="multipleDest" name="itineraryStyle" value="Multiple stops along a route" required>
-            <label for="multipleDest">Multiple stops along a route (e.g., Loch Ness + Urquhart Castle + lunch spot)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="flexible" name="itineraryStyle" value="Flexible - let the local expert decide" required>
-            <label for="flexible">Flexible — let me surprise you based on your interests</label>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- PART 4: WALKING & FITNESS -->
-    <fieldset>
-      <legend>🚶 Walking & Fitness Level</legend>
-
-      <div class="form-group">
-        <label>How Much Walking Are You Comfortable With?</label>
-        <div class="radio-group">
-          <div class="radio-item">
-            <input type="radio" id="minimalWalk" name="walkingLevel" value="Minimal walking (mostly sitting and driving)" required>
-            <label for="minimalWalk">Minimal walking (mostly sitting, driving, few stops)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="moderateWalk" name="walkingLevel" value="Moderate walking (around town, some hills)" required>
-            <label for="moderateWalk">Moderate walking (around town, some gentle hills)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="lotsWalk" name="walkingLevel" value="Lots of walking (prefer active exploration)" required>
-            <label for="lotsWalk">Lots of walking (prefer active exploration)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="challenging" name="walkingLevel" value="Challenging terrain (hills, mountains, tough walks)" required>
-            <label for="challenging">Challenging terrain (hills, mountains, tough walks OK)</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Accessibility -->
-      <div class="form-group">
-        <label>Accessibility & Mobility Support Needed?</label>
-        <div class="checkbox-group">
-          <div class="checkbox-item">
-            <input type="checkbox" id="wheelchair" name="accessibility" value="Wheelchair access needed">
-            <label for="wheelchair">Wheelchair access needed</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="walkingFrame" name="accessibility" value="Walking frame or walking stick support">
-            <label for="walkingFrame">Walking frame or walking stick support</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="mobilityIssue" name="accessibility" value="Other mobility concerns">
-            <label for="mobilityIssue">Other mobility concerns (please describe below)</label>
-          </div>
-        </div>
-        <textarea id="accessibilityDetails" name="accessibilityDetails" placeholder="e.g., knee problems, prefer to rest every 15 mins, etc."></textarea>
-        <p class="help-text">Optional: Tell us more about any specific needs</p>
-      </div>
-    </fieldset>
-
-    <!-- PART 5: INTERESTS & ATTRACTIONS -->
-    <fieldset>
-      <legend>💎 Interests & Attraction Types</legend>
-
-      <div class="form-group">
-        <label>What Interests You Most? (Select all that apply)</label>
-        <div class="checkbox-group">
-          <div class="checkbox-item">
-            <input type="checkbox" id="history" name="interests" value="History & Heritage">
-            <label for="history">History & Heritage (castles, museums, ancient sites)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="food" name="interests" value="Food & Drink">
-            <label for="food">Food & Drink (restaurants, pubs, local cuisine, whisky)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="nature" name="interests" value="Nature & Scenery">
-            <label for="nature">Nature & Scenery (lochs, mountains, photography opportunities)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="shopping" name="interests" value="Shopping">
-            <label for="shopping">Shopping (local crafts, high street, gifts)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="culture" name="interests" value="Culture & Arts">
-            <label for="culture">Culture & Arts (galleries, live music, theatre)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="adventure" name="interests" value="Adventure Activities">
-            <label for="adventure">Adventure Activities (boat trips, hiking, outdoor sports)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="relax" name="interests" value="Relaxation & Wellness">
-            <label for="relax">Relaxation & Wellness (spas, quiet walks, peaceful spots)</label>
-          </div>
+        <div class="form-group">
+          <label for="allabroad">All Aboard Time *</label>
+          <input type="time" id="allabroad" name="all_aboard_time" required>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Specific Attraction Types (Select all that apply)</label>
-        <div class="checkbox-group">
-          <div class="checkbox-item">
-            <input type="checkbox" id="castles" name="attractions" value="Castles">
-            <label for="castles">Castles (e.g., Urquhart Castle, Dunrobin Castle)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="distilleries" name="attractions" value="Distilleries">
-            <label for="distilleries">Distilleries (whisky tours & tastings)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="gardens" name="attractions" value="Gardens & Stately Homes">
-            <label for="gardens">Gardens & Stately Homes</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="museums" name="attractions" value="Museums">
-            <label for="museums">Museums & Galleries</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="boatTrips" name="attractions" value="Boat Trips">
-            <label for="boatTrips">Boat Trips (Loch Ness, sea cruises, etc.)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="restaurants" name="attractions" value="Restaurants & Cafés">
-            <label for="restaurants">Restaurants & Cafés (fine dining, casual, local)</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="hikeTrails" name="attractions" value="Hiking Trails">
-            <label for="hikeTrails">Hiking Trails & Walking Routes</label>
-          </div>
-          <div class="checkbox-item">
-            <input type="checkbox" id="photospotsIcons" name="attractions" value="Photo Spots & Instagram Icons">
-            <label for="photospotsIcons">Photo Spots & Instagram-Worthy Locations</label>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- PART 6: BUDGET & COSTS -->
-    <fieldset>
-      <legend>💷 Budget & Cost Preferences</legend>
-
-      <div class="form-group">
-        <label>Paid Attraction Fees — What's Your Preference?</label>
-        <div class="radio-group">
-          <div class="radio-item">
-            <input type="radio" id="paidYes" name="paidAttractions" value="Yes, include paid attractions (castles, museums, tours)" required>
-            <label for="paidYes">Yes, include paid attractions (castles, museums, distillery tours, etc.)</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="paidSome" name="paidAttractions" value="Some paid, mostly low-cost or free" required>
-            <label for="paidSome">Mix — some paid, mostly low-cost or free options</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="paidNo" name="paidAttractions" value="Prefer low-cost or free activities only" required>
-            <label for="paidNo">Prefer low-cost or free activities only</label>
-          </div>
-        </div>
+        <label for="group">Who's Coming? *</label>
+        <select id="group" name="group_type" required>
+          <option value="" disabled selected>Select your group type</option>
+          <option>Solo traveller</option>
+          <option>Couple</option>
+          <option>Small group (3–5 people)</option>
+          <option>Family with young children</option>
+          <option>Family with older children / teens</option>
+          <option>Larger group (6+)</option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label for="budgetPerPerson">Budget Per Person (£, optional)</label>
-        <input type="number" id="budgetPerPerson" name="budgetPerPerson" min="0" placeholder="e.g., 50 (for activities & food)">
-        <p class="help-text">This helps us recommend attractions that match your spending comfort</p>
+        <label for="interests">What Do You Enjoy?</label>
+        <textarea id="interests" name="interests" placeholder="e.g. history, coastal walks, photography, local food, whisky, castles, highland scenery — tell us what makes a great day for you"></textarea>
       </div>
 
       <div class="form-group">
-        <label for="dietaryRequirements">Dietary Requirements or Restrictions</label>
-        <textarea id="dietaryRequirements" name="dietaryRequirements" placeholder="e.g., vegetarian, gluten-free, allergies, etc."></textarea>
-        <p class="help-text">Optional: Helps us recommend the right restaurants & cafés</p>
+        <label for="mobility">Mobility Considerations?</label>
+        <select id="mobility" name="mobility">
+          <option>No — happy walking</option>
+          <option>Prefer shorter walks / flatter ground</option>
+          <option>Wheelchair or mobility aid user</option>
+          <option>Mixed in our group</option>
+        </select>
       </div>
-    </fieldset>
-
-    <!-- PART 7: SPECIAL REQUESTS -->
-    <fieldset>
-      <legend>✨ Special Requests & Notes</legend>
 
       <div class="form-group">
-        <label for="specialRequests">Anything Else We Should Know?</label>
-        <textarea id="specialRequests" name="specialRequests" placeholder="e.g., celebrate a milestone, specific must-do items, group dynamics, etc."></textarea>
-        <p class="help-text">Optional: Help us tailor your experience</p>
+        <label for="extras">Anything Else We Should Know?</label>
+        <textarea id="extras" name="extra_info" placeholder="e.g. Loch Ness is a must, we don't drink, we have a budget in mind, we've been before…" style="min-height:80px;"></textarea>
       </div>
-    </fieldset>
 
-    <!-- SUBMIT BUTTON -->
-    <div style="text-align: center; margin-top: 2rem;">
-      <button type="submit" class="btn btn-primary">Request Your Itinerary — £15</button>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">
-        You'll receive a detailed itinerary within 24 hours of payment. Questions? Email <strong>hello@exploreinvergordon.scot</strong>
-      </p>
-    </div>
+      <button type="submit" class="form-submit" id="submit-btn">Send My Request — £15</button>
 
-  </form>
-</section>
+      <div class="payment-note">
+        <strong>How Payment Works</strong>
+        After submitting this form, you'll receive a reply email within a few hours with a secure payment link for £15. Your itinerary will be written and sent once payment is confirmed — well before your port date.
+      </div>
 
-<!-- ── SECTION: FAQ ── -->
-<section class="section">
-  <h2 class="section-title">Frequently Asked Questions</h2>
-
-  <div style="max-width: 900px; margin: 2rem auto;">
-    <div style="margin-bottom: 2rem;">
-      <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">How long is a Shore Day itinerary?</h3>
-      <p>We typically design half-day (4–5 hours) itineraries that fit most cruise schedules. Full-day options available on request.</p>
-    </div>
-
-    <div style="margin-bottom: 2rem;">
-      <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">Can the itinerary be customised for my group?</h3>
-      <p>Absolutely. That's exactly the point. We tailor every itinerary to your group's specific interests, fitness level, and preferences. No two itineraries are the same.</p>
-    </div>
-
-    <div style="margin-bottom: 2rem;">
-      <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">How do I book activities or restaurants?</h3>
-      <p>Your itinerary includes phone numbers, opening hours, and booking instructions for all recommended venues. We'll let you know which ones need pre-booking and which are walk-in.</p>
-    </div>
-
-    <div style="margin-bottom: 2rem;">
-      <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">Is there a guide or group discount?</h3>
-      <p>We provide a detailed itinerary. You can arrange a private local guide separately if preferred (we can recommend partners). Group discounts at some attractions are noted in your itinerary.</p>
-    </div>
-
-    <div style="margin-bottom: 2rem;">
-      <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">What if our ship is delayed?</h3>
-      <p>Let us know. We can adjust the itinerary timing or provide a revised version if your visit date shifts.</p>
-    </div>
-
-    <div style="margin-bottom: 2rem;">
-      <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">Can you help with post-cruise planning?</h3>
-      <p>Yes. If you're staying in the Highlands longer, we can extend the itinerary to include the NC500, Skye, and other region highlights.</p>
-    </div>
+      <div class="form-success" id="form-success">
+        <span class="success-icon">✅</span>
+        <h3>Request Received!</h3>
+        <p>We'll be in touch within a few hours with your payment link and next steps. Keep an eye on your inbox — and enjoy your cruise!</p>
+      </div>
+    </form>
   </div>
-</section>
+</div>
 
-<!-- ── SECTION: CONTACT ── -->
-<section class="section" style="text-align: center;">
-  <h2 class="section-title">Questions Before Booking?</h2>
-  <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-    Not sure if the Shore Day Concierge is right for you? Get in touch.
-  </p>
-  <p style="font-size: 1rem;">
-    <strong>Email:</strong> <a href="mailto:hello@exploreinvergordon.scot" style="color: var(--gold-light); text-decoration: none;">hello@exploreinvergordon.scot</a>
-  </p>
-  <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 1rem;">
-    Built by Steve, a freelance creator and lifelong Invergordon resident who knows the Highlands inside and out.
-  </p>
-</section>
+<!-- FAQ -->
+<div class="faq-section">
+  <p class="section-label">Questions</p>
+  <h2 class="section-title">Frequently <em>Asked</em></h2>
+  <div class="divider"></div>
 
-<!-- ── FOOTER ── -->
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      How quickly will my itinerary arrive?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">We aim to send all itineraries within 24 hours of payment. We recommend ordering at least 24–48 hours before your port date for the best experience.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      What format does it come in?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">You'll receive a clear, well-formatted email with your full itinerary — easy to screenshot or save to your phone. No app needed, no login required.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Is this genuinely personalised or a template?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">It's genuinely personalised. We read your answers carefully and build your plan around your specific interests, group, port times, and pace. We don't send a pre-written template.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Who writes the itinerary?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">Explore Invergordon is run locally from the Scottish Highlands. Your itinerary is built on real local knowledge — the kind of advice you'd get from a knowledgeable friend, not a tourist board leaflet.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      How does the £15 payment work?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">After you submit your request, we'll reply by email with a secure payment link. We use a trusted payment provider — no card details pass through us. Your itinerary is sent once payment is confirmed.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      What if I need to change my details after submitting?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">Just reply to our email before payment and we'll update everything. Once the itinerary has been written and sent, changes may not be possible — so do let us know as soon as you can.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Can I get a refund?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">If we haven't started your itinerary yet, we'll refund in full. Once it's been written and sent, refunds aren't possible — but we'll always do our best to make sure you're happy with what you receive.</div>
+  </div>
+</div>
+
+<!-- Footer -->
 <footer>
-  <p>&copy; 2026 Explore Invergordon. All rights reserved. <a href="privacy.html" style="color: var(--gold-light); text-decoration: none;">Privacy Policy</a></p>
+  <span class="footer-logo">Explore Invergordon</span>
+  <p style="font-family:'Crimson Pro',serif; font-style:italic; color:var(--heather-light); font-size:1rem; margin-top:0.3rem;">Your guide to the Scottish Highlands gateway</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="work-with-me.html">Work With Me</a>
+    <a href="cruise-hub.html">Shore Day Concierge</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2026 Explore Invergordon · exploreinvergordon.scot · hello@exploreinvergordon.scot</p>
 </footer>
 
-<!-- ── FORM VALIDATION & SUBMISSION ── -->
 <script>
-  const form = document.getElementById('bookingForm');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Basic validation
-    const shipName = document.getElementById('shipName').value.trim();
-    const visitDate = document.getElementById('visitDate').value;
-    const email = document.getElementById('email').value.trim();
-
-    if (!shipName || !visitDate || !email) {
-      alert('Please fill out all required fields.');
-      return;
+  // FAQ accordion
+  function toggleFaq(el) {
+    const answer = el.nextElementSibling;
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.classList.remove('open');
+      q.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      el.classList.add('open');
+      answer.classList.add('open');
     }
+  }
 
-    // Collect form data
-    const formData = new FormData(form);
-    const data = {
-      shipName: formData.get('shipName'),
-      visitDate: formData.get('visitDate'),
-      partySize: formData.get('partySize'),
-      primaryContactName: formData.get('primaryContactName'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      indoorOutdoor: formData.get('indoorOutdoor'),
-      travelDistance: formData.get('travelDistance'),
-      itineraryStyle: formData.get('itineraryStyle'),
-      walkingLevel: formData.get('walkingLevel'),
-      accessibility: formData.getAll('accessibility'),
-      accessibilityDetails: formData.get('accessibilityDetails'),
-      interests: formData.getAll('interests'),
-      attractions: formData.getAll('attractions'),
-      paidAttractions: formData.get('paidAttractions'),
-      budgetPerPerson: formData.get('budgetPerPerson'),
-      dietaryRequirements: formData.get('dietaryRequirements'),
-      specialRequests: formData.get('specialRequests'),
-    };
+  // Async form submission via Formspree
+  const form   = document.getElementById('shore-day-form');
+  const btn    = document.getElementById('submit-btn');
+  const success = document.getElementById('form-success');
 
-    // TODO: Replace with actual SumUp Hosted Checkout integration
-    // For now, submit to Formspree for email + logging
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
 
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch(form.action, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
       });
 
-      if (response.ok) {
-        // Redirect to success page
-        window.location.href = '/booking-confirmed.html';
+      if (res.ok) {
+        // Hide form elements, reveal success message
+        form.querySelectorAll('.form-row, .form-group, .form-submit, .payment-note, .form-intro').forEach(el => {
+          el.style.display = 'none';
+        });
+        success.style.display = 'block';
       } else {
-        alert('Error submitting form. Please try again or email hello@exploreinvergordon.scot');
+        btn.disabled = false;
+        btn.textContent = 'Send My Request — £15';
+        alert('Something went wrong — please try again or email us directly at hello@exploreinvergordon.scot');
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Error submitting form. Please try again or email hello@exploreinvergordon.scot');
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Send My Request — £15';
+      alert('Something went wrong — please try again or email us directly at hello@exploreinvergordon.scot');
     }
   });
 </script>
-
 </body>
 </html>
