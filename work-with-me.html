@@ -748,13 +748,13 @@
     <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad-w" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad-w)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
   </div>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html" id="wwm-nav-home">Home</a></li>
     <li><a href="murals.html">Murals</a></li>
     <li><a href="cruise-hub.html">Cruise Hub</a></li>
     <li><a href="nc500.html">NC500</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="work-with-me.html" class="nav-active">Work With Me</a></li>
+    <li><a href="gallery.html" id="wwm-nav-gallery">Gallery</a></li>
+    <li><a href="blog.html" id="wwm-nav-blog">Blog</a></li>
+    <li><a href="work-with-me.html" class="nav-active" id="wwm-nav-wwm">Work With Me</a></li>
   </ul>
 </nav>
 
@@ -1157,20 +1157,53 @@ function setLang(lang) {
   if (btns[idx]) btns[idx].classList.add('active');
 }
 
-/* ── CARD HOVER SOUNDS & EFFECTS ── */
-function _playSound(path, vol) {
-  try {
-    var a = new Audio(path);
-    a.volume = vol !== undefined ? vol : 0.7;
-    a.play().catch(function(){});
-  } catch(e) {}
-}
+/* ── CARD HOVER SOUNDS — Pre-loaded pool with unlock ── */
+(function() {
+  var sfx = {
+    bong:   { path: 'sounds/Mac%20Startup%20Bong.mp3',  vol: 0.75 },
+    flip:   { path: 'sounds/Book%20Page%20Turning.mp3', vol: 0.70 },
+    laser:  { path: 'sounds/AI%20Robot%20Zap.mp3',       vol: 0.70 },
+    lock:   { path: 'sounds/Padlock%20Sound.mp3',        vol: 0.75 },
+    torch:  { path: 'sounds/Torch%20Switch%20On.mp3',   vol: 0.75 }
+  };
 
-function playMacBong()    { _playSound('sounds/Mac%20Startup%20Bong.mp3', 0.75); }
-function playPageFlip()   { _playSound('sounds/Book%20Page%20Turning.mp3', 0.7); }
-function playLaserZap()   { _playSound('sounds/AI%20Robot%20Zap.mp3', 0.7); }
-function playLockClunk()  { _playSound('sounds/Padlock%20Sound.mp3', 0.75); }
-function playTorchSound() { _playSound('sounds/Torch%20Switch%20On.mp3', 0.75); }
+  // Pre-create and preload all audio at page load
+  var pool = {};
+  for (var k in sfx) {
+    var a = new Audio(sfx[k].path);
+    a.preload = 'auto';
+    a.volume   = sfx[k].vol;
+    pool[k]    = a;
+  }
+
+  // Prime each idle element on first click so hover sounds work
+  var unlocked = false;
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    setTimeout(function() {
+      for (var key in pool) {
+        (function(audio) {
+          if (!audio.paused || audio.currentTime > 0) return;
+          var p = audio.play();
+          if (p && typeof p.then === 'function') {
+            p.then(function() { audio.pause(); audio.currentTime = 0; }).catch(function(){});
+          }
+        })(pool[key]);
+      }
+    }, 50);
+  }
+  document.addEventListener('click',      unlock, { once: true });
+  document.addEventListener('touchstart', unlock, { once: true });
+  document.addEventListener('keydown',    unlock, { once: true });
+
+  // Public play helpers
+  window.playMacBong    = function() { try { pool.bong.currentTime  = 0; pool.bong.play().catch(function(){}); } catch(e){} };
+  window.playPageFlip   = function() { try { pool.flip.currentTime  = 0; pool.flip.play().catch(function(){}); } catch(e){} };
+  window.playLaserZap   = function() { try { pool.laser.currentTime = 0; pool.laser.play().catch(function(){}); } catch(e){} };
+  window.playLockClunk  = function() { try { pool.lock.currentTime  = 0; pool.lock.play().catch(function(){}); } catch(e){} };
+  window.playTorchSound = function() { try { pool.torch.currentTime = 0; pool.torch.play().catch(function(){}); } catch(e){} };
+})();
 
 /* Laser beam animation: head/tail pointer travelling right */
 var _laserRunning = false;

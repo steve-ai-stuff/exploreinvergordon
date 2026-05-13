@@ -1877,7 +1877,7 @@
     <li><a href="nc500.html">NC500</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="blog.html">Blog</a></li>
-    <li><a href="work-with-me.html">Work With Me</a></li>
+    <li><a href="work-with-me.html" id="nav-wwm">Work With Me</a></li>
   </ul>
 </nav>
 
@@ -4061,10 +4061,12 @@ function handleContactSubmit(event) {
 <script>
 // ══════════════════════════════════════════════════════
 // SOUND FX ENGINE — Explore Invergordon
+// Pre-loads all audio at page start so play() fires
+// instantly within the user-activation window.
 // ══════════════════════════════════════════════════════
 (function() {
   var pool = {};
-  var ready = false;
+  var unlocked = false;
 
   var files = {
     bagpipes:  'sounds/bagpipes_trimmed.mp3',
@@ -4080,34 +4082,54 @@ function handleContactSubmit(event) {
     cow:       'sounds/highland-cow-moo.mp3'
   };
 
-  function init() {
-    if (ready) return;
-    ready = true;
-    for (var k in files) {
-      var a = new Audio(files[k]);
-      a.preload = 'auto';
-      pool[k] = a;
-    }
+  // Create and preload all Audio elements immediately at page load
+  // (no user gesture needed for element creation + network fetch)
+  for (var k in files) {
+    var a = new Audio(files[k]);
+    a.preload = 'auto';
+    pool[k] = a;
   }
 
-  // Unlock audio on first user gesture (browser autoplay policy)
-  document.addEventListener('click',      init, { once: true });
-  document.addEventListener('touchstart', init, { once: true });
-  document.addEventListener('keydown',    init, { once: true });
+  // On first user gesture, prime each idle audio element with a
+  // silent play→pause so later calls (including from hover events)
+  // work even outside a direct click context.
+  // Uses setTimeout(0) to fire AFTER any same-click playFX call,
+  // so we don't interrupt a sound that just started playing.
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    setTimeout(function() {
+      for (var key in pool) {
+        (function(audio) {
+          if (!audio.paused || audio.currentTime > 0) return; // skip if in use
+          var p = audio.play();
+          if (p && typeof p.then === 'function') {
+            p.then(function() {
+              audio.pause();
+              audio.currentTime = 0;
+            }).catch(function(){});
+          }
+        })(pool[key]);
+      }
+    }, 50); // 50ms: after onclick fires, before user-activation expires
+  }
+
+  document.addEventListener('click',      unlock, { once: true });
+  document.addEventListener('touchstart', unlock, { once: true });
+  document.addEventListener('keydown',    unlock, { once: true });
 
   window.playFX = function(key) {
-    init();
     var a = pool[key];
     if (!a) return;
     try { a.currentTime = 0; a.play().catch(function(){}); } catch(e){}
   };
 })();
 
-// ── Begin Your Visit: bagpipes + slow scroll to Cruise Hub ──
+// ── Begin Your Visit: bagpipes + slow scroll to Welcome section ──
 function beginVisit() {
   playFX('bagpipes');
   setTimeout(function() {
-    var el = document.getElementById('cruise-hub');
+    var el = document.getElementById('welcome');
     if (!el) return;
     var langBar = document.querySelector('.lang-bar');
     var nav     = document.querySelector('nav');
