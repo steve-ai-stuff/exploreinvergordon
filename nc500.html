@@ -729,18 +729,56 @@
 
   .footer-proton a { color: var(--heather-light) !important; text-decoration: none; }
   .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+
+  /* ── Google Translate — suppression & dropdown styling ── */
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.7rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
 </style>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 
 <body>
 
 <!-- LANG BAR -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
-  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
-  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <button class="lang-btn" onclick="eiLang('us',this)">&#127482;&#127480; US</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
 </div>
 
 <!-- NAV -->
@@ -792,12 +830,12 @@
   </div>
 
   <div class="hero-content">
-    <p class="hero-tag">Scotland's Legendary Coastal Route</p>
+    <p class="hero-tag" id="nc500-hero-tag">Scotland's Legendary Coastal Route</p>
     <h1 class="hero-title">
       North Coast<br>
       <em>500</em>
     </h1>
-    <p class="hero-subtitle">Invergordon sits at the heart of Scotland's most celebrated road trip. Mountains, lochs, castles, distilleries and wild coastline — all on your doorstep.</p>
+    <p class="hero-subtitle" id="nc500-hero-sub">Invergordon sits at the heart of Scotland's most celebrated road trip. Mountains, lochs, castles, distilleries and wild coastline — all on your doorstep.</p>
     <a href="#nc500-content" class="hero-cta">Explore the Route ↓</a>
   </div>
 
@@ -809,7 +847,7 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <p>One of the world's great road trips — right outside your door. Invergordon is your perfect NC500 base camp.</p>
+  <p id="nc500-trust-bar">One of the world's great road trips — right outside your door. Invergordon is your perfect NC500 base camp.</p>
 </div>
 
 <!-- NC500 INTRO -->
@@ -849,7 +887,7 @@
     <div class="ig-nc500">
       <h3>Invergordon: Your NC500 Base Camp</h3>
       <p>Most NC500 travellers drive straight through Invergordon without stopping. That's their loss. The town has <strong>fuel stations, supermarkets, accommodation and restaurants</strong> — everything you need to restock before heading north into the more remote sections of the route. But more than that, it has its own extraordinary story to tell.</p>
-      <p>The Mural Trail alone is worth a stop. Add Glenmorangie and Dalmore distilleries within minutes of the High Street. Add the Cromarty Firth — one of Scotland's most important wildlife habitats, home to dolphins, seals and over 30,000 overwintering birds. Add Fyrish Monument on the hill above town, Invergordon Museum telling the story of the Firth and its people, Saltburn Woodland Walk through ancient trees on the shoreline, and the Black Isle just across the bridge. <strong>You could spend a full day here and not run out of things to see.</strong></p>
+      <p>The Mural Trail alone is worth a stop. Add Glenmorangie and Dalmore distilleries within minutes of the High Street. Add the Cromarty Firth — one of Scotland's most important wildlife habitats, home to dolphins, seals and over 30,000 overwintering birds. Add Fyrish Monument on the hill above town. Add <strong>Invergordon Museum</strong>, which tells the story of Invergordon, the Firth and the people here — with their bright and varied history, it's a highly recommended visit. Plus the <strong>stunning Black Isle</strong>, just on the opposite side of the Cromarty Firth, filled with walks, cafes, restaurants, shops, areas of beauty, beaches, boat trips, dolphin and whale lookout points — a stunning place alone that could require you to spend several days just skimming the surface. A little more tricky for cruise ship passengers with no vehicle, but anyone doing the NC500 or staying locally in a hotel or B&amp;B would likely enjoy all of these suggestions plus a whole host more depending on how long they are staying locally.</p>
     </div>
   </div>
 </div>
@@ -859,7 +897,7 @@
   <p style="font-family:'Overpass Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; color:var(--heather-light); text-transform:uppercase; margin-bottom:0.7rem;">Share the Journey</p>
   <p style="font-size:1.15rem; font-weight:700; color:var(--text-light); margin-bottom:0.5rem;">📸 Having fun doing an NC500 run?</p>
   <p style="color:var(--mist); font-size:0.95rem; margin-bottom:1.2rem;">Send us your favourite photo — we'd love to share the best ones here.</p>
-  <a href="mailto:hello@exploreinvergordon.scot?subject=NC500%20Photo%20Submission&body=Hi%2C%20here%20is%20my%20favourite%20NC500%20photo%21%20(please%20attach%20your%20image)"
+  <a href="gallery.html#visitor"
      style="display:inline-block; background:var(--heather); color:#fff; font-family:'Overpass Mono',monospace; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; padding:0.75rem 2rem; border-radius:4px; text-decoration:none; transition:background 0.2s;">
     📸 Send Us Your Photo
   </a>
@@ -1039,12 +1077,39 @@
 </footer>
 
 <script>
-  // ── Language stubs ──────────────────────────────────────────────────────
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-    event.target.classList.add('active');
-    // Full translations can be wired in here as the site grows
+  // ── Language translation (NC500 page) ──────────────────────────────────
+  
+
+// ── Google Translate engine ─────────────────────────────────────────────
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en' || lang === 'us') {
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    return;
   }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
+  }
+  fire();
+}
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
+}
 </script>
 </body>
 </html>

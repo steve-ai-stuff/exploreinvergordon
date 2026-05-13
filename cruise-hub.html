@@ -1361,20 +1361,58 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(201,168,76,0.3);
   }
+
+  /* ── Google Translate — suppression & dropdown styling ── */
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.7rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
 </style>
 
 <!-- SumUp Payment Widget SDK -->
 <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
 
 <!-- LANG BAR -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
-  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
-  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <button class="lang-btn" onclick="eiLang('us',this)">&#127482;&#127480; US</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
 </div>
 
 <!-- Nav — identical to main site -->
@@ -1426,12 +1464,12 @@
   </div>
 
   <div class="hero-content">
-    <p class="hero-tag">Shore Day Concierge — Explore Invergordon</p>
+    <p class="hero-tag" id="ch-hero-tag">Shore Day Concierge — Explore Invergordon</p>
     <h1 class="hero-title">
       Your Perfect<br>
       <em>Shore Day</em>
     </h1>
-    <p class="hero-subtitle">A personalised itinerary built around your interests, your pace, and your time in port — delivered to your inbox within 24 hours.</p>
+    <p class="hero-subtitle" id="ch-hero-sub">A personalised itinerary built around your interests, your pace, and your time in port — delivered to your inbox within 24 hours.</p>
     <a href="#order" class="hero-cta">Get My Itinerary — £15</a>
   </div>
 
@@ -1443,7 +1481,7 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <p>Local knowledge. Real recommendations. Written by someone who lives here — not a travel algorithm.</p>
+  <p id="ch-trust-bar">Local knowledge. Real recommendations. Written by someone who lives here — not a travel algorithm.</p>
 </div>
 
 <!-- CRUISE TIPS — Getting Into Town strip -->
@@ -2151,17 +2189,39 @@
     setTimeout(function() { window.location.href = 'gallery.html#visitor'; }, 650);
   }
 
-  // ── Language translation stubs for cruise hub elements ──
-  var cruiseTrans = {
-    en: {
-      'tip1-title': 'Getting Into Town',
-      'tip1-text': 'The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you\'re on the High Street. No shuttle, no cost.',
-      'tip2-title': 'How Long Do You Need?',
-      'tip2-text': 'The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.',
-      'tip3-title': 'Before You Sail Away',
-      'tip3-text': 'Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.'
-    }
-  };
+  // ── Language translation (cruise hub page) ─────────────────────────────
+  
+
+// ── Google Translate engine ─────────────────────────────────────────────
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en' || lang === 'us') {
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    return;
+  }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
+  }
+  fire();
+}
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
+}
 </script>
 </body>
 </html>

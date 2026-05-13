@@ -727,17 +727,55 @@
 
   footer a { color: var(--gold); text-decoration: none; }
   footer a:hover { color: var(--gold-light); }
+
+  /* ── Google Translate — suppression & dropdown styling ── */
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.7rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
 </style>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
 
 <!-- LANG BAR -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
-  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
-  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <button class="lang-btn" onclick="eiLang('us',this)">&#127482;&#127480; US</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
 </div>
 
 <!-- NAV -->
@@ -955,414 +993,36 @@ function handleEnquirySubmit(event) {
   });
 }
 
-/* ── LANG SWITCHING ── */
-var wwmTranslations = {
-  en: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Work <em>With Me</em>",
-    heroDesc: "Whether you need a stunning website, guidance on AI for your business, a great resource to help you navigate the world of artificial intelligence, a Drone operator for an aerial project or even a video editor — let's talk. I even have links with unique discounts to some of the great Products and Services that I use here on this page for you to browse. Just click the links and grab a discount or unique promotion when you use any of them.",
-    sectionServices: "Services &amp; Resources",
-    sectionEnquiry: "Get in Touch",
-    tagWeb: "Website Design &amp; Build", titleWeb: "Like This Website? I Can Build One For You.",
-    descWeb: "From local businesses and tourism sites to personal brands and online stores — I design and build fast, beautiful, mobile-friendly websites tailored to the Scottish Highlands and beyond. No templates, no shortcuts. Every site is built from scratch to stand out.",
-    btnWeb: "Enquire Now →",
-    tagAi: "AI Consultancy", titleAi: "Using AI in Your Business — Without the Overwhelm",
-    descAi: "AI is transforming how local businesses work — but knowing where to start is the hard part. I work with Highland businesses to identify practical, affordable ways to use AI tools that save time, cut costs, and open new opportunities. No jargon, no hype. Just results.",
-    btnAi: "Enquire Now →",
-    tagBook: "My Book", titleBook: "The Definitive Guide to AI",
-    descBook: "Written from the Highlands of Scotland, this is the plain-English guide to understanding and using artificial intelligence in your everyday life and work. No computer science degree required — just curiosity and a desire to get ahead of the curve.",
-    btnBook: "Get Your Copy →",
-    tagProton: "Privacy Tools", titleProton: "Take Back Your Online Privacy with Proton",
-    descProton: "I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. If you're tired of Big Tech reading your emails and tracking your every move, Proton is the answer. Use my referral link for a bonus when you sign up.",
-    btnProton: "Try Proton Free →",
-    sectionProducts: "Products I Use &amp; Trust",
-    tagOlight: "Everyday Carry · Lighting",
-    titleOlight: "The Best Torches I've Ever Owned — Olight",
-    descOlight: "Seven Olight products and counting — I bought my first after going down a rabbit hole of torch reviews and I've genuinely never looked back. Rugged, rechargeable, waterproof, shockproof, all shapes and sizes. My four most-used, every single day:",
-    btnOlight: "Shop Olight →",
-    noteOlight: "Referral link — I may earn a small reward if you make a purchase.",
-    enqServiceLabel: "I'm Interested In", enqNameLabel: "Your Name",
-    enqEmailLabel: "Your Email Address", enqMsgLabel: "Tell Me a Bit About What You Need",
-    enqBtn: "Send Enquiry →", successTitle: "Message Received!",
-    successDesc: "Thanks for getting in touch — I'll get back to you as soon as I can, usually within a day or two.",
-    optWeb: "Website Design &amp; Build", optAi: "AI Consultancy", optOther: "Something Else"
-  },
-  de: {
-    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie", navWwm: "Zusammenarbeiten",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Arbeite <em>Mit Mir</em>",
-    heroDesc: "Ob du eine Website benötigst, Beratung zu KI für dein Unternehmen oder eine Ressource zur künstlichen Intelligenz — lass uns sprechen.",
-    sectionServices: "Dienstleistungen &amp; Ressourcen", sectionEnquiry: "Kontakt aufnehmen",
-    tagWeb: "Website-Design &amp; Entwicklung", titleWeb: "Gefällt dir diese Website? Ich kann eine für dich bauen.",
-    descWeb: "Von lokalen Unternehmen bis hin zu persönlichen Marken — ich designe und entwickle schnelle, schöne, mobilfreundliche Websites, maßgeschneidert für das Schottische Hochland und darüber hinaus.",
-    btnWeb: "Jetzt anfragen →",
-    tagAi: "KI-Beratung", titleAi: "KI in deinem Unternehmen — ohne Überwältigung",
-    descAi: "KI verändert die Arbeit lokaler Unternehmen. Ich helfe Hochlandbetrieben, praktische, erschwingliche Wege zu finden, KI-Tools einzusetzen, die Zeit sparen und neue Möglichkeiten eröffnen.",
-    btnAi: "Jetzt anfragen →",
-    tagBook: "Mein Buch", titleBook: "Der umfassende Leitfaden zur KI",
-    descBook: "Geschrieben aus den Highlands Schottlands — der Leitfaden in einfachem Deutsch zum Verstehen und Nutzen von künstlicher Intelligenz im Alltag.",
-    btnBook: "Exemplar holen →",
-    tagProton: "Datenschutz-Tools", titleProton: "Hol dir deine Online-Privatsphäre zurück mit Proton",
-    descProton: "Ich nutze Proton täglich — verschlüsselte E-Mails, VPN, Cloud-Speicher und mehr, alles auf Datenschutz ausgelegt. Nutze meinen Empfehlungslink für einen Bonus.",
-    btnProton: "Proton kostenlos testen →",
-    sectionProducts: "Produkte, die ich nutze &amp; empfehle",
-    tagOlight: "Alltagsbegleiter · Beleuchtung",
-    titleOlight: "Die besten Taschenlampen, die ich je besessen habe — Olight",
-    descOlight: "Sieben Olight-Produkte und noch mehr — ich kaufte mein erstes nach einer intensiven Recherche und habe es nie bereut. Robust, wiederaufladbar, wasserdicht, stoßfest — in allen Formen und Größen. Meine vier meistgenutzten, jeden Tag:",
-    btnOlight: "Olight entdecken →",
-    noteOlight: "Empfehlungslink — ich erhalte möglicherweise eine kleine Vergütung bei einem Kauf.",
-    enqServiceLabel: "Ich interessiere mich für", enqNameLabel: "Dein Name",
-    enqEmailLabel: "Deine E-Mail-Adresse", enqMsgLabel: "Erzähl mir, was du brauchst",
-    enqBtn: "Anfrage senden →", successTitle: "Nachricht erhalten!",
-    successDesc: "Danke für deine Nachricht — ich melde mich so bald wie möglich bei dir.",
-    optWeb: "Website-Design &amp; Entwicklung", optAi: "KI-Beratung", optOther: "Etwas anderes"
-  },
-  fr: {
-    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie", navWwm: "Travailler Avec Moi",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Travaillez <em>Avec Moi</em>",
-    heroDesc: "Que vous ayez besoin d'un site web, de conseils sur l'IA pour votre entreprise, ou d'une ressource pour naviguer dans le monde de l'intelligence artificielle — parlons-en.",
-    sectionServices: "Services &amp; Ressources", sectionEnquiry: "Prendre Contact",
-    tagWeb: "Conception &amp; Développement Web", titleWeb: "Vous aimez ce site ? Je peux en créer un pour vous.",
-    descWeb: "Des entreprises locales aux marques personnelles — je conçois et développe des sites web rapides, beaux et adaptés aux mobiles, sur mesure pour les Highlands écossaises.",
-    btnWeb: "Demander un devis →",
-    tagAi: "Conseil en IA", titleAi: "L'IA dans votre entreprise — sans la complexité",
-    descAi: "L'IA transforme le travail des entreprises locales. J'aide les entreprises des Highlands à identifier des moyens pratiques et abordables d'utiliser les outils d'IA.",
-    btnAi: "Demander un devis →",
-    tagBook: "Mon Livre", titleBook: "Le Guide Définitif de l'IA",
-    descBook: "Écrit depuis les Highlands d'Écosse, ce guide en langage clair vous aide à comprendre et à utiliser l'intelligence artificielle dans votre vie quotidienne.",
-    btnBook: "Obtenir votre exemplaire →",
-    tagProton: "Outils de Confidentialité", titleProton: "Reprenez le contrôle de votre vie privée en ligne avec Proton",
-    descProton: "J'utilise Proton tous les jours — e-mails chiffrés, VPN, stockage cloud, tout axé sur la confidentialité. Utilisez mon lien de parrainage pour un bonus.",
-    btnProton: "Essayer Proton gratuitement →",
-    sectionProducts: "Produits que j'utilise &amp; en qui j'ai confiance",
-    tagOlight: "Équipement quotidien · Éclairage",
-    titleOlight: "Les meilleures lampes torches que j'aie jamais possédées — Olight",
-    descOlight: "Sept produits Olight et ce n'est pas fini — j'ai acheté le premier après de nombreuses recherches et je ne l'ai jamais regretté. Robustes, rechargeables, imperméables, résistants aux chocs — toutes formes et tailles. Mes quatre plus utilisés, chaque jour :",
-    btnOlight: "Découvrir Olight →",
-    noteOlight: "Lien de parrainage — je peux recevoir une petite récompense si vous effectuez un achat.",
-    enqServiceLabel: "Je suis intéressé par", enqNameLabel: "Votre Nom",
-    enqEmailLabel: "Votre Adresse E-mail", enqMsgLabel: "Dites-moi ce dont vous avez besoin",
-    enqBtn: "Envoyer la demande →", successTitle: "Message reçu !",
-    successDesc: "Merci de nous avoir contactés — je vous répondrai dès que possible.",
-    optWeb: "Conception &amp; Développement Web", optAi: "Conseil en IA", optOther: "Autre chose"
-  },
-  us: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Work <em>With Me</em>",
-    heroDesc: "Whether you need a stunning website, guidance on AI for your business, or a resource to help you navigate artificial intelligence — let's connect.",
-    sectionServices: "Services &amp; Resources", sectionEnquiry: "Get in Touch",
-    tagWeb: "Website Design &amp; Build", titleWeb: "Like This Website? I Can Build One For You.",
-    descWeb: "From local businesses and tourism sites to personal brands and online stores — I design and build fast, beautiful, mobile-friendly websites. No templates, no shortcuts. Every site is built from scratch to stand out.",
-    btnWeb: "Inquire Now →",
-    tagAi: "AI Consulting", titleAi: "Using AI in Your Business — Without the Overwhelm",
-    descAi: "AI is transforming how local businesses operate. I work with businesses to identify practical, affordable ways to use AI tools that save time, cut costs, and open new opportunities.",
-    btnAi: "Inquire Now →",
-    tagBook: "My Book", titleBook: "The Definitive Guide to AI",
-    descBook: "Written from the Highlands of Scotland, this is the plain-English guide to understanding and using AI in your everyday life and work. No tech degree required.",
-    btnBook: "Get Your Copy →",
-    tagProton: "Privacy Tools", titleProton: "Take Back Your Online Privacy with Proton",
-    descProton: "I use Proton every day — encrypted email, VPN, cloud storage and more, all built around privacy by design. Use my referral link for a bonus when you sign up.",
-    btnProton: "Try Proton Free →",
-    sectionProducts: "Products I Use &amp; Trust",
-    tagOlight: "Everyday Carry · Lighting",
-    titleOlight: "The Best Flashlights I've Ever Owned — Olight",
-    descOlight: "Seven Olight products and counting — I bought my first after going down a rabbit hole of flashlight reviews and I've genuinely never looked back. Rugged, rechargeable, waterproof, shockproof, all shapes and sizes. My four most-used, every single day:",
-    btnOlight: "Shop Olight →",
-    noteOlight: "Referral link — I may earn a small reward if you make a purchase.",
-    enqServiceLabel: "I'm Interested In", enqNameLabel: "Your Name",
-    enqEmailLabel: "Your Email Address", enqMsgLabel: "Tell Me a Bit About What You Need",
-    enqBtn: "Send Inquiry →", successTitle: "Message Received!",
-    successDesc: "Thanks for reaching out — I'll get back to you as soon as I can, usually within a day or two.",
-    optWeb: "Website Design &amp; Build", optAi: "AI Consulting", optOther: "Something Else"
-  },
-  no: {
-    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri", navWwm: "Samarbeid Med Meg",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Samarbeid <em>Med Meg</em>",
-    heroDesc: "Enten du trenger et imponerende nettsted, veiledning om KI for bedriften din, eller en ressurs for å navigere i verden av kunstig intelligens — la oss snakke.",
-    sectionServices: "Tjenester &amp; Ressurser", sectionEnquiry: "Ta Kontakt",
-    tagWeb: "Nettstedsdesign &amp; Utvikling", titleWeb: "Liker du denne nettsiden? Jeg kan bygge en for deg.",
-    descWeb: "Fra lokale bedrifter til personlige merkevarer — jeg designer og bygger raske, vakre, mobilevennlige nettsteder tilpasset de skotske høylandene.",
-    btnWeb: "Forespørsel nå →",
-    tagAi: "KI-rådgivning", titleAi: "Bruk KI i bedriften din — uten å bli overveldet",
-    descAi: "KI forandrer måten lokale bedrifter jobber på. Jeg hjelper bedrifter med å finne praktiske, rimelige måter å bruke KI-verktøy som sparer tid og åpner nye muligheter.",
-    btnAi: "Forespørsel nå →",
-    tagBook: "Min Bok", titleBook: "Den Definitive Guiden til KI",
-    descBook: "Skrevet fra Høylandet i Skottland — en lettlest guide til å forstå og bruke kunstig intelligens i hverdagen og på jobben.",
-    btnBook: "Få ditt eksemplar →",
-    tagProton: "Personvernverktøy", titleProton: "Ta tilbake ditt online personvern med Proton",
-    descProton: "Jeg bruker Proton hver dag — kryptert e-post, VPN, skyslagring og mer, alt bygget rundt personvern. Bruk min henvisningslenke for en bonus.",
-    btnProton: "Prøv Proton gratis →",
-    sectionProducts: "Produkter jeg bruker &amp; stoler på",
-    tagOlight: "Daglig utstyr · Belysning",
-    titleOlight: "De beste lommelykterne jeg noensinne har eid — Olight",
-    descOlight: "Syv Olight-produkter og stadig flere — jeg kjøpte min første etter grundig research og har aldri angret. Robuste, oppladbare, vanntette, støtsikre — i alle former og størrelser. Mine fire mest brukte, hver eneste dag:",
-    btnOlight: "Utforsk Olight →",
-    noteOlight: "Henvisningslenke — jeg kan motta en liten belønning hvis du gjør et kjøp.",
-    enqServiceLabel: "Jeg er interessert i", enqNameLabel: "Ditt Navn",
-    enqEmailLabel: "Din E-postadresse", enqMsgLabel: "Fortell meg litt om hva du trenger",
-    enqBtn: "Send forespørsel →", successTitle: "Melding mottatt!",
-    successDesc: "Takk for at du tok kontakt — jeg svarer så snart jeg kan, vanligvis innen en dag eller to.",
-    optWeb: "Nettstedsdesign &amp; Utvikling", optAi: "KI-rådgivning", optOther: "Noe annet"
-  }
-};
-
-var currentLang = 'en';
-
-function set(id, val, isHTML) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  if (isHTML === false) { el.textContent = val; } else { el.innerHTML = val; }
+// ── Google Translate engine ─────────────────────────────────────────────
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
 }
-
-function setLang(lang) {
-  if (!wwmTranslations[lang]) return;
-  currentLang = lang;
-  var t = wwmTranslations[lang];
-
-  set('wwm-nav-home', t.navHome); set('wwm-nav-blog', t.navBlog);
-  set('wwm-nav-gallery', t.navGallery); set('wwm-nav-wwm', t.navWwm);
-  set('wwm-hero-label', t.heroLabel); set('wwm-hero-title', t.heroTitle);
-  set('wwm-hero-desc', t.heroDesc);
-  set('wwm-section-services', t.sectionServices); set('wwm-section-enquiry', t.sectionEnquiry);
-  set('wwm-tag-web', t.tagWeb); set('wwm-title-web', t.titleWeb);
-  set('wwm-desc-web', t.descWeb); set('wwm-btn-web', t.btnWeb);
-  set('wwm-tag-ai', t.tagAi); set('wwm-title-ai', t.titleAi);
-  set('wwm-desc-ai', t.descAi); set('wwm-btn-ai', t.btnAi);
-  set('wwm-tag-book', t.tagBook); set('wwm-title-book', t.titleBook);
-  set('wwm-desc-book', t.descBook); set('wwm-btn-book', t.btnBook);
-  set('wwm-tag-proton', t.tagProton); set('wwm-title-proton', t.titleProton);
-  set('wwm-desc-proton', t.descProton); set('wwm-btn-proton', t.btnProton);
-  set('wwm-section-products', t.sectionProducts);
-  set('wwm-tag-olight', t.tagOlight); set('wwm-title-olight', t.titleOlight);
-  set('wwm-desc-olight', t.descOlight); set('wwm-btn-olight', t.btnOlight);
-  set('wwm-note-olight', t.noteOlight);
-  set('wwm-enq-service-label', t.enqServiceLabel);
-  set('wwm-enq-name-label', t.enqNameLabel);
-  set('wwm-enq-email-label', t.enqEmailLabel);
-  set('wwm-enq-msg-label', t.enqMsgLabel);
-  set('enquirySubmit', t.enqBtn, false);
-  set('wwm-success-title', t.successTitle); set('wwm-success-desc', t.successDesc);
-  set('wwm-opt-web', t.optWeb); set('wwm-opt-ai', t.optAi); set('wwm-opt-other', t.optOther);
-
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.classList.remove('active');
-  });
-  var langs = ['en','de','fr','us','no'];
-  var idx = langs.indexOf(lang);
-  var btns = document.querySelectorAll('.lang-btn');
-  if (btns[idx]) btns[idx].classList.add('active');
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en' || lang === 'us') {
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    return;
+  }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
+  }
+  fire();
 }
-
-/* ── CARD HOVER SOUNDS — Pre-loaded pool with unlock ── */
-(function() {
-  var sfx = {
-    bong:   { path: 'sounds/Mac%20Startup%20Bong.mp3',  vol: 0.75 },
-    flip:   { path: 'sounds/Book%20Page%20Turning.mp3', vol: 0.70 },
-    laser:  { path: 'sounds/AI%20Robot%20Zap.mp3',       vol: 0.70 },
-    lock:   { path: 'sounds/Padlock%20Sound.mp3',        vol: 0.75 },
-    torch:  { path: 'sounds/Torch%20Switch%20On.mp3',   vol: 0.75 }
-  };
-
-  // Pre-create and preload all audio at page load
-  var pool = {};
-  for (var k in sfx) {
-    var a = new Audio(sfx[k].path);
-    a.preload = 'auto';
-    a.volume   = sfx[k].vol;
-    pool[k]    = a;
-  }
-
-  // Prime each idle element on first click so hover sounds work
-  var unlocked = false;
-  function unlock() {
-    if (unlocked) return;
-    unlocked = true;
-    setTimeout(function() {
-      for (var key in pool) {
-        (function(audio) {
-          if (!audio.paused || audio.currentTime > 0) return;
-          var p = audio.play();
-          if (p && typeof p.then === 'function') {
-            p.then(function() { audio.pause(); audio.currentTime = 0; }).catch(function(){});
-          }
-        })(pool[key]);
-      }
-    }, 50);
-  }
-  document.addEventListener('click',      unlock, { once: true });
-  document.addEventListener('touchstart', unlock, { once: true });
-  document.addEventListener('keydown',    unlock, { once: true });
-
-  // Public play helpers
-  window.playMacBong    = function() { try { pool.bong.currentTime  = 0; pool.bong.play().catch(function(){}); } catch(e){} };
-  window.playPageFlip   = function() { try { pool.flip.currentTime  = 0; pool.flip.play().catch(function(){}); } catch(e){} };
-  window.playLaserZap   = function() { try { pool.laser.currentTime = 0; pool.laser.play().catch(function(){}); } catch(e){} };
-  window.playLockClunk  = function() { try { pool.lock.currentTime  = 0; pool.lock.play().catch(function(){}); } catch(e){} };
-  window.playTorchSound = function() { try { pool.torch.currentTime = 0; pool.torch.play().catch(function(){}); } catch(e){} };
-})();
-
-/* Laser beam animation: head/tail pointer travelling right */
-var _laserRunning = false;
-function _fireLaser() {
-  if (_laserRunning) return;
-  _laserRunning = true;
-  var el = document.getElementById('ai-laser-beam');
-  if (!el) { _laserRunning = false; return; }
-  /* Calculate chars — use 7.5px to account for letter-spacing: -0.05em on chars */
-  var CHAR_W = 7.5;
-  var TOTAL = Math.max(55, Math.ceil((el.offsetWidth || 420) / CHAR_W));
-  var BEAM = 14, TICK = 16;
-  var step = 0;
-  function frame() {
-    if (step > TOTAL + BEAM) {
-      el.textContent = '';
-      _laserRunning = false;
-      return;
-    }
-    var out = '';
-    for (var i = 0; i < TOTAL; i++) {
-      var inBeam = (i >= step - BEAM) && (i < step);
-      if (!inBeam)            { out += ' '; }
-      else if (i === step - 1) { out += '●'; }
-      else                    { out += '─'; }
-    }
-    el.textContent = out;
-    step++;
-    setTimeout(frame, TICK);
-  }
-  frame();
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-
-  /* ── Helper: deactivate a service card ── */
-  function deactivateCard(card) {
-    card.classList.remove('card-active');
-    var iw = card.querySelector('#icon-web');  if (iw) iw.classList.remove('icon-glow-gold');
-    var ia = card.querySelector('#icon-ai');   if (ia) ia.classList.remove('icon-glow-red');
-    var ib = card.querySelector('#icon-book'); if (ib) ib.textContent = '📗';
-    var ip = card.querySelector('#icon-proton'); if (ip) ip.textContent = '🔒';
-  }
-  function deactivateAllCards() {
-    document.querySelectorAll('.service-card.card-active').forEach(deactivateCard);
-  }
-
-  /* ── Generic two-tap setup for each service card ── */
-  function setupServiceCard(cardId, onActivate, primaryActionEl) {
-    var card = document.getElementById(cardId);
-    if (!card) return;
-    var wasActive = false;
-
-    /* Desktop hover */
-    card.addEventListener('mouseenter', function() { onActivate(); });
-    card.addEventListener('mouseleave', function() { deactivateCard(card); });
-
-    /* Mobile: tap 1 = activate, tap 2 = trigger CTA */
-    card.addEventListener('touchstart', function() {
-      wasActive = card.classList.contains('card-active');
-      if (!wasActive) {
-        deactivateAllCards();
-        card.classList.add('card-active');
-        onActivate();
-      }
-    }, { passive: true });
-
-    /* Second tap anywhere on card (not directly on a button/link) does nothing.
-       Buttons and links inside the card handle their own native tap events. */
-  }
-
-  /* ── WEBSITE DESIGN ── */
-  var iconWeb = document.getElementById('icon-web');
-  setupServiceCard('card-web',
-    function() { if (iconWeb) iconWeb.classList.add('icon-glow-gold'); playMacBong(); },
-    document.getElementById('wwm-btn-web')
-  );
-
-  /* ── AI CONSULTANCY ── */
-  var iconAi = document.getElementById('icon-ai');
-  setupServiceCard('card-ai',
-    function() { if (iconAi) iconAi.classList.add('icon-glow-red'); playLaserZap(); _fireLaser(); },
-    document.getElementById('wwm-btn-ai')
-  );
-
-  /* ── BOOK ── */
-  var iconBook = document.getElementById('icon-book');
-  setupServiceCard('card-book',
-    function() { if (iconBook) iconBook.textContent = '📖'; playPageFlip(); },
-    document.getElementById('wwm-btn-book')
-  );
-
-  /* ── PROTON ── */
-  var iconProton = document.getElementById('icon-proton');
-  setupServiceCard('card-proton',
-    function() { if (iconProton) iconProton.textContent = '🔓'; playLockClunk(); },
-    document.getElementById('wwm-btn-proton')
-  );
-
-  /* Tap outside any service card → deactivate all */
-  document.addEventListener('touchstart', function(e) {
-    if (!e.target.closest('.service-card')) deactivateAllCards();
-  }, { passive: true });
-
-  /* ── O-LIGHT — torch sound + two-tap mobile pattern (mirrors biz cards on index) ── */
-  var cardOlight = document.getElementById('card-olight');
-  if (cardOlight) {
-    cardOlight.addEventListener('mouseenter', playTorchSound);
-    cardOlight.addEventListener('mouseleave', playTorchSound);
-
-    /* Mobile: touchstart on main card area (not on li items — they have their own handler) */
-    cardOlight.addEventListener('touchstart', function(e) {
-      if (!e.target.closest('.product-highlights li')) {
-        playTorchSound();
-      }
-    }, { passive: true });
-
-    cardOlight.querySelectorAll('.product-highlights li').forEach(function(li) {
-      var wasTorchActive = false;
-
-      /* Desktop: sound on hover */
-      li.addEventListener('mouseenter', playTorchSound);
-
-      /* Mobile tap 1: activate (glow), tap 2: open link */
-      li.addEventListener('touchstart', function() {
-        wasTorchActive = li.classList.contains('torch-li-active');
-        if (!wasTorchActive) {
-          /* Deactivate any other active li first */
-          cardOlight.querySelectorAll('.product-highlights li.torch-li-active').forEach(function(other) {
-            other.classList.remove('torch-li-active');
-          });
-          li.classList.add('torch-li-active');
-          playTorchSound();
-        }
-      }, { passive: true });
-
-      /* click fires after touchstart — only navigate if card was already active */
-      var link = li.querySelector('.torch-item-link');
-      if (link) {
-        link.addEventListener('click', function(e) {
-          if (!wasTorchActive) {
-            e.preventDefault(); /* first tap: just activate, don't navigate */
-          }
-          /* second tap: wasTorchActive true → anchor href navigates naturally */
-        });
-      }
-    });
-
-    /* Tap outside all torch cards → deactivate all */
-    document.addEventListener('touchstart', function(e) {
-      if (!e.target.closest('#card-olight .product-highlights li')) {
-        cardOlight.querySelectorAll('.product-highlights li.torch-li-active').forEach(function(li) {
-          li.classList.remove('torch-li-active');
-        });
-      }
-    }, { passive: true });
-  }
-
-});
 </script>
 </body>
 </html>

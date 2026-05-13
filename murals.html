@@ -779,18 +779,56 @@
 
   .footer-proton a { color: var(--heather-light) !important; text-decoration: none; }
   .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+
+  /* ── Google Translate — suppression & dropdown styling ── */
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.7rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
 </style>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 
 <body>
 
 <!-- LANG BAR -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
-  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
-  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <button class="lang-btn" onclick="eiLang('us',this)">&#127482;&#127480; US</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
 </div>
 
 <!-- NAV -->
@@ -859,7 +897,7 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <p>Created by volunteers. Launched by HRH The Princess Royal in 2007. One of Scotland's finest outdoor art collections — and it's completely free.</p>
+  <p id="mural-trust-bar">Created by volunteers. Launched by HRH The Princess Royal in 2007. One of Scotland's finest outdoor art collections — and it's completely free.</p>
 </div>
 
 <!-- MURAL TRAIL -->
@@ -1392,25 +1430,39 @@
     });
   });
 
-  // ── Language stubs (mural page) ─────────────────────────────────────────
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-    event.target.classList.add('active');
-    // Minimal translation stubs — extend as needed
-    const t = {
-      en: { label: 'Outdoor Art Gallery', title: 'The <em>Mural Trail</em>', intro1: 'In 2002, a group of local volunteers called <strong style="color:var(--cream);">Invergordon Off the Wall</strong> began a remarkable community project — transforming the town\'s walls into a monumental open-air gallery celebrating Highland history and heritage.' },
-      de: { label: 'Freilichtgalerie', title: 'Der <em>Wandgemälde-Pfad</em>', intro1: 'Im Jahr 2002 begann eine Gruppe lokaler Freiwilliger namens <strong style="color:var(--cream);">Invergordon Off the Wall</strong> mit einem bemerkenswerten Gemeinschaftsprojekt.' },
-      fr: { label: 'Galerie en plein air', title: 'Le <em>Parcours des Fresques</em>', intro1: 'En 2002, un groupe de bénévoles locaux nommé <strong style="color:var(--cream);">Invergordon Off the Wall</strong> a lancé un remarquable projet communautaire.' },
-      us: { label: 'Outdoor Art Gallery', title: 'The <em>Mural Trail</em>', intro1: 'Back in 2002, a group of local volunteers called <strong style="color:var(--cream);">Invergordon Off the Wall</strong> kicked off an amazing community project — turning the town\'s walls into one massive open-air gallery.' },
-      no: { label: 'Utendørs kunstgalleri', title: 'Muralmali-stien', intro1: 'I 2002 startet en gruppe lokale frivillige kalt <strong style="color:var(--cream);">Invergordon Off the Wall</strong> et bemerkelsesverdig fellesskapsprosjekt.' },
-    };
-    const trans = t[lang];
-    if (!trans) return;
-    const setEl = function(id, html) { const el = document.getElementById(id); if (el) el.innerHTML = html; };
-    setEl('mural-label', trans.label);
-    setEl('mural-title', trans.title);
-    setEl('mural-intro1', trans.intro1);
+  // ── Language translation (mural page) ──────────────────────────────────
+  
+
+// ── Google Translate engine ─────────────────────────────────────────────
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en' || lang === 'us') {
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    return;
   }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
+  }
+  fire();
+}
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
+}
 </script>
 </body>
 </html>

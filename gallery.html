@@ -823,17 +823,55 @@
   .lb-nav:hover { color: var(--gold); }
   #lb-prev { left: 0.4rem; }
   #lb-next { right: 0.4rem; }
+
+  /* ── Google Translate — suppression & dropdown styling ── */
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.7rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
 </style>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
 
 <!-- LANG BAR -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
-  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
-  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <button class="lang-btn" onclick="eiLang('us',this)">&#127482;&#127480; US</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
 </div>
 
 <!-- NAV -->
@@ -1124,619 +1162,36 @@
 </footer>
 
 <script>
-var galTranslations = {
-  en: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWorkWithMe: "Work With Me",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Through the <em>Lens</em>",
-    heroDesc: "Drone photography, harbour mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.",
-    sectionDrone: "Drone &amp; Aerial Photography",
-    sectionCruise: "Cruise Ships &amp; Port",
-    sectionLandscape: "Highland Landscape",
-    sectionMurals: "Street Art &amp; Murals",
-    phDroneMain: "Aerial shot coming soon",
-    phDrone2: "Harbour aerial",
-    phDrone3: "Firth panorama",
-    phCruise1: "Cruise arrival shot",
-    phCruise2: "Port of Cromarty Firth",
-    phCruise3: "Ships at anchor",
-    phLand1: "Highland landscape",
-    phLand2: "Cromarty Firth view",
-    phLand3: "Golden hour",
-    phMural1: "Mural photography",
-    phMural2: "Street art detail",
-    phMural3: "Mural close-up",
-    capDroneMain: "Invergordon from above · Cromarty Firth",
-    capDrone2: "The Harbour · High Tide",
-    capDrone3: "Cromarty Firth Panorama",
-    capCruise1: "Cruise Ship Arrival · Dawn",
-    capCruise2: "Port of Cromarty Firth",
-    capCruise3: "Ships at Anchor · Firth",
-    capLand1: "Easter Ross Hills",
-    capLand2: "Cromarty Firth · Morning Light",
-    capLand3: "Golden Hour · Highlands",
-    capMural1: "Invergordon Off the Wall",
-    capMural2: "Street Art · High Street",
-    capMural3: "Mural Detail · Invergordon",
-    comingSoon: "More images being added throughout the 2026 season",
-    comingSoonLink: "← Back to main site",
-    footerTagline: "EXPLORE INVERGORDON · SCOTTISH HIGHLANDS",
-    footerPrivacy: "Privacy Policy",
-    tabMine: "My Gallery",
-    tabVisitor: "Visitor Gallery",
-    visitorEmptyTitle: "Be the First to Share!",
-    visitorEmptyDesc: "No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below. Once reviewed it'll appear right here."
-  },
-  de: {
-    navHome: "Startseite", navBlog: "Blog", navGallery: "Galerie", navWorkWithMe: "Mit Mir Arbeiten",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Durch die <em>Linse</em>",
-    heroDesc: "Drohnenfotos, Hafenmorgen, Hochlandlandschaften und die Straßenkunst von Invergordon — von einem Einheimischen durch die Jahreszeiten festgehalten.",
-    sectionDrone: "Drohnen- &amp; Luftfotografie",
-    sectionCruise: "Kreuzfahrtschiffe &amp; Hafen",
-    sectionLandscape: "Hochlandlandschaft",
-    sectionMurals: "Straßenkunst &amp; Wandbilder",
-    phDroneMain: "Luftaufnahme folgt bald",
-    phDrone2: "Hafen aus der Luft",
-    phDrone3: "Firth-Panorama",
-    phCruise1: "Ankunft des Kreuzfahrtschiffs",
-    phCruise2: "Hafen von Cromarty Firth",
-    phCruise3: "Schiffe vor Anker",
-    phLand1: "Hochlandlandschaft",
-    phLand2: "Blick auf den Cromarty Firth",
-    phLand3: "Goldene Stunde",
-    phMural1: "Wandbild-Fotografie",
-    phMural2: "Straßenkunst-Detail",
-    phMural3: "Wandbild-Nahaufnahme",
-    capDroneMain: "Invergordon von oben · Cromarty Firth",
-    capDrone2: "Der Hafen · Hochwasser",
-    capDrone3: "Cromarty Firth Panorama",
-    capCruise1: "Ankunft des Kreuzfahrtschiffs · Morgengrauen",
-    capCruise2: "Hafen von Cromarty Firth",
-    capCruise3: "Schiffe vor Anker · Firth",
-    capLand1: "Hügel von Easter Ross",
-    capLand2: "Cromarty Firth · Morgenlicht",
-    capLand3: "Goldene Stunde · Hochland",
-    capMural1: "Invergordon Off the Wall",
-    capMural2: "Straßenkunst · High Street",
-    capMural3: "Wandbild-Detail · Invergordon",
-    comingSoon: "Weitere Bilder werden während der Saison 2026 hinzugefügt",
-    comingSoonLink: "← Zurück zur Hauptseite",
-    footerTagline: "EXPLORE INVERGORDON · SCHOTTISCHES HOCHLAND",
-    footerPrivacy: "Datenschutzrichtlinie",
-    tabMine: "Meine Galerie",
-    tabVisitor: "Besuchergalerie",
-    visitorEmptyTitle: "Sei der Erste!",
-    visitorEmptyDesc: "Noch keine Besucherfotos — Deins könnte das erste sein. Teile etwas, das du in Invergordon geliebt hast."
-  },
-  fr: {
-    navHome: "Accueil", navBlog: "Blog", navGallery: "Galerie", navWorkWithMe: "Travailler Avec Moi",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "À travers <em>l'Objectif</em>",
-    heroDesc: "Photos de drone, matins au port, paysages des Highlands et l'art de rue d'Invergordon — capturés par un résident local tout au long des saisons.",
-    sectionDrone: "Photographie par Drone &amp; Aérienne",
-    sectionCruise: "Bateaux de Croisière &amp; Port",
-    sectionLandscape: "Paysage des Highlands",
-    sectionMurals: "Art de Rue &amp; Fresques",
-    phDroneMain: "Vue aérienne à venir",
-    phDrone2: "Vue aérienne du port",
-    phDrone3: "Panorama du Firth",
-    phCruise1: "Arrivée du navire de croisière",
-    phCruise2: "Port de Cromarty Firth",
-    phCruise3: "Navires au mouillage",
-    phLand1: "Paysage des Highlands",
-    phLand2: "Vue sur le Cromarty Firth",
-    phLand3: "Heure dorée",
-    phMural1: "Photographie de fresque",
-    phMural2: "Détail d'art de rue",
-    phMural3: "Gros plan sur fresque",
-    capDroneMain: "Invergordon vu d'en haut · Cromarty Firth",
-    capDrone2: "Le Port · Marée haute",
-    capDrone3: "Panorama du Cromarty Firth",
-    capCruise1: "Arrivée du bateau · Aube",
-    capCruise2: "Port de Cromarty Firth",
-    capCruise3: "Navires au mouillage · Firth",
-    capLand1: "Collines d'Easter Ross",
-    capLand2: "Cromarty Firth · Lumière du matin",
-    capLand3: "Heure dorée · Highlands",
-    capMural1: "Invergordon Off the Wall",
-    capMural2: "Art de Rue · High Street",
-    capMural3: "Détail de Fresque · Invergordon",
-    comingSoon: "D'autres images sont ajoutées tout au long de la saison 2026",
-    comingSoonLink: "← Retour au site principal",
-    footerTagline: "EXPLORE INVERGORDON · HIGHLANDS ÉCOSSAISES",
-    footerPrivacy: "Politique de Confidentialité",
-    tabMine: "Ma Galerie",
-    tabVisitor: "Galerie des Visiteurs",
-    visitorEmptyTitle: "Soyez le Premier !",
-    visitorEmptyDesc: "Pas encore de photos de visiteurs — la vôtre pourrait être la première. Partagez quelque chose que vous avez aimé à Invergordon."
-  },
-  us: {
-    navHome: "Home", navBlog: "Blog", navGallery: "Gallery", navWorkWithMe: "Work With Me",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Through the <em>Lens</em>",
-    heroDesc: "Drone photography, harbor mornings, highland landscapes and the street art of Invergordon — captured by a local resident throughout the seasons.",
-    sectionDrone: "Drone &amp; Aerial Photography",
-    sectionCruise: "Cruise Ships &amp; Harbor",
-    sectionLandscape: "Highland Landscape",
-    sectionMurals: "Street Art &amp; Murals",
-    phDroneMain: "Aerial shot coming soon",
-    phDrone2: "Harbor aerial",
-    phDrone3: "Firth panorama",
-    phCruise1: "Cruise ship arrival",
-    phCruise2: "Port of Cromarty Firth",
-    phCruise3: "Ships at anchor",
-    phLand1: "Highland landscape",
-    phLand2: "Cromarty Firth view",
-    phLand3: "Golden hour",
-    phMural1: "Mural photography",
-    phMural2: "Street art detail",
-    phMural3: "Mural close-up",
-    capDroneMain: "Invergordon from above · Cromarty Firth",
-    capDrone2: "The Harbor · High Tide",
-    capDrone3: "Cromarty Firth Panorama",
-    capCruise1: "Cruise Ship Arrival · Dawn",
-    capCruise2: "Port of Cromarty Firth",
-    capCruise3: "Ships at Anchor · Firth",
-    capLand1: "Easter Ross Hills",
-    capLand2: "Cromarty Firth · Morning Light",
-    capLand3: "Golden Hour · Highlands",
-    capMural1: "Invergordon Off the Wall",
-    capMural2: "Street Art · Main Street",
-    capMural3: "Mural Detail · Invergordon",
-    comingSoon: "More images being added throughout the 2026 season",
-    comingSoonLink: "← Back to main site",
-    footerTagline: "EXPLORE INVERGORDON · SCOTTISH HIGHLANDS",
-    footerPrivacy: "Privacy Policy",
-    tabMine: "My Gallery",
-    tabVisitor: "Visitor Gallery",
-    visitorEmptyTitle: "Be the First to Share!",
-    visitorEmptyDesc: "No visitor photos yet — yours could be the first. Snap something you love about Invergordon and send it below."
-  },
-  no: {
-    navHome: "Hjem", navBlog: "Blogg", navGallery: "Galleri", navWorkWithMe: "Jobb Med Meg",
-    heroLabel: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroTitle: "Gjennom <em>Linsen</em>",
-    heroDesc: "Dronebilder, havnemorgen, høylandslandskaper og gatekunsten i Invergordon — fanget av en lokal innbygger gjennom årstidene.",
-    sectionDrone: "Drone- &amp; Luftfotografi",
-    sectionCruise: "Cruiseskip &amp; Havn",
-    sectionLandscape: "Høylandslandskap",
-    sectionMurals: "Gatekunst &amp; Veggmalerier",
-    phDroneMain: "Luftbilde kommer snart",
-    phDrone2: "Havn fra luften",
-    phDrone3: "Firth-panorama",
-    phCruise1: "Cruiseskipankomst",
-    phCruise2: "Havnen i Cromarty Firth",
-    phCruise3: "Skip til ankers",
-    phLand1: "Høylandslandskap",
-    phLand2: "Utsikt over Cromarty Firth",
-    phLand3: "Gyllen time",
-    phMural1: "Veggmaleri-fotografi",
-    phMural2: "Gatekunst-detalj",
-    phMural3: "Veggmaleri-nærbilde",
-    capDroneMain: "Invergordon sett ovenfra · Cromarty Firth",
-    capDrone2: "Havnen · Flo",
-    capDrone3: "Cromarty Firth Panorama",
-    capCruise1: "Cruiseskipankomst · Daggry",
-    capCruise2: "Havnen i Cromarty Firth",
-    capCruise3: "Skip til ankers · Firth",
-    capLand1: "Åser i Easter Ross",
-    capLand2: "Cromarty Firth · Morgenlys",
-    capLand3: "Gyllen time · Høylandet",
-    capMural1: "Invergordon Off the Wall",
-    capMural2: "Gatekunst · High Street",
-    capMural3: "Veggmaleri-detalj · Invergordon",
-    comingSoon: "Flere bilder legges til gjennom sesongen 2026",
-    comingSoonLink: "← Tilbake til hovedsiden",
-    footerTagline: "EXPLORE INVERGORDON · SKOTSKE HØYLANDER",
-    footerPrivacy: "Personvernregler",
-    tabMine: "Min Galleri",
-    tabVisitor: "Besøksgalleri",
-    visitorEmptyTitle: "Bli den Første!",
-    visitorEmptyDesc: "Ingen besøksbilder ennå — ditt kan bli det første. Del noe du elsket med Invergordon her nedenfor."
+// ── Google Translate engine ─────────────────────────────────────────────
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en' || lang === 'us') {
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    return;
   }
-};
-
-var currentLang = 'en';
-
-/* ── CAMERA SOUND ENGINE (gallery page only) ── */
-(function() {
-  var audio = null;
-  var ready = false;
-  function init() {
-    if (ready) return;
-    ready = true;
-    audio = new Audio('sounds/camera-shutter.mp3');
-    audio.preload = 'auto';
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
   }
-  document.addEventListener('click',      init, { once: true });
-  document.addEventListener('touchstart', init, { once: true });
-  window.playCameraFX = function() {
-    init();
-    if (!audio) return;
-    try { audio.currentTime = 0; audio.play().catch(function(){}); } catch(e) {}
-  };
-})();
-
-/* ── GALLERY TAB SWITCHING ── */
-function switchGalleryTab(tab) {
-  ['mine','visitor'].forEach(function(t) {
-    document.getElementById('tab-panel-' + t).classList.remove('active');
-    document.getElementById('tab-btn-' + t).classList.remove('active');
-  });
-  document.getElementById('tab-panel-' + tab).classList.add('active');
-  document.getElementById('tab-btn-' + tab).classList.add('active');
+  fire();
 }
-
-/* ── VISITOR UPLOAD ── */
-// Open visitor tab if arrived via #visitor hash (e.g. from homepage button)
-if (window.location.hash === '#visitor') {
-  switchGalleryTab('visitor');
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
 }
-
-var IMGBB_KEY = '579f3586a5476f82a60598eb6440a29f';
-var GALLERY_FS_ID = 'mpqkepnd';
-var selectedFile = null;
-
-function handleFileSelect(input) {
-  var file = input.files[0];
-  if (!file) return;
-  selectedFile = file;
-  showFilePreview(file);
-}
-
-function showFilePreview(file) {
-  var preview = document.getElementById('photoPreview');
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    preview.src = e.target.result;
-    preview.classList.add('visible');
-  };
-  reader.readAsDataURL(file);
-}
-
-// Drag-and-drop support
-(function() {
-  var drop = document.getElementById('fileDrop');
-  if (!drop) return;
-  drop.addEventListener('dragover', function(e) {
-    e.preventDefault();
-    drop.classList.add('drag-over');
-  });
-  drop.addEventListener('dragleave', function() {
-    drop.classList.remove('drag-over');
-  });
-  drop.addEventListener('drop', function(e) {
-    e.preventDefault();
-    drop.classList.remove('drag-over');
-    var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      selectedFile = file;
-      showFilePreview(file);
-    }
-  });
-})();
-
-function handleVisitorUpload(event) {
-  event.preventDefault();
-  playCameraFX();
-  var name    = document.getElementById('visitorName').value.trim();
-  var caption = document.getElementById('visitorCaption').value.trim();
-  var file    = selectedFile || (document.getElementById('visitorPhoto').files[0]);
-
-  if (!name)    { alert('Please enter your name.');              return; }
-  if (!caption) { alert('Please add a caption.');                return; }
-  if (!file)    { alert('Please choose a photo to upload.');     return; }
-  if (file.size > 32 * 1024 * 1024) { alert('File too large — max 32MB.'); return; }
-
-  var btn      = document.getElementById('uploadSubmit');
-  var progress = document.getElementById('uploadProgress');
-  btn.disabled = true;
-  btn.textContent = 'Uploading…';
-  progress.style.display = 'block';
-
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var base64 = e.target.result.split(',')[1];
-    var fd = new FormData();
-    fd.append('image', base64);
-    fd.append('name', 'Visitor: ' + name.substring(0, 40));
-
-    fetch('https://api.imgbb.com/1/upload?key=' + IMGBB_KEY, {
-      method: 'POST',
-      body: fd
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (!data.success) throw new Error('Image upload failed');
-      var imageUrl = data.data.url;
-
-      progress.textContent = '📨  Sending details…';
-
-      var sf = new FormData();
-      sf.append('_subject', '📸 New Visitor Photo — Explore Invergordon');
-      sf.append('name',       name);
-      sf.append('caption',    caption);
-      sf.append('image_url',  imageUrl);
-      sf.append('source',     'Visitor Gallery Upload');
-
-      return fetch('https://formspree.io/f/' + GALLERY_FS_ID, {
-        method: 'POST',
-        body: sf,
-        headers: { 'Accept': 'application/json' }
-      });
-    })
-    .then(function(r) {
-      if (!r.ok) throw new Error('Notification failed');
-      progress.style.display = 'none';
-      document.getElementById('uploadForm').style.display    = 'none';
-      document.getElementById('uploadSuccess').style.display = 'block';
-    })
-    .catch(function(err) {
-      console.error(err);
-      progress.style.display = 'none';
-      btn.disabled = false;
-      btn.textContent = 'Submit Photo ↑';
-      alert('Something went wrong — please try again. If the problem persists, email us directly.');
-    });
-  };
-  reader.readAsDataURL(file);
-}
-
-function set(id, val, isHTML) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  if (isHTML === false) { el.textContent = val; } else { el.innerHTML = val; }
-}
-
-function setLang(lang) {
-  if (!galTranslations[lang]) return;
-  currentLang = lang;
-  var t = galTranslations[lang];
-
-  // Nav
-  set('gal-nav-home', t.navHome);
-  set('gal-nav-blog', t.navBlog);
-  set('gal-nav-gallery', t.navGallery);
-  set('gal-nav-wwm', t.navWorkWithMe);
-
-  // Hero
-  set('gal-hero-label', t.heroLabel);
-  set('gal-hero-title', t.heroTitle);
-  set('gal-hero-desc', t.heroDesc);
-
-  // Section titles
-  set('gal-section-drone', t.sectionDrone);
-  set('gal-section-cruise', t.sectionCruise);
-  set('gal-section-landscape', t.sectionLandscape);
-  set('gal-section-murals', t.sectionMurals);
-
-  // Placeholders
-  set('gal-ph-drone-main', t.phDroneMain);
-  set('gal-ph-drone-2', t.phDrone2);
-  set('gal-ph-drone-3', t.phDrone3);
-  set('gal-ph-cruise-1', t.phCruise1);
-  set('gal-ph-cruise-2', t.phCruise2);
-  set('gal-ph-cruise-3', t.phCruise3);
-  set('gal-ph-land-1', t.phLand1);
-  set('gal-ph-land-2', t.phLand2);
-  set('gal-ph-land-3', t.phLand3);
-  set('gal-ph-mural-1', t.phMural1);
-  set('gal-ph-mural-2', t.phMural2);
-  set('gal-ph-mural-3', t.phMural3);
-
-  // Captions
-  set('gal-cap-drone-main', t.capDroneMain);
-  set('gal-cap-drone-2', t.capDrone2);
-  set('gal-cap-drone-3', t.capDrone3);
-  set('gal-cap-cruise-1', t.capCruise1);
-  set('gal-cap-cruise-2', t.capCruise2);
-  set('gal-cap-cruise-3', t.capCruise3);
-  set('gal-cap-land-1', t.capLand1);
-  set('gal-cap-land-2', t.capLand2);
-  set('gal-cap-land-3', t.capLand3);
-  set('gal-cap-mural-1', t.capMural1);
-  set('gal-cap-mural-2', t.capMural2);
-  set('gal-cap-mural-3', t.capMural3);
-
-  // Footer / misc
-  set('gal-coming-soon-1', t.comingSoon);
-  set('gal-coming-soon-link', t.comingSoonLink);
-  set('gal-footer-tagline', t.footerTagline);
-  set('gal-footer-privacy', t.footerPrivacy);
-
-  // Tabs & visitor gallery
-  set('gal-tab-mine', t.tabMine);
-  set('gal-tab-visitor', t.tabVisitor);
-  set('gal-visitor-empty-title', t.visitorEmptyTitle);
-  set('gal-visitor-empty-desc', t.visitorEmptyDesc);
-
-  // Active button
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.classList.remove('active');
-  });
-  var langs = ['en','de','fr','us','no'];
-  var idx = langs.indexOf(lang);
-  var btns = document.querySelectorAll('.lang-btn');
-  if (btns[idx]) btns[idx].classList.add('active');
-}
-
-/* ── GALLERY SHARE ── */
-function galGetShareData(btn) {
-  var c = btn.closest('.gal-share');
-  return { url: c.getAttribute('data-url'), title: c.getAttribute('data-title') };
-}
-function galShareX(btn) {
-  var d = galGetShareData(btn);
-  window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(d.url) + '&text=' + encodeURIComponent(d.title), '_blank', 'width=620,height=420');
-}
-function galShareWa(btn) {
-  var d = galGetShareData(btn);
-  window.open('https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.url), '_blank');
-}
-function galFallbackCopy(text, callback) {
-  var ta = document.createElement('textarea');
-  ta.value = text; ta.setAttribute('readonly', '');
-  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
-  document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, 99999);
-  try { document.execCommand('copy'); callback(); } catch(e) {}
-  document.body.removeChild(ta);
-}
-function galCopyLink(btn) {
-  var d = galGetShareData(btn);
-  if (navigator.share) { navigator.share({ title: d.title, url: d.url }).catch(function(){}); return; }
-  var orig = btn.innerHTML;
-  function done() {
-    btn.textContent = '✓ Copied';
-    btn.classList.add('copied');
-    setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
-  }
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(d.url).then(done).catch(function() { galFallbackCopy(d.url, done); });
-  } else { galFallbackCopy(d.url, done); }
-}
-
-/* ── LIGHTBOX ── */
-var lbItems = [];
-var lbIndex = 0;
-
-function lbOpen(item) {
-  var img = item.querySelector('img');
-  if (!img) return;
-  lbItems = Array.from(document.querySelectorAll('.gallery-item img'));
-  lbIndex = lbItems.indexOf(img);
-  lbShow(img, item);
-  document.getElementById('gal-lightbox').classList.add('active');
-  document.body.style.overflow = 'hidden';
-  lbNavUpdate();
-}
-function lbShow(img, item) {
-  document.getElementById('lb-img').src = img.src;
-  document.getElementById('lb-img').alt = img.alt || '';
-  var capEl = item ? item.querySelector('.gallery-caption') : null;
-  var creditEl = item ? item.querySelector('.visitor-credit-caption') : null;
-  var text = capEl ? capEl.textContent.trim()
-           : creditEl ? creditEl.textContent.trim().replace(/^"(.*)"$/, '$1')
-           : '';
-  document.getElementById('lb-caption').textContent = text;
-}
-function lbNav(dir) {
-  lbIndex = Math.max(0, Math.min(lbItems.length - 1, lbIndex + dir));
-  var img = lbItems[lbIndex];
-  lbShow(img, img.closest('.gallery-item'));
-  lbNavUpdate();
-}
-function lbNavUpdate() {
-  document.getElementById('lb-prev').classList[lbIndex > 0 ? 'add' : 'remove']('visible');
-  document.getElementById('lb-next').classList[lbIndex < lbItems.length - 1 ? 'add' : 'remove']('visible');
-}
-function lbClose() {
-  document.getElementById('gal-lightbox').classList.remove('active');
-  document.body.style.overflow = '';
-}
-function lbClickOverlay(e) {
-  if (e.target === document.getElementById('gal-lightbox')) lbClose();
-}
-document.addEventListener('keydown', function(e) {
-  if (!document.getElementById('gal-lightbox').classList.contains('active')) return;
-  if (e.key === 'Escape')      lbClose();
-  if (e.key === 'ArrowLeft')   lbNav(-1);
-  if (e.key === 'ArrowRight')  lbNav(1);
-});
-
-/* ── WIRE UP SHARE + LIGHTBOX ON PAGE LOAD ── */
-document.addEventListener('DOMContentLoaded', function() {
-  // Assign IDs to My Gallery items via their caption elements
-  var galItemIds = {
-    'gal-cap-drone-main': 'gal-item-drone-main',
-    'gal-cap-drone-2':    'gal-item-drone-2',
-    'gal-cap-drone-3':    'gal-item-drone-3',
-    'gal-cap-cruise-1':   'gal-item-cruise-1',
-    'gal-cap-cruise-2':   'gal-item-cruise-2',
-    'gal-cap-cruise-3':   'gal-item-cruise-3',
-    'gal-cap-land-1':     'gal-item-land-1',
-    'gal-cap-land-2':     'gal-item-land-2',
-    'gal-cap-land-3':     'gal-item-land-3',
-    'gal-cap-mural-1':    'gal-item-mural-1',
-    'gal-cap-mural-2':    'gal-item-mural-2',
-    'gal-cap-mural-3':    'gal-item-mural-3'
-  };
-  Object.keys(galItemIds).forEach(function(capId) {
-    var capEl = document.getElementById(capId);
-    if (capEl) {
-      var item = capEl.closest('.gallery-item');
-      if (item) item.id = galItemIds[capId];
-    }
-  });
-  // Bartholomew visitor item
-  var bartImg = document.querySelector('.gallery-item img[alt*="Bartholomew"]');
-  if (bartImg) bartImg.closest('.gallery-item').id = 'gal-item-bartholomew';
-
-  var baseUrl = window.location.origin + window.location.pathname;
-
-  document.querySelectorAll('.gallery-item').forEach(function(item) {
-    // Caption text for share title
-    var capEl = item.querySelector('.gallery-caption');
-    var creditEl = item.querySelector('.visitor-credit-caption');
-    var captionText = capEl ? capEl.textContent.trim()
-                    : creditEl ? creditEl.textContent.trim().replace(/^"(.*)"$/, '$1')
-                    : 'Invergordon Gallery';
-    var shareUrl   = baseUrl + (item.id ? '#' + item.id : '');
-    var shareTitle = captionText + ' — Explore Invergordon';
-
-    // Build share bar (always show all three buttons)
-    var share = document.createElement('div');
-    share.className = 'gal-share';
-    share.setAttribute('data-url', shareUrl);
-    share.setAttribute('data-title', shareTitle);
-    share.innerHTML =
-      '<span class="gal-share-label">Share this:</span>' +
-      '<div class="gal-share-buttons">' +
-        '<button class="gal-share-btn gal-share-btn-x" onclick="galShareX(this);event.stopPropagation()">' +
-          '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' +
-          ' X / Twitter</button>' +
-        '<button class="gal-share-btn gal-share-btn-wa" onclick="galShareWa(this);event.stopPropagation()">' +
-          '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>' +
-          ' WhatsApp</button>' +
-        '<button class="gal-share-btn gal-share-btn-copy gal-copy-btn" onclick="galCopyLink(this);event.stopPropagation()">' +
-          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>' +
-          ' Copy Link</button>' +
-      '</div>';
-
-    // Wrap item + share bar in a flex column container
-    var wrap = document.createElement('div');
-    wrap.className = 'gallery-item-wrap';
-    item.parentNode.insertBefore(wrap, item);
-    wrap.appendChild(item);
-    wrap.appendChild(share);
-
-    // Lightbox click handler
-    item.addEventListener('click', function(e) {
-      if (e.target.closest('.gal-share')) return;
-      lbOpen(item);
-    });
-  });
-
-  // ── DEEP LINK HANDLER ──
-  // If the URL contains a hash matching a gallery item, switch to the right
-  // tab, scroll to the image, and open it in the lightbox automatically.
-  var deepHash = window.location.hash.replace('#', '');
-  if (deepHash && deepHash !== 'visitor') {
-    var deepTarget = document.getElementById(deepHash);
-    if (deepTarget && deepTarget.classList.contains('gallery-item')) {
-      // Switch to whichever tab contains this item
-      var deepPanel = deepTarget.closest('.tab-panel');
-      if (deepPanel) {
-        switchGalleryTab(deepPanel.id.replace('tab-panel-', ''));
-      }
-      // Short delay so the tab is visible before we scroll + open lightbox
-      setTimeout(function() {
-        deepTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        lbOpen(deepTarget);
-      }, 150);
-    }
-  }
-});
 </script>
 </body>
 </html>

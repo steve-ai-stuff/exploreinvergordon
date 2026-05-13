@@ -1847,17 +1847,55 @@
     box-shadow: 0 8px 25px rgba(201,168,76,0.3);
   }
 
+
+  /* ── Google Translate — suppression & dropdown styling ── */
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.7rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
 </style>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
 
 <!-- LANGUAGE BAR — fixed at very top -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
-  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
-  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <button class="lang-btn" onclick="eiLang('us',this)">&#127482;&#127480; US</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
 </div>
 
 <!-- SALTIRE STRIP -->
@@ -2787,578 +2825,7 @@ function closeMural(id) {
 }
 
 // ── LANGUAGE SWITCHER ──
-const translations = {
-  en: {
-    heroTag: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    // Cruise Hub
-    cruiseHubLabel: "Port of Cromarty Firth",
-    cruiseHubTitle: "Cruise Passenger <em>Hub</em>",
-    cruiseHubIntro: "Everything you need to make the most of your time in Invergordon — from the moment your anchor drops to the moment you reboard.",
-    arrivalVal1: "5 min walk", arrivalLbl1: "Town Centre from terminal",
-    arrivalVal2: "8–12 hours", arrivalLbl2: "Typical port stay",
-    arrivalVal3: "Free entry", arrivalLbl3: "Mural trail, town, High Street",
-    arrivalVal4: "No tour needed", arrivalLbl4: "Everything is walkable",
-    cruiseTimeHeading: "How to Spend Your Time",
-    itin2hBadge: "2 Hours", itin2hHeading: "Don't Panic", itin2hIntro: "You can still have an unforgettable experience.",
-    itin4hBadge: "4–5 Hours", itin4hHeading: "The Ideal Day", itin4hIntro: "You'll leave wishing you had more time.",
-    itin8hBadge: "8+ Hours", itin8hHeading: "Full Day", itin8hIntro: "You are in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.",
-    gettingStartedHeading: "Getting Started",
-    portCol1Heading: "Getting from Ship to Town",
-    portCol2Heading: "What to Bring Ashore",
-    shipSchedLabel: "This Season",
-    shipSchedHeading: "Ships Expected at Port of Cromarty Firth",
-    shipSchedText: "The 2026 cruise season runs from March through October, with ships calling 2–3 times per week at peak. The Port of Cromarty Firth publishes the full schedule on their official website.",
-    shipSchedBtn: "View Official Ship Schedule ↗",
-    shipSchedOps: "Look out for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many more calling throughout the season.",
-    excursionsHeading: "Popular Excursions",
-    tipsHeading: "Practical Tips",
-    tipH1: "Money & Payments", tipB1: "Scotland uses British Pounds Sterling (£). Cards are widely accepted. A small amount of cash is useful for market stalls, small cafés, and tips.",
-    tipH2: "Weather", tipB2: "Even in summer, the Highlands can be unpredictable. A light waterproof layer is always wise. July and August are the warmest months, averaging 17–19°C.",
-    tipH3: "Mobile & Wi-Fi", tipB3: "UK mobile networks (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available in some cafés. Download offline maps before you arrive.",
-    tipH4: "Getting Around", tipB4: "Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.",
-    tipH5: "Shopping Tips", tipB5: "Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.",
-    tipH6: "A Scottish Welcome", tipB6: "Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.",
-    uploadTitle: "Do you have any photos you have taken anywhere around Invergordon or the Highlands that you love?",
-    uploadText: "Maybe you visited us from overseas and want to share an image from where you live instead? We would love to see those too. Upload your favourite photo and we'll feature it in our Visitor Gallery — so it can be enjoyed with other travellers from around the world.",
-    uploadBtn: "Upload Your Photo",
-    contactLabelId: "Get in Touch",
-    contactTitleId: "We'd Love to Hear From You",
-    contactSubtitleId: "Whether you're planning your first visit, a local business wanting to be listed, or simply want to share your Highland memories — drop us a message below.",
-    heroSub: "Your guide to Invergordon, Scottish Highlands and surrounding area",
-    heroCta: "Begin Here",
-    walkBanner: "🚶 <strong>Town Centre is just a 5-minute walk</strong> from the cruise terminal — no bus needed, no taxis required",
-    welcomeLabel: "Welcome Aboard",
-    welcomeTitle: "Your day in <em>Invergordon</em>",
-    welcomeText: "Most cruise passengers are whisked away on coaches before they realise what they're leaving behind. <strong>Don't make that mistake.</strong> Invergordon's High Street, its world-famous mural trail, and the breathtaking landscapes of Easter Ross are all on your doorstep — and they're free. This is one of the most underrated stops on any Highland cruise itinerary, and the locals know it.",
-    card1Title: "The Local's Guide",
-    card1Text: "Want real insider knowledge on Invergordon and the Highlands — not the tourist-brochure version? Stories, updates and local tips, written by someone who actually lives here.",
-    card1Cta: "..tell me more!",
-    card2Title: "Highland Scenery",
-    card2Text: "Mountains, sea lochs, ancient forests and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes in Europe.",
-    card2Cta: "Discover ↓",
-    card3Title: "Eat & Drink Locally",
-    card3Text: "From a legendary full Scottish breakfast to award-winning Indian cuisine, the High Street offers genuine local flavours. No tourist traps — just good food.",
-    card3Cta: "See the Guide ↓",
-    card4Title: "Shop Local",
-    card4Text: "Scottish gifts, handmade crafts, tartan and local art. Support real independent businesses, not chain stores. Everything is a short stroll from the port.",
-    card4Cta: "Browse ↓",
-    muralLabel: "Outdoor Art Gallery",
-    muralTitle: "The <em>Mural Trail</em>",
-    muralIntro1: "In 2002, a group of local volunteers called <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> began a remarkable community project — transforming the town's walls into a monumental open-air gallery celebrating Highland history and heritage.",
-    muralIntro2: "Officially launched by HRH The Princess Royal in 2007, the trail now features 11 large-scale professionally painted murals plus sculpture. It is one of the first mural trails in Scotland and remains one of the finest.",
-    muralOfficialBtn: "Visit Official Site ↗",
-    stat1Label: "Large-scale murals painted by professional artists",
-    stat2Label: "Minutes to walk the full trail at a leisurely pace",
-    stat3Label: "No entry fee. Open every day, all year round",
-    muralTapHint: "Tap to discover",
-    muralCollab: "Content in collaboration with",
-    landscapeLabel: "Easter Ross & Beyond",
-    landscapeQuote: "Step off the ship and you are standing in the middle of <span>one of the most beautiful landscapes in Europe.</span> Mountains, sea lochs, ancient forests and dramatic coastlines — all within sight.",
-    landscapeText: "Invergordon sits on the Cromarty Firth — a sheltered sea inlet surrounded by hills and mountains. To the north, Ben Wyvis rises to over 1,000 metres. To the south, the Black Isle peninsula stretches towards Inverness. Dolphins and seals are regularly spotted from the shoreline. This is genuine Highland scenery, not a tourist reconstruction of it.",
-    bizLabel: "High Street Guide",
-    bizTitle: "Where to eat, <em>shop & explore</em>",
-    bizIntro: "All within a short walk of the port. Support local.",
-    museumLabel: "History & Heritage",
-    museumTitle: "Invergordon <em>Museum</em>",
-    museumCardTitle: "Discover Invergordon's Remarkable Story",
-    museumText1: "Invergordon has a history that most visitors never expect — a Royal Naval base that shaped two World Wars, a 1931 mutiny that changed British naval history, an oil boom and bust that mirrored the Highland experience of the 20th century, and a community that has reinvented itself time and again. The museum holds this story, told through artefacts, photographs and the voices of the people who lived it.",
-    museumText2: "The museum is currently planning an exciting move to a new, larger home — a modern heritage centre that will do full justice to Invergordon's extraordinary past. Your visit today helps support that future.",
-    museumBtn1: "Visit the Museum ↗",
-    museumBtn2: "Download Mural App ↗",
-    tip1Title: "Getting Into Town",
-    tip1Text: "The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you're on the High Street. No shuttle, no cost.",
-    tip2Title: "How Long Do You Need?",
-    tip2Text: "The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.",
-    tip3Title: "Before You Sail Away",
-    tip3Text: "Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.",
-    footerCredit: "Created by a Local Resident using Modern Tools — Capturing his own Unique Images & Video of the Town and Surrounding Areas · ExploreInvergordon.scot",
-    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Contact",
-    navCruise: "Cruise", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
-    scroll: "Scroll",
-  },
-  de: {
-    heroTag: "Port of Cromarty Firth · Schottisches Hochland",
-    heroSub: "Ihr Reiseführer für Invergordon, Schottisches Hochland und Umgebung",
-    heroCta: "Hier Beginnen",
-    walkBanner: "🚶 <strong>Das Stadtzentrum ist nur 5 Minuten zu Fuß</strong> vom Kreuzfahrtterminal entfernt — kein Bus, kein Taxi nötig",
-    welcomeLabel: "Willkommen an Bord",
-    welcomeTitle: "Ihr Tag in <em>Invergordon</em>",
-    welcomeText: "Die meisten Kreuzfahrtpassagiere werden in Busse verfrachtet, bevor sie merken, was sie zurücklassen. <strong>Machen Sie diesen Fehler nicht.</strong> Invergordon's Hauptstraße, sein weltberühmter Wandbild-Pfad und die atemberaubenden Landschaften von Easter Ross liegen direkt vor Ihrer Tür — und sie sind kostenlos. Dies ist eine der unterschätztesten Stationen jeder Highlands-Kreuzfahrt.",
-    card1Title: "Der Lokalführer",
-    card1Text: "Möchten Sie echtes Insiderwissen über Invergordon und die Highlands — nicht die Tourismusbroschüren-Version? Geschichten, Neuigkeiten und lokale Tipps, geschrieben von jemandem, der wirklich hier lebt.",
-    card1Cta: "..mehr erfahren!",
-    card2Title: "Hochland-Landschaft",
-    card2Text: "Berge, Meeresfjorde, alte Wälder und dramatische Küstenlinien umgeben die Stadt. Sie stehen mitten in einer der schönsten Landschaften Europas.",
-    card2Cta: "Erleben ↓",
-    card3Title: "Lokal Essen & Trinken",
-    card3Text: "Von einem legendären schottischen Frühstück bis zur preisgekrönten indischen Küche bietet die Hauptstraße echte lokale Geschmäcker. Keine Touristenfallen — nur gutes Essen.",
-    card3Cta: "Zum Ratgeber ↓",
-    card4Title: "Lokal Einkaufen",
-    card4Text: "Schottische Geschenke, Handwerk, Tartan und lokale Kunst. Unterstützen Sie echte unabhängige Geschäfte. Alles ist ein kurzer Spaziergang vom Hafen entfernt.",
-    card4Cta: "Entdecken ↓",
-    muralLabel: "Freilichtgalerie",
-    muralTitle: "Der <em>Wandbild-Pfad</em>",
-    muralIntro1: "Im Jahr 2002 begann eine Gruppe lokaler Freiwilliger namens <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> ein bemerkenswertes Gemeinschaftsprojekt — die Wände der Stadt in eine monumentale Freiluftgalerie zu verwandeln.",
-    muralIntro2: "Offiziell von HRH The Princess Royal im Jahr 2007 eröffnet, umfasst der Pfad jetzt 11 großformatige professionell gemalte Wandbilder plus Skulptur. Er ist einer der ersten Wandbild-Pfade in Schottland.",
-    muralOfficialBtn: "Offizielle Website ↗",
-    stat1Label: "Großformatige Wandbilder von professionellen Künstlern",
-    stat2Label: "Minuten für den gesamten Pfad in gemütlichem Tempo",
-    stat3Label: "Kein Eintritt. Täglich geöffnet, das ganze Jahr",
-    muralTapHint: "Tippen zum Entdecken",
-    muralCollab: "Inhalt in Zusammenarbeit mit",
-    landscapeLabel: "Easter Ross & Umgebung",
-    landscapeQuote: "Steigen Sie vom Schiff und stehen Sie mitten in einer <span>der schönsten Landschaften Europas.</span> Berge, Meeresfjorde, alte Wälder und dramatische Küstenlinien — alles in Sichtweite.",
-    landscapeText: "Invergordon liegt am Cromarty Firth — einem geschützten Meeresarm umgeben von Hügeln und Bergen. Im Norden erhebt sich Ben Wyvis auf über 1.000 Meter. Im Süden erstreckt sich die Black Isle Halbinsel Richtung Inverness. Delfine und Robben werden regelmäßig vom Ufer aus gesichtet.",
-    bizLabel: "Stadtführer",
-    bizTitle: "Essen, <em>Einkaufen & Entdecken</em>",
-    bizIntro: "Alles in kurzer Gehweite vom Hafen. Unterstützen Sie lokale Geschäfte.",
-    museumLabel: "Geschichte & Erbe",
-    museumTitle: "Invergordon <em>Museum</em>",
-    museumCardTitle: "Entdecken Sie Invergordon's bemerkenswerte Geschichte",
-    museumText1: "Invergordon hat eine Geschichte, die die meisten Besucher nie erwarten — ein königlicher Marinesstützpunkt, der zwei Weltkriege mitgestaltete, ein Aufstand 1931, der die britische Marinegeschichte veränderte, und eine Gemeinschaft, die sich immer wieder neu erfunden hat.",
-    museumText2: "Das Museum plant derzeit einen aufregenden Umzug in ein neues, größeres Zuhause — ein modernes Kulturzentrum. Ihr Besuch heute hilft, diese Zukunft zu unterstützen.",
-    museumBtn1: "Museum besuchen ↗",
-    museumBtn2: "Wandbild-App laden ↗",
-    tip1Title: "In die Stadt kommen",
-    tip1Text: "Das Stadtzentrum ist 5 Minuten zu Fuß vom Kreuzfahrtterminal entfernt. Gehen Sie einfach geradeaus aus den Hafentoren und Sie sind auf der Hauptstraße. Kein Shuttle, keine Kosten.",
-    tip2Title: "Wie viel Zeit brauchen Sie?",
-    tip2Text: "Der vollständige Wandbild-Pfad dauert 60–90 Minuten in gemütlichem Tempo. Fügen Sie Zeit für das Mittagessen und einen Bummel durch die Geschäfte hinzu — ein halber Tag ist sehr angenehm gefüllt.",
-    tip3Title: "Bevor Sie absegeln",
-    tip3Text: "Erwägen Sie, dem Invergordon Wandbild-Pfad zu spenden — eine von Freiwilligen betriebene schottische Wohltätigkeitsorganisation, die diese außergewöhnliche Galerie durch Gemeinschaftsarbeit erhält.",
-    footerCredit: "Ein digitales Gemeinschaftsprojekt für Invergordon · Mit KI von einem Einheimischen erstellt · ExploreInvergordon.scot",
-    navArrive: "Ankommen", navMurals: "Wandbilder", navTown: "Stadt", navMuseum: "Museum", navLandscape: "Kontakt",
-    navCruise: "Kreuzfahrt", navBlog: "Blog", navGallery: "Galerie", navWwm: "Mit Mir Arbeiten",
-    scroll: "Scrollen",
-    // Cruise Hub — German
-    cruiseHubLabel: "Port of Cromarty Firth",
-    cruiseHubTitle: "Kreuzfahrt&shy;passagier <em>Zentrum</em>",
-    cruiseHubIntro: "Alles, was Sie brauchen, um Ihre Zeit in Invergordon optimal zu nutzen — vom Moment, in dem der Anker fällt, bis zur Rückkehr an Bord.",
-    arrivalVal1: "5 Min. zu Fuß", arrivalLbl1: "Stadtzentrum vom Terminal",
-    arrivalVal2: "8–12 Stunden", arrivalLbl2: "Typischer Hafenaufenthalt",
-    arrivalVal3: "Kostenlos", arrivalLbl3: "Muralpfad, Stadt, Hauptstraße",
-    arrivalVal4: "Keine Tour nötig", arrivalLbl4: "Alles fußläufig erreichbar",
-    cruiseTimeHeading: "Wie Sie Ihre Zeit verbringen",
-    itin2hBadge: "2 Stunden", itin2hHeading: "Keine Panik", itin2hIntro: "Sie können trotzdem ein unvergessliches Erlebnis haben.",
-    itin4hBadge: "4–5 Stunden", itin4hHeading: "Der ideale Tag", itin4hIntro: "Sie werden gehen und sich wünschen, mehr Zeit zu haben.",
-    itin8hBadge: "8+ Stunden", itin8hHeading: "Ganzer Tag", itin8hIntro: "Sie sind genau richtig hier. Das ist Easter Ross — eine der schönsten Ecken Schottlands.",
-    gettingStartedHeading: "Erste Schritte",
-    portCol1Heading: "Vom Schiff in die Stadt",
-    portCol2Heading: "Was Sie an Land mitnehmen sollten",
-    shipSchedLabel: "Diese Saison",
-    shipSchedHeading: "Erwartete Schiffe im Port of Cromarty Firth",
-    shipSchedText: "Die Kreuzfahrtsaison 2026 läuft von März bis Oktober, mit Schiffen 2–3 Mal pro Woche in der Hauptsaison. Der Port of Cromarty Firth veröffentlicht den vollständigen Fahrplan auf ihrer offiziellen Website.",
-    shipSchedBtn: "Offiziellen Schiffsplan anzeigen ↗",
-    shipSchedOps: "Achten Sie auf: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> und viele mehr in der Saison.",
-    excursionsHeading: "Beliebte Ausflüge",
-    tipsHeading: "Praktische Tipps",
-    tipH1: "Geld & Zahlungen", tipB1: "Schottland verwendet Britische Pfund Sterling (£). Karten werden weitgehend akzeptiert. Ein kleiner Bargeldbetrag ist für Marktstände, kleine Cafés und Trinkgelder nützlich.",
-    tipH2: "Wetter", tipB2: "Selbst im Sommer kann das Hochland unberechenbar sein. Eine leichte wasserdichte Schicht ist immer klug. Juli und August sind die wärmsten Monate, durchschnittlich 17–19°C.",
-    tipH3: "Mobilfunk & WLAN", tipB3: "Britische Mobilfunknetze (EE, O2, Vodafone) versorgen die Stadt gut. Kostenloses WLAN ist in einigen Cafés verfügbar. Laden Sie Offline-Karten herunter, bevor Sie ankommen.",
-    tipH4: "Fortbewegung", tipB4: "Das Stadtzentrum ist vollständig fußläufig. Für Ausflüge bedienen lokale Taxis und vorgebuchte Busse den Hafen. Der Port of Cromarty Firth kann über zugelassene Betreiber beraten.",
-    tipH5: "Einkaufstipps", tipB5: "Suchen Sie nach echten schottischen Waren — Harris Tweed, Kaschmir, lokal hergestellte Handwerksprodukte. Vermeiden Sie alles mit 'Made in China' auf dem Etikett, wenn Sie das Original möchten.",
-    tipH6: "Ein schottischer Empfang", tipB6: "Invergordon ist eine freundliche, authentische Stadt — kein Touristenfalle. Die Einheimischen sind stolz auf ihren Wohnort und teilen ihn gerne mit Besuchern. Seien Sie nicht schüchtern — sagen Sie Hallo.",
-    uploadTitle: "Haben Sie Fotos aus Invergordon, den Highlands oder vielleicht sogar aus Ihrer Heimat, die Sie lieben?",
-    uploadText: "Vielleicht haben Sie uns aus dem Ausland besucht und möchten ein Bild aus Ihrer Heimat teilen? Wir würden uns sehr freuen! Laden Sie Ihr Lieblingsfoto hoch und wir zeigen es in unserer Besuchergalerie — damit andere Reisende aus aller Welt es genießen können.",
-    uploadBtn: "Ihr Foto hochladen",
-    contactLabelId: "Kontakt aufnehmen",
-    contactTitleId: "Wir würden gerne von Ihnen hören",
-    contactSubtitleId: "Ob Sie Ihren ersten Besuch planen, ein lokales Unternehmen sind, das gelistet werden möchte, oder einfach Ihre Highland-Erinnerungen teilen möchten — hinterlassen Sie uns eine Nachricht.",
-  },
-  fr: {
-    heroTag: "Port of Cromarty Firth · Hautes-Terres d'Écosse",
-    heroSub: "Votre guide pour Invergordon, les Highlands écossaises et la région environnante",
-    heroCta: "Commencer Ici",
-    walkBanner: "🚶 <strong>Le centre-ville est à seulement 5 minutes à pied</strong> du terminal de croisière — pas besoin de bus ni de taxi",
-    welcomeLabel: "Bienvenue à bord",
-    welcomeTitle: "Votre journée à <em>Invergordon</em>",
-    welcomeText: "La plupart des croisiéristes montent dans des bus avant de réaliser ce qu'ils laissent derrière eux. <strong>Ne faites pas cette erreur.</strong> La High Street d'Invergordon, son célèbre parcours de fresques murales et les paysages à couper le souffle des Highlands sont à votre portée — et gratuits. C'est l'une des escales les plus sous-estimées de toute croisière dans les Highlands.",
-    card1Title: "Le Guide Local",
-    card1Text: "Envie de vraies infos d'initiés sur Invergordon et les Highlands — pas la version brochure touristique ? Des histoires, des actualités et des conseils locaux, écrits par quelqu'un qui vit vraiment ici.",
-    card1Cta: "..en savoir plus !",
-    card2Title: "Paysages des Highlands",
-    card2Text: "Montagnes, lochs marins, forêts anciennes et côtes dramatiques entourent la ville. Vous vous tenez au cœur de l'un des plus beaux paysages d'Europe.",
-    card2Cta: "Découvrir ↓",
-    card3Title: "Manger & Boire Local",
-    card3Text: "Du légendaire petit-déjeuner écossais à la cuisine indienne primée, la High Street offre de vraies saveurs locales. Pas de pièges à touristes — juste de la bonne cuisine.",
-    card3Cta: "Voir le guide ↓",
-    card4Title: "Acheter Local",
-    card4Text: "Cadeaux écossais, artisanat, tartan et art local. Soutenez de vraies entreprises indépendantes. Tout est à quelques pas du port.",
-    card4Cta: "Parcourir ↓",
-    muralLabel: "Galerie d'Art en Plein Air",
-    muralTitle: "Le <em>Parcours des Fresques</em>",
-    muralIntro1: "En 2002, un groupe de bénévoles locaux appelé <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> a lancé un remarquable projet communautaire — transformer les murs de la ville en une galerie monumentale célébrant l'histoire des Highlands.",
-    muralIntro2: "Officiellement inauguré par SAR la Princesse Royale en 2007, le parcours comprend désormais 11 fresques murales à grande échelle peintes par des professionnels, plus une sculpture. C'est l'un des premiers parcours de fresques en Écosse.",
-    muralOfficialBtn: "Site officiel ↗",
-    stat1Label: "Fresques murales à grande échelle peintes par des artistes professionnels",
-    stat2Label: "Minutes pour parcourir tout le circuit à allure tranquille",
-    stat3Label: "Entrée gratuite. Ouvert tous les jours, toute l'année",
-    muralTapHint: "Appuyer pour découvrir",
-    muralCollab: "Contenu en collaboration avec",
-    landscapeLabel: "Easter Ross & Au-delà",
-    landscapeQuote: "Descendez du navire et vous vous trouvez au cœur de <span>l'un des plus beaux paysages d'Europe.</span> Montagnes, lochs marins, forêts anciennes et côtes dramatiques — tout à portée de vue.",
-    landscapeText: "Invergordon est situé sur le Cromarty Firth — un bras de mer abrité entouré de collines et de montagnes. Au nord, Ben Wyvis s'élève à plus de 1 000 mètres. Au sud, la péninsule de la Black Isle s'étend vers Inverness. Des dauphins et des phoques sont régulièrement aperçus depuis le rivage.",
-    bizLabel: "Guide de la High Street",
-    bizTitle: "Manger, <em>faire ses courses & explorer</em>",
-    bizIntro: "Tout à quelques minutes à pied du port. Soutenez les commerces locaux.",
-    museumLabel: "Histoire & Patrimoine",
-    museumTitle: "Musée <em>d'Invergordon</em>",
-    museumCardTitle: "Découvrez l'histoire remarquable d'Invergordon",
-    museumText1: "Invergordon a une histoire que la plupart des visiteurs n'imaginent pas — une base navale royale qui a façonné deux guerres mondiales, une mutinerie en 1931 qui a changé l'histoire navale britannique, et une communauté qui s'est réinventée à plusieurs reprises.",
-    museumText2: "Le musée prépare actuellement un déménagement vers un nouvel espace plus grand — un centre patrimonial moderne. Votre visite aujourd'hui contribue à soutenir cet avenir.",
-    museumBtn1: "Visiter le musée ↗",
-    museumBtn2: "Télécharger l'application ↗",
-    tip1Title: "Rejoindre le centre-ville",
-    tip1Text: "Le centre-ville est à 5 minutes à pied du terminal de croisière. Marchez simplement tout droit depuis les portes du port et vous êtes sur la High Street. Pas de navette, pas de frais.",
-    tip2Title: "Combien de temps faut-il?",
-    tip2Text: "Le parcours complet des fresques prend 60–90 minutes à allure tranquille. Ajoutez du temps pour déjeuner sur la High Street et flâner dans les boutiques — une demi-journée en ville est très confortablement remplie.",
-    tip3Title: "Avant de reprendre la mer",
-    tip3Text: "Pensez à faire un don au Parcours des Fresques d'Invergordon — une association caritative écossaise gérée par des bénévoles qui entretient cette galerie extraordinaire grâce à l'effort communautaire.",
-    footerCredit: "Un projet numérique communautaire pour Invergordon · Créé avec l'IA par un résident local · ExploreInvergordon.scot",
-    navArrive: "Arriver", navMurals: "Fresques", navTown: "Ville", navMuseum: "Musée", navLandscape: "Contact",
-    navCruise: "Croisière", navBlog: "Blog", navGallery: "Galerie", navWwm: "Travailler Avec Moi",
-    scroll: "Défiler",
-    // Cruise Hub — French
-    cruiseHubLabel: "Port of Cromarty Firth",
-    cruiseHubTitle: "Centre <em>Croisiériste</em>",
-    cruiseHubIntro: "Tout ce dont vous avez besoin pour profiter au maximum de votre temps à Invergordon — du moment où l'ancre tombe jusqu'au réembarquement.",
-    arrivalVal1: "5 min à pied", arrivalLbl1: "Centre-ville depuis le terminal",
-    arrivalVal2: "8–12 heures", arrivalLbl2: "Escale typique au port",
-    arrivalVal3: "Entrée gratuite", arrivalLbl3: "Fresques, ville, Grand-Rue",
-    arrivalVal4: "Sans circuit guidé", arrivalLbl4: "Tout est accessible à pied",
-    cruiseTimeHeading: "Comment profiter de votre temps",
-    itin2hBadge: "2 Heures", itin2hHeading: "Pas de panique", itin2hIntro: "Vous pouvez quand même vivre une expérience inoubliable.",
-    itin4hBadge: "4–5 Heures", itin4hHeading: "La journée idéale", itin4hIntro: "Vous repartirez en souhaitant avoir plus de temps.",
-    itin8hBadge: "8+ Heures", itin8hHeading: "Journée complète", itin8hIntro: "Vous êtes au bon endroit. C'est l'Easter Ross — l'un des plus beaux coins d'Écosse.",
-    gettingStartedHeading: "Pour commencer",
-    portCol1Heading: "Du navire à la ville",
-    portCol2Heading: "Ce qu'il faut apporter à terre",
-    shipSchedLabel: "Cette Saison",
-    shipSchedHeading: "Navires attendus au Port of Cromarty Firth",
-    shipSchedText: "La saison de croisière 2026 court de mars à octobre, avec des navires faisant escale 2–3 fois par semaine à la haute saison. Le Port of Cromarty Firth publie le programme complet sur leur site officiel.",
-    shipSchedBtn: "Voir le calendrier officiel ↗",
-    shipSchedOps: "Attendez-vous à voir : <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> et bien d'autres tout au long de la saison.",
-    excursionsHeading: "Excursions Populaires",
-    tipsHeading: "Conseils Pratiques",
-    tipH1: "Argent & Paiements", tipB1: "L'Écosse utilise la Livre Sterling (£). Les cartes sont largement acceptées. Un peu d'argent liquide est utile pour les marchés, petits cafés et pourboires.",
-    tipH2: "Météo", tipB2: "Même en été, les Highlands peuvent être imprévisibles. Une couche imperméable légère est toujours conseillée. Juillet et août sont les mois les plus chauds, avec 17–19°C en moyenne.",
-    tipH3: "Mobile & Wi-Fi", tipB3: "Les réseaux mobiles britanniques (EE, O2, Vodafone) couvrent bien la ville. Le Wi-Fi gratuit est disponible dans certains cafés. Téléchargez des cartes hors ligne avant d'arriver.",
-    tipH4: "Déplacements", tipB4: "Le centre-ville est entièrement accessible à pied. Pour les excursions, des taxis locaux et des cars pré-réservés desservent le port. Le Port of Cromarty Firth peut conseiller sur les opérateurs agréés.",
-    tipH5: "Conseils Shopping", tipB5: "Cherchez des articles écossais authentiques — Harris Tweed, cachemire, artisanat local. Évitez tout ce qui dit 'Made in China' si vous voulez l'authentique.",
-    tipH6: "Un accueil écossais", tipB6: "Invergordon est une ville chaleureuse et authentique — pas un piège à touristes. Les habitants sont fiers de leur ville et adorent la partager avec les visiteurs. N'hésitez pas — dites bonjour.",
-    uploadTitle: "Avez-vous des photos prises à Invergordon, dans les Highlands, ou même chez vous, que vous aimez particulièrement ?",
-    uploadText: "Vous nous avez peut-être rendu visite depuis l'étranger et souhaitez partager une image de votre pays d'origine ? Nous serions ravis de les voir ! Téléchargez votre photo préférée et nous la mettrons en avant dans notre Galerie des Visiteurs — pour qu'elle soit appréciée par d'autres voyageurs du monde entier.",
-    uploadBtn: "Télécharger votre photo",
-    contactLabelId: "Nous contacter",
-    contactTitleId: "Nous adorerions vous entendre",
-    contactSubtitleId: "Que vous planifiiez votre première visite, soyez une entreprise locale souhaitant être référencée, ou vouliez simplement partager vos souvenirs des Highlands — laissez-nous un message.",
-  },
-  us: {
-    heroTag: "Invergordon · Scottish Highlands · Port of Cromarty Firth · NC500 · Tourism Information",
-    heroSub: "Your guide to Invergordon, Scottish Highlands and surrounding area",
-    heroCta: "Begin Here",
-    walkBanner: "🚶 <strong>Downtown is just a 5-minute walk</strong> from the cruise terminal — no shuttle, no taxi, no charge",
-    welcomeLabel: "Welcome Ashore",
-    welcomeTitle: "Your day in <em>Invergordon</em>",
-    welcomeText: "Most cruise passengers hop on a bus and miss the best part of the stop. <strong>Don't do it.</strong> Invergordon's famous outdoor mural trail, stunning Highland scenery, and genuine Scottish shops and restaurants are all right here — totally free and just a short walk from the dock. Locals reckon it's one of the most underrated ports on any Scottish itinerary.",
-    card1Title: "The Local's Guide",
-    card1Text: "Want real insider knowledge on Invergordon and the Highlands — not the tourist-brochure version? Stories, updates and local tips, written by someone who actually lives here.",
-    card1Cta: "Explore ↓",
-    card2Title: "Highland Scenery",
-    card2Text: "Mountains, sea lochs, ancient forests, and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes anywhere in Europe.",
-    card2Cta: "Discover ↓",
-    card3Title: "Eat & Drink Local",
-    card3Text: "From a legendary full Scottish breakfast to award-winning Indian food, the High Street has real local flavors. No tourist traps — just great food at honest prices.",
-    card3Cta: "See the Guide ↓",
-    card4Title: "Shop Local",
-    card4Text: "Scottish gifts, handmade crafts, tartan, and local art. Support real independent businesses, not chain stores. Everything's a short stroll from the port.",
-    card4Cta: "Browse ↓",
-    muralLabel: "Outdoor Art Gallery",
-    muralTitle: "The <em>Mural Trail</em>",
-    muralIntro1: "Back in 2002, a group of local volunteers called <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> started an incredible community project — turning the town's walls into a massive open-air gallery celebrating Highland history.",
-    muralIntro2: "Officially opened by HRH The Princess Royal in 2007, the trail now has 11 large-scale professionally painted murals plus a sculpture. It's one of the first mural trails in Scotland and still one of the best.",
-    muralOfficialBtn: "Official Website ↗",
-    stat1Label: "Large-scale murals painted by professional artists",
-    stat2Label: "Minutes to walk the full trail at a relaxed pace",
-    stat3Label: "Completely free. Open every day, year-round",
-    muralTapHint: "Tap to learn more",
-    muralCollab: "Content created in partnership with",
-    landscapeLabel: "Easter Ross & Beyond",
-    landscapeQuote: "Step off the ship and you're standing in the middle of <span>one of the most beautiful landscapes in all of Europe.</span> Mountains, sea lochs, ancient forests, and dramatic coastlines — all right in front of you.",
-    landscapeText: "Invergordon sits on the Cromarty Firth — a sheltered sea inlet surrounded by hills and mountains. To the north, Ben Wyvis rises to over 3,300 feet. To the south, the Black Isle peninsula stretches toward Inverness. Dolphins and seals are regularly spotted from shore. This is the real deal — genuine Highland scenery, not a tourist reconstruction.",
-    bizLabel: "High Street Guide",
-    bizTitle: "Where to eat, <em>shop & explore</em>",
-    bizIntro: "All within easy walking distance of the port. Shop local.",
-    museumLabel: "History & Heritage",
-    museumTitle: "Invergordon <em>Museum</em>",
-    museumCardTitle: "Discover Invergordon's Remarkable Story",
-    museumText1: "Invergordon has a history most visitors never expect — a Royal Naval base that played a role in both World Wars, a 1931 mutiny that shook the British Navy, an oil boom and bust, and a community that has reinvented itself again and again. The museum holds this story through artifacts, photos, and the voices of the people who lived it.",
-    museumText2: "The museum is currently planning an exciting move to a new, larger space — a modern heritage center worthy of Invergordon's extraordinary past. Your visit today helps make that future possible.",
-    museumBtn1: "Visit the Museum ↗",
-    museumBtn2: "Download the Mural App ↗",
-    tip1Title: "Getting Downtown",
-    tip1Text: "The town center is a 5-minute walk from the cruise terminal — less than a quarter mile. Just walk straight out of the port gates and you're on the High Street. No shuttle needed, no cost.",
-    tip2Title: "How Much Time Do You Need?",
-    tip2Text: "The full mural trail takes 60–90 minutes at an easy pace. Add time for lunch and some shopping and a half-day in town is very easily filled.",
-    tip3Title: "Before You Head Back",
-    tip3Text: "Consider making a donation to the Invergordon Mural Trail — a volunteer-run Scottish charity that keeps this amazing outdoor gallery going entirely through community effort.",
-    footerCredit: "A community digital project for Invergordon · Built with AI by a local resident · ExploreInvergordon.scot",
-    navArrive: "Arrive", navMurals: "Murals", navTown: "Town", navMuseum: "Museum", navLandscape: "Contact",
-    navCruise: "Cruise", navBlog: "Blog", navGallery: "Gallery", navWwm: "Work With Me",
-    scroll: "Scroll",
-    // Cruise Hub — US English
-    cruiseHubLabel: "Port of Cromarty Firth",
-    cruiseHubTitle: "Cruise Passenger <em>Hub</em>",
-    cruiseHubIntro: "Everything you need to make the most of your time in Invergordon — from the moment your ship docks to the moment you head back aboard.",
-    arrivalVal1: "5 min walk", arrivalLbl1: "Downtown from the terminal",
-    arrivalVal2: "8–12 hours", arrivalLbl2: "Typical time in port",
-    arrivalVal3: "Free admission", arrivalLbl3: "Mural trail, town, Main Street",
-    arrivalVal4: "No tour needed", arrivalLbl4: "Everything is walkable",
-    cruiseTimeHeading: "How to Spend Your Day",
-    itin2hBadge: "2 Hours", itin2hHeading: "Don't Worry", itin2hIntro: "You can still have an amazing time.",
-    itin4hBadge: "4–5 Hours", itin4hHeading: "The Perfect Day", itin4hIntro: "You'll wish you had more time.",
-    itin8hBadge: "8+ Hours", itin8hHeading: "Full Day", itin8hIntro: "You're in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.",
-    gettingStartedHeading: "Getting Started",
-    portCol1Heading: "Getting from Ship to Town",
-    portCol2Heading: "What to Bring Ashore",
-    shipSchedLabel: "This Season",
-    shipSchedHeading: "Ships Coming to Port of Cromarty Firth",
-    shipSchedText: "The 2026 cruise season runs from March through October, with ships calling 2–3 times a week during peak season. The Port of Cromarty Firth posts the full schedule on their official website.",
-    shipSchedBtn: "View Official Ship Schedule ↗",
-    shipSchedOps: "Watch for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many others throughout the season.",
-    excursionsHeading: "Popular Day Trips",
-    tipsHeading: "Practical Tips",
-    tipH1: "Money & Payments", tipB1: "Scotland uses British Pounds Sterling (£). Credit cards are widely accepted. A little cash is handy for market stalls, small cafés, and tips.",
-    tipH2: "Weather", tipB2: "Even in summer, the Highlands can be unpredictable. A light rain layer is always smart. July and August are the warmest months, averaging 63–66°F.",
-    tipH3: "Cell Service & Wi-Fi", tipB3: "UK carriers (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available at some cafés. Download offline maps before you arrive.",
-    tipH4: "Getting Around", tipB4: "Downtown is totally walkable. For day trips, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can recommend authorized operators.",
-    tipH5: "Shopping Tips", tipB5: "Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Skip anything with 'Made in China' on the label if you want the real thing.",
-    tipH6: "Scottish Hospitality", tipB6: "Invergordon is a warm, genuine town — not a tourist trap. Locals are proud of their home and love sharing it with visitors. Don't be shy — say hi.",
-    uploadTitle: "Do you have any photos you have taken anywhere around Invergordon or the Highlands that you love?",
-    uploadText: "Maybe you visited us from overseas and want to share an image from where you live instead? We would love to see those too. Upload your favorite photo and we'll feature it in our Visitor Gallery — so it can be enjoyed with other travelers from around the world.",
-    uploadBtn: "Upload Your Photo",
-    contactLabelId: "Get in Touch",
-    contactTitleId: "We'd Love to Hear From You",
-    contactSubtitleId: "Whether you're planning your first visit, a local business that wants to be listed, or just want to share your Highland memories — drop us a message below.",
-  },
-  no: {
-    heroTag: "Port of Cromarty Firth · Skotske Høylandet",
-    heroSub: "Din guide til Invergordon, Skotske Høylander og omliggende område",
-    heroCta: "Begynn Her",
-    walkBanner: "🚶 <strong>Bysentrum er bare 5 minutters gange</strong> fra cruiseterminalen — ingen buss eller taxi nødvendig",
-    welcomeLabel: "Velkommen om bord",
-    welcomeTitle: "Din dag i <em>Invergordon</em>",
-    welcomeText: "De fleste cruisepassasjerer kjøres av gårde på busser før de forstår hva de går glipp av. <strong>Ikke gjør den feilen.</strong> Invergordon's High Street, den verdensberømte muralsruten og de fantastiske høylandslandskapen i Easter Ross er rett utenfor døren din — og de er gratis. Dette er en av de mest undervurderte stopp på enhver Høylands-cruise.",
-    card1Title: "Den Lokale Guiden",
-    card1Text: "Vil du ha ekte innsidetips om Invergordon og Highlands — ikke turistbrosjyre-versjonen? Historier, oppdateringer og lokale tips, skrevet av noen som faktisk bor her.",
-    card1Cta: "..fortell meg mer!",
-    card2Title: "Høylandslandskap",
-    card2Text: "Fjell, sjøfjorder, eldgamle skoger og dramatiske kystlinjer omgir byen. Du står midt i ett av de vakreste landskapene i Europa.",
-    card2Cta: "Oppdag ↓",
-    card3Title: "Spis & Drikk Lokalt",
-    card3Text: "Fra en legendarisk skotsk frokost til prisbelønnet indisk mat, tilbyr High Street ekte lokale smaker. Ingen turistfeller — bare god mat.",
-    card3Cta: "Se guiden ↓",
-    card4Title: "Handle Lokalt",
-    card4Text: "Skotske gaver, håndverk, tartan og lokal kunst. Støtt ekte uavhengige bedrifter. Alt er en kort spasertur fra havnen.",
-    card4Cta: "Bla gjennom ↓",
-    muralLabel: "Friluftskunstgalleri",
-    muralTitle: "<em>Muralsruten</em>",
-    muralIntro1: "I 2002 startet en gruppe lokale frivillige kalt <strong style='color:var(--cream)'>Invergordon Off the Wall</strong> et bemerkelsesverdig fellesskapsprosjekt — å forvandle byens vegger til et monumentalt friluftskunstgalleri.",
-    muralIntro2: "Offisielt åpnet av HKH Prinsessen Kongelige i 2007, har ruten nå 11 storformat-muraler malt av profesjonelle, pluss en skulptur. Det er en av de første muralsrutene i Skottland.",
-    muralOfficialBtn: "Offisiell nettside ↗",
-    stat1Label: "Storformat-muraler malt av profesjonelle kunstnere",
-    stat2Label: "Minutter for å gå hele ruten i rolig tempo",
-    stat3Label: "Gratis inngang. Åpent hver dag, hele året",
-    muralTapHint: "Trykk for å oppdage",
-    muralCollab: "Innhold i samarbeid med",
-    landscapeLabel: "Easter Ross & Omegn",
-    landscapeQuote: "Gå av skipet og du står midt i <span>ett av de vakreste landskapene i Europa.</span> Fjell, sjøfjorder, eldgamle skoger og dramatiske kystlinjer — alt i sikte.",
-    landscapeText: "Invergordon ligger ved Cromarty Firth — en beskyttet sjøarm omgitt av åser og fjell. Mot nord reiser Ben Wyvis seg til over 1 000 meter. Mot sør strekker Black Isle-halvøya seg mot Inverness. Delfiner og seler observeres jevnlig fra strandlinjen.",
-    bizLabel: "High Street-guide",
-    bizTitle: "Spise, <em>handle & utforske</em>",
-    bizIntro: "Alt innen kort gangavstand fra havnen. Støtt lokale bedrifter.",
-    museumLabel: "Historie & Arv",
-    museumTitle: "Invergordon <em>Museum</em>",
-    museumCardTitle: "Oppdag Invergordon's bemerkelsesverdig historie",
-    museumText1: "Invergordon har en historie som de fleste besøkende aldri forventer — en kongelig marinbase som formet to verdenskrIger, et mytteri i 1931 som endret britisk marinehistorie, og et samfunn som har fornyet seg igjen og igjen.",
-    museumText2: "Museet planlegger for øyeblikket en spennende flytting til et nytt, større hjem — et moderne kulturarvsenter. Ditt besøk i dag bidrar til å støtte denne fremtiden.",
-    museumBtn1: "Besøk museet ↗",
-    museumBtn2: "Last ned mural-appen ↗",
-    tip1Title: "Komme seg til sentrum",
-    tip1Text: "Bysentrum er 5 minutters gange fra cruiseterminalen. Gå rett frem fra havneporten og du er på High Street. Ingen shuttlebuss, ingen kostnad.",
-    tip2Title: "Hvor lang tid trenger du?",
-    tip2Text: "Den fullstendige muralsruten tar 60–90 minutter i rolig tempo. Legg til tid for lunsj og butikkshopping — en halv dag i byen er veldig behagelig fylt.",
-    tip3Title: "Før du seiler av",
-    tip3Text: "Vurder å donere til Invergordon Muralsruten — en frivilligdrevet skotsk veldedighet som vedlikeholder dette ekstraordinære galleriet gjennom fellesskapsinnsats.",
-    footerCredit: "Et digitalt fellesskapsprosjekt for Invergordon · Bygget med KI av en lokal innbygger · ExploreInvergordon.scot",
-    navArrive: "Ankomst", navMurals: "Muraler", navTown: "By", navMuseum: "Museum", navLandscape: "Kontakt",
-    navCruise: "Cruise", navBlog: "Blogg", navGallery: "Galleri", navWwm: "Jobb Med Meg",
-    scroll: "Rull",
-    // Cruise Hub — Norwegian
-    cruiseHubLabel: "Port of Cromarty Firth",
-    cruiseHubTitle: "Cruise&shy;passasjer <em>Senter</em>",
-    cruiseHubIntro: "Alt du trenger for å gjøre mest mulig ut av tiden din i Invergordon — fra ankeret faller til du er tilbake om bord.",
-    arrivalVal1: "5 min gange", arrivalLbl1: "Bysentrum fra terminalen",
-    arrivalVal2: "8–12 timer", arrivalLbl2: "Typisk havneopphold",
-    arrivalVal3: "Gratis inngang", arrivalLbl3: "Mural-rute, by, High Street",
-    arrivalVal4: "Ingen tur nødvendig", arrivalLbl4: "Alt er tilgjengelig til fots",
-    cruiseTimeHeading: "Slik bruker du tiden din",
-    itin2hBadge: "2 Timer", itin2hHeading: "Ikke panikk", itin2hIntro: "Du kan fortsatt ha en uforglemmelig opplevelse.",
-    itin4hBadge: "4–5 Timer", itin4hHeading: "Den ideelle dagen", itin4hIntro: "Du vil dra og ønske du hadde mer tid.",
-    itin8hBadge: "8+ Timer", itin8hHeading: "Full Dag", itin8hIntro: "Du er på rett sted. Dette er Easter Ross — et av de vakreste hjørnene i Skottland.",
-    gettingStartedHeading: "Kom i gang",
-    portCol1Heading: "Fra skipet til byen",
-    portCol2Heading: "Hva du bør ta med i land",
-    shipSchedLabel: "Denne Sesongen",
-    shipSchedHeading: "Skip forventet til Port of Cromarty Firth",
-    shipSchedText: "Cruisesesongen 2026 går fra mars til oktober, med skip 2–3 ganger i uken i høysesongen. Port of Cromarty Firth publiserer den fullstendige tidsplanen på sin offisielle nettside.",
-    shipSchedBtn: "Se offisiell skipstidtabell ↗",
-    shipSchedOps: "Se etter: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> og mange flere gjennom sesongen.",
-    excursionsHeading: "Populære Utflukter",
-    tipsHeading: "Praktiske Tips",
-    tipH1: "Penger & Betaling", tipB1: "Skottland bruker Britiske Pund Sterling (£). Kort aksepteres bredt. Litt kontanter er nyttig for markedsboder, små kafeer og tips.",
-    tipH2: "Vær", tipB2: "Selv om sommeren kan Høylandet være uforutsigbart. Et lett vanntett lag er alltid lurt. Juli og august er de varmeste månedene med 17–19°C i gjennomsnitt.",
-    tipH3: "Mobil & Wi-Fi", tipB3: "Britiske mobilnett (EE, O2, Vodafone) dekker byen godt. Gratis Wi-Fi er tilgjengelig på noen kafeer. Last ned offline kart før du ankommer.",
-    tipH4: "Komme seg rundt", tipB4: "Bysentrum er fullt tilgjengelig til fots. For utflukter betjener lokale taxier og forhåndsbestilte busser havnen. Port of Cromarty Firth kan gi råd om godkjente operatører.",
-    tipH5: "Handleråd", tipB5: "Se etter ekte skotske varer — Harris Tweed, kashmir, lokalt håndverk. Unngå alt med 'Made in China' på etiketten hvis du vil ha det ekte.",
-    tipH6: "Et skotsk mottak", tipB6: "Invergordon er en vennlig, ekte by — ikke en turistfelle. Lokalbefolkningen er stolte av hjemstedet sitt og elsker å dele det med besøkende. Vær ikke sjenert — si hei.",
-    uploadTitle: "Har du bilder du har tatt rundt Invergordon, i Highlands, eller kanskje hjemmefra som du er glad i?",
-    uploadText: "Kanskje du besøkte oss fra utlandet og ønsker å dele et bilde fra der du bor? Vi vil gjerne se dem også! Last opp favoritten din og vi vil fremheve det i vårt Besøksgalleri — slik at det kan nytes av andre reisende fra hele verden.",
-    uploadBtn: "Last opp ditt bilde",
-    contactLabelId: "Ta kontakt",
-    contactTitleId: "Vi vil gjerne høre fra deg",
-    contactSubtitleId: "Enten du planlegger ditt første besøk, er en lokal bedrift som vil bli listet, eller bare vil dele dine Highland-minner — send oss en melding.",
-  }
-};
 
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  const t = translations[lang];
-  if (!t) return;
-
-  // Helper
-  const set = (id, html, useHTML = true) => {
-    const el = document.getElementById(id);
-    if (el) useHTML ? el.innerHTML = html : el.textContent = html;
-  };
-
-  // Nav
-  document.querySelectorAll('.nav-arrive').forEach(el => el.textContent = t.navArrive);
-  document.querySelectorAll('.nav-murals').forEach(el => el.textContent = t.navMurals);
-  document.querySelectorAll('.nav-town').forEach(el => el.textContent = t.navTown);
-  document.querySelectorAll('.nav-museum').forEach(el => el.textContent = t.navMuseum);
-  document.querySelectorAll('.nav-landscape').forEach(el => el.textContent = t.navLandscape);
-  document.querySelectorAll('.nav-cruise').forEach(el => el.textContent = t.navCruise);
-  document.querySelectorAll('.nav-blog').forEach(el => el.textContent = t.navBlog);
-  document.querySelectorAll('.nav-gallery').forEach(el => el.textContent = t.navGallery);
-  set('nav-wwm', t.navWwm, false);
-  document.querySelectorAll('.t-scroll').forEach(el => el.textContent = t.scroll);
-
-  // Hero
-  set('hero-tag', t.heroTag, false);
-  set('hero-sub', t.heroSub, false);
-  set('hero-cta-text', t.heroCta, false);
-
-  // Walk banner
-  set('walk-banner-text', t.walkBanner);
-
-  // Welcome section
-  set('welcome-label', t.welcomeLabel, false);
-  set('welcome-title', t.welcomeTitle);
-  set('welcome-text', t.welcomeText);
-  set('card1-title', t.card1Title, false);
-  set('card1-text', t.card1Text, false);
-  set('card1-cta', t.card1Cta, false);
-  set('card2-title', t.card2Title, false);
-  set('card2-text', t.card2Text, false);
-  set('card2-cta', t.card2Cta, false);
-  set('card3-title', t.card3Title, false);
-  set('card3-text', t.card3Text, false);
-  set('card3-cta', t.card3Cta, false);
-  set('card4-title', t.card4Title, false);
-  set('card4-text', t.card4Text, false);
-  set('card4-cta', t.card4Cta, false);
-
-  // Mural section
-  set('mural-label', t.muralLabel, false);
-  set('mural-title', t.muralTitle);
-  set('mural-intro1', t.muralIntro1);
-  set('mural-intro2', t.muralIntro2);
-  set('mural-official-btn', t.muralOfficialBtn, false);
-  set('stat1-label', t.stat1Label, false);
-  set('stat2-label', t.stat2Label, false);
-  set('stat3-label', t.stat3Label, false);
-  set('mural-collab', t.muralCollab, false);
-  document.querySelectorAll('.mural-tap-hint').forEach(el => el.textContent = t.muralTapHint);
-
-  // Landscape
-  set('landscape-label', t.landscapeLabel, false);
-  set('landscape-quote', t.landscapeQuote);
-  set('landscape-text', t.landscapeText, false);
-
-  // Businesses
-  set('biz-label', t.bizLabel, false);
-  set('biz-title', t.bizTitle);
-  set('biz-intro', t.bizIntro, false);
-
-  // Museum
-  set('museum-label', t.museumLabel, false);
-  set('museum-title', t.museumTitle);
-  set('museum-card-title', t.museumCardTitle, false);
-  set('museum-text1', t.museumText1, false);
-  set('museum-text2', t.museumText2, false);
-  set('museum-btn1', t.museumBtn1, false);
-  set('museum-btn2', t.museumBtn2, false);
-
-  // Tips (bottom cruise section)
-  set('tip1-title', t.tip1Title, false);
-  set('tip1-text', t.tip1Text, false);
-  set('tip2-title', t.tip2Title, false);
-  set('tip2-text', t.tip2Text, false);
-  set('tip3-title', t.tip3Title, false);
-  set('tip3-text', t.tip3Text, false);
-
-  // Footer
-  set('footer-credit', t.footerCredit, false);
-
-  // ── CRUISE HUB SECTION ──
-  if (t.cruiseHubLabel !== undefined) {
-    set('cruise-hub-label', t.cruiseHubLabel, false);
-    set('cruise-hub-title', t.cruiseHubTitle);
-    set('cruise-hub-intro', t.cruiseHubIntro, false);
-    set('arrival-val-1', t.arrivalVal1, false); set('arrival-lbl-1', t.arrivalLbl1, false);
-    set('arrival-val-2', t.arrivalVal2, false); set('arrival-lbl-2', t.arrivalLbl2, false);
-    set('arrival-val-3', t.arrivalVal3, false); set('arrival-lbl-3', t.arrivalLbl3, false);
-    set('arrival-val-4', t.arrivalVal4, false); set('arrival-lbl-4', t.arrivalLbl4, false);
-    set('cruise-time-heading', t.cruiseTimeHeading, false);
-    set('itin-2h-badge', t.itin2hBadge, false); set('itin-2h-heading', t.itin2hHeading, false); set('itin-2h-intro', t.itin2hIntro, false);
-    set('itin-4h-badge', t.itin4hBadge, false); set('itin-4h-heading', t.itin4hHeading, false); set('itin-4h-intro', t.itin4hIntro, false);
-    set('itin-8h-badge', t.itin8hBadge, false); set('itin-8h-heading', t.itin8hHeading, false); set('itin-8h-intro', t.itin8hIntro, false);
-    set('getting-started-heading', t.gettingStartedHeading, false);
-    set('port-col-1-heading', t.portCol1Heading, false);
-    set('port-col-2-heading', t.portCol2Heading, false);
-    set('ship-sched-label', t.shipSchedLabel, false);
-    set('ship-sched-heading', t.shipSchedHeading, false);
-    set('ship-sched-text', t.shipSchedText, false);
-    set('ship-sched-btn', t.shipSchedBtn, false);
-    set('ship-sched-ops', t.shipSchedOps);
-    set('excursions-heading', t.excursionsHeading, false);
-    set('tips-heading', t.tipsHeading, false);
-    set('tip-h-1', t.tipH1, false); set('tip-b-1', t.tipB1, false);
-    set('tip-h-2', t.tipH2, false); set('tip-b-2', t.tipB2, false);
-    set('tip-h-3', t.tipH3, false); set('tip-b-3', t.tipB3, false);
-    set('tip-h-4', t.tipH4, false); set('tip-b-4', t.tipB4, false);
-    set('tip-h-5', t.tipH5, false); set('tip-b-5', t.tipB5, false);
-    set('tip-h-6', t.tipH6, false); set('tip-b-6', t.tipB6, false);
-    set('upload-title', t.uploadTitle, false);
-    set('upload-text', t.uploadText, false);
-    set('upload-btn-text', t.uploadBtn, false);
-    // Contact form
-    set('contact-label-id', t.contactLabelId, false);
-    set('contact-title-id', t.contactTitleId, false);
-    set('contact-subtitle-id', t.contactSubtitleId, false);
-  }
-}
 
 // ── SUBTLE SCROLL FADE IN ──
 const observer = new IntersectionObserver((entries) => {
@@ -4061,13 +3528,9 @@ function handleContactSubmit(event) {
 <script>
 // ══════════════════════════════════════════════════════
 // SOUND FX ENGINE — Explore Invergordon
-// Pre-loads all audio at page start so play() fires
-// instantly within the user-activation window.
 // ══════════════════════════════════════════════════════
 (function() {
-  var pool = {};
-  var unlocked = false;
-
+  // File map: key → relative path
   var files = {
     bagpipes:  'sounds/bagpipes_trimmed.mp3',
     whooshFwd: 'sounds/bamboo-whoosh_trimmed.mp3',
@@ -4082,46 +3545,26 @@ function handleContactSubmit(event) {
     cow:       'sounds/highland-cow-moo.mp3'
   };
 
-  // Create and preload all Audio elements immediately at page load
-  // (no user gesture needed for element creation + network fetch)
-  for (var k in files) {
+  // Pre-create and pre-load every Audio element at parse time.
+  // Gives browser seconds to buffer files before first interaction.
+  var pool = {};
+  Object.keys(files).forEach(function(k) {
     var a = new Audio(files[k]);
     a.preload = 'auto';
+    a.load();
     pool[k] = a;
-  }
+  });
 
-  // On first user gesture, prime each idle audio element with a
-  // silent play→pause so later calls (including from hover events)
-  // work even outside a direct click context.
-  // Uses setTimeout(0) to fire AFTER any same-click playFX call,
-  // so we don't interrupt a sound that just started playing.
-  function unlock() {
-    if (unlocked) return;
-    unlocked = true;
-    setTimeout(function() {
-      for (var key in pool) {
-        (function(audio) {
-          if (!audio.paused || audio.currentTime > 0) return; // skip if in use
-          var p = audio.play();
-          if (p && typeof p.then === 'function') {
-            p.then(function() {
-              audio.pause();
-              audio.currentTime = 0;
-            }).catch(function(){});
-          }
-        })(pool[key]);
-      }
-    }, 50); // 50ms: after onclick fires, before user-activation expires
-  }
-
-  document.addEventListener('click',      unlock, { once: true });
-  document.addEventListener('touchstart', unlock, { once: true });
-  document.addEventListener('keydown',    unlock, { once: true });
-
+  // playFX: called directly from onclick / touchstart handlers.
+  // Being inside a user-gesture stack means play() is always allowed.
   window.playFX = function(key) {
     var a = pool[key];
     if (!a) return;
-    try { a.currentTime = 0; a.play().catch(function(){}); } catch(e){}
+    try {
+      a.currentTime = 0;
+      var p = a.play();
+      if (p && typeof p.catch === 'function') p.catch(function(){});
+    } catch(e) {}
   };
 })();
 
@@ -4240,6 +3683,37 @@ function showUploadComingSoon(btn) {
   setTimeout(function() {
     window.location.href = 'gallery.html#visitor';
   }, 650);
+}
+
+// ── Google Translate engine ─────────────────────────────────────────────
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en' || lang === 'us') {
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    return;
+  }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
+  }
+  fire();
+}
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
 }
 </script>
 
