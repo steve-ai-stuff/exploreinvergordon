@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural Trail — Explore Invergordon</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="Explore Invergordon's world-famous outdoor mural trail — 11 large-scale murals celebrating Highland history, launched by HRH The Princess Royal. Free, open every day.">
+<meta name="keywords" content="Invergordon mural trail, Invergordon Off the Wall, Highland murals, outdoor art Scotland, Invergordon art, cruise port Invergordon, Scottish Highlands mural">
+<meta name="author" content="Explore Invergordon">
+<link rel="canonical" href="https://exploreinvergordon.scot/murals">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exploreinvergordon.scot/murals">
+<meta property="og:title" content="Invergordon Mural Trail — Explore Invergordon">
+<meta property="og:description" content="Scotland's first outdoor community mural trail. 11 large-scale murals celebrating Highland history, launched by HRH The Princess Royal. Free entry, open every day.">
+<meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+    --spring-green: #56c27b;
+    --spring-yellow: #e8d44a;
+    --spring-lime: #8dc440;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANGUAGE BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(107,74,126,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-follow-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav-social-btn:hover { opacity: 0.75; transform: scale(1.12); }
+  @media (max-width: 600px) { .nav-follow-label { display: none; } }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    background: url('website_image_files/background_images/background_image.jpg') center 30% / cover no-repeat;
+    z-index: -1;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.65) 0%,
+      rgba(8,15,30,0.4) 40%,
+      rgba(8,15,30,0.85) 100%);
+    z-index: 1;
+  }
+
+  .hero-mountains {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+  }
+  .hero-mountains svg { width: 100%; height: 100%; }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes beginFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-9px); }
+  }
+
+  @keyframes beginGlow {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(201,168,76,0.25), 0 0 24px rgba(201,168,76,0.10), 0 6px 20px rgba(0,0,0,0.50);
+      border-color: rgba(201,168,76,0.65);
+    }
+    50% {
+      box-shadow: 0 0 22px rgba(201,168,76,0.60), 0 0 50px rgba(201,168,76,0.30), 0 0 80px rgba(201,168,76,0.13), 0 12px 35px rgba(0,0,0,0.40);
+      border-color: rgba(201,168,76,0.98);
+    }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .hero-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--heather-light);
+    margin: 1.5rem 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(201,168,76,0.07);
+    color: var(--gold);
+    padding: 0.95rem 3rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid rgba(201,168,76,0.65);
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    backdrop-filter: blur(6px);
+    animation:
+      fadeUp     0.8s ease         forwards  0.9s,
+      beginFloat 3.0s ease-in-out  infinite  1.8s,
+      beginGlow  2.5s ease-in-out  infinite  1.8s;
+  }
+
+  .hero-cta:hover {
+    background: rgba(201,168,76,0.18);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    box-shadow: 0 0 30px rgba(201,168,76,0.70), 0 0 65px rgba(201,168,76,0.40), 0 14px 40px rgba(0,0,0,0.40);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .scroll-hint span {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite 1.5s;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: linear-gradient(to right, rgba(8,15,30,0.6), rgba(107,74,126,0.15), rgba(8,15,30,0.6));
+    border-top: 2px solid rgba(201,168,76,0.55);
+    border-bottom: 2px solid rgba(201,168,76,0.55);
+    color: var(--mist);
+    padding: 1.25rem 2rem;
+    text-align: center;
+  }
+
+  .trust-bar p {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    letter-spacing: 0.03em;
+    color: var(--heather-light);
+  }
+
+  /* ── SECTION COMMON ── */
+  .section-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--heather-light);
+  }
+
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── BTN SECONDARY ── */
+  .btn-secondary {
+    display: inline-block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(168,124,192,0.5);
+    padding: 0.65rem 1.5rem;
+    transition: all 0.25s ease;
+  }
+
+  .btn-secondary:hover {
+    color: var(--cream);
+    border-color: var(--heather-light);
+    background: rgba(107,74,126,0.15);
+  }
+
+  /* ── MURAL TRAIL SECTION ── */
+  .trail-section {
+    background: rgba(8,15,30,0.95);
+    border-top: 2px solid var(--gold);
+    padding: 3rem 1.5rem 0;
+  }
+
+  .trail-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .trail-intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .trail-intro { grid-template-columns: 1fr; align-items: center; }
+  }
+
+  .trail-stats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .trail-stat {
+    flex: 1 1 240px;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(29,79,168,0.1);
+    border: 1px solid rgba(168,124,192,0.45);
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 3rem;
+    text-align: center;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* ── MURAL FLIP CARDS ── */
+  .murals-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    background: transparent;
+    border: none;
+  }
+  @media (min-width: 500px) {
+    .murals-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 768px) {
+    .murals-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .mural-flip-wrap {
+    perspective: 800px;
+    cursor: pointer;
+    height: 160px;
+  }
+
+  .mural-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 4px;
+  }
+
+  .mural-flip-wrap.flipped .mural-flip-inner,
+  .mural-flip-wrap:hover .mural-flip-inner {
+    transform: rotateX(180deg);
+  }
+
+  .mural-face, .mural-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .mural-face {
+    background: var(--highland-deep);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(201,168,76,0.4);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+  }
+  .mural-face::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), var(--heather));
+    transform: scaleX(0);
+    transition: transform 0.35s ease;
+  }
+  .mural-flip-wrap:hover .mural-face::after {
+    transform: scaleX(1);
+  }
+
+  .mural-back {
+    transform: rotateX(180deg);
+    background: #111;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .mural-back img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+  .mural-back-label {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .mural-back-click-hint {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .mural-number {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .mural-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  .mural-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .mural-tap-hint {
+    color: var(--gold);
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  /* ── LIGHTBOX ── */
+  #mural-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: lbFadeIn 0.25s ease;
+  }
+  #mural-lightbox.open {
+    display: flex;
+  }
+  @keyframes lbFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .lb-inner {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background: var(--highland-deep);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+    animation: lbSlideUp 0.3s cubic-bezier(0.2,0.8,0.3,1);
+  }
+  @keyframes lbSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .lb-img-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .lb-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .lb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-align: center;
+    padding: 2rem;
+  }
+  .lb-placeholder-icon {
+    font-size: 3rem;
+    opacity: 0.4;
+  }
+  .lb-info {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+  .lb-number {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .lb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .lb-location {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .lb-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+    font-family: 'Overpass Mono', monospace;
+    letter-spacing: 0.1em;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .lb-close {
+    position: absolute;
+    top: 12px; right: 14px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .lb-close:hover { background: rgba(200,50,50,0.7); }
+
+  /* ── EXPANDED MURAL DETAIL ── */
+  .mural-expanded {
+    display: none;
+    grid-column: 1 / -1;
+    background: rgba(26,31,46,0.95);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem;
+    margin: 0;
+  }
+
+  .mural-expanded.active { display: block; }
+
+  .mural-expanded h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .mural-expanded p {
+    color: var(--mist);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .close-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+  }
+
+  .close-btn:hover { color: var(--cream); border-color: rgba(255,255,255,0.3); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 2px solid rgba(201,168,76,0.55);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .footer-proton a { color: var(--heather-light) !important; text-decoration: none; }
+  .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+</style>
+</head>
+
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-follow-label">Check Our Socials:</span>
+    <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="murals.html" class="nav-active">Murals</a></li>
+    <li><a href="cruise-hub.html">Cruise Hub</a></li>
+    <li><a href="nc500.html">NC500</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="work-with-me.html">Work With Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:0; max-width:100%;">
+  <div class="hero-bg"></div>
+
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mtnGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0e2040;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="mtnGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#091530;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,400 L0,280 L120,180 L200,220 L320,120 L440,190 L560,100 L680,170 L800,80 L920,160 L1040,90 L1160,150 L1280,110 L1360,170 L1440,130 L1440,400 Z" fill="url(#mtnGrad1)" opacity="0.6"/>
+      <polyline points="0,280 120,180 200,220 320,120 440,190 560,100 680,170 800,80 920,160 1040,90 1160,150 1280,110 1360,170 1440,130" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon points="75,218 120,180 165,203"  fill="rgba(255,255,255,0.82)"/>
+      <polygon points="275,158 320,120 365,146" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="515,134 560,100 605,126" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="755,114 800,80  845,110" fill="rgba(255,255,255,0.88)"/>
+      <path d="M0,400 L0,320 L80,290 L200,310 L320,270 L440,295 L560,260 L680,285 L800,250 L920,275 L1040,240 L1160,265 L1280,255 L1440,270 L1440,400 Z" fill="url(#mtnGrad2)" opacity="0.9"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-tag" id="mural-hero-tag">Explore Invergordon · Scottish Highlands</p>
+    <h1 class="hero-title">
+      Invergordon's<br>
+      <em>Mural Trail</em>
+    </h1>
+    <p class="hero-subtitle" id="mural-hero-sub">Scotland's first outdoor community mural trail — 11 large-scale works celebrating Highland history, heritage and community spirit. Free. Open every day.</p>
+    <a href="#murals" class="hero-cta">Explore the Trail ↓</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Discover</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <p>Created by volunteers. Launched by HRH The Princess Royal in 2007. One of Scotland's finest outdoor art collections — and it's completely free.</p>
+</div>
+
+<!-- MURAL TRAIL -->
+<div class="trail-section" id="murals">
+  <div class="trail-inner">
+    <p class="section-label" id="mural-label">Outdoor Art Gallery</p>
+    <h2 class="section-title" id="mural-title">The <em>Mural Trail</em></h2>
+    <div class="divider"></div>
+
+    <div class="trail-intro">
+      <div>
+        <p id="mural-intro1" style="color:var(--mist); font-size:1.05rem; line-height:1.8; margin-bottom:1.5rem;">
+          In 2002, a group of local volunteers called <strong style="color:var(--cream);">Invergordon Off the Wall</strong> began a remarkable community project — transforming the town's walls into a monumental open-air gallery celebrating Highland history and heritage.
+        </p>
+        <p id="mural-intro2" style="color:var(--mist); font-size:1.05rem; line-height:1.8;">
+          Officially launched by HRH The Princess Royal in 2007, the trail now features 11 large-scale professionally painted murals plus sculpture. It is one of the first mural trails in Scotland and remains one of the finest.
+        </p>
+        <div style="margin-top:1.5rem;">
+          <a href="https://invergordonoffthewall.org.uk" target="_blank" class="btn-secondary" id="mural-official-btn">Visit Official Site ↗</a>
+        </div>
+      </div>
+      <div class="trail-stats">
+        <div class="trail-stat">
+          <div class="stat-number">11</div>
+          <div class="stat-label" id="stat1-label">Large-scale murals painted by professional artists</div>
+        </div>
+        <div class="trail-stat">
+          <div class="stat-number">60'</div>
+          <div class="stat-label" id="stat2-label">Minutes to walk the full trail at a leisurely pace</div>
+        </div>
+        <div class="trail-stat">
+          <div class="stat-number">Free</div>
+          <div class="stat-label" id="stat3-label">No entry fee. Open every day, all year round</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Murals Grid -->
+    <div class="murals-grid" id="murals-grid">
+
+      <div class="mural-flip-wrap" id="flip-1"
+           onmouseenter="flipCard(1)"
+           onmouseleave="unflipCard(1)"
+           ontouchstart="flipCard(1)"
+           onclick="openLightbox(1)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 01</div>
+            <div class="mural-name">The Long Goodbye</div>
+            <div class="mural-desc">Invergordon Station · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#2d4a6b;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/Long-Goodbye-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              The Long Goodbye
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-2"
+           onmouseenter="flipCard(2)"
+           onmouseleave="unflipCard(2)"
+           ontouchstart="flipCard(2)"
+           onclick="openLightbox(2)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 02</div>
+            <div class="mural-name">Pipes &amp; Drams</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#4a2d6b;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/PipesandDrams-640x480.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Pipes &amp; Drams
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-3"
+           onmouseenter="flipCard(3)"
+           onmouseleave="unflipCard(3)"
+           ontouchstart="flipCard(3)"
+           onclick="openLightbox(3)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 03</div>
+            <div class="mural-name">Gather Round</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#2d6b4a;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/GatherRound-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Gather Round
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-4"
+           onmouseenter="flipCard(4)"
+           onmouseleave="unflipCard(4)"
+           ontouchstart="flipCard(4)"
+           onclick="openLightbox(4)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 04</div>
+            <div class="mural-name">The Loch</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#1a3d5c;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheLoch-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              The Loch
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-5"
+           onmouseenter="flipCard(5)"
+           onmouseleave="unflipCard(5)"
+           ontouchstart="flipCard(5)"
+           onclick="openLightbox(5)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 05</div>
+            <div class="mural-name">Volunteer Spirit</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#6b4a2d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Volunteer-Spirit-2021-640x960.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Volunteer Spirit
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-6"
+           onmouseenter="flipCard(6)"
+           onmouseleave="unflipCard(6)"
+           ontouchstart="flipCard(6)"
+           onclick="openLightbox(6)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 06</div>
+            <div class="mural-name">Our Legacy</div>
+            <div class="mural-desc">Near Museum · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#3d2d6b;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/OurLegacy-640x287.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Our Legacy
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-7"
+           onmouseenter="flipCard(7)"
+           onmouseleave="unflipCard(7)"
+           ontouchstart="flipCard(7)"
+           onclick="openLightbox(7)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 07</div>
+            <div class="mural-name">Fire! Fire!</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#6b2d2d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/FireFire-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Fire! Fire!
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-8"
+           onmouseenter="flipCard(8)"
+           onmouseleave="unflipCard(8)"
+           ontouchstart="flipCard(8)"
+           onclick="openLightbox(8)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 08</div>
+            <div class="mural-name">The Way We Were</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#2d5c4a;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheWayWeWere-640x413.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              The Way We Were
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-9"
+           onmouseenter="flipCard(9)"
+           onmouseleave="unflipCard(9)"
+           ontouchstart="flipCard(9)"
+           onclick="openLightbox(9)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 09</div>
+            <div class="mural-name">Saltburn's Past</div>
+            <div class="mural-desc">Saltburn Road · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#5c3d1a;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/SaltburnsPast-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Saltburn's Past
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-10"
+           onmouseenter="flipCard(10)"
+           onmouseleave="unflipCard(10)"
+           ontouchstart="flipCard(10)"
+           onclick="openLightbox(10)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 10</div>
+            <div class="mural-name">A Century of Sport</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#1a5c3d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/CenturyOfSport-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              A Century of Sport
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-11"
+           onmouseenter="flipCard(11)"
+           onmouseleave="unflipCard(11)"
+           ontouchstart="flipCard(11)"
+           onclick="openLightbox(11)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">MURAL 11</div>
+            <div class="mural-name">Heritage of the Firth</div>
+            <div class="mural-desc">Near Museum · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#3d1a5c;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/HeritageOfTheFirth-640x427.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Heritage of the Firth
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-flip-wrap" id="flip-12"
+           onmouseenter="flipCard(12)"
+           onmouseleave="unflipCard(12)"
+           ontouchstart="flipCard(12)"
+           onclick="openLightbox(12)">
+        <div class="mural-flip-inner">
+          <div class="mural-face">
+            <div class="mural-number">SCULPTURE</div>
+            <div class="mural-name">Evolution</div>
+            <div class="mural-desc">High Street · <span class="mural-tap-hint">Hover to preview</span></div>
+          </div>
+          <div class="mural-back" style="background:#4a3d2d;">
+            <img src="https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Evolution-640x960.jpg" alt="Mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;" onerror="this.style.display='none'" loading="lazy"/>
+            <div class="lb-placeholder" style="position:absolute;inset:0;opacity:0.5;">
+              <div class="lb-placeholder-icon">🎨</div>
+              <div>PHOTO COMING SOON</div>
+            </div>
+            <div class="mural-back-label">
+              Evolution
+              <span class="mural-back-click-hint">CLICK TO ENLARGE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Expanded detail panels (hidden until clicked) -->
+    <div class="mural-expanded" id="mural-1">
+      <h3>The Long Goodbye</h3>
+      <p>Located at Invergordon Railway Station, this deeply moving mural tells the story of the Seaforth Highlanders — local soldiers of the 51st Highland Division — who marched away to war in 1939 and endured capture at St Valery-en-Caux in 1940. Painted by artist Tracey Shough in 2007, it depicts their departure, the brutal march across Europe, and the real stories of local men including Reid Ross, who escaped through France and eventually returned home. Look closely at the platform panels — individual soldiers from Invergordon have their stories painted into the brickwork.</p>
+      <button class="close-btn" onclick="closeMural('mural-1')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-2">
+      <h3>Pipes &amp; Drams</h3>
+      <p>A vibrant celebration of the Highland Games tradition and the iconic sound of the bagpipes that has echoed across this landscape for centuries. Invergordon has a long history with pipe bands — the Invergordon Distillery Pipe Band was formed in 1964 and the town has always held its Highland heritage close. This mural captures the colour, pride and community spirit that defines the Highlands.</p>
+      <button class="close-btn" onclick="closeMural('mural-2')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-3">
+      <h3>Gather Round</h3>
+      <p>Community is at the heart of everything in Invergordon, and this mural captures the spirit of people coming together — celebrating, sharing stories, and maintaining the bonds that make small Highland towns so resilient. It reflects the collaborative spirit of the Off the Wall project itself, which was built entirely on community involvement from the very beginning.</p>
+      <button class="close-btn" onclick="closeMural('mural-3')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-4">
+      <h3>The Loch</h3>
+      <p>The Cromarty Firth and the surrounding lochs are the defining landscape of Easter Ross. This mural celebrates the extraordinary wildlife that calls these waters home — including over 300 harbour seals and one of only two resident populations of bottlenose dolphins in the UK. The Firth is also home to 30,000 overwintering birds and 21 species of algae and eelgrass. You're looking at one of Scotland's most important natural habitats.</p>
+      <button class="close-btn" onclick="closeMural('mural-4')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-5">
+      <h3>Volunteer Spirit</h3>
+      <p>Invergordon has always relied on its volunteers — from the lifeboat crews who have served the Moray Firth since 1878, to the flower planters who bring colour to the High Street every summer, to the Off the Wall volunteers themselves who built this entire mural trail with no public funding. This mural is a tribute to the quietly heroic people who keep this community alive.</p>
+      <button class="close-btn" onclick="closeMural('mural-5')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-6">
+      <h3>Our Legacy</h3>
+      <p>Painted by Tracey Shough, this was actually the very first mural created for the trail — a celebration of the natural heritage of the Cromarty Firth. It depicts the extraordinary ecology of the Firth and the relationship between the people of Invergordon and the landscape that surrounds them. A fitting starting point for a project that would grow into something remarkable.</p>
+      <button class="close-btn" onclick="closeMural('mural-6')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-7">
+      <h3>Fire! Fire!</h3>
+      <p>This dramatic mural commemorates Invergordon's volunteer fire service and the real incidents that tested this community's courage over the generations. Fire was a constant danger in the days when buildings were primarily timber, and the men and women who answered the call did so with no formal training and no guarantee of safety. A tribute to bravery most people never think about.</p>
+      <button class="close-btn" onclick="closeMural('mural-7')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-8">
+      <h3>The Way We Were</h3>
+      <p>A window into everyday life in Invergordon across the decades — the High Street when it was bustling, the harbour when it was full of working vessels, the families and faces that made this town what it is. This mural is living memory, painted from photographs and first-hand accounts of people who grew up here. Look carefully and you may recognise details from the town as it still stands today.</p>
+      <button class="close-btn" onclick="closeMural('mural-8')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-9">
+      <h3>Saltburn's Past</h3>
+      <p>Saltburn is the peaceful woodland community just east of Invergordon, and this mural celebrates its history as a distinct settlement with its own identity. The Saltburn Woodland Walk is one of the most popular routes for both cruise visitors and locals — a beautiful green escape just minutes from the port, with views out across the Cromarty Firth.</p>
+      <button class="close-btn" onclick="closeMural('mural-9')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-10">
+      <h3>A Century of Sport</h3>
+      <p>From Highland Games athletics to football on the shore, sport has always been central to life in Easter Ross. This mural celebrates 100 years of sporting achievement and community competition — capturing the moments of triumph and the spirit of participation that defines how Highlanders approach both victory and defeat. With good humour, always.</p>
+      <button class="close-btn" onclick="closeMural('mural-10')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-11">
+      <h3>The Heritage of the Firth</h3>
+      <p>The Cromarty Firth has been central to Invergordon's story for centuries — as a naval base, an oil industry hub, a fishing ground, and now as one of Scotland's most ecologically important estuaries. This mural brings together the maritime history of the Firth in one sweeping panorama, from the warships of WWI and WWII to the oil rigs of the 1970s and the wind turbines of today.</p>
+      <button class="close-btn" onclick="closeMural('mural-11')">✕ Close</button>
+    </div>
+
+    <div class="mural-expanded" id="mural-12">
+      <h3>Evolution — Sculpture</h3>
+      <p>The Evolution sculpture on the High Street is a striking three-dimensional companion to the mural trail — a physical landmark that has become one of the most photographed spots in Invergordon. Created as part of the Off the Wall community project, it represents the town's journey through history and its continued evolution as a living, growing community. Stop here, take your photo, and think about what it took to build something this remarkable with volunteer hands.</p>
+      <button class="close-btn" onclick="closeMural('mural-12')">✕ Close</button>
+    </div>
+
+    <div style="margin-top:2.5rem; padding-bottom:3rem; text-align:center;">
+      <p style="font-family:'Overpass Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--text-muted); text-transform:uppercase; margin-bottom:1rem;" id="mural-collab">Content in collaboration with</p>
+      <a href="https://invergordonoffthewall.org.uk" target="_blank" class="btn-secondary">Invergordon Off the Wall — Official Site ↗</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- MURAL LIGHTBOX -->
+<div id="mural-lightbox" onclick="closeLightbox(event)">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightboxBtn()">✕</button>
+    <div class="lb-img-wrap" id="lb-img-wrap">
+      <div class="lb-placeholder">
+        <div class="lb-placeholder-icon">🎨</div>
+        <div id="lb-placeholder-text">MURAL PHOTO COMING SOON</div>
+        <div style="font-size:0.65rem;margin-top:8px;opacity:0.6;">Images courtesy of Invergordon Off the Wall</div>
+      </div>
+    </div>
+    <div class="lb-info">
+      <div class="lb-number" id="lb-number"></div>
+      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-location" id="lb-location"></div>
+      <div class="lb-note">🎨 All mural images © Invergordon Off the Wall — <a href="https://invergordonoffthewall.org.uk" target="_blank" style="color:var(--gold);">invergordonoffthewall.org.uk</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="index.html">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
+</footer>
+
+<script>
+  // ── Mural data ──────────────────────────────────────────────────────────
+  const muralData = [
+    { num: "MURAL 01",  name: "The Long Goodbye",       loc: "Invergordon Station", img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/Long-Goodbye-640x427.jpg" },
+    { num: "MURAL 02",  name: "Pipes & Drams",          loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/PipesandDrams-640x480.jpg" },
+    { num: "MURAL 03",  name: "Gather Round",           loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/GatherRound-640x427.jpg" },
+    { num: "MURAL 04",  name: "The Loch",               loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheLoch-640x427.jpg" },
+    { num: "MURAL 05",  name: "Volunteer Spirit",       loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Volunteer-Spirit-2021-640x960.jpg" },
+    { num: "MURAL 06",  name: "Our Legacy",             loc: "Near Museum",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/OurLegacy-640x287.jpg" },
+    { num: "MURAL 07",  name: "Fire! Fire!",            loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/FireFire-640x427.jpg" },
+    { num: "MURAL 08",  name: "The Way We Were",        loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/TheWayWeWere-640x413.jpg" },
+    { num: "MURAL 09",  name: "Saltburn's Past",        loc: "Saltburn Road",       img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/SaltburnsPast-640x427.jpg" },
+    { num: "MURAL 10",  name: "A Century of Sport",     loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/CenturyOfSport-640x427.jpg" },
+    { num: "MURAL 11",  name: "Heritage of the Firth",  loc: "Near Museum",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/09/HeritageOfTheFirth-640x427.jpg" },
+    { num: "SCULPTURE", name: "Evolution",              loc: "High Street",         img: "https://invergordonoffthewall.org.uk/wp-content/uploads/2021/08/Evolution-640x960.jpg" },
+  ];
+
+  // ── Flip cards ──────────────────────────────────────────────────────────
+  function flipCard(idx) {
+    const el = document.getElementById('flip-' + idx);
+    if (el) el.classList.add('flipped');
+  }
+  function unflipCard(idx) {
+    const el = document.getElementById('flip-' + idx);
+    if (el) el.classList.remove('flipped');
+  }
+
+  // ── Lightbox ────────────────────────────────────────────────────────────
+  function openLightbox(idx) {
+    const d = muralData[idx - 1];
+    if (!d) return;
+    document.getElementById('lb-number').textContent   = d.num;
+    document.getElementById('lb-title').textContent    = d.name;
+    document.getElementById('lb-location').textContent = '📍 ' + d.loc;
+
+    const wrap = document.getElementById('lb-img-wrap');
+    wrap.innerHTML = '';
+    if (d.img) {
+      const img = document.createElement('img');
+      img.src = d.img;
+      img.alt = d.name;
+      wrap.appendChild(img);
+    } else {
+      wrap.innerHTML = `<div class="lb-placeholder">
+        <div class="lb-placeholder-icon">🎨</div>
+        <div>${d.num} · ${d.name}</div>
+      </div>`;
+    }
+
+    document.getElementById('mural-lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e.target === document.getElementById('mural-lightbox')) closeLightboxBtn();
+  }
+  function closeLightboxBtn() {
+    document.getElementById('mural-lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightboxBtn(); });
+
+  // ── Expanded mural detail panels ────────────────────────────────────────
+  function closeMural(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+  }
+
+  // Click on flip card also toggles expanded panel
+  document.querySelectorAll('.mural-flip-wrap').forEach(function(card) {
+    card.addEventListener('click', function() {
+      const idx = this.id.replace('flip-', '');
+      const panel = document.getElementById('mural-' + idx);
+      if (!panel) return;
+      const isOpen = panel.classList.contains('active');
+      // Close all panels
+      document.querySelectorAll('.mural-expanded').forEach(function(p) { p.classList.remove('active'); });
+      // Toggle clicked one
+      if (!isOpen) panel.classList.add('active');
+    });
+  });
+
+  // ── Language stubs (mural page) ─────────────────────────────────────────
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+    event.target.classList.add('active');
+    // Minimal translation stubs — extend as needed
+    const t = {
+      en: { label: 'Outdoor Art Gallery', title: 'The <em>Mural Trail</em>', intro1: 'In 2002, a group of local volunteers called <strong style="color:var(--cream);">Invergordon Off the Wall</strong> began a remarkable community project — transforming the town\'s walls into a monumental open-air gallery celebrating Highland history and heritage.' },
+      de: { label: 'Freilichtgalerie', title: 'Der <em>Wandgemälde-Pfad</em>', intro1: 'Im Jahr 2002 begann eine Gruppe lokaler Freiwilliger namens <strong style="color:var(--cream);">Invergordon Off the Wall</strong> mit einem bemerkenswerten Gemeinschaftsprojekt.' },
+      fr: { label: 'Galerie en plein air', title: 'Le <em>Parcours des Fresques</em>', intro1: 'En 2002, un groupe de bénévoles locaux nommé <strong style="color:var(--cream);">Invergordon Off the Wall</strong> a lancé un remarquable projet communautaire.' },
+      us: { label: 'Outdoor Art Gallery', title: 'The <em>Mural Trail</em>', intro1: 'Back in 2002, a group of local volunteers called <strong style="color:var(--cream);">Invergordon Off the Wall</strong> kicked off an amazing community project — turning the town\'s walls into one massive open-air gallery.' },
+      no: { label: 'Utendørs kunstgalleri', title: 'Muralmali-stien', intro1: 'I 2002 startet en gruppe lokale frivillige kalt <strong style="color:var(--cream);">Invergordon Off the Wall</strong> et bemerkelsesverdig fellesskapsprosjekt.' },
+    };
+    const trans = t[lang];
+    if (!trans) return;
+    const setEl = function(id, html) { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+    setEl('mural-label', trans.label);
+    setEl('mural-title', trans.title);
+    setEl('mural-intro1', trans.intro1);
+  }
+</script>
+</body>
+</html>

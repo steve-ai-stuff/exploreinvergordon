@@ -62,20 +62,39 @@
     top: 0; left: 0; right: 0;
     z-index: 200;
     height: 32px;
-    background: var(--highland-dark);
-    border-bottom: 1px solid rgba(201,168,76,0.25);
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(107,74,126,0.55);
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    text-transform: uppercase;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
   }
 
-  .lang-bar span { opacity: 0.6; }
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
 
   /* ── NAV ── */
   nav {
@@ -735,12 +754,40 @@
 
   /* ── FOOTER ── */
   footer {
-    background: var(--highland-dark);
-    border-top: 1px solid rgba(201,168,76,0.2);
-    padding: 3rem 2rem;
+    background: var(--highland-deep);
+    border-top: 2px solid rgba(201,168,76,0.55);
     text-align: center;
+    padding: 3rem 2rem;
   }
 
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .footer-proton a { color: var(--heather-light) !important; text-decoration: none; }
+  .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+
+  /* legacy footer classes — unused, kept for safety */
   .footer-logo {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
@@ -883,6 +930,438 @@
     font-style: italic;
     line-height: 1.7;
   }
+
+  /* ── INTRO TEXT (shared) ── */
+  .intro-text {
+    font-size: 1.2rem;
+    color: var(--mist);
+    line-height: 1.8;
+    max-width: 650px;
+  }
+
+  .intro-text strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ── CRUISE TIPS (Getting Into Town strip) ── */
+  .cruise-section {
+    background: rgba(8,15,30,0.95);
+    border-bottom: 2px solid var(--gold);
+    padding: 1rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cruise-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .cruise-inner { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .cruise-tip {
+    padding: 1.5rem;
+    border-left: 2px solid var(--gold);
+  }
+
+  .cruise-tip h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .cruise-tip p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── CRUISE HUB SECTION ── */
+  .cruise-hub-section {
+    padding: 2rem 1.5rem;
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    background: var(--highland-deep);
+    border: 1px solid rgba(201,168,76,0.45);
+    border-radius: 4px;
+  }
+
+  .arrival-info-bar {
+    background: linear-gradient(to right, var(--heather), rgba(46,106,173,0.6), var(--heather));
+    border: 1px solid rgba(46,106,173,0.4);
+    padding: 1.75rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .arrival-info-bar {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1.5rem 1.25rem;
+    }
+  }
+
+  .arrival-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .arrival-stat-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+
+  .arrival-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+
+  .arrival-stat-label { font-size: 0.85rem; color: var(--text-light); }
+
+  .itinerary-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .itinerary-cards { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .itinerary-card {
+    background: rgba(8,15,30,0.7);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 6px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .itinerary-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .itinerary-card.card-2h::before { background: linear-gradient(to right, var(--gold), var(--gold-light)); }
+  .itinerary-card.card-4h::before { background: linear-gradient(to right, var(--loch-blue), var(--loch-light)); }
+  .itinerary-card.card-8h::before { background: linear-gradient(to right, var(--heather), var(--heather-light)); }
+
+  .itinerary-card:hover {
+    background: rgba(29,79,168,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+  }
+
+  .card-time-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .itinerary-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .itinerary-card .intro-text {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .itinerary-card ul { list-style: none; margin-bottom: 1.25rem; }
+
+  .itinerary-card li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.65rem;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .itinerary-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .card-option {
+    background: rgba(29,79,168,0.08);
+    border-left: 2px solid var(--heather-light);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+  }
+
+  .card-option strong {
+    color: var(--heather-light);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+
+  .card-option p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+  .pro-tip {
+    background: rgba(201,168,76,0.08);
+    border-left: 2px solid var(--gold);
+    padding: 1rem 1.25rem;
+    margin-top: 1.25rem;
+    border-radius: 3px;
+  }
+
+  .pro-tip::before { content: '💡 Pro Tip: '; font-weight: 700; color: var(--gold); }
+  .pro-tip p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+  .port-arrival-guide { margin: 3rem 0 2rem; }
+
+  .port-arrival-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .port-arrival-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .port-column {
+    background: rgba(29,79,168,0.12);
+    border: 1px solid rgba(29,79,168,0.25);
+    padding: 1.75rem;
+    border-radius: 6px;
+  }
+
+  .port-column h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .port-column p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.6; }
+  .port-column p strong { color: var(--cream); font-weight: 600; }
+
+  .ship-schedule-callout {
+    background: rgba(201,168,76,0.1);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 2rem 1.75rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .ship-schedule-callout .section-label { margin-bottom: 0.5rem; }
+
+  .ship-schedule-callout h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--cream);
+    margin-bottom: 1.25rem;
+  }
+
+  .ship-schedule-callout p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.7; }
+
+  .ship-schedule-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    padding: 0.8rem 1.75rem;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+
+  .ship-schedule-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  .ship-schedule-callout .ship-operators { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+
+  .excursion-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 500px) { .excursion-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .excursion-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .excursion-card {
+    background: rgba(8,15,30,0.8);
+    border: 1px solid rgba(29,79,168,0.25);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .excursion-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(to right, var(--heather), var(--loch-blue), var(--heather));
+  }
+
+  .excursion-card:hover {
+    background: rgba(29,79,168,0.18);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  .excursion-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+
+  .excursion-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .excursion-distance {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+  }
+
+  .excursion-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+
+  .excursion-card a {
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 0.2rem;
+    transition: all 0.2s ease;
+  }
+
+  .excursion-card a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+  .tips-accordion { margin: 2rem 0; }
+
+  .tip-item {
+    background: rgba(29,79,168,0.1);
+    border: 1px solid rgba(201,168,76,0.45);
+    margin-bottom: 0.75rem;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .tip-header {
+    background: rgba(29,79,168,0.15);
+    padding: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .tip-header:hover { background: rgba(29,79,168,0.25); }
+  .tip-header-icon { font-size: 1.25rem; margin-right: 0.75rem; }
+
+  .tip-header-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .tip-toggle { font-size: 1.25rem; color: var(--gold); transition: transform 0.3s ease; }
+  .tip-item.open .tip-toggle { transform: rotate(180deg); }
+
+  .tip-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.25rem; }
+  .tip-item.open .tip-body { max-height: 500px; padding: 1rem 1.25rem; }
+  .tip-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+  .photo-upload-teaser {
+    background: linear-gradient(135deg, rgba(29,79,168,0.15), rgba(107,74,126,0.08));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 6px;
+    padding: 2.25rem 1.75rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .photo-upload-teaser-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+  .photo-upload-teaser h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .photo-upload-teaser p { font-size: 1rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.7; }
+
+  .upload-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .upload-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
 </style>
 
 <!-- SumUp Payment Widget SDK -->
@@ -890,14 +1369,13 @@
 </head>
 <body>
 
-<!-- Language / info bar -->
+<!-- LANG BAR -->
 <div class="lang-bar">
-  <span>🚢</span>
-  <span>Cruise Passenger Service</span>
-  <span>·</span>
-  <span>Port of Cromarty Firth, Invergordon</span>
-  <span>·</span>
-  <span>Scottish Highlands</span>
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
 </div>
 
 <!-- Nav — identical to main site -->
@@ -912,16 +1390,13 @@
     </a>
   </div>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-cruise">Home</a></li>
-    <li><a href="index.html#getting-started" class="nav-arrive">Arrive</a></li>
-    <li><a href="index.html#welcome" class="nav-town">Town</a></li>
-    <li><a href="index.html#museum" class="nav-museum">Museum</a></li>
-    <li><a href="index.html#murals" class="nav-murals">Murals</a></li>
-    <li><a href="index.html#contact" class="nav-landscape">Contact</a></li>
-    <li><a href="gallery.html" class="nav-gallery">Gallery</a></li>
-    <li><a href="blog.html" class="nav-blog">Blog</a></li>
-    <li><a href="work-with-me.html" id="nav-wwm">Work With Me</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="murals.html">Murals</a></li>
     <li><a href="cruise-hub.html" class="nav-active">Cruise Hub</a></li>
+    <li><a href="nc500.html">NC500</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="work-with-me.html">Work With Me</a></li>
   </ul>
 </nav>
 
@@ -971,6 +1446,289 @@
 <div class="trust-bar">
   <p>Local knowledge. Real recommendations. Written by someone who lives here — not a travel algorithm.</p>
 </div>
+
+<!-- CRUISE TIPS — Getting Into Town strip -->
+<div class="cruise-section">
+  <div class="cruise-inner">
+    <div class="cruise-tip">
+      <h4 id="tip1-title">Getting Into Town</h4>
+      <p id="tip1-text">The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you're on the High Street. No shuttle, no cost.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip2-title">How Long Do You Need?</h4>
+      <p id="tip2-text">The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip3-title">Before You Sail Away</h4>
+      <p id="tip3-text">Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CRUISE PASSENGER HUB — full info section -->
+<section id="cruise-hub" class="cruise-hub-section">
+  <p class="section-label" id="cruise-hub-label">Port of Cromarty Firth</p>
+  <h2 class="section-title" id="cruise-hub-title">Cruise Passenger <em>Hub</em></h2>
+  <div class="divider"></div>
+  <p class="intro-text" id="cruise-hub-intro">Everything you need to make the most of your time in Invergordon — from the moment your anchor drops to the moment you reboard.</p>
+
+  <!-- ARRIVAL INFO BAR -->
+  <div class="arrival-info-bar">
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">🚶</div>
+      <div class="arrival-stat-value" id="arrival-val-1">5 min walk</div>
+      <div class="arrival-stat-label" id="arrival-lbl-1">Town Centre from terminal</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">⏱️</div>
+      <div class="arrival-stat-value" id="arrival-val-2">8–12 hours</div>
+      <div class="arrival-stat-label" id="arrival-lbl-2">Typical port stay</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">💰</div>
+      <div class="arrival-stat-value" id="arrival-val-3">Free entry</div>
+      <div class="arrival-stat-label" id="arrival-lbl-3">Mural trail, town, High Street</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">🗺️</div>
+      <div class="arrival-stat-value" id="arrival-val-4">No tour needed</div>
+      <div class="arrival-stat-label" id="arrival-lbl-4">Everything is walkable</div>
+    </div>
+  </div>
+
+  <!-- TIME-OPTIMISED ITINERARY CARDS -->
+  <h3 id="cruise-time-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem; text-align: center;">How to Spend Your Time</h3>
+
+  <div class="itinerary-cards">
+    <div class="itinerary-card card-2h">
+      <div class="card-time-badge" id="itin-2h-badge">2 Hours</div>
+      <h3 id="itin-2h-heading">Don't Panic</h3>
+      <p class="intro-text" id="itin-2h-intro">You can still have an unforgettable experience.</p>
+      <ul>
+        <li>Walk from terminal to High Street (5 min)</li>
+        <li>Coffee at a local café (20 min)</li>
+        <li>Walk the central mural section: The Long Goodbye, Pipes &amp; Drams, Gather Round (30–40 min)</li>
+        <li>Browse the High Street — Scottish gifts, local crafts (15 min)</li>
+        <li>Return to terminal with time to spare</li>
+      </ul>
+      <div class="pro-tip">
+        <p>Start at the railway station — it's the closest mural to the terminal and arguably the most impressive.</p>
+      </div>
+    </div>
+
+    <div class="itinerary-card card-4h">
+      <div class="card-time-badge" id="itin-4h-badge">4–5 Hours</div>
+      <h3 id="itin-4h-heading">The Ideal Day</h3>
+      <p class="intro-text" id="itin-4h-intro">You'll leave wishing you had more time.</p>
+      <ul>
+        <li>Full Mural Trail (60–90 min — all 12 murals)</li>
+        <li>Visit Invergordon Museum &amp; Heritage Centre (45 min)</li>
+        <li>Lunch on the High Street — sit-down meal (60 min)</li>
+        <li>Walk to the waterfront and enjoy the Cromarty Firth views (20 min)</li>
+        <li>Browse shops and pick up a Highland souvenir</li>
+      </ul>
+      <div class="pro-tip">
+        <p>Download the free Mural Trail app before you leave the ship — it gives audio stories for each mural.</p>
+      </div>
+    </div>
+
+    <div class="itinerary-card card-8h">
+      <div class="card-time-badge" id="itin-8h-badge">8+ Hours</div>
+      <h3 id="itin-8h-heading">Full Day</h3>
+      <p class="intro-text" id="itin-8h-intro">You are in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.</p>
+      <div class="card-option">
+        <strong>Option A — The Highland Explorer</strong>
+        <p>Morning mural trail + museum → Lunch → Afternoon excursion to Fyrish Monument (stunning panoramic views, moderate walk, 90 min return) → Evening back in town for a whisky</p>
+      </div>
+      <div class="card-option">
+        <strong>Option B — The Distillery Trail</strong>
+        <p>Glenmorangie Distillery (20 min from port, world-famous 10-year-old, tours available) → Dalmore Distillery (15 min, luxury expressions, stunning estate) → Late lunch in Invergordon → Museum or more murals</p>
+      </div>
+      <div class="card-option">
+        <strong>Option C — The Highlands Escape</strong>
+        <p>Coach or taxi to Inverness (40 min) → Culloden Battlefield (2 hours) → Loch Ness (optional further 20 min) → Return by 5pm — make sure you leave plenty of time</p>
+      </div>
+      <div class="pro-tip">
+        <p>If you're heading to Loch Ness, book a taxi or join a small group excursion — public transport is limited. Local drivers know these roads like the back of their hand.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORT ARRIVAL GUIDE -->
+  <div class="port-arrival-guide" id="getting-started">
+    <h3 id="getting-started-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin-bottom: 1.5rem;">Getting Started</h3>
+    <div class="port-arrival-grid">
+      <div class="port-column">
+        <h3 id="port-col-1-heading">Getting from Ship to Town</h3>
+        <p>Your ship docks at the <strong>Port of Cromarty Firth terminal</strong></p>
+        <p>The town centre is a <strong>5-minute flat walk</strong> along the waterfront</p>
+        <p>Follow the signs or simply walk with the crowd — everyone's heading the same way</p>
+        <p>There is <strong>no need for a shuttle bus, taxi, or tour</strong> for the town itself</p>
+        <p>The <strong>High Street runs parallel to the water</strong> — you'll find it instantly</p>
+      </div>
+      <div class="port-column">
+        <h3 id="port-col-2-heading">What to Bring Ashore</h3>
+        <p><strong>Comfortable walking shoes</strong> — flat terrain, no hills needed for town</p>
+        <p><strong>Light waterproof layer</strong> — even in summer, this is Scotland</p>
+        <p><strong>A small amount of cash</strong> — some small businesses prefer it</p>
+        <p><strong>Your phone</strong> — fully charged, the mural trail deserves photos</p>
+        <p><strong>No currency exchange needed</strong> — Scotland uses British Pounds Sterling (£)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHIP SCHEDULE CALLOUT -->
+  <div class="ship-schedule-callout">
+    <p class="section-label" id="ship-sched-label">This Season</p>
+    <h3 id="ship-sched-heading">Ships Expected at Port of Cromarty Firth</h3>
+    <p id="ship-sched-text">The 2026 cruise season runs from March through October, with ships calling 2–3 times per week at peak. The Port of Cromarty Firth publishes the full schedule on their official website.</p>
+    <a href="https://pocf.co.uk/cruise/#cruisetimetable" target="_blank" class="ship-schedule-btn" id="ship-sched-btn">View Official Ship Schedule ↗</a>
+    <p class="ship-operators" id="ship-sched-ops">Look out for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many more calling throughout the season.</p>
+  </div>
+
+  <!-- POPULAR EXCURSIONS -->
+  <h3 id="excursions-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Popular Excursions</h3>
+
+  <div class="excursion-grid">
+    <div class="excursion-card">
+      <div class="excursion-icon">🏔️</div>
+      <h3>Fyrish Monument</h3>
+      <div class="excursion-distance">25 min drive</div>
+      <p>A replica of the Gates of Nagapatnam, built in 1782 to provide employment for local people after the Highland Clearances. Panoramic views over the Cromarty Firth.</p>
+      <a href="https://www.walkhighlands.co.uk/ullapool/fyrish-monument.shtml" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">🥃</div>
+      <h3>Glenmorangie Distillery</h3>
+      <div class="excursion-distance">18 min drive</div>
+      <p>One of Scotland's most celebrated Highland single malts. Distillery tours, tastings, and a beautiful estate on the shores of the Dornoch Firth.</p>
+      <a href="https://www.glenmorangie.com/en-gb/visit-us/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">🥃</div>
+      <h3>Dalmore Distillery</h3>
+      <div class="excursion-distance">12 min drive</div>
+      <p>Legendary for its complex, sherry-influenced expressions. One of the world's most collectable whiskies, made just minutes from the port.</p>
+      <a href="https://www.thedalmore.com/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">⚔️</div>
+      <h3>Culloden Battlefield</h3>
+      <div class="excursion-distance">45 min drive</div>
+      <p>The site of the last pitched battle on British soil (1746). A haunting, beautifully managed National Trust for Scotland site. Essential Highland history.</p>
+      <a href="https://www.nts.org.uk/visit/places/culloden" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">🏔️</div>
+      <h3>Loch Ness</h3>
+      <div class="excursion-distance">60 min drive</div>
+      <p>Home of the world's most famous mystery. The Great Glen and the loch itself are breathtaking regardless of what lurks beneath. Urquhart Castle on the shore is stunning.</p>
+      <a href="https://lochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">🏙️</div>
+      <h3>Inverness City Centre</h3>
+      <div class="excursion-distance">40 min drive</div>
+      <p>The capital of the Highlands. Victorian Market, Inverness Castle, the River Ness, independent shops, and excellent food. A full half-day destination.</p>
+      <a href="https://www.explore-inverness.com" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">🏰</div>
+      <h3>Dunrobin Castle</h3>
+      <div class="excursion-distance">45 min drive</div>
+      <p>The largest castle in the Northern Highlands. A fairytale turreted palace set in formal French-style gardens overlooking the sea. Falconry displays in the grounds.</p>
+      <a href="https://www.dunrobincastle.co.uk/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">🏰</div>
+      <h3>Urquhart Castle</h3>
+      <div class="excursion-distance">65 min drive</div>
+      <p>One of Scotland's most dramatic castle ruins, perched on the banks of Loch Ness. A Historic Environment Scotland site — the most photographed castle in the Highlands.</p>
+      <a href="https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card">
+      <div class="excursion-icon">👑</div>
+      <h3>Inverness Castle Experience</h3>
+      <div class="excursion-distance">40 min drive</div>
+      <p>Scotland's newest major visitor attraction, newly opened in the heart of Inverness with breathtaking views over the River Ness. An immersive 10,000-year Highland journey.</p>
+      <a href="https://invernesscastle.scot/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS ACCORDION -->
+  <h3 id="tips-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Practical Tips</h3>
+
+  <div class="tips-accordion">
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">💷</span>
+        <span class="tip-header-text" id="tip-h-1">Money &amp; Payments</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-1">Scotland uses British Pounds Sterling (£). Cards are widely accepted. A small amount of cash is useful for market stalls, small cafés, and tips.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🌤️</span>
+        <span class="tip-header-text" id="tip-h-2">Weather</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-2">Even in summer, the Highlands can be unpredictable. A light waterproof layer is always wise. July and August are the warmest months, averaging 17–19°C.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">📱</span>
+        <span class="tip-header-text" id="tip-h-3">Mobile &amp; Wi-Fi</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-3">UK mobile networks (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available in some cafés. Download offline maps before you arrive.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🚕</span>
+        <span class="tip-header-text" id="tip-h-4">Getting Around</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-4">Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🛒</span>
+        <span class="tip-header-text" id="tip-h-5">Shopping Tips</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-5">Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🐾</span>
+        <span class="tip-header-text" id="tip-h-6">A Scottish Welcome</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-6">Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO UPLOAD TEASER -->
+  <div class="photo-upload-teaser">
+    <div class="photo-upload-teaser-icon">📸</div>
+    <h3 id="upload-title">Do you have any photos you have taken anywhere around Invergordon or the Highlands that you love?</h3>
+    <p id="upload-text">Maybe you visited us from overseas and want to share an image from where you live instead? We would love to see those too. Upload your favourite photo and we'll feature it in our Visitor Gallery.</p>
+    <button class="upload-btn" onclick="showUploadComingSoon(this)" id="upload-btn-text">Upload Your Photo</button>
+  </div>
+</section>
 
 <!-- HOW IT WORKS -->
 <div class="how-section" id="how">
@@ -1240,19 +1998,11 @@
   </div>
 </div>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
-  <span class="footer-logo">Explore Invergordon</span>
-  <p style="font-family:'Crimson Pro',serif; font-style:italic; color:var(--heather-light); font-size:1rem; margin-top:0.3rem;">Your guide to the Scottish Highlands gateway</p>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="blog.html">Blog</a>
-    <a href="work-with-me.html">Work With Me</a>
-    <a href="cruise-hub.html">Shore Day Concierge</a>
-    <a href="index.html#contact">Contact</a>
-  </div>
-  <p class="footer-copy">© 2026 Explore Invergordon · exploreinvergordon.scot · hello@exploreinvergordon.scot</p>
+  <p>EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="index.html">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
 </footer>
 
 <script>
@@ -1381,6 +2131,38 @@
       },
     });
   }
+
+  // ── Practical Tips accordion ──
+  document.querySelectorAll('.tip-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      this.parentElement.classList.toggle('open');
+    });
+  });
+
+  // ── Photo upload — redirect to Visitor Gallery ──
+  function showUploadComingSoon(btn) {
+    var teaser = btn.closest('.photo-upload-teaser');
+    if (teaser && !teaser.querySelector('.upload-msg')) {
+      var msg = document.createElement('p');
+      msg.className = 'upload-msg';
+      msg.style.cssText = 'color:var(--gold);font-family:"Overpass Mono",monospace;font-size:0.75rem;letter-spacing:0.1em;margin-top:0.9rem;text-align:center;';
+      msg.textContent = '📸 Taking you to the Visitor Gallery…';
+      teaser.appendChild(msg);
+    }
+    setTimeout(function() { window.location.href = 'gallery.html#visitor'; }, 650);
+  }
+
+  // ── Language translation stubs for cruise hub elements ──
+  var cruiseTrans = {
+    en: {
+      'tip1-title': 'Getting Into Town',
+      'tip1-text': 'The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you\'re on the High Street. No shuttle, no cost.',
+      'tip2-title': 'How Long Do You Need?',
+      'tip2-text': 'The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.',
+      'tip3-title': 'Before You Sail Away',
+      'tip3-text': 'Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.'
+    }
+  };
 </script>
 </body>
 </html>

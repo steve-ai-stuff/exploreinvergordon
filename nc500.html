@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NC500 — North Coast 500 · Explore Invergordon</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="Invergordon sits at the heart of the North Coast 500 — Scotland's legendary coastal driving route. Discover the best NC500 stops, distilleries, castles and landscapes within easy reach.">
+<meta name="keywords" content="NC500, North Coast 500, Invergordon NC500, Scottish Highlands driving route, NC500 stops, Highland road trip, Glenmorangie, Dalmore, Dunrobin Castle, Tain, Dornoch">
+<meta name="author" content="Explore Invergordon">
+<link rel="canonical" href="https://exploreinvergordon.scot/nc500">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exploreinvergordon.scot/nc500">
+<meta property="og:title" content="NC500 — North Coast 500 · Explore Invergordon">
+<meta property="og:description" content="Invergordon sits at the heart of Scotland's legendary North Coast 500. Discover the best stops, distilleries, castles and dramatic landscapes within easy reach of the town.">
+<meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+    --spring-green: #56c27b;
+    --spring-yellow: #e8d44a;
+    --spring-lime: #8dc440;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANGUAGE BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(107,74,126,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-follow-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav-social-btn:hover { opacity: 0.75; transform: scale(1.12); }
+  @media (max-width: 600px) { .nav-follow-label { display: none; } }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    background: url('website_image_files/background_images/background_image.jpg') center 30% / cover no-repeat;
+    z-index: -1;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.65) 0%,
+      rgba(8,15,30,0.4) 40%,
+      rgba(8,15,30,0.85) 100%);
+    z-index: 1;
+  }
+
+  .hero-mountains {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+  }
+  .hero-mountains svg { width: 100%; height: 100%; }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes beginFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-9px); }
+  }
+
+  @keyframes beginGlow {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(201,168,76,0.25), 0 0 24px rgba(201,168,76,0.10), 0 6px 20px rgba(0,0,0,0.50);
+      border-color: rgba(201,168,76,0.65);
+    }
+    50% {
+      box-shadow: 0 0 22px rgba(201,168,76,0.60), 0 0 50px rgba(201,168,76,0.30), 0 0 80px rgba(201,168,76,0.13), 0 12px 35px rgba(0,0,0,0.40);
+      border-color: rgba(201,168,76,0.98);
+    }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .hero-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--heather-light);
+    margin: 1.5rem 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(201,168,76,0.07);
+    color: var(--gold);
+    padding: 0.95rem 3rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid rgba(201,168,76,0.65);
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    backdrop-filter: blur(6px);
+    animation:
+      fadeUp     0.8s ease         forwards  0.9s,
+      beginFloat 3.0s ease-in-out  infinite  1.8s,
+      beginGlow  2.5s ease-in-out  infinite  1.8s;
+  }
+
+  .hero-cta:hover {
+    background: rgba(201,168,76,0.18);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    box-shadow: 0 0 30px rgba(201,168,76,0.70), 0 0 65px rgba(201,168,76,0.40), 0 14px 40px rgba(0,0,0,0.40);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .scroll-hint span {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite 1.5s;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: linear-gradient(to right, rgba(8,15,30,0.6), rgba(107,74,126,0.15), rgba(8,15,30,0.6));
+    border-top: 2px solid rgba(201,168,76,0.55);
+    border-bottom: 2px solid rgba(201,168,76,0.55);
+    color: var(--mist);
+    padding: 1.25rem 2rem;
+    text-align: center;
+  }
+
+  .trust-bar p {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    letter-spacing: 0.03em;
+    color: var(--heather-light);
+  }
+
+  /* ── SECTION COMMON ── */
+  .section-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--heather-light);
+  }
+
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── WHAT IS NC500 ── */
+  .nc500-intro {
+    background: rgba(8,15,30,0.95);
+    border-top: 2px solid var(--gold);
+    padding: 4rem 1.5rem;
+  }
+
+  .nc500-intro-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .nc500-overview {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .nc500-overview { grid-template-columns: 2fr 1fr; }
+  }
+
+  .nc500-overview p {
+    color: var(--mist);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .nc500-overview p strong { color: var(--cream); }
+
+  .nc500-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .nc500-stat {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(29,79,168,0.1);
+    border: 1px solid rgba(168,124,192,0.45);
+  }
+
+  .nc500-stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 4rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .nc500-stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* ── INVERGORDON ON THE NC500 ── */
+  .ig-nc500 {
+    background: linear-gradient(135deg, rgba(29,79,168,0.12), rgba(107,74,126,0.08));
+    border: 2px solid rgba(201,168,76,0.35);
+    padding: 2.5rem;
+    margin: 3rem 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ig-nc500::before {
+    content: '📍';
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+    font-size: 3rem;
+    opacity: 0.15;
+  }
+
+  .ig-nc500 h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .ig-nc500 p {
+    font-size: 1rem;
+    color: var(--mist);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+
+  .ig-nc500 p strong { color: var(--cream); }
+
+  /* ── STOPS GRID ── */
+  .stops-section {
+    padding: 4rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stops-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 500px) { .stops-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .stops-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .stop-card {
+    background: rgba(8,15,30,0.85);
+    border: 1px solid rgba(29,79,168,0.3);
+    border-radius: 6px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .stop-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .stop-card.type-whisky::before  { background: linear-gradient(to right, var(--gold), var(--gold-light)); }
+  .stop-card.type-castle::before  { background: linear-gradient(to right, var(--heather), var(--heather-light)); }
+  .stop-card.type-nature::before  { background: linear-gradient(to right, var(--spring-green), var(--spring-lime)); }
+  .stop-card.type-town::before    { background: linear-gradient(to right, var(--loch-blue), var(--loch-light)); }
+  .stop-card.type-viewpoint::before { background: linear-gradient(to right, var(--saltire), var(--loch-light)); }
+
+  .stop-card:hover {
+    background: rgba(29,79,168,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .stop-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+
+  .stop-distance {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+  }
+
+  .stop-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .stop-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .stop-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ── PRACTICAL TIPS ── */
+  .practical-section {
+    background: rgba(14,22,40,0.95);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid rgba(201,168,76,0.2);
+    padding: 4rem 1.5rem;
+  }
+
+  .practical-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 640px) { .tips-grid { grid-template-columns: 1fr 1fr; } }
+
+  .tip-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(29,79,168,0.1);
+    border: 1px solid rgba(29,79,168,0.25);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .tip-block-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .tip-block-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .tip-block-text span {
+    font-size: 0.9rem;
+    color: var(--mist);
+    line-height: 1.55;
+  }
+
+  /* ── CALLOUT BANNER ── */
+  .nc500-callout {
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(107,74,126,0.1));
+    border: 2px solid rgba(201,168,76,0.4);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin: 4rem 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nc500-callout::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+  }
+
+  .nc500-callout h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .nc500-callout h3 em { color: var(--gold-light); font-style: italic; }
+
+  .nc500-callout p {
+    font-size: 1rem;
+    color: var(--mist);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .nc500-callout a {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .nc500-callout a:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  /* ── BTN SECONDARY ── */
+  .btn-secondary {
+    display: inline-block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(168,124,192,0.5);
+    padding: 0.65rem 1.5rem;
+    transition: all 0.25s ease;
+  }
+
+  .btn-secondary:hover {
+    color: var(--cream);
+    border-color: var(--heather-light);
+    background: rgba(107,74,126,0.15);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 2px solid rgba(201,168,76,0.55);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .footer-proton a { color: var(--heather-light) !important; text-decoration: none; }
+  .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+</style>
+</head>
+
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-btn" onclick="setLang('us')">🇺🇸 American</button>
+  <button class="lang-btn" onclick="setLang('no')">🇳🇴 Norsk</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-follow-label">Check Our Socials:</span>
+    <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="murals.html">Murals</a></li>
+    <li><a href="cruise-hub.html">Cruise Hub</a></li>
+    <li><a href="nc500.html" class="nav-active">NC500</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="work-with-me.html">Work With Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:0; max-width:100%;">
+  <div class="hero-bg"></div>
+
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mtnGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0e2040;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="mtnGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#091530;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,400 L0,280 L120,180 L200,220 L320,120 L440,190 L560,100 L680,170 L800,80 L920,160 L1040,90 L1160,150 L1280,110 L1360,170 L1440,130 L1440,400 Z" fill="url(#mtnGrad1)" opacity="0.6"/>
+      <polyline points="0,280 120,180 200,220 320,120 440,190 560,100 680,170 800,80 920,160 1040,90 1160,150 1280,110 1360,170 1440,130" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon points="75,218 120,180 165,203"  fill="rgba(255,255,255,0.82)"/>
+      <polygon points="275,158 320,120 365,146" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="515,134 560,100 605,126" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="755,114 800,80  845,110" fill="rgba(255,255,255,0.88)"/>
+      <path d="M0,400 L0,320 L80,290 L200,310 L320,270 L440,295 L560,260 L680,285 L800,250 L920,275 L1040,240 L1160,265 L1280,255 L1440,270 L1440,400 Z" fill="url(#mtnGrad2)" opacity="0.9"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-tag">Scotland's Legendary Coastal Route</p>
+    <h1 class="hero-title">
+      North Coast<br>
+      <em>500</em>
+    </h1>
+    <p class="hero-subtitle">Invergordon sits at the heart of Scotland's most celebrated road trip. Mountains, lochs, castles, distilleries and wild coastline — all on your doorstep.</p>
+    <a href="#nc500-content" class="hero-cta">Explore the Route ↓</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Discover</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <p>One of the world's great road trips — right outside your door. Invergordon is your perfect NC500 base camp.</p>
+</div>
+
+<!-- NC500 INTRO -->
+<div class="nc500-intro" id="nc500-content">
+  <div class="nc500-intro-inner">
+    <p class="section-label">The Route</p>
+    <h2 class="section-title">What is the <em>North Coast 500?</em></h2>
+    <div class="divider"></div>
+
+    <div class="nc500-overview">
+      <div>
+        <p>The <strong>North Coast 500</strong> is Scotland's answer to Route 66 — a 500-mile circular driving route that loops around the dramatic northern coastline of Scotland, starting and ending in Inverness. Launched in 2015, it has since been named one of the world's greatest road trips by National Geographic, Lonely Planet, and dozens of international travel publications.</p>
+        <p>The route takes in everything that makes the Scottish Highlands extraordinary: ancient mountains, deserted white-sand beaches, dramatic sea cliffs, whisky distilleries, Highland castles, remote fishing villages and skies so clear on a dark night you can see the Milky Way with the naked eye.</p>
+        <p>And Invergordon? It sits right on the eastern NC500 corridor — <strong>just 17 miles north of Inverness</strong> — making it one of the best-positioned towns on the entire route for accommodation, supplies, fuel and day trips into the surrounding landscape.</p>
+      </div>
+
+      <div class="nc500-stats">
+        <div class="nc500-stat">
+          <div class="nc500-stat-number">516</div>
+          <div class="nc500-stat-label">Miles of some of the most spectacular driving roads in the world</div>
+        </div>
+        <div class="nc500-stat">
+          <div class="nc500-stat-number">#1</div>
+          <div class="nc500-stat-label">Named one of the world's greatest road trips by National Geographic</div>
+        </div>
+        <div class="nc500-stat">
+          <div class="nc500-stat-number">17mi</div>
+          <div class="nc500-stat-label">From Invergordon to Inverness — the NC500's official start and end point</div>
+        </div>
+        <div class="nc500-stat">
+          <div class="nc500-stat-number">500k+</div>
+          <div class="nc500-stat-label">Visitors travel the route every year, drawn from across the globe</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-nc500">
+      <h3>Invergordon: Your NC500 Base Camp</h3>
+      <p>Most NC500 travellers drive straight through Invergordon without stopping. That's their loss. The town has <strong>fuel stations, supermarkets, accommodation and restaurants</strong> — everything you need to restock before heading north into the more remote sections of the route. But more than that, it has its own extraordinary story to tell.</p>
+      <p>The Mural Trail alone is worth a stop. Add Glenmorangie and Dalmore distilleries within minutes of the High Street. Add the Cromarty Firth — one of Scotland's most important wildlife habitats, home to dolphins, seals and over 30,000 overwintering birds. Add Fyrish Monument on the hill above town, and the Black Isle just across the bridge. <strong>You could spend a full day here and not run out of things to see.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- STOPS NEAR INVERGORDON -->
+<div class="stops-section" id="stops">
+  <p class="section-label">NC500 Highlights</p>
+  <h2 class="section-title">Top Stops Near <em>Invergordon</em></h2>
+  <div class="divider"></div>
+  <p style="color:var(--mist); font-size:1.05rem; margin-bottom:0.5rem;">All of these are within a day-trip distance from Invergordon — use the town as your base and explore in every direction.</p>
+
+  <div class="stops-grid">
+
+    <div class="stop-card type-whisky">
+      <div class="stop-icon">🥃</div>
+      <div class="stop-distance">5 min · Alness</div>
+      <h3>Dalmore Distillery</h3>
+      <p>One of the world's great single malt distilleries, producing whisky since 1839. The visitor experience is exceptional — dark, aromatic and steeped in Highland history. Book ahead.</p>
+      <div class="stop-tag">Whisky · Visitor Centre</div>
+    </div>
+
+    <div class="stop-card type-whisky">
+      <div class="stop-icon">🥃</div>
+      <div class="stop-distance">20 min · Tain</div>
+      <h3>Glenmorangie Distillery</h3>
+      <p>Scotland's most popular single malt, made in the tallest stills in the country. The Tain distillery has a superb tour and shop. The nearby town of Tain is worth exploring too — it's Scotland's oldest Royal Burgh.</p>
+      <div class="stop-tag">Whisky · Visitor Centre · Royal Burgh</div>
+    </div>
+
+    <div class="stop-card type-nature">
+      <div class="stop-icon">🦅</div>
+      <div class="stop-distance">10 min · Evanton</div>
+      <h3>Fyrish Monument</h3>
+      <p>A dramatic replica of the Gates of Negapatam, built on the summit above Evanton in 1782 to provide work for local men. A steep but rewarding hill walk with panoramic views across the Cromarty Firth. Visible from Invergordon High Street on a clear day.</p>
+      <div class="stop-tag">Walking · Views · History</div>
+    </div>
+
+    <div class="stop-card type-town">
+      <div class="stop-icon">⛪</div>
+      <div class="stop-distance">35 min · Dornoch</div>
+      <h3>Dornoch</h3>
+      <p>A beautiful small cathedral town on the east coast. Home to Royal Dornoch Golf Club — one of the world's top links courses — and a stunning 13th-century cathedral. Madonna famously chose Dornoch to baptise her son. Unspoiled, quiet and very Highland.</p>
+      <div class="stop-tag">Cathedral · Golf · Beaches</div>
+    </div>
+
+    <div class="stop-card type-castle">
+      <div class="stop-icon">🏰</div>
+      <div class="stop-distance">45 min · Golspie</div>
+      <h3>Dunrobin Castle</h3>
+      <p>The most northerly of Scotland's great houses, and one of Britain's largest. Its fairytale French château exterior rises above immaculate formal gardens overlooking the sea. Home to the Earls and Dukes of Sutherland for centuries. Falconry displays in summer.</p>
+      <div class="stop-tag">Castle · Gardens · History</div>
+    </div>
+
+    <div class="stop-card type-nature">
+      <div class="stop-icon">🐬</div>
+      <div class="stop-distance">5 min · Invergordon</div>
+      <h3>Cromarty Firth Wildlife</h3>
+      <p>One of Scotland's most important wildlife habitats — over 300 harbour seals, one of only two resident populations of bottlenose dolphins in the UK, and 30,000 overwintering birds. Dolphin-watching boat trips depart from nearby Chanonry Point on the Black Isle.</p>
+      <div class="stop-tag">Wildlife · Dolphins · Seals</div>
+    </div>
+
+    <div class="stop-card type-town">
+      <div class="stop-icon">🏛️</div>
+      <div class="stop-distance">20 min · Tain</div>
+      <h3>Tain — Scotland's Oldest Royal Burgh</h3>
+      <p>A historic market town with a beautifully preserved medieval heritage. The Tain Museum tells the town's remarkable story, and the Collegiate Church of St Duthac — a pilgrimage site of kings — dates from the 14th century. A genuine Highland town that hasn't been polished for tourists.</p>
+      <div class="stop-tag">History · Heritage · Museum</div>
+    </div>
+
+    <div class="stop-card type-nature">
+      <div class="stop-icon">🏖️</div>
+      <div class="stop-distance">30 min · Black Isle</div>
+      <h3>Chanonry Point</h3>
+      <p>One of the best places in the UK to spot bottlenose dolphins from dry land. The Chanonry Point headland juts into the Moray Firth and the rising tide pushes fish — and dolphins — close to shore. Arrive around two hours before high tide and bring binoculars.</p>
+      <div class="stop-tag">Wildlife · Dolphins · Viewpoint</div>
+    </div>
+
+    <div class="stop-card type-viewpoint">
+      <div class="stop-icon">⛰️</div>
+      <div class="stop-distance">25 min · Strathpeffer</div>
+      <h3>Ben Wyvis</h3>
+      <p>The great flat-topped mountain that dominates the skyline above Invergordon — visible from the High Street on a clear day. A serious but rewarding Munro at 1,046 metres, Ben Wyvis is one of the most accessible big mountains in Scotland. Snow-capped from October to May.</p>
+      <div class="stop-tag">Munro · Hiking · Views</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRACTICAL TIPS -->
+<div class="practical-section">
+  <div class="practical-inner">
+    <p class="section-label">Before You Drive</p>
+    <h2 class="section-title">NC500 <em>Practical Tips</em></h2>
+    <div class="divider"></div>
+
+    <div class="tips-grid">
+      <div class="tip-block">
+        <div class="tip-block-icon">⛽</div>
+        <div class="tip-block-text">
+          <strong>Fuel Up in Invergordon</strong>
+          <span>Once you head north from Tain, petrol stations become sparse and expensive. Fill up in Invergordon before tackling the more remote NC500 sections. Some northern villages have no fuel at all.</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <div class="tip-block-icon">📅</div>
+        <div class="tip-block-text">
+          <strong>Best Time to Visit</strong>
+          <span>May–September for long daylight hours and the best weather. July–August is peak season — book accommodation weeks ahead. May and September offer the best balance of good weather and smaller crowds.</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <div class="tip-block-icon">🛣️</div>
+        <div class="tip-block-text">
+          <strong>Single-Track Roads</strong>
+          <span>Much of the NC500 runs on single-track roads with passing places. Pull into passing places to let oncoming traffic through — never stop on the road itself. Take your time. The scenery is worth it.</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <div class="tip-block-icon">🦟</div>
+        <div class="tip-block-text">
+          <strong>Midges</strong>
+          <span>June–August brings midges — tiny biting insects that swarm in still, damp conditions, especially at dawn and dusk. Bring repellent (Smidge is best) and a midge head net if you plan to camp or spend time outdoors in woodland.</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <div class="tip-block-icon">📡</div>
+        <div class="tip-block-text">
+          <strong>Mobile Signal</strong>
+          <span>Mobile coverage is good in Invergordon and the main towns, but drops to zero in many remote areas of the NC500. Download offline maps before you leave — Google Maps, Maps.me, or OS Maps. Don't rely on real-time navigation in the far north.</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <div class="tip-block-icon">🏕️</div>
+        <div class="tip-block-text">
+          <strong>Wild Camping</strong>
+          <span>Scotland has a legal right to wild camp under the Land Reform Act. You can pitch almost anywhere — with courtesy and care for the environment. Leave no trace. Many NC500 travellers wild camp along the route; it's one of the great freedoms of the Scottish Highlands.</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <div class="tip-block-icon">🌦️</div>
+        <div class="tip-block-text">
+          <strong>Weather</strong>
+          <span>Highland weather is unpredictable at any time of year. Pack waterproof layers even in summer. The Highlands can deliver four seasons in one day — but clear weather here is genuinely breathtaking. The BBC Weather app gives the most accurate local forecasts.</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <div class="tip-block-icon">🐑</div>
+        <div class="tip-block-text">
+          <strong>Watch for Sheep</strong>
+          <span>Sheep roam freely on many Highland roads and have absolutely no road sense. Drive slowly through moorland sections, especially around dawn and dusk. Hitting a sheep is more common than people expect and genuinely dangerous at speed.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA CALLOUT -->
+<div class="nc500-callout">
+  <h3>Planning a <em>Shore Day</em> on the NC500?</h3>
+  <p>If you're arriving by cruise ship at Invergordon and want to make the most of your time — our Shore Day Concierge service builds you a personalised itinerary that takes in the best of the NC500 corridor, tailored to your interests and your time in port.</p>
+  <a href="cruise-hub.html">Get Your Shore Day Plan — £15 ↗</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="index.html">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
+</footer>
+
+<script>
+  // ── Language stubs ──────────────────────────────────────────────────────
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+    event.target.classList.add('active');
+    // Full translations can be wired in here as the site grows
+  }
+</script>
+</body>
+</html>
