@@ -317,7 +317,7 @@
     font-family: 'Overpass Mono', monospace;
     font-size: 0.92rem;
     color: #39ff14;
-    text-shadow: 0 0 4px #ffffff, 0 0 10px #39ff14, 0 0 22px #39ff14, 0 0 45px #00dd00;
+    text-shadow: 0 0 2px #ffffff, 0 0 6px #39ff14, 0 0 13px #39ff14;
     letter-spacing: -0.05em;
     white-space: pre;
     flex: 1;
@@ -326,7 +326,7 @@
     overflow: hidden;    /* clip beam characters at card border edge */
     display: block;
     contain: layout style; /* scope reflow to this element */
-    will-change: contents; /* hint browser to pre-composite this layer */
+    will-change: contents, transform; /* hint browser to pre-composite this layer */
     transform: translateZ(0); /* promote to GPU compositor layer — text changes won't trigger viewport reflow on iOS */
   }
 
@@ -842,7 +842,7 @@ function googleTranslateElementInit() {
 
     <!-- BOOK -->
     <div class="service-card book-card" id="card-book">
-      <div class="service-card-icon"><span id="icon-book">📗</span></div>
+      <div class="service-card-icon"><span id="icon-book">📘</span></div>
       <p class="service-card-tag" id="wwm-tag-book">My Book</p>
       <h2 id="wwm-title-book">The Definitive Guide to AI</h2>
       <p id="wwm-desc-book">Written from the Highlands of Scotland, this is the plain-English guide to understanding and using artificial intelligence in your everyday life and work. No computer science degree required — just curiosity and a desire to get ahead of the curve.</p>
@@ -1013,12 +1013,21 @@ function eiLang(lang, btn) {
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
   if (lang === 'en') {
+    var _enTries = 0;
     function resetEN() {
       var combo = document.querySelector('.goog-te-combo');
-      if (!combo || !combo.options.length) { setTimeout(resetEN, 300); return; }
+      if (!combo || !combo.options.length) {
+        if (++_enTries < 12) setTimeout(resetEN, 250);
+        return; // page already English — nothing to do
+      }
+      combo.selectedIndex = 0;
       combo.value = '';
+      combo.dispatchEvent(new Event('input',  { bubbles: true }));
       combo.dispatchEvent(new Event('change', { bubbles: true }));
-      setTimeout(function() { combo.dispatchEvent(new Event('change', { bubbles: true })); }, 50);
+      setTimeout(function() {
+        combo.selectedIndex = 0;
+        combo.dispatchEvent(new Event('change', { bubbles: true }));
+      }, 150);
     }
     resetEN();
     return;
@@ -1105,20 +1114,34 @@ function eiMoreLangs(btn) {
   // ── Laser beam animation ─────────────────────────────────────────────
   var laserTimer = null;
   var laserFull  = '──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────';
+  var laserPhase = 1;  // 1=growing, 2=tail scrolling off
+  var laserPos   = 0;
+  var laserOff   = 0;
   function startLaser() {
     var beam = document.getElementById('ai-laser-beam');
     if (!beam) return;
-    var pos = 0;
+    laserPhase = 1; laserPos = 0; laserOff = 0;
+    beam.style.transform = '';
     clearInterval(laserTimer);
     laserTimer = setInterval(function() {
-      beam.textContent = laserFull.slice(0, pos) + '✑';
-      if (++pos >= laserFull.length) { clearInterval(laserTimer); laserTimer = null; }
+      if (laserPhase === 1) {
+        laserPos++;
+        beam.textContent = laserFull.slice(0, laserPos) + '✑';
+        if (laserPos >= 65) laserPhase = 2; // beam full — tail starts lifting
+      } else {
+        laserOff += 8;
+        beam.style.transform = 'translateX(' + laserOff + 'px)';
+        if (laserOff >= 650) {  // beam fully off card
+          beam.textContent = ''; beam.style.transform = '';
+          clearInterval(laserTimer); laserTimer = null;
+        }
+      }
     }, 13);
   }
   function stopLaser() {
     clearInterval(laserTimer); laserTimer = null;
     var beam = document.getElementById('ai-laser-beam');
-    if (beam) beam.textContent = '';
+    if (beam) { beam.textContent = ''; beam.style.transform = ''; }
   }
 
   // ── 💻 Web Design card — Mac bong + gold glow ───────────────────────
@@ -1159,20 +1182,24 @@ function eiMoreLangs(btn) {
     }, { passive: true });
   }
 
-  // ── 📗 Book card — page turning sound + gold glow ───────────────────
+  // ── 📘 Book card — page turning sound + open/close emoji + gold glow ───
   var cardBook = document.getElementById('card-book');
   var iconBook = document.getElementById('icon-book');
   if (cardBook) {
     cardBook.addEventListener('mouseenter', function() {
       play('book');
-      if (iconBook) iconBook.classList.add('icon-glow-gold');
+      if (iconBook) { iconBook.textContent = '📖'; iconBook.classList.add('icon-glow-gold'); }
     });
     cardBook.addEventListener('mouseleave', function() {
-      if (iconBook) iconBook.classList.remove('icon-glow-gold');
+      if (iconBook) { iconBook.textContent = '📘'; iconBook.classList.remove('icon-glow-gold'); }
     });
     cardBook.addEventListener('touchstart', function() {
       play('book');
-      if (iconBook) { iconBook.classList.add('icon-glow-gold'); setTimeout(function(){ iconBook.classList.remove('icon-glow-gold'); }, 1200); }
+      if (iconBook) {
+        iconBook.textContent = '📖';
+        iconBook.classList.add('icon-glow-gold');
+        setTimeout(function(){ iconBook.textContent = '📘'; iconBook.classList.remove('icon-glow-gold'); }, 1200);
+      }
     }, { passive: true });
   }
 

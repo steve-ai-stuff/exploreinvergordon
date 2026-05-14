@@ -2209,12 +2209,21 @@ function eiLang(lang, btn) {
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
   if (lang === 'en') {
+    var _enTries = 0;
     function resetEN() {
       var combo = document.querySelector('.goog-te-combo');
-      if (!combo || !combo.options.length) { setTimeout(resetEN, 300); return; }
+      if (!combo || !combo.options.length) {
+        if (++_enTries < 12) setTimeout(resetEN, 250);
+        return; // page already English — nothing to do
+      }
+      combo.selectedIndex = 0;
       combo.value = '';
+      combo.dispatchEvent(new Event('input',  { bubbles: true }));
       combo.dispatchEvent(new Event('change', { bubbles: true }));
-      setTimeout(function() { combo.dispatchEvent(new Event('change', { bubbles: true })); }, 50);
+      setTimeout(function() {
+        combo.selectedIndex = 0;
+        combo.dispatchEvent(new Event('change', { bubbles: true }));
+      }, 150);
     }
     resetEN();
     return;
