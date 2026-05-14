@@ -201,8 +201,14 @@
   }
 
   /* ── Google Translate — suppression & dropdown styling ── */
-  .goog-te-banner-frame { display: none !important; }
-  body { top: 0 !important; }
+  /* ── Aggressively suppress Google Translate toolbar ── */
+  .goog-te-banner-frame,
+  iframe.goog-te-banner-frame,
+  .skiptranslate > iframe { display: none !important; height: 0 !important; }
+  body { top: 0px !important; }
+  html { top: 0px !important; }
+  body.translated-ltr,
+  body.translated-rtl { margin-top: 0 !important; top: 0 !important; }
   #goog-gt-tt { display: none !important; }
   .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
   .goog-te-gadget .goog-te-combo {
@@ -252,6 +258,11 @@ function googleTranslateElementInit() {
   <span class="lang-sep">|</span>
   <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
   <div id="google_translate_element"></div>
+<!-- GT Reset bar — shown when translation is active -->
+<div id="ei-reset-bar" style="display:none;position:fixed;top:32px;left:0;right:0;z-index:199;height:22px;background:rgba(107,74,126,0.92);justify-content:center;align-items:center;gap:0.8rem;font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:#fff;">
+  <span>🌐 Page translated</span>
+  <button onclick="eiLang('en',document.querySelector('.lang-btn'))" style="background:rgba(255,255,255,0.18);color:#fff;border:1px solid rgba(255,255,255,0.4);border-radius:3px;font-family:'Overpass Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;padding:1px 8px;cursor:pointer;">✕ Back to English</button>
+</div>
 </div>
 
 <header class="page-header">
@@ -357,11 +368,14 @@ function eiLang(lang, btn) {
   var el = document.getElementById('google_translate_element');
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  var resetBar = document.getElementById('ei-reset-bar');
   if (lang === 'en' || lang === 'us') {
     var combo = document.querySelector('.goog-te-combo');
     if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    if (resetBar) resetBar.style.display = 'none';
     return;
   }
+  if (resetBar) resetBar.style.display = 'flex';
   function fire() {
     var combo = document.querySelector('.goog-te-combo');
     if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
@@ -377,6 +391,30 @@ function eiMoreLangs(btn) {
   el.style.display = open ? 'none' : 'block';
   if (btn) btn.classList.toggle('active', !open);
 }
+// ── Suppress GT toolbar dynamically (catches injected iframe) ─────────────
+(function() {
+  function hideGTBar() {
+    document.querySelectorAll('iframe').forEach(function(f) {
+      if ((f.className || '').indexOf('goog-te') !== -1) {
+        f.style.cssText = 'display:none!important;height:0!important;border:0!important;';
+      }
+    });
+    if (document.body) document.body.style.top = '0';
+    document.documentElement.style.top = '0';
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      var obs = new MutationObserver(hideGTBar);
+      obs.observe(document.body, { childList: true, subtree: true });
+      hideGTBar();
+    });
+  } else {
+    var obs = new MutationObserver(hideGTBar);
+    obs.observe(document.body, { childList: true, subtree: true });
+    hideGTBar();
+  }
+  [500, 1000, 2000, 3000].forEach(function(t) { setTimeout(hideGTBar, t); });
+})();
 </script>
 
 </body>

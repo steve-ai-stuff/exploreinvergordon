@@ -1849,8 +1849,14 @@
 
 
   /* ── Google Translate — suppression & dropdown styling ── */
-  .goog-te-banner-frame { display: none !important; }
-  body { top: 0 !important; }
+  /* ── Aggressively suppress Google Translate toolbar ── */
+  .goog-te-banner-frame,
+  iframe.goog-te-banner-frame,
+  .skiptranslate > iframe { display: none !important; height: 0 !important; }
+  body { top: 0px !important; }
+  html { top: 0px !important; }
+  body.translated-ltr,
+  body.translated-rtl { margin-top: 0 !important; top: 0 !important; }
   #goog-gt-tt { display: none !important; }
   .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
   .goog-te-gadget .goog-te-combo {
@@ -1878,6 +1884,58 @@
   .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
+
+  /* ── Visitor Photo CTA ── */
+  .visitor-photo-cta {
+    background: linear-gradient(135deg, rgba(107,74,126,0.22) 0%, rgba(8,15,30,0.65) 100%);
+    border-top: 1px solid rgba(107,74,126,0.4);
+    border-bottom: 1px solid rgba(107,74,126,0.4);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .visitor-photo-cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
+  }
+  .visitor-photo-cta-icon {
+    font-size: 2.8rem;
+    animation: photoFloat 3.2s ease-in-out infinite;
+  }
+  @keyframes photoFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+  .visitor-photo-cta-text {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.18rem;
+    color: var(--mist);
+    line-height: 1.75;
+    margin: 0;
+  }
+  .visitor-photo-cta-text strong { color: var(--text-light); }
+  .visitor-photo-cta-btn {
+    background: var(--heather);
+    color: #fff;
+    border: 1px solid rgba(168,124,192,0.5);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    box-shadow: 0 0 18px rgba(107,74,126,0.25);
+  }
+  .visitor-photo-cta-btn:hover {
+    background: var(--heather-light);
+    box-shadow: 0 0 32px rgba(168,124,192,0.5);
+    transform: scale(1.04);
+  }
 </style>
 <script>
 function googleTranslateElementInit() {
@@ -1901,6 +1959,11 @@ function googleTranslateElementInit() {
   <span class="lang-sep">|</span>
   <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
   <div id="google_translate_element"></div>
+<!-- GT Reset bar — shown when translation is active -->
+<div id="ei-reset-bar" style="display:none;position:fixed;top:32px;left:0;right:0;z-index:199;height:22px;background:rgba(107,74,126,0.92);justify-content:center;align-items:center;gap:0.8rem;font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:#fff;">
+  <span>🌐 Page translated</span>
+  <button onclick="eiLang('en',document.querySelector('.lang-btn'))" style="background:rgba(255,255,255,0.18);color:#fff;border:1px solid rgba(255,255,255,0.4);border-radius:3px;font-family:'Overpass Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;padding:1px 8px;cursor:pointer;">✕ Back to English</button>
+</div>
 </div>
 
 <!-- SALTIRE STRIP -->
@@ -1992,6 +2055,16 @@ function googleTranslateElementInit() {
 </div>
 
 <!-- WELCOME -->
+
+<!-- VISITOR PHOTO CTA — above welcome section -->
+<div class="visitor-photo-cta">
+  <div class="visitor-photo-cta-inner">
+    <div class="visitor-photo-cta-icon">📸</div>
+    <p class="visitor-photo-cta-text">Got a photo you love — from your time here in Invergordon, the Highlands, or even back home from wherever you travelled from in the world? <strong>We would love to see it.</strong> Share your favourite with us in our brand new Visitor Gallery.</p>
+    <button class="visitor-photo-cta-btn" onclick="if(window.playFX)window.playFX('camera');setTimeout(function(){window.location.href='gallery.html#visitor';},650);">📸 Share Your Photo With Us</button>
+  </div>
+</div>
+
 <section id="welcome">
   <p class="section-label" id="welcome-label">Welcome Aboard</p>
   <h2 class="section-title" id="welcome-title">Your day in <em>Invergordon</em></h2>
@@ -3697,11 +3770,14 @@ function eiLang(lang, btn) {
   var el = document.getElementById('google_translate_element');
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  var resetBar = document.getElementById('ei-reset-bar');
   if (lang === 'en' || lang === 'us') {
     var combo = document.querySelector('.goog-te-combo');
     if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    if (resetBar) resetBar.style.display = 'none';
     return;
   }
+  if (resetBar) resetBar.style.display = 'flex';
   function fire() {
     var combo = document.querySelector('.goog-te-combo');
     if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
@@ -3717,6 +3793,30 @@ function eiMoreLangs(btn) {
   el.style.display = open ? 'none' : 'block';
   if (btn) btn.classList.toggle('active', !open);
 }
+// ── Suppress GT toolbar dynamically (catches injected iframe) ─────────────
+(function() {
+  function hideGTBar() {
+    document.querySelectorAll('iframe').forEach(function(f) {
+      if ((f.className || '').indexOf('goog-te') !== -1) {
+        f.style.cssText = 'display:none!important;height:0!important;border:0!important;';
+      }
+    });
+    if (document.body) document.body.style.top = '0';
+    document.documentElement.style.top = '0';
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      var obs = new MutationObserver(hideGTBar);
+      obs.observe(document.body, { childList: true, subtree: true });
+      hideGTBar();
+    });
+  } else {
+    var obs = new MutationObserver(hideGTBar);
+    obs.observe(document.body, { childList: true, subtree: true });
+    hideGTBar();
+  }
+  [500, 1000, 2000, 3000].forEach(function(t) { setTimeout(hideGTBar, t); });
+})();
 </script>
 
 </body>
