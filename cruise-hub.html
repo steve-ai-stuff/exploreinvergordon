@@ -2209,8 +2209,14 @@ function eiLang(lang, btn) {
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
   if (lang === 'en') {
-    var combo = document.querySelector('.goog-te-combo');
-    if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
+    function resetEN() {
+      var combo = document.querySelector('.goog-te-combo');
+      if (!combo || !combo.options.length) { setTimeout(resetEN, 300); return; }
+      combo.value = '';
+      combo.dispatchEvent(new Event('change', { bubbles: true }));
+      setTimeout(function() { combo.dispatchEvent(new Event('change', { bubbles: true })); }, 50);
+    }
+    resetEN();
     return;
   }
   function fire() {
@@ -2227,6 +2233,24 @@ function eiMoreLangs(btn) {
   var open = el.style.display !== 'none';
   el.style.display = open ? 'none' : 'block';
   if (btn) btn.classList.toggle('active', !open);
+  if (!open) {
+    var autoHideTimer = null;
+    (function watchCombo() {
+      var combo = document.querySelector('.goog-te-combo');
+      if (!combo) { setTimeout(watchCombo, 300); return; }
+      function onSelect() {
+        if (combo.value) {
+          clearTimeout(autoHideTimer);
+          autoHideTimer = setTimeout(function() {
+            el.style.display = 'none';
+            if (btn) btn.classList.remove('active');
+          }, 5000);
+        }
+        combo.removeEventListener('change', onSelect);
+      }
+      combo.addEventListener('change', onSelect);
+    })();
+  }
 }
 // ── Suppress GT toolbar dynamically (catches injected iframe) ─────────────
 (function() {
