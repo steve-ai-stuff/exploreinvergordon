@@ -1398,7 +1398,47 @@
   .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
-</style>
+
+  /* ── Nav horizontal scroll bar ───────────────────────────────────────────── */
+  .nav-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;          /* clips track content at wrapper boundary     */
+    margin-left: 1rem;
+  }
+  .nav-scroll-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #f5c842;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.45rem;
+    animation: navArrowPulse 2.4s ease-in-out infinite;
+    user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+  }
+  @keyframes navArrowPulse {
+    0%, 100% { opacity: 0.18; text-shadow: none; }
+    50%       { opacity: 1;    text-shadow: 0 0 7px #f5c842, 0 0 18px #f5c842, 0 0 32px rgba(245,200,66,0.45); }
+  }
+  /* ── Override nav-links to be scrollable at ALL widths ─────────────────── */
+  .nav-links {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+    flex-wrap: nowrap !important;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links li { white-space: nowrap; }
+
+  </style>
 
 <!-- SumUp Payment Widget SDK -->
 <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
@@ -1436,6 +1476,8 @@ function googleTranslateElementInit() {
       <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
   </div>
+  <div class="nav-scroll-wrapper">
+    <button class="nav-scroll-btn nav-scroll-left" aria-label="Scroll nav left">&#8249;</button>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="murals.html">Murals</a></li>
@@ -1445,6 +1487,8 @@ function googleTranslateElementInit() {
     <li><a href="blog.html">Blog</a></li>
     <li><a href="work-with-me.html">Work With Me</a></li>
   </ul>
+    <button class="nav-scroll-btn nav-scroll-right" aria-label="Scroll nav right">&#8250;</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -2209,26 +2253,12 @@ function eiLang(lang, btn) {
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
   if (lang === 'en') {
-    var _enTries = 0;
-    function resetEN() {
-      var combo = document.querySelector('.goog-te-combo');
-      if (!combo || !combo.options.length) {
-        if (++_enTries < 12) setTimeout(resetEN, 250);
-        return; // page already English — nothing to do
-      }
-      // Find the blank reset option by value — never assume it is at index 0
-      for (var i = 0; i < combo.options.length; i++) {
-        if (combo.options[i].value === '') {
-          combo.selectedIndex = i;
-          combo.dispatchEvent(new Event('change', { bubbles: true }));
-          return;
-        }
-      }
-      // Blank option not found — set value directly as last resort
-      combo.value = '';
-      combo.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-    resetEN();
+    // Clear googtrans cookie — same mechanism as GT's own "Show Original" link
+    var _hn = location.hostname;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + _hn;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + _hn;
+    window.location.reload();
     return;
   }
   function fire() {
@@ -2332,6 +2362,30 @@ document.querySelectorAll('.excursion-card[data-sound]').forEach(function(card) 
   card.addEventListener('mouseenter', function() { if (window.playFX) window.playFX(key); });
   card.addEventListener('touchstart', function() { if (window.playFX) window.playFX(key); }, { passive: true });
 });
+</script>
+<script>
+// ── Nav scroll arrows ────────────────────────────────────────────────────
+(function() {
+  var track   = document.querySelector('.nav-links');
+  var leftBtn = document.querySelector('.nav-scroll-left');
+  var rightBtn= document.querySelector('.nav-scroll-right');
+  if (!track) return;
+  var _navTimer = null;
+  function navGo(dir) {
+    navStop();
+    _navTimer = setInterval(function() { track.scrollLeft += dir * 4; }, 16);
+  }
+  function navStop() { clearInterval(_navTimer); _navTimer = null; }
+  function addHoverTouch(btn, dir) {
+    btn.addEventListener('mouseenter',  function() { navGo(dir); });
+    btn.addEventListener('mouseleave',  navStop);
+    btn.addEventListener('touchstart',  function() { navGo(dir); }, { passive: true });
+    btn.addEventListener('touchend',    navStop);
+    btn.addEventListener('touchcancel', navStop);
+  }
+  if (leftBtn)  addHoverTouch(leftBtn,  -1);
+  if (rightBtn) addHoverTouch(rightBtn,  1);
+})();
 </script>
 </body>
 </html>

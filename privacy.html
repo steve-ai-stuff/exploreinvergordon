@@ -236,7 +236,47 @@
   .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
-</style>
+
+  /* ── Nav horizontal scroll bar ───────────────────────────────────────────── */
+  .nav-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;          /* clips track content at wrapper boundary     */
+    margin-left: 1rem;
+  }
+  .nav-scroll-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #f5c842;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.45rem;
+    animation: navArrowPulse 2.4s ease-in-out infinite;
+    user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+  }
+  @keyframes navArrowPulse {
+    0%, 100% { opacity: 0.18; text-shadow: none; }
+    50%       { opacity: 1;    text-shadow: 0 0 7px #f5c842, 0 0 18px #f5c842, 0 0 32px rgba(245,200,66,0.45); }
+  }
+  /* ── Override nav-links to be scrollable at ALL widths ─────────────────── */
+  .nav-links {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+    flex-wrap: nowrap !important;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links li { white-space: nowrap; }
+
+  </style>
 <script>
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
@@ -363,26 +403,12 @@ function eiLang(lang, btn) {
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
   if (lang === 'en') {
-    var _enTries = 0;
-    function resetEN() {
-      var combo = document.querySelector('.goog-te-combo');
-      if (!combo || !combo.options.length) {
-        if (++_enTries < 12) setTimeout(resetEN, 250);
-        return; // page already English — nothing to do
-      }
-      // Find the blank reset option by value — never assume it is at index 0
-      for (var i = 0; i < combo.options.length; i++) {
-        if (combo.options[i].value === '') {
-          combo.selectedIndex = i;
-          combo.dispatchEvent(new Event('change', { bubbles: true }));
-          return;
-        }
-      }
-      // Blank option not found — set value directly as last resort
-      combo.value = '';
-      combo.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-    resetEN();
+    // Clear googtrans cookie — same mechanism as GT's own "Show Original" link
+    var _hn = location.hostname;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + _hn;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + _hn;
+    window.location.reload();
     return;
   }
   function fire() {
@@ -444,5 +470,29 @@ function eiMoreLangs(btn) {
 })();
 </script>
 
+<script>
+// ── Nav scroll arrows ────────────────────────────────────────────────────
+(function() {
+  var track   = document.querySelector('.nav-links');
+  var leftBtn = document.querySelector('.nav-scroll-left');
+  var rightBtn= document.querySelector('.nav-scroll-right');
+  if (!track) return;
+  var _navTimer = null;
+  function navGo(dir) {
+    navStop();
+    _navTimer = setInterval(function() { track.scrollLeft += dir * 4; }, 16);
+  }
+  function navStop() { clearInterval(_navTimer); _navTimer = null; }
+  function addHoverTouch(btn, dir) {
+    btn.addEventListener('mouseenter',  function() { navGo(dir); });
+    btn.addEventListener('mouseleave',  navStop);
+    btn.addEventListener('touchstart',  function() { navGo(dir); }, { passive: true });
+    btn.addEventListener('touchend',    navStop);
+    btn.addEventListener('touchcancel', navStop);
+  }
+  if (leftBtn)  addHoverTouch(leftBtn,  -1);
+  if (rightBtn) addHoverTouch(rightBtn,  1);
+})();
+</script>
 </body>
 </html>
