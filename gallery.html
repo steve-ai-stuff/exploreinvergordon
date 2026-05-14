@@ -879,15 +879,9 @@ function googleTranslateElementInit() {
   <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
   <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
   <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
-  <button class="lang-btn" onclick="eiLang('us',this)">&#127482;&#127480; US</button>
   <span class="lang-sep">|</span>
   <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
   <div id="google_translate_element"></div>
-<!-- GT Reset bar — shown when translation is active -->
-<div id="ei-reset-bar" style="display:none;position:fixed;top:32px;left:0;right:0;z-index:199;height:22px;background:rgba(107,74,126,0.92);justify-content:center;align-items:center;gap:0.8rem;font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:#fff;">
-  <span>🌐 Page translated</span>
-  <button onclick="eiLang('en',document.querySelector('.lang-btn'))" style="background:rgba(255,255,255,0.18);color:#fff;border:1px solid rgba(255,255,255,0.4);border-radius:3px;font-family:'Overpass Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;padding:1px 8px;cursor:pointer;">✕ Back to English</button>
-</div>
 </div>
 
 <!-- NAV -->
@@ -1206,14 +1200,11 @@ function eiLang(lang, btn) {
   var el = document.getElementById('google_translate_element');
   if (el) el.style.display = 'none';
   document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
-  var resetBar = document.getElementById('ei-reset-bar');
-  if (lang === 'en' || lang === 'us') {
+  if (lang === 'en') {
     var combo = document.querySelector('.goog-te-combo');
     if (combo) { combo.value = ''; combo.dispatchEvent(new Event('change')); }
-    if (resetBar) resetBar.style.display = 'none';
     return;
   }
-  if (resetBar) resetBar.style.display = 'flex';
   function fire() {
     var combo = document.querySelector('.goog-te-combo');
     if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
