@@ -1458,14 +1458,17 @@ function eiLang(lang, btn) {
         if (++_enTries < 12) setTimeout(resetEN, 250);
         return; // page already English — nothing to do
       }
-      combo.selectedIndex = 0;
+      // Find the blank reset option by value — never assume it is at index 0
+      for (var i = 0; i < combo.options.length; i++) {
+        if (combo.options[i].value === '') {
+          combo.selectedIndex = i;
+          combo.dispatchEvent(new Event('change', { bubbles: true }));
+          return;
+        }
+      }
+      // Blank option not found — set value directly as last resort
       combo.value = '';
-      combo.dispatchEvent(new Event('input',  { bubbles: true }));
       combo.dispatchEvent(new Event('change', { bubbles: true }));
-      setTimeout(function() {
-        combo.selectedIndex = 0;
-        combo.dispatchEvent(new Event('change', { bubbles: true }));
-      }, 150);
     }
     resetEN();
     return;
