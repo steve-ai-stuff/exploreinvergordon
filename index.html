@@ -1879,6 +1879,11 @@
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
 </style>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
@@ -3686,9 +3691,6 @@ function showUploadComingSoon(btn) {
 }
 
 // ── Google Translate engine ─────────────────────────────────────────────
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
-}
 function eiLang(lang, btn) {
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');

@@ -761,6 +761,11 @@
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
 </style>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 
@@ -912,7 +917,7 @@
 
   <div class="stops-grid">
 
-    <div class="stop-card type-whisky">
+    <div class="stop-card type-whisky" data-sound="whisky">
       <div class="stop-icon">🥃</div>
       <div class="stop-distance">5 min · Alness</div>
       <h3>Dalmore Distillery</h3>
@@ -920,7 +925,7 @@
       <div class="stop-tag">Whisky · Visitor Centre</div>
     </div>
 
-    <div class="stop-card type-whisky">
+    <div class="stop-card type-whisky" data-sound="whisky">
       <div class="stop-icon">🥃</div>
       <div class="stop-distance">20 min · Tain</div>
       <h3>Glenmorangie Distillery</h3>
@@ -928,7 +933,7 @@
       <div class="stop-tag">Whisky · Visitor Centre · Royal Burgh</div>
     </div>
 
-    <div class="stop-card type-nature">
+    <div class="stop-card type-nature" data-sound="wind">
       <div class="stop-icon">🦅</div>
       <div class="stop-distance">20–25 min · Evanton</div>
       <h3>Fyrish Monument</h3>
@@ -936,7 +941,7 @@
       <div class="stop-tag">Walking · Views · History</div>
     </div>
 
-    <div class="stop-card type-town">
+    <div class="stop-card type-town" data-sound="fanfare">
       <div class="stop-icon">⛪</div>
       <div class="stop-distance">35 min · Dornoch</div>
       <h3>Dornoch</h3>
@@ -944,7 +949,7 @@
       <div class="stop-tag">Cathedral · Golf · Beaches</div>
     </div>
 
-    <div class="stop-card type-castle">
+    <div class="stop-card type-castle" data-sound="fanfare">
       <div class="stop-icon">🏰</div>
       <div class="stop-distance">45 min · Golspie</div>
       <h3>Dunrobin Castle</h3>
@@ -952,7 +957,7 @@
       <div class="stop-tag">Castle · Gardens · History</div>
     </div>
 
-    <div class="stop-card type-nature">
+    <div class="stop-card type-nature" data-sound="water">
       <div class="stop-icon">🐬</div>
       <div class="stop-distance">5 min · Invergordon</div>
       <h3>Cromarty Firth Wildlife</h3>
@@ -960,7 +965,7 @@
       <div class="stop-tag">Wildlife · Dolphins · Seals</div>
     </div>
 
-    <div class="stop-card type-town">
+    <div class="stop-card type-town" data-sound="fanfare">
       <div class="stop-icon">🏛️</div>
       <div class="stop-distance">20 min · Tain</div>
       <h3>Tain — Scotland's Oldest Royal Burgh</h3>
@@ -968,7 +973,7 @@
       <div class="stop-tag">History · Heritage · Museum</div>
     </div>
 
-    <div class="stop-card type-nature">
+    <div class="stop-card type-nature" data-sound="water">
       <div class="stop-icon">🏖️</div>
       <div class="stop-distance">30 min · Black Isle</div>
       <h3>Chanonry Point</h3>
@@ -976,7 +981,7 @@
       <div class="stop-tag">Wildlife · Dolphins · Viewpoint</div>
     </div>
 
-    <div class="stop-card type-viewpoint">
+    <div class="stop-card type-viewpoint" data-sound="wind">
       <div class="stop-icon">⛰️</div>
       <div class="stop-distance">25 min · Strathpeffer</div>
       <h3>Ben Wyvis</h3>
@@ -1081,9 +1086,6 @@
   
 
 // ── Google Translate engine ─────────────────────────────────────────────
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
-}
 function eiLang(lang, btn) {
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
@@ -1109,6 +1111,52 @@ function eiMoreLangs(btn) {
   var open = el.style.display !== 'none';
   el.style.display = open ? 'none' : 'block';
   if (btn) btn.classList.toggle('active', !open);
+}
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SOUND FX ENGINE — NC500
+// ══════════════════════════════════════════════════════
+(function() {
+  var files = {
+    wind:    'sounds/cemetary-wind_trimmed.mp3',
+    whisky:  'sounds/pouring-whisky_trimmed.mp3',
+    fanfare: 'sounds/castle-medieval-fanfare_trimmed.mp3',
+    water:   'sounds/water-drop.mp3',
+    camera:  'sounds/camera-shutter.mp3'
+    // TODO: add church-bells.mp3 (Dornoch), dolphin.mp3 (Cromarty Firth), waves.mp3 (Chanonry Point)
+    // when sound files are available, update data-sound attrs: Dornoch→church-bells, Cromarty→dolphin, Chanonry→waves
+  };
+  var pool = {};
+  Object.keys(files).forEach(function(k) {
+    var a = new Audio(files[k]);
+    a.preload = 'auto';
+    a.load();
+    pool[k] = a;
+  });
+  window.playFX = function(key) {
+    var a = pool[key];
+    if (!a) return;
+    try {
+      a.currentTime = 0;
+      var p = a.play();
+      if (p && typeof p.catch === 'function') p.catch(function(){});
+    } catch(e) {}
+  };
+})();
+
+// ── Stop card sounds — hover (desktop) + tap (mobile) ───────────────────
+document.querySelectorAll('.stop-card[data-sound]').forEach(function(card) {
+  var key = card.getAttribute('data-sound');
+  card.addEventListener('mouseenter', function() { if (window.playFX) window.playFX(key); });
+  card.addEventListener('touchstart', function() { if (window.playFX) window.playFX(key); }, { passive: true });
+});
+
+// ── NC500 upload photo button — camera SFX ──────────────────────────────
+function showUploadComingSoon(btn) {
+  if (window.playFX) window.playFX('camera');
+  setTimeout(function() { window.location.href = 'gallery.html#visitor'; }, 650);
 }
 </script>
 </body>

@@ -1396,6 +1396,11 @@
 
 <!-- SumUp Payment Widget SDK -->
 <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
@@ -1627,63 +1632,63 @@
   <h3 id="excursions-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Popular Excursions</h3>
 
   <div class="excursion-grid">
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="wind">
       <div class="excursion-icon">🏔️</div>
       <h3>Fyrish Monument</h3>
       <div class="excursion-distance">25 min drive</div>
       <p>A replica of the Gates of Nagapatnam, built in 1782 to provide employment for local people after the Highland Clearances. Panoramic views over the Cromarty Firth.</p>
       <a href="https://www.walkhighlands.co.uk/ullapool/fyrish-monument.shtml" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="whisky">
       <div class="excursion-icon">🥃</div>
       <h3>Glenmorangie Distillery</h3>
       <div class="excursion-distance">18 min drive</div>
       <p>One of Scotland's most celebrated Highland single malts. Distillery tours, tastings, and a beautiful estate on the shores of the Dornoch Firth.</p>
       <a href="https://www.glenmorangie.com/en-gb/visit-us/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="whisky">
       <div class="excursion-icon">🥃</div>
       <h3>Dalmore Distillery</h3>
       <div class="excursion-distance">12 min drive</div>
       <p>Legendary for its complex, sherry-influenced expressions. One of the world's most collectable whiskies, made just minutes from the port.</p>
       <a href="https://www.thedalmore.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="sword">
       <div class="excursion-icon">⚔️</div>
       <h3>Culloden Battlefield</h3>
       <div class="excursion-distance">45 min drive</div>
       <p>The site of the last pitched battle on British soil (1746). A haunting, beautifully managed National Trust for Scotland site. Essential Highland history.</p>
       <a href="https://www.nts.org.uk/visit/places/culloden" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="water">
       <div class="excursion-icon">🏔️</div>
       <h3>Loch Ness</h3>
       <div class="excursion-distance">60 min drive</div>
       <p>Home of the world's most famous mystery. The Great Glen and the loch itself are breathtaking regardless of what lurks beneath. Urquhart Castle on the shore is stunning.</p>
       <a href="https://lochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="horn">
       <div class="excursion-icon">🏙️</div>
       <h3>Inverness City Centre</h3>
       <div class="excursion-distance">40 min drive</div>
       <p>The capital of the Highlands. Victorian Market, Inverness Castle, the River Ness, independent shops, and excellent food. A full half-day destination.</p>
       <a href="https://www.explore-inverness.com" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="fanfare">
       <div class="excursion-icon">🏰</div>
       <h3>Dunrobin Castle</h3>
       <div class="excursion-distance">45 min drive</div>
       <p>The largest castle in the Northern Highlands. A fairytale turreted palace set in formal French-style gardens overlooking the sea. Falconry displays in the grounds.</p>
       <a href="https://www.dunrobincastle.co.uk/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="fanfare">
       <div class="excursion-icon">🏰</div>
       <h3>Urquhart Castle</h3>
       <div class="excursion-distance">65 min drive</div>
       <p>One of Scotland's most dramatic castle ruins, perched on the banks of Loch Ness. A Historic Environment Scotland site — the most photographed castle in the Highlands.</p>
       <a href="https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/" target="_blank" rel="noopener">Learn more ↗</a>
     </div>
-    <div class="excursion-card">
+    <div class="excursion-card" data-sound="fanfare">
       <div class="excursion-icon">👑</div>
       <h3>Inverness Castle Experience</h3>
       <div class="excursion-distance">40 min drive</div>
@@ -2176,8 +2181,9 @@
     });
   });
 
-  // ── Photo upload — redirect to Visitor Gallery ──
+  // ── Photo upload — camera SFX + redirect to Visitor Gallery ──
   function showUploadComingSoon(btn) {
+    if (window.playFX) window.playFX('camera');
     var teaser = btn.closest('.photo-upload-teaser');
     if (teaser && !teaser.querySelector('.upload-msg')) {
       var msg = document.createElement('p');
@@ -2189,13 +2195,8 @@
     setTimeout(function() { window.location.href = 'gallery.html#visitor'; }, 650);
   }
 
-  // ── Language translation (cruise hub page) ─────────────────────────────
-  
 
 // ── Google Translate engine ─────────────────────────────────────────────
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
-}
 function eiLang(lang, btn) {
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
@@ -2222,6 +2223,50 @@ function eiMoreLangs(btn) {
   el.style.display = open ? 'none' : 'block';
   if (btn) btn.classList.toggle('active', !open);
 }
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SOUND FX ENGINE — Cruise Hub
+// ══════════════════════════════════════════════════════
+(function() {
+  var files = {
+    bagpipes:  'sounds/bagpipes_trimmed.mp3',
+    whooshFwd: 'sounds/bamboo-whoosh_trimmed.mp3',
+    whooshBck: 'sounds/whoosh-effect.mp3',
+    camera:    'sounds/camera-shutter.mp3',
+    wind:      'sounds/cemetary-wind_trimmed.mp3',
+    whisky:    'sounds/pouring-whisky_trimmed.mp3',
+    sword:     'sounds/draw-sword.mp3',
+    water:     'sounds/water-drop.mp3',
+    horn:      'sounds/car-horn.mp3',
+    fanfare:   'sounds/castle-medieval-fanfare_trimmed.mp3',
+    cow:       'sounds/highland-cow-moo.mp3'
+  };
+  var pool = {};
+  Object.keys(files).forEach(function(k) {
+    var a = new Audio(files[k]);
+    a.preload = 'auto';
+    a.load();
+    pool[k] = a;
+  });
+  window.playFX = function(key) {
+    var a = pool[key];
+    if (!a) return;
+    try {
+      a.currentTime = 0;
+      var p = a.play();
+      if (p && typeof p.catch === 'function') p.catch(function(){});
+    } catch(e) {}
+  };
+})();
+
+// ── Excursion card sounds — hover (desktop) + tap (mobile) ──────────────
+document.querySelectorAll('.excursion-card[data-sound]').forEach(function(card) {
+  var key = card.getAttribute('data-sound');
+  card.addEventListener('mouseenter', function() { if (window.playFX) window.playFX(key); });
+  card.addEventListener('touchstart', function() { if (window.playFX) window.playFX(key); }, { passive: true });
+});
 </script>
 </body>
 </html>

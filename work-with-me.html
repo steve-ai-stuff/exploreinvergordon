@@ -759,6 +759,11 @@
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
 </style>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
@@ -994,9 +999,6 @@ function handleEnquirySubmit(event) {
 }
 
 // ── Google Translate engine ─────────────────────────────────────────────
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
-}
 function eiLang(lang, btn) {
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
@@ -1023,6 +1025,131 @@ function eiMoreLangs(btn) {
   el.style.display = open ? 'none' : 'block';
   if (btn) btn.classList.toggle('active', !open);
 }
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SOUND FX + ANIMATION ENGINE — Work With Me
+// ══════════════════════════════════════════════════════
+(function() {
+  var sfx = {
+    bong:    new Audio('sounds/Mac Startup Bong.mp3'),
+    laser:   new Audio('sounds/AI Robot Zap.mp3'),
+    book:    new Audio('sounds/Book Page Turning.mp3'),
+    padlock: new Audio('sounds/Padlock Sound.mp3'),
+    torch:   new Audio('sounds/Torch Switch On.mp3')
+  };
+  Object.keys(sfx).forEach(function(k) { sfx[k].preload = 'auto'; sfx[k].load(); });
+
+  function play(key) {
+    var a = sfx[key];
+    if (!a) return;
+    try { a.currentTime = 0; var p = a.play(); if (p && p.catch) p.catch(function(){}); } catch(e) {}
+  }
+
+  // ── Laser beam animation ─────────────────────────────────────────────
+  var laserTimer = null;
+  var laserFull  = '─────────────────────────────────────────►';
+  function startLaser() {
+    var beam = document.getElementById('ai-laser-beam');
+    if (!beam) return;
+    var pos = 0;
+    clearInterval(laserTimer);
+    laserTimer = setInterval(function() {
+      beam.textContent = laserFull.slice(0, pos + 1);
+      if (++pos >= laserFull.length) { clearInterval(laserTimer); laserTimer = null; }
+    }, 20);
+  }
+  function stopLaser() {
+    clearInterval(laserTimer); laserTimer = null;
+    var beam = document.getElementById('ai-laser-beam');
+    if (beam) beam.textContent = '';
+  }
+
+  // ── 💻 Web Design card — Mac bong + gold glow ───────────────────────
+  var cardWeb = document.getElementById('card-web');
+  var iconWeb = document.getElementById('icon-web');
+  if (cardWeb) {
+    cardWeb.addEventListener('mouseenter', function() {
+      play('bong');
+      if (iconWeb) iconWeb.classList.add('icon-glow-gold');
+    });
+    cardWeb.addEventListener('mouseleave', function() {
+      if (iconWeb) iconWeb.classList.remove('icon-glow-gold');
+    });
+    cardWeb.addEventListener('touchstart', function() {
+      play('bong');
+      if (iconWeb) { iconWeb.classList.add('icon-glow-gold'); setTimeout(function(){ iconWeb.classList.remove('icon-glow-gold'); }, 1200); }
+    }, { passive: true });
+  }
+
+  // ── 🤖 AI card — laser zap + red glow + animated beam ──────────────
+  var cardAi  = document.getElementById('card-ai');
+  var iconAi  = document.getElementById('icon-ai');
+  if (cardAi) {
+    cardAi.addEventListener('mouseenter', function() {
+      play('laser');
+      if (iconAi) iconAi.classList.add('icon-glow-red');
+      startLaser();
+    });
+    cardAi.addEventListener('mouseleave', function() {
+      if (iconAi) iconAi.classList.remove('icon-glow-red');
+      stopLaser();
+    });
+    cardAi.addEventListener('touchstart', function() {
+      play('laser');
+      if (iconAi) { iconAi.classList.add('icon-glow-red'); setTimeout(function(){ iconAi.classList.remove('icon-glow-red'); }, 1200); }
+      startLaser();
+      setTimeout(stopLaser, 1400);
+    }, { passive: true });
+  }
+
+  // ── 📗 Book card — page turning sound + gold glow ───────────────────
+  var cardBook = document.getElementById('card-book');
+  var iconBook = document.getElementById('icon-book');
+  if (cardBook) {
+    cardBook.addEventListener('mouseenter', function() {
+      play('book');
+      if (iconBook) iconBook.classList.add('icon-glow-gold');
+    });
+    cardBook.addEventListener('mouseleave', function() {
+      if (iconBook) iconBook.classList.remove('icon-glow-gold');
+    });
+    cardBook.addEventListener('touchstart', function() {
+      play('book');
+      if (iconBook) { iconBook.classList.add('icon-glow-gold'); setTimeout(function(){ iconBook.classList.remove('icon-glow-gold'); }, 1200); }
+    }, { passive: true });
+  }
+
+  // ── 🔒 Proton card — padlock click + gold glow ──────────────────────
+  var cardProton = document.getElementById('card-proton');
+  var iconProton = document.getElementById('icon-proton');
+  if (cardProton) {
+    cardProton.addEventListener('mouseenter', function() {
+      play('padlock');
+      if (iconProton) { iconProton.textContent = '🔓'; iconProton.classList.add('icon-glow-gold'); }
+    });
+    cardProton.addEventListener('mouseleave', function() {
+      if (iconProton) { iconProton.textContent = '🔒'; iconProton.classList.remove('icon-glow-gold'); }
+    });
+    cardProton.addEventListener('touchstart', function() {
+      play('padlock');
+      if (iconProton) {
+        iconProton.textContent = '🔓';
+        iconProton.classList.add('icon-glow-gold');
+        setTimeout(function(){ iconProton.textContent = '🔒'; iconProton.classList.remove('icon-glow-gold'); }, 1200);
+      }
+    }, { passive: true });
+  }
+
+  // ── 🔦 Olight card — torch click sound (beam CSS handles visuals) ────
+  var cardOlight = document.getElementById('card-olight');
+  if (cardOlight) {
+    cardOlight.addEventListener('mouseenter', function() { play('torch'); });
+    cardOlight.addEventListener('touchstart', function() { play('torch'); }, { passive: true });
+  }
+
+})();
 </script>
 </body>
 </html>

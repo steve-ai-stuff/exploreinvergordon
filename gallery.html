@@ -855,6 +855,11 @@
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
 </style>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+</script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </head>
 <body>
@@ -1162,10 +1167,28 @@
 </footer>
 
 <script>
-// ── Google Translate engine ─────────────────────────────────────────────
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+// ── Gallery tab switching ────────────────────────────────────────────────
+function switchGalleryTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.gallery-tab').forEach(function(b) { b.classList.remove('active'); });
+  var panel = document.getElementById('tab-panel-' + tab);
+  if (panel) panel.classList.add('active');
+  var btn = document.getElementById('tab-btn-' + tab);
+  if (btn) btn.classList.add('active');
 }
+
+// Auto-switch to visitor tab if URL hash is #visitor (linked from NC500/cruise-hub upload buttons)
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.hash === '#visitor') {
+    switchGalleryTab('visitor');
+    setTimeout(function() {
+      var panel = document.getElementById('tab-panel-visitor');
+      if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+  }
+});
+
+// ── Google Translate engine ─────────────────────────────────────────────
 function eiLang(lang, btn) {
   document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
