@@ -1,0 +1,2395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invergordon Cruise Port | Shore Excursions & Day Guide</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="Everything cruise passengers need for a perfect day in Invergordon. Shore excursions, top stops, getting into town, and a personalised itinerary service.">
+<meta name="keywords" content="Invergordon shore excursions, cruise port Invergordon, shore day guide, Port of Cromarty Firth, Scottish Highlands cruise, Invergordon itinerary">
+<meta name="author" content="Explore Invergordon">
+<link rel="canonical" href="https://exploreinvergordon.scot/cruise-hub">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exploreinvergordon.scot/cruise-hub">
+<meta property="og:title" content="Shore Day Concierge — Explore Invergordon">
+<meta property="og:description" content="Get a personalised shore day itinerary for Invergordon, delivered by email within 24 hours. Perfect for cruise passengers at the Port of Cromarty Firth.">
+<meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+    --spring-green: #56c27b;
+    --spring-yellow: #e8d44a;
+    --spring-lime: #8dc440;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANGUAGE BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(107,74,126,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.1rem 0.45rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-follow-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav-social-btn:hover { opacity: 0.75; transform: scale(1.12); }
+  @media (max-width: 600px) { .nav-follow-label { display: none; } }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    background: url('website_image_files/background_images/background_image.jpg') center 30% / cover no-repeat;
+    z-index: -1;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.65) 0%,
+      rgba(8,15,30,0.4) 40%,
+      rgba(8,15,30,0.85) 100%);
+    z-index: 1;
+  }
+
+  .hero-mountains {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+  }
+  .hero-mountains svg { width: 100%; height: 100%; }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes beginFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-9px); }
+  }
+
+  @keyframes beginGlow {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(201,168,76,0.25), 0 0 24px rgba(201,168,76,0.10), 0 6px 20px rgba(0,0,0,0.50);
+      border-color: rgba(201,168,76,0.65);
+    }
+    50% {
+      box-shadow: 0 0 22px rgba(201,168,76,0.60), 0 0 50px rgba(201,168,76,0.30), 0 0 80px rgba(201,168,76,0.13), 0 12px 35px rgba(0,0,0,0.40);
+      border-color: rgba(201,168,76,0.98);
+    }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .hero-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--heather-light);
+    margin: 1.5rem 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(201,168,76,0.07);
+    color: var(--gold);
+    padding: 0.95rem 3rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid rgba(201,168,76,0.65);
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    backdrop-filter: blur(6px);
+    animation:
+      fadeUp     0.8s ease         forwards  0.9s,
+      beginFloat 3.0s ease-in-out  infinite  1.8s,
+      beginGlow  2.5s ease-in-out  infinite  1.8s;
+  }
+
+  .hero-cta:hover {
+    background: rgba(201,168,76,0.18);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    box-shadow: 0 0 30px rgba(201,168,76,0.70), 0 0 65px rgba(201,168,76,0.40), 0 14px 40px rgba(0,0,0,0.40);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem; left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .scroll-hint span {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite 1.5s;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: linear-gradient(to right, rgba(8,15,30,0.6), rgba(107,74,126,0.15), rgba(8,15,30,0.6));
+    border-top: 2px solid rgba(201,168,76,0.55);
+    border-bottom: 2px solid rgba(201,168,76,0.55);
+    color: var(--mist);
+    padding: 1.25rem 2rem;
+    text-align: center;
+  }
+
+  .trust-bar p {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    letter-spacing: 0.03em;
+    color: var(--heather-light);
+  }
+
+  /* ── SECTION COMMON ── */
+  .section-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--heather-light);
+  }
+
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    padding: 5rem 1.5rem 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .step-card {
+    background: rgba(26,58,110,0.18);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  .step-card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--heather));
+  }
+
+  .step-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-text {
+    font-size: 1rem;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .what-section {
+    background: rgba(14,22,40,0.95);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid rgba(201,168,76,0.2);
+    padding: 4rem 1.5rem;
+  }
+
+  .what-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(86,194,123,0.08);
+    border: 1px solid rgba(86,194,123,0.2);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .include-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .include-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--spring-green);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .include-text span {
+    font-size: 0.95rem;
+    color: var(--mist);
+    line-height: 1.5;
+  }
+
+  /* ── PRICE CALLOUT ── */
+  .price-callout {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(107,74,126,0.12));
+    border: 2px solid rgba(201,168,76,0.45);
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-callout::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .price-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .price-detail {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--heather-light);
+    margin-top: 1rem;
+  }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    padding: 5rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .form-card {
+    background: rgba(14,22,40,0.90);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--heather));
+  }
+
+  .form-intro {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--heather-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .form-group {
+    margin-bottom: 1.4rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(8,15,30,0.8);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--text-light);
+    padding: 0.75rem 1rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(201,168,76,0.65);
+    background: rgba(8,15,30,0.95);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select option { background: #0e1628; color: var(--text-light); }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  .form-note {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: rgba(201,168,76,0.10);
+    color: var(--gold);
+    border: 1.5px solid rgba(201,168,76,0.65);
+    border-radius: 50px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .form-submit:hover {
+    background: rgba(201,168,76,0.20);
+    border-color: var(--gold);
+    box-shadow: 0 0 25px rgba(201,168,76,0.35);
+  }
+
+  .form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* ── PAYMENT NOTE ── */
+  .payment-note {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: rgba(26,58,110,0.15);
+    border-left: 3px solid var(--loch-light);
+    font-size: 0.92rem;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  .payment-note strong {
+    color: var(--gold);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  /* ── SUCCESS ── */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .form-success .success-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .form-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--spring-green);
+    margin-bottom: 0.75rem;
+  }
+
+  .form-success p {
+    font-size: 1rem;
+    color: var(--mist);
+    font-style: italic;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    padding: 4rem 1.5rem 5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 1.25rem 0;
+  }
+
+  .faq-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--cream);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+  }
+
+  .faq-toggle {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-q.open .faq-toggle { transform: rotate(45deg); }
+
+  .faq-a {
+    display: none;
+    font-size: 1rem;
+    color: var(--mist);
+    line-height: 1.7;
+    padding-top: 0.75rem;
+  }
+
+  .faq-a.open { display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 2px solid rgba(201,168,76,0.55);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.70rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .footer-proton a { color: var(--heather-light) !important; text-decoration: none; }
+  .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+
+  /* legacy footer classes — unused, kept for safety */
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  .footer-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    opacity: 0.6;
+  }
+
+  /* ── PAYMENT STEP ── */
+  .payment-step {
+    display: none;
+    margin-top: 2rem;
+  }
+
+  .payment-step-header {
+    text-align: center;
+    padding: 1.5rem 0 1.25rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    margin-bottom: 1.75rem;
+  }
+
+  .payment-step-header .step-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--spring-green);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .payment-step-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--cream);
+    font-weight: 700;
+  }
+
+  .payment-step-header h3 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .payment-summary {
+    background: rgba(86,194,123,0.07);
+    border: 1px solid rgba(86,194,123,0.2);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--mist);
+    line-height: 1.7;
+  }
+
+  .payment-summary strong {
+    color: var(--spring-green);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  /* SumUp widget container */
+  #sumup-card {
+    background: rgba(8,15,30,0.6);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.5rem;
+    min-height: 200px;
+  }
+
+  .payment-loading {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* SumUp widget outer styling — inner card inputs are PCI-iframe, can't style those */
+  [data-sumup-id="widget__container"] {
+    font-family: 'Crimson Pro', serif !important;
+    color: var(--text-light) !important;
+  }
+
+  /* ── FINAL SUCCESS ── */
+  .final-success {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .final-success .success-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .final-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--spring-green);
+    margin-bottom: 0.75rem;
+  }
+
+  .final-success p {
+    font-size: 1.05rem;
+    color: var(--mist);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── INTRO TEXT (shared) ── */
+  .intro-text {
+    font-size: 1.2rem;
+    color: var(--mist);
+    line-height: 1.8;
+    max-width: 650px;
+  }
+
+  .intro-text strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ── CRUISE TIPS (Getting Into Town strip) ── */
+  .cruise-section {
+    background: rgba(8,15,30,0.95);
+    border-bottom: 2px solid var(--gold);
+    padding: 1rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cruise-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .cruise-inner { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .cruise-tip {
+    padding: 1.5rem;
+    border-left: 2px solid var(--gold);
+  }
+
+  .cruise-tip h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .cruise-tip p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── CRUISE HUB SECTION ── */
+  .cruise-hub-section {
+    padding: 2rem 1.5rem;
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    background: var(--highland-deep);
+    border: 1px solid rgba(201,168,76,0.45);
+    border-radius: 4px;
+  }
+
+  .arrival-info-bar {
+    background: linear-gradient(to right, var(--heather), rgba(46,106,173,0.6), var(--heather));
+    border: 1px solid rgba(46,106,173,0.4);
+    padding: 1.75rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .arrival-info-bar {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1.5rem 1.25rem;
+    }
+  }
+
+  .arrival-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .arrival-stat-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+
+  .arrival-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+
+  .arrival-stat-label { font-size: 0.85rem; color: var(--text-light); }
+
+  .itinerary-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .itinerary-cards { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .itinerary-card {
+    background: rgba(8,15,30,0.7);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 6px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .itinerary-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .itinerary-card.card-2h::before { background: linear-gradient(to right, var(--gold), var(--gold-light)); }
+  .itinerary-card.card-4h::before { background: linear-gradient(to right, var(--loch-blue), var(--loch-light)); }
+  .itinerary-card.card-8h::before { background: linear-gradient(to right, var(--heather), var(--heather-light)); }
+
+  .itinerary-card:hover {
+    background: rgba(29,79,168,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+  }
+
+  .card-time-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .itinerary-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .itinerary-card .intro-text {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .itinerary-card ul { list-style: none; margin-bottom: 1.25rem; }
+
+  .itinerary-card li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.65rem;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .itinerary-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .card-option {
+    background: rgba(29,79,168,0.08);
+    border-left: 2px solid var(--heather-light);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+  }
+
+  .card-option strong {
+    color: var(--heather-light);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+
+  .card-option p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+  .pro-tip {
+    background: rgba(201,168,76,0.08);
+    border-left: 2px solid var(--gold);
+    padding: 1rem 1.25rem;
+    margin-top: 1.25rem;
+    border-radius: 3px;
+  }
+
+  .pro-tip::before { content: '💡 Pro Tip: '; font-weight: 700; color: var(--gold); }
+  .pro-tip p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+  .port-arrival-guide { margin: 3rem 0 2rem; }
+
+  .port-arrival-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .port-arrival-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .port-column {
+    background: rgba(29,79,168,0.12);
+    border: 1px solid rgba(29,79,168,0.25);
+    padding: 1.75rem;
+    border-radius: 6px;
+  }
+
+  .port-column h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .port-column p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.6; }
+  .port-column p strong { color: var(--cream); font-weight: 600; }
+
+  .ship-schedule-callout {
+    background: rgba(201,168,76,0.1);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 2rem 1.75rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .ship-schedule-callout .section-label { margin-bottom: 0.5rem; }
+
+  .ship-schedule-callout h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--cream);
+    margin-bottom: 1.25rem;
+  }
+
+  .ship-schedule-callout p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.7; }
+
+  .ship-schedule-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    padding: 0.8rem 1.75rem;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+
+  .ship-schedule-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  .ship-schedule-callout .ship-operators { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+
+  .excursion-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 500px) { .excursion-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .excursion-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .excursion-card {
+    background: rgba(8,15,30,0.8);
+    border: 1px solid rgba(29,79,168,0.25);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .excursion-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(to right, var(--heather), var(--loch-blue), var(--heather));
+  }
+
+  .excursion-card:hover {
+    background: rgba(29,79,168,0.18);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  .excursion-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+
+  .excursion-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .excursion-distance {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+  }
+
+  .excursion-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+
+  .excursion-card a {
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 0.2rem;
+    transition: all 0.2s ease;
+  }
+
+  .excursion-card a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+  .tips-accordion { margin: 2rem 0; }
+
+  .tip-item {
+    background: rgba(29,79,168,0.1);
+    border: 1px solid rgba(201,168,76,0.45);
+    margin-bottom: 0.75rem;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .tip-header {
+    background: rgba(29,79,168,0.15);
+    padding: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .tip-header:hover { background: rgba(29,79,168,0.25); }
+  .tip-header-icon { font-size: 1.25rem; margin-right: 0.75rem; }
+
+  .tip-header-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .tip-toggle { font-size: 1.25rem; color: var(--gold); transition: transform 0.3s ease; }
+  .tip-item.open .tip-toggle { transform: rotate(180deg); }
+
+  .tip-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.25rem; }
+  .tip-item.open .tip-body { max-height: 500px; padding: 1rem 1.25rem; }
+  .tip-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+  .photo-upload-teaser {
+    background: linear-gradient(135deg, rgba(29,79,168,0.15), rgba(107,74,126,0.08));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 6px;
+    padding: 2.25rem 1.75rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .photo-upload-teaser-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+  .photo-upload-teaser h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .photo-upload-teaser p { font-size: 1rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.7; }
+
+  .upload-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .upload-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,168,76,0.3);
+  }
+
+  /* ── Google Translate — suppression & dropdown styling ── */
+  /* ── Aggressively suppress Google Translate toolbar ── */
+  .goog-te-banner-frame,
+  iframe.goog-te-banner-frame,
+  .skiptranslate > iframe { display: none !important; height: 0 !important; }
+  body { top: 0px !important; }
+  html { top: 0px !important; }
+  body.translated-ltr,
+  body.translated-rtl { margin-top: 0 !important; top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.7rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
+
+  /* ── Nav horizontal scroll bar ───────────────────────────────────────────── */
+  .nav-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;          /* clips track content at wrapper boundary     */
+    margin-left: 1rem;
+  }
+  .nav-scroll-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #f5c842;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.45rem;
+    animation: navArrowPulse 2.4s ease-in-out infinite;
+    user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+  }
+  @keyframes navArrowPulse {
+    0%, 100% { opacity: 0.18; text-shadow: none; }
+    50%       { opacity: 1;    text-shadow: 0 0 7px #f5c842, 0 0 18px #f5c842, 0 0 32px rgba(245,200,66,0.45); }
+  }
+  /* ── Override nav-links to be scrollable at ALL widths ─────────────────── */
+  .nav-links {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+    flex-wrap: nowrap !important;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links li { white-space: nowrap; }
+
+  </style>
+
+<!-- SumUp Hosted Checkout — no client-side SDK needed; checkout created server-side via /api/create-checkout -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
+</div>
+
+<!-- Nav — identical to main site -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-follow-label">Check Our Socials:</span>
+    <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+  <div class="nav-scroll-wrapper">
+    <button class="nav-scroll-btn nav-scroll-left" aria-label="Scroll nav left">&#8249;</button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="murals.html">Murals</a></li>
+    <li><a href="cruise-hub.html" class="nav-active">Cruise Hub</a></li>
+      <li><a href="plan-my-day.html">Plan My Day</a></li>
+    <li><a href="nc500.html">NC500</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="work-with-me.html">Work With Me</a></li>
+  </ul>
+    <button class="nav-scroll-btn nav-scroll-right" aria-label="Scroll nav right">&#8250;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:0; max-width:100%;">
+  <div class="hero-bg"></div>
+
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mtnGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0e2040;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="mtnGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#091530;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#080f1e;stop-opacity:1"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,400 L0,280 L120,180 L200,220 L320,120 L440,190 L560,100 L680,170 L800,80 L920,160 L1040,90 L1160,150 L1280,110 L1360,170 L1440,130 L1440,400 Z" fill="url(#mtnGrad1)" opacity="0.6"/>
+      <polyline points="0,280 120,180 200,220 320,120 440,190 560,100 680,170 800,80 920,160 1040,90 1160,150 1280,110 1360,170 1440,130" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linejoin="round"/>
+      <polygon points="75,218 120,180 165,203"  fill="rgba(255,255,255,0.82)"/>
+      <polygon points="275,158 320,120 365,146" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="515,134 560,100 605,126" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="755,114 800,80  845,110" fill="rgba(255,255,255,0.88)"/>
+      <path d="M0,400 L0,320 L80,290 L200,310 L320,270 L440,295 L560,260 L680,285 L800,250 L920,275 L1040,240 L1160,265 L1280,255 L1440,270 L1440,400 Z" fill="url(#mtnGrad2)" opacity="0.9"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-tag" id="ch-hero-tag">Shore Day Concierge — Explore Invergordon</p>
+    <h1 class="hero-title">
+      Your Perfect<br>
+      <em>Shore Day</em>
+    </h1>
+    <p class="hero-subtitle" id="ch-hero-sub">A personalised itinerary built around your interests, your pace, and your time in port — delivered to your inbox within 24 hours.</p>
+    <a href="#order" class="hero-cta">Get My Itinerary — £15</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Find Out More</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <p id="ch-trust-bar">Local knowledge. Real recommendations. Written by someone who lives here — not a travel algorithm.</p>
+</div>
+
+<!-- CRUISE TIPS — Getting Into Town strip -->
+<div class="cruise-section">
+  <div class="cruise-inner">
+    <div class="cruise-tip">
+      <h4 id="tip1-title">Getting Into Town</h4>
+      <p id="tip1-text">The town centre is a 5-minute walk from the cruise terminal — less than a quarter of a mile. Simply walk straight from the port gates and you're on the High Street. No shuttle, no cost.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip2-title">How Long Do You Need?</h4>
+      <p id="tip2-text">The full mural trail takes 60–90 minutes at a leisurely pace. Add time for lunch on the High Street and a browse of the local shops, and a half-day in town is very comfortably filled.</p>
+    </div>
+    <div class="cruise-tip">
+      <h4 id="tip3-title">Before You Sail Away</h4>
+      <p id="tip3-text">Consider donating to the Invergordon Mural Trail — a volunteer-run Scottish charity that maintains this extraordinary outdoor gallery entirely through community effort and donations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CRUISE PASSENGER HUB — full info section -->
+<section id="cruise-hub" class="cruise-hub-section">
+  <p class="section-label" id="cruise-hub-label">Port of Cromarty Firth</p>
+  <h2 class="section-title" id="cruise-hub-title">Cruise Passenger <em>Hub</em></h2>
+  <div class="divider"></div>
+  <p class="intro-text" id="cruise-hub-intro">Everything you need to make the most of your time in Invergordon — from the moment your anchor drops to the moment you reboard.</p>
+
+  <!-- ARRIVAL INFO BAR -->
+  <div class="arrival-info-bar">
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">🚶</div>
+      <div class="arrival-stat-value" id="arrival-val-1">5 min walk</div>
+      <div class="arrival-stat-label" id="arrival-lbl-1">Town Centre from terminal</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">⏱️</div>
+      <div class="arrival-stat-value" id="arrival-val-2">8–12 hours</div>
+      <div class="arrival-stat-label" id="arrival-lbl-2">Typical port stay</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">💰</div>
+      <div class="arrival-stat-value" id="arrival-val-3">Free entry</div>
+      <div class="arrival-stat-label" id="arrival-lbl-3">Mural trail, town, High Street</div>
+    </div>
+    <div class="arrival-stat">
+      <div class="arrival-stat-icon">🗺️</div>
+      <div class="arrival-stat-value" id="arrival-val-4">No tour needed</div>
+      <div class="arrival-stat-label" id="arrival-lbl-4">Everything is walkable</div>
+    </div>
+  </div>
+
+  <!-- TIME-OPTIMISED ITINERARY CARDS -->
+  <h3 id="cruise-time-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem; text-align: center;">How to Spend Your Time</h3>
+
+  <div class="itinerary-cards">
+    <div class="itinerary-card card-2h">
+      <div class="card-time-badge" id="itin-2h-badge">2 Hours</div>
+      <h3 id="itin-2h-heading">Don't Panic</h3>
+      <p class="intro-text" id="itin-2h-intro">You can still have an unforgettable experience.</p>
+      <ul>
+        <li>Walk from terminal to High Street (5 min)</li>
+        <li>Coffee at a local café (20 min)</li>
+        <li>Walk the central mural section: The Long Goodbye, Pipes &amp; Drams, Gather Round (30–40 min)</li>
+        <li>Browse the High Street — Scottish gifts, local crafts (15 min)</li>
+        <li>Return to terminal with time to spare</li>
+      </ul>
+      <div class="pro-tip">
+        <p>Start at the railway station — it's the closest mural to the terminal and arguably the most impressive.</p>
+      </div>
+    </div>
+
+    <div class="itinerary-card card-4h">
+      <div class="card-time-badge" id="itin-4h-badge">4–5 Hours</div>
+      <h3 id="itin-4h-heading">The Ideal Day</h3>
+      <p class="intro-text" id="itin-4h-intro">You'll leave wishing you had more time.</p>
+      <ul>
+        <li>Full Mural Trail (60–90 min — all 12 murals)</li>
+        <li>Visit Invergordon Museum &amp; Heritage Centre (45 min)</li>
+        <li>Lunch on the High Street — sit-down meal (60 min)</li>
+        <li>Walk to the waterfront and enjoy the Cromarty Firth views (20 min)</li>
+        <li>Browse shops and pick up a Highland souvenir</li>
+      </ul>
+      <div class="pro-tip">
+        <p>Download the free Mural Trail app before you leave the ship — it gives audio stories for each mural.</p>
+      </div>
+    </div>
+
+    <div class="itinerary-card card-8h">
+      <div class="card-time-badge" id="itin-8h-badge">8+ Hours</div>
+      <h3 id="itin-8h-heading">Full Day</h3>
+      <p class="intro-text" id="itin-8h-intro">You are in the right place. This is Easter Ross — one of the most beautiful corners of Scotland.</p>
+      <div class="card-option">
+        <strong>Option A — The Highland Explorer</strong>
+        <p>Morning mural trail + museum → Lunch → Afternoon excursion to Fyrish Monument (stunning panoramic views, moderate walk, 90 min return) → Evening back in town for a whisky</p>
+      </div>
+      <div class="card-option">
+        <strong>Option B — The Distillery Trail</strong>
+        <p>Glenmorangie Distillery (20 min from port, world-famous 10-year-old, tours available) → Dalmore Distillery (15 min, luxury expressions, stunning estate) → Late lunch in Invergordon → Museum or more murals</p>
+      </div>
+      <div class="card-option">
+        <strong>Option C — The Highlands Escape</strong>
+        <p>Coach or taxi to Inverness (40 min) → Culloden Battlefield (2 hours) → Loch Ness (optional further 20 min) → Return by 5pm — make sure you leave plenty of time</p>
+      </div>
+      <div class="pro-tip">
+        <p>If you're heading to Loch Ness, book a taxi or join a small group excursion — public transport is limited. Local drivers know these roads like the back of their hand.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORT ARRIVAL GUIDE -->
+  <div class="port-arrival-guide" id="getting-started">
+    <h3 id="getting-started-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin-bottom: 1.5rem;">Getting Started</h3>
+    <div class="port-arrival-grid">
+      <div class="port-column">
+        <h3 id="port-col-1-heading">Getting from Ship to Town</h3>
+        <p>Your ship docks at the <strong>Port of Cromarty Firth terminal</strong></p>
+        <p>The town centre is a <strong>5-minute flat walk</strong> along the waterfront</p>
+        <p>Follow the signs or simply walk with the crowd — everyone's heading the same way</p>
+        <p>There is <strong>no need for a shuttle bus, taxi, or tour</strong> for the town itself</p>
+        <p>The <strong>High Street runs parallel to the water</strong> — you'll find it instantly</p>
+      </div>
+      <div class="port-column">
+        <h3 id="port-col-2-heading">What to Bring Ashore</h3>
+        <p><strong>Comfortable walking shoes</strong> — flat terrain, no hills needed for town</p>
+        <p><strong>Light waterproof layer</strong> — even in summer, this is Scotland</p>
+        <p><strong>A small amount of cash</strong> — some small businesses prefer it</p>
+        <p><strong>Your phone</strong> — fully charged, the mural trail deserves photos</p>
+        <p><strong>No currency exchange needed</strong> — Scotland uses British Pounds Sterling (£)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHIP SCHEDULE CALLOUT -->
+  <div class="ship-schedule-callout">
+    <p class="section-label" id="ship-sched-label">This Season</p>
+    <h3 id="ship-sched-heading">Ships Expected at Port of Cromarty Firth</h3>
+    <p id="ship-sched-text">The 2026 cruise season runs from March through October, with ships calling 2–3 times per week at peak. The Port of Cromarty Firth publishes the full schedule on their official website.</p>
+    <a href="https://pocf.co.uk/cruise/#cruisetimetable" target="_blank" class="ship-schedule-btn" id="ship-sched-btn">View Official Ship Schedule ↗</a>
+    <p class="ship-operators" id="ship-sched-ops">Look out for: <strong>Viking Cruises, Cunard, Fred. Olsen Cruises, Hurtigruten, Saga Cruises, Princess Cruises</strong> and many more calling throughout the season.</p>
+  </div>
+
+  <!-- POPULAR EXCURSIONS -->
+  <h3 id="excursions-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Popular Excursions</h3>
+
+  <div class="excursion-grid">
+    <div class="excursion-card" data-sound="wind">
+      <div class="excursion-icon">🏔️</div>
+      <h3>Fyrish Monument</h3>
+      <div class="excursion-distance">25 min drive</div>
+      <p>A replica of the Gates of Nagapatnam, built in 1782 to provide employment for local people after the Highland Clearances. Panoramic views over the Cromarty Firth.</p>
+      <a href="https://www.walkhighlands.co.uk/ullapool/fyrish-monument.shtml" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="whisky">
+      <div class="excursion-icon">🥃</div>
+      <h3>Glenmorangie Distillery</h3>
+      <div class="excursion-distance">18 min drive</div>
+      <p>One of Scotland's most celebrated Highland single malts. Distillery tours, tastings, and a beautiful estate on the shores of the Dornoch Firth.</p>
+      <a href="https://www.glenmorangie.com/en-gb/visit-us/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="whisky">
+      <div class="excursion-icon">🥃</div>
+      <h3>Dalmore Distillery</h3>
+      <div class="excursion-distance">12 min drive</div>
+      <p>Legendary for its complex, sherry-influenced expressions. One of the world's most collectable whiskies, made just minutes from the port.</p>
+      <a href="https://www.thedalmore.com/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="sword">
+      <div class="excursion-icon">⚔️</div>
+      <h3>Culloden Battlefield</h3>
+      <div class="excursion-distance">45 min drive</div>
+      <p>The site of the last pitched battle on British soil (1746). A haunting, beautifully managed National Trust for Scotland site. Essential Highland history.</p>
+      <a href="https://www.nts.org.uk/visit/places/culloden" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="water">
+      <div class="excursion-icon">🏔️</div>
+      <h3>Loch Ness</h3>
+      <div class="excursion-distance">60 min drive</div>
+      <p>Home of the world's most famous mystery. The Great Glen and the loch itself are breathtaking regardless of what lurks beneath. Urquhart Castle on the shore is stunning.</p>
+      <a href="https://lochness.com/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="horn">
+      <div class="excursion-icon">🏙️</div>
+      <h3>Inverness City Centre</h3>
+      <div class="excursion-distance">40 min drive</div>
+      <p>The capital of the Highlands. Victorian Market, Inverness Castle, the River Ness, independent shops, and excellent food. A full half-day destination.</p>
+      <a href="https://www.explore-inverness.com" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="fanfare">
+      <div class="excursion-icon">🏰</div>
+      <h3>Dunrobin Castle</h3>
+      <div class="excursion-distance">45 min drive</div>
+      <p>The largest castle in the Northern Highlands. A fairytale turreted palace set in formal French-style gardens overlooking the sea. Falconry displays in the grounds.</p>
+      <a href="https://www.dunrobincastle.co.uk/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="fanfare">
+      <div class="excursion-icon">🏰</div>
+      <h3>Urquhart Castle</h3>
+      <div class="excursion-distance">65 min drive</div>
+      <p>One of Scotland's most dramatic castle ruins, perched on the banks of Loch Ness. A Historic Environment Scotland site — the most photographed castle in the Highlands.</p>
+      <a href="https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+    <div class="excursion-card" data-sound="fanfare">
+      <div class="excursion-icon">👑</div>
+      <h3>Inverness Castle Experience</h3>
+      <div class="excursion-distance">40 min drive</div>
+      <p>Scotland's newest major visitor attraction, newly opened in the heart of Inverness with breathtaking views over the River Ness. An immersive 10,000-year Highland journey.</p>
+      <a href="https://invernesscastle.scot/" target="_blank" rel="noopener">Learn more ↗</a>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS ACCORDION -->
+  <h3 id="tips-heading" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin: 2rem 0 1.5rem;">Practical Tips</h3>
+
+  <div class="tips-accordion">
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">💷</span>
+        <span class="tip-header-text" id="tip-h-1">Money &amp; Payments</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-1">Scotland uses British Pounds Sterling (£). Cards are widely accepted. A small amount of cash is useful for market stalls, small cafés, and tips.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🌤️</span>
+        <span class="tip-header-text" id="tip-h-2">Weather</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-2">Even in summer, the Highlands can be unpredictable. A light waterproof layer is always wise. July and August are the warmest months, averaging 17–19°C.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">📱</span>
+        <span class="tip-header-text" id="tip-h-3">Mobile &amp; Wi-Fi</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-3">UK mobile networks (EE, O2, Vodafone) cover the town well. Free Wi-Fi is available in some cafés. Download offline maps before you arrive.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🚕</span>
+        <span class="tip-header-text" id="tip-h-4">Getting Around</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-4">Town centre is fully walkable. For excursions, local taxis and pre-booked coaches serve the port. The Port of Cromarty Firth can advise on authorised operators.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🛒</span>
+        <span class="tip-header-text" id="tip-h-5">Shopping Tips</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-5">Look for authentic Scottish goods — Harris Tweed, cashmere, locally made crafts. Avoid anything that says 'Made in China' on the label if you want the real thing.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-header">
+        <span class="tip-header-icon">🐾</span>
+        <span class="tip-header-text" id="tip-h-6">A Scottish Welcome</span>
+        <span class="tip-toggle">▼</span>
+      </div>
+      <div class="tip-body">
+        <p id="tip-b-6">Invergordon is a friendly, genuine town — not a tourist trap. The locals are proud of where they live and love sharing it with visitors. Don't be shy — say hello.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO UPLOAD TEASER -->
+  <div class="photo-upload-teaser">
+    <div class="photo-upload-teaser-icon">📸</div>
+    <h3 id="upload-title">Do you have any photos you have taken anywhere around Invergordon or the Highlands that you love?</h3>
+    <p id="upload-text">Maybe you visited us from overseas and want to share an image from where you live instead? We would love to see those too. Upload your favourite photo and we'll feature it in our Visitor Gallery.</p>
+    <button class="upload-btn" onclick="showUploadComingSoon(this)" id="upload-btn-text">Upload Your Photo</button>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="how-section" id="how">
+  <p class="section-label">The Simple Process</p>
+  <h2 class="section-title">How It <em>Works</em></h2>
+  <div class="divider"></div>
+  <p style="color:var(--mist); font-size:1.05rem; max-width:600px;">Four easy steps between you and a perfect day in the Scottish Highlands.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <span class="step-number">01</span>
+      <p class="step-title">Tell Us About You</p>
+      <p class="step-text">Fill in the short form below. Your ship, your arrival time, what you enjoy, and who's coming with you.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-number">02</span>
+      <p class="step-title">We Build Your Plan</p>
+      <p class="step-text">We craft a personalised itinerary using real local knowledge — timed to your exact port hours, tailored to your group.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-number">03</span>
+      <p class="step-title">Pay Securely</p>
+      <p class="step-text">We reply with a secure £15 payment link. Once confirmed, your itinerary is written and on its way to your inbox.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-number">04</span>
+      <p class="step-title">Enjoy Your Day</p>
+      <p class="step-text">Step off the ship with a plan. No scrambling, no decision fatigue — just the best of Invergordon and the Highlands, at your pace.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT YOU GET -->
+<div class="what-section">
+  <div class="what-inner">
+    <p class="section-label">What's Included</p>
+    <h2 class="section-title">Everything You Need <em>Ashore</em></h2>
+    <div class="divider"></div>
+
+    <div class="includes-grid">
+      <div class="include-item">
+        <span class="include-icon">🗺️</span>
+        <div class="include-text">
+          <strong>Hour-by-Hour Itinerary</strong>
+          <span>Timed precisely to your arrival and all-aboard, so you never cut it close getting back to the ship.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🍽️</span>
+        <div class="include-text">
+          <strong>Local Food & Drink Picks</strong>
+          <span>Where the locals actually eat — cafés, pubs, bakeries and lunch stops with honest descriptions.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🎨</span>
+        <div class="include-text">
+          <strong>The Mural Trail Guide</strong>
+          <span>Invergordon's famous 18 giant murals mapped in the right order, with the stories behind each one.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🚗</span>
+        <div class="include-text">
+          <strong>Getting Around</strong>
+          <span>Bus routes, taxi info, walking distances — everything you need before you step off the gangway.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🏔️</span>
+        <div class="include-text">
+          <strong>Highlands Excursion Options</strong>
+          <span>Day trips to Loch Ness, Culloden, Dornoch Cathedral and more — with realistic timing for port days.</span>
+        </div>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">💡</span>
+        <div class="include-text">
+          <strong>Insider Tips</strong>
+          <span>What to watch for, what to avoid, what to buy — advice you'd only get from someone who actually lives here.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="price-callout" id="order">
+      <span class="price-amount">£15</span>
+      <span class="price-label">Per Itinerary · One-Time</span>
+      <p class="price-detail">Delivered by email within 24 hours of your request.<br>Order at least one day before your port call for best results.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-section">
+  <p class="section-label">Book Your Concierge</p>
+  <h2 class="section-title">Tell Us About <em>Your Day</em></h2>
+  <div class="divider"></div>
+
+  <div class="form-card">
+    <p class="form-intro">Fill in the details below and we'll put together your personalised shore day itinerary. The more you tell us, the better we can tailor it.</p>
+
+    <form id="shore-day-form" action="https://formspree.io/f/mpqkepnd" method="POST">
+      <!-- Anti-spam honeypot -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_subject" value="🚢 Shore Day Concierge Request — Explore Invergordon">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Sarah Thompson" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <span class="form-note">Your itinerary will be sent here.</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ship">Cruise Ship *</label>
+          <input type="text" id="ship" name="ship_name" placeholder="e.g. Norwegian Getaway" required>
+        </div>
+        <div class="form-group">
+          <label for="port-date">Date in Port *</label>
+          <input type="date" id="port-date" name="port_date" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="arrival">Ship Arrives (approx) *</label>
+          <input type="time" id="arrival" name="arrival_time" required>
+          <span class="form-note">Check your ship's schedule.</span>
+        </div>
+        <div class="form-group">
+          <label for="allabroad">All Aboard Time *</label>
+          <input type="time" id="allabroad" name="all_aboard_time" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="group">Who's Coming? *</label>
+        <select id="group" name="group_type" required>
+          <option value="" disabled selected>Select your group type</option>
+          <option>Solo traveller</option>
+          <option>Couple</option>
+          <option>Small group (3–5 people)</option>
+          <option>Family with young children</option>
+          <option>Family with older children / teens</option>
+          <option>Larger group (6+)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="interests">What Do You Enjoy?</label>
+        <textarea id="interests" name="interests" placeholder="e.g. history, coastal walks, photography, local food, whisky, castles, highland scenery — tell us what makes a great day for you"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="mobility">Mobility Considerations?</label>
+        <select id="mobility" name="mobility">
+          <option>No — happy walking</option>
+          <option>Prefer shorter walks / flatter ground</option>
+          <option>Wheelchair or mobility aid user</option>
+          <option>Mixed in our group</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="extras">Anything Else We Should Know?</label>
+        <textarea id="extras" name="extra_info" placeholder="e.g. Loch Ness is a must, we don't drink, we have a budget in mind, we've been before…" style="min-height:80px;"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit" id="submit-btn">Continue to Payment →</button>
+    </form>
+
+    <!-- Step 2: Redirect to SumUp Hosted Checkout — shown briefly while redirect fires -->
+    <div class="payment-step" id="payment-step">
+
+      <div class="payment-step-header">
+        <span class="step-tag">✅ Details Received — Step 2 of 2</span>
+        <h3>Complete Your <em>Payment</em></h3>
+      </div>
+
+      <div class="payment-summary" id="payment-summary">
+        <!-- Populated by JS with customer name, ship, date -->
+      </div>
+
+      <div class="payment-loading" id="payment-loading">
+        <p style="margin-bottom:0.75rem;">Taking you to secure payment…</p>
+        <p style="font-size:0.65rem; opacity:0.6;">Powered by SumUp · £15.00 · GBP</p>
+      </div>
+
+      <!-- Error state — shown if checkout creation fails -->
+      <div id="payment-error" style="display:none; color:#ff8080; text-align:center; padding:1rem; font-size:0.9rem; line-height:1.6;">
+        <p>⚠️ We couldn't start the payment session.</p>
+        <p style="margin-top:0.5rem;">Please email <a href="mailto:hello@exploreinvergordon.scot" style="color:var(--gold);">hello@exploreinvergordon.scot</a> and we'll sort it straight away.</p>
+      </div>
+
+    </div>
+
+    <!-- Final thank you — shown after payment succeeds -->
+    <div class="final-success" id="final-success">
+      <span class="success-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+      <h3>Payment Confirmed!</h3>
+      <p>Thank you — your personalised Shore Day itinerary is on its way.<br>
+      Check your inbox within 24 hours. Enjoy the Highlands!</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <p class="section-label">Questions</p>
+  <h2 class="section-title">Frequently <em>Asked</em></h2>
+  <div class="divider"></div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      How quickly will my itinerary arrive?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">We aim to send all itineraries within 24 hours of payment. We recommend ordering at least 24–48 hours before your port date for the best experience.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      What format does it come in?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">You'll receive a clear, well-formatted email with your full itinerary — easy to screenshot or save to your phone. No app needed, no login required.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Is this genuinely personalised or a template?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">It's genuinely personalised. We read your answers carefully and build your plan around your specific interests, group, port times, and pace. We don't send a pre-written template.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Who writes the itinerary?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">Explore Invergordon is run locally from the Scottish Highlands. Your itinerary is built on real local knowledge — the kind of advice you'd get from a knowledgeable friend, not a tourist board leaflet.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      How does the £15 payment work?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">After filling in your details, you'll be taken to a secure SumUp-hosted payment page — card, Apple Pay, and Google Pay all accepted. Pay £15, and SumUp brings you straight back here with a confirmation. The whole process takes about a minute.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      What if I need to change my details after submitting?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">Just reply to our email before payment and we'll update everything. Once the itinerary has been written and sent, changes may not be possible — so do let us know as soon as you can.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Can I get a refund?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-a">If we haven't started your itinerary yet, we'll refund in full. Once it's been written and sent, refunds aren't possible — but we'll always do our best to make sure you're happy with what you receive.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>EXPLORE INVERGORDON · SCOTTISH HIGHLANDS</p>
+  <p style="margin-top:0.8rem; font-size:0.8rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="index.html">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
+</footer>
+
+<script>
+  // ── FAQ accordion ────────────────────────────────────────────────────────
+  function toggleFaq(el) {
+    const answer = el.nextElementSibling;
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.classList.remove('open');
+      q.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      el.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  // ── Elements ─────────────────────────────────────────────────────────────
+  const form           = document.getElementById('shore-day-form');
+  const btn            = document.getElementById('submit-btn');
+  const formCard       = document.querySelector('.form-card');
+  const paymentStep    = document.getElementById('payment-step');
+  const paymentSummary = document.getElementById('payment-summary');
+  const paymentLoading = document.getElementById('payment-loading');
+  const paymentError   = document.getElementById('payment-error');
+  const finalSuccess   = document.getElementById('final-success');
+
+  // ── Page load: detect ?booking=confirmed (SumUp redirect_url return) ─────
+  (function checkBookingConfirmed() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('booking') === 'confirmed') {
+      // Hide form section, show confirmation
+      const formSection = document.querySelector('.form-section');
+      if (formSection) formSection.style.display = 'none';
+      finalSuccess.style.display = 'block';
+      finalSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Clean the URL
+      history.replaceState(null, '', window.location.pathname + '#order');
+    }
+  })();
+
+  // Store form metadata for the SumUp checkout description
+  let orderMeta = {};
+
+  // ── Step 1: Submit booking details to Formspree ──────────────────────────
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    btn.disabled    = true;
+    btn.textContent = 'Submitting details…';
+
+    orderMeta = {
+      name:  document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      ship:  document.getElementById('ship').value.trim(),
+      date:  document.getElementById('port-date').value,
+    };
+
+    try {
+      const res = await fetch(form.action, {
+        method:  'POST',
+        body:    new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (res.ok) {
+        form.style.display      = 'none';
+        const intro = formCard.querySelector('.form-intro');
+        if (intro) intro.style.display = 'none';
+        paymentStep.style.display = 'block';
+        paymentStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        createHostedCheckout();
+      } else {
+        btn.disabled    = false;
+        btn.textContent = 'Continue to Payment →';
+        alert('Something went wrong — please try again or email hello@exploreinvergordon.scot');
+      }
+    } catch (err) {
+      btn.disabled    = false;
+      btn.textContent = 'Continue to Payment →';
+      alert('Something went wrong — please try again or email hello@exploreinvergordon.scot');
+    }
+  });
+
+  // ── Step 2: Create SumUp Hosted Checkout via Cloudflare Function ─────────
+  async function createHostedCheckout() {
+    // Populate the order summary card
+    const dateStr = orderMeta.date
+      ? new Date(orderMeta.date).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+      : 'Date not provided';
+
+    paymentSummary.innerHTML = `
+      <strong>Your Order Summary</strong><br>
+      ${orderMeta.name} &nbsp;·&nbsp; ${orderMeta.ship} &nbsp;·&nbsp; ${dateStr}<br>
+      <span style="color:var(--gold);font-family:'Overpass Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;">
+        Shore Day Concierge &nbsp;·&nbsp; £15.00
+      </span>
+    `;
+
+    try {
+      const cfRes = await fetch('/api/create-checkout', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(orderMeta),
+      });
+
+      if (!cfRes.ok) throw new Error(`Function returned ${cfRes.status}`);
+      const data = await cfRes.json();
+
+      if (!data.hosted_checkout_url) throw new Error('No checkout URL returned');
+
+      // Redirect the customer to SumUp's hosted payment page.
+      // SumUp will redirect back to cruise-hub.html?booking=confirmed on success.
+      window.location.href = data.hosted_checkout_url;
+
+    } catch (err) {
+      paymentLoading.style.display = 'none';
+      paymentError.style.display   = 'block';
+      console.error('Checkout creation error:', err);
+    }
+  }
+
+  // ── Practical Tips accordion ──
+  document.querySelectorAll('.tip-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      this.parentElement.classList.toggle('open');
+    });
+  });
+
+  // ── Photo upload — camera SFX + redirect to Visitor Gallery ──
+  function showUploadComingSoon(btn) {
+    if (window.playFX) window.playFX('camera');
+    var teaser = btn.closest('.photo-upload-teaser');
+    if (teaser && !teaser.querySelector('.upload-msg')) {
+      var msg = document.createElement('p');
+      msg.className = 'upload-msg';
+      msg.style.cssText = 'color:var(--gold);font-family:"Overpass Mono",monospace;font-size:0.75rem;letter-spacing:0.1em;margin-top:0.9rem;text-align:center;';
+      msg.textContent = '📸 Taking you to the Visitor Gallery…';
+      teaser.appendChild(msg);
+    }
+    setTimeout(function() { window.location.href = 'gallery.html#visitor'; }, 650);
+  }
+
+
+// ── Google Translate engine ─────────────────────────────────────────────
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en') {
+    // Clear googtrans cookie — same mechanism as GT's own "Show Original" link
+    var _hn = location.hostname;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + _hn;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + _hn;
+    window.location.reload();
+    return;
+  }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
+  }
+  fire();
+}
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
+  if (!open) {
+    var autoHideTimer = null;
+    (function watchCombo() {
+      var combo = document.querySelector('.goog-te-combo');
+      if (!combo) { setTimeout(watchCombo, 300); return; }
+      function onSelect() {
+        if (combo.value) {
+          clearTimeout(autoHideTimer);
+          autoHideTimer = setTimeout(function() {
+            el.style.display = 'none';
+            if (btn) btn.classList.remove('active');
+          }, 5000);
+        }
+        combo.removeEventListener('change', onSelect);
+      }
+      combo.addEventListener('change', onSelect);
+    })();
+  }
+}
+// ── Suppress GT toolbar dynamically (catches injected iframe) ─────────────
+(function() {
+  function hideGTBar() {
+    document.querySelectorAll('iframe').forEach(function(f) {
+      if ((f.className || '').indexOf('goog-te') !== -1) {
+        f.style.cssText = 'display:none!important;height:0!important;border:0!important;';
+      }
+    });
+    if (document.body) document.body.style.top = '0';
+    document.documentElement.style.top = '0';
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      var obs = new MutationObserver(hideGTBar);
+      obs.observe(document.body, { childList: true, subtree: true });
+      hideGTBar();
+    });
+  } else {
+    var obs = new MutationObserver(hideGTBar);
+    obs.observe(document.body, { childList: true, subtree: true });
+    hideGTBar();
+  }
+  [500, 1000, 2000, 3000].forEach(function(t) { setTimeout(hideGTBar, t); });
+})();
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SOUND FX ENGINE — Cruise Hub
+// ══════════════════════════════════════════════════════
+(function() {
+  var files = {
+    bagpipes:  'sounds/bagpipes_trimmed.mp3',
+    whooshFwd: 'sounds/bamboo-whoosh_trimmed.mp3',
+    whooshBck: 'sounds/whoosh-effect.mp3',
+    camera:    'sounds/camera-shutter.mp3',
+    wind:      'sounds/cemetary-wind_trimmed.mp3',
+    whisky:    'sounds/pouring-whisky_trimmed.mp3',
+    sword:     'sounds/draw-sword.mp3',
+    water:     'sounds/water-drop.mp3',
+    horn:      'sounds/car-horn.mp3',
+    fanfare:   'sounds/castle-medieval-fanfare_trimmed.mp3',
+    cow:       'sounds/highland-cow-moo.mp3'
+  };
+  var pool = {};
+  Object.keys(files).forEach(function(k) {
+    var a = new Audio(files[k]);
+    a.preload = 'auto';
+    a.load();
+    pool[k] = a;
+  });
+  window.playFX = function(key) {
+    var a = pool[key];
+    if (!a) return;
+    try {
+      a.currentTime = 0;
+      var p = a.play();
+      if (p && typeof p.catch === 'function') p.catch(function(){});
+    } catch(e) {}
+  };
+})();
+
+// ── Excursion card sounds — hover (desktop) + tap (mobile) ──────────────
+document.querySelectorAll('.excursion-card[data-sound]').forEach(function(card) {
+  var key = card.getAttribute('data-sound');
+  card.addEventListener('mouseenter', function() { if (window.playFX) window.playFX(key); });
+  card.addEventListener('touchstart', function() { if (window.playFX) window.playFX(key); }, { passive: true });
+});
+</script>
+<script>
+// ── Nav scroll arrows ────────────────────────────────────────────────────
+(function() {
+  var track   = document.querySelector('.nav-links');
+  var leftBtn = document.querySelector('.nav-scroll-left');
+  var rightBtn= document.querySelector('.nav-scroll-right');
+  if (!track) return;
+  var _navTimer = null;
+  function navGo(dir) {
+    navStop();
+    _navTimer = setInterval(function() { track.scrollLeft += dir * 4; }, 16);
+  }
+  function navStop() { clearInterval(_navTimer); _navTimer = null; }
+  function addHoverTouch(btn, dir) {
+    btn.addEventListener('mouseenter',  function() { navGo(dir); });
+    btn.addEventListener('mouseleave',  navStop);
+    btn.addEventListener('touchstart',  function() { navGo(dir); }, { passive: true });
+    btn.addEventListener('touchend',    navStop);
+    btn.addEventListener('touchcancel', navStop);
+  }
+  if (leftBtn)  addHoverTouch(leftBtn,  -1);
+  if (rightBtn) addHoverTouch(rightBtn,  1);
+})();
+</script>
+</body>
+</html>
