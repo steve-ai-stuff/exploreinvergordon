@@ -1444,8 +1444,7 @@
 
   </style>
 
-<!-- SumUp Payment Widget SDK -->
-<script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
+<!-- SumUp Hosted Checkout — no client-side SDK needed; checkout created server-side via /api/create-checkout -->
 <script>
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
@@ -1486,6 +1485,7 @@ function googleTranslateElementInit() {
     <li><a href="index.html">Home</a></li>
     <li><a href="murals.html">Murals</a></li>
     <li><a href="cruise-hub.html" class="nav-active">Cruise Hub</a></li>
+      <li><a href="plan-my-day.html">Plan My Day</a></li>
     <li><a href="nc500.html">NC500</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="blog.html">Blog</a></li>
@@ -2002,7 +2002,7 @@ function googleTranslateElementInit() {
       <button type="submit" class="form-submit" id="submit-btn">Continue to Payment →</button>
     </form>
 
-    <!-- Step 2: Payment Widget — shown after form submits successfully -->
+    <!-- Step 2: Redirect to SumUp Hosted Checkout — shown briefly while redirect fires -->
     <div class="payment-step" id="payment-step">
 
       <div class="payment-step-header">
@@ -2014,8 +2014,16 @@ function googleTranslateElementInit() {
         <!-- Populated by JS with customer name, ship, date -->
       </div>
 
-      <div class="payment-loading" id="payment-loading">Loading secure payment form…</div>
-      <div id="sumup-card"></div>
+      <div class="payment-loading" id="payment-loading">
+        <p style="margin-bottom:0.75rem;">Taking you to secure payment…</p>
+        <p style="font-size:0.65rem; opacity:0.6;">Powered by SumUp · £15.00 · GBP</p>
+      </div>
+
+      <!-- Error state — shown if checkout creation fails -->
+      <div id="payment-error" style="display:none; color:#ff8080; text-align:center; padding:1rem; font-size:0.9rem; line-height:1.6;">
+        <p>⚠️ We couldn't start the payment session.</p>
+        <p style="margin-top:0.5rem;">Please email <a href="mailto:hello@exploreinvergordon.scot" style="color:var(--gold);">hello@exploreinvergordon.scot</a> and we'll sort it straight away.</p>
+      </div>
 
     </div>
 
@@ -2073,7 +2081,7 @@ function googleTranslateElementInit() {
       How does the £15 payment work?
       <span class="faq-toggle">+</span>
     </div>
-    <div class="faq-a">After filling in your details, you'll be taken straight to a secure card payment form on the same page — powered by SumUp. Enter your card details, pay £15, and you're done. No redirect, no separate link. Your itinerary is written and sent once payment is confirmed.</div>
+    <div class="faq-a">After filling in your details, you'll be taken to a secure SumUp-hosted payment page — card, Apple Pay, and Google Pay all accepted. Pay £15, and SumUp brings you straight back here with a confirmation. The whole process takes about a minute.</div>
   </div>
 
   <div class="faq-item">
@@ -2116,24 +2124,38 @@ function googleTranslateElementInit() {
   }
 
   // ── Elements ─────────────────────────────────────────────────────────────
-  const form          = document.getElementById('shore-day-form');
-  const btn           = document.getElementById('submit-btn');
-  const formCard      = document.querySelector('.form-card');
-  const paymentStep   = document.getElementById('payment-step');
-  const paymentSummary= document.getElementById('payment-summary');
-  const paymentLoading= document.getElementById('payment-loading');
-  const finalSuccess  = document.getElementById('final-success');
+  const form           = document.getElementById('shore-day-form');
+  const btn            = document.getElementById('submit-btn');
+  const formCard       = document.querySelector('.form-card');
+  const paymentStep    = document.getElementById('payment-step');
+  const paymentSummary = document.getElementById('payment-summary');
+  const paymentLoading = document.getElementById('payment-loading');
+  const paymentError   = document.getElementById('payment-error');
+  const finalSuccess   = document.getElementById('final-success');
 
-  // Store form metadata for checkout description and summary card
+  // ── Page load: detect ?booking=confirmed (SumUp redirect_url return) ─────
+  (function checkBookingConfirmed() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('booking') === 'confirmed') {
+      // Hide form section, show confirmation
+      const formSection = document.querySelector('.form-section');
+      if (formSection) formSection.style.display = 'none';
+      finalSuccess.style.display = 'block';
+      finalSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Clean the URL
+      history.replaceState(null, '', window.location.pathname + '#order');
+    }
+  })();
+
+  // Store form metadata for the SumUp checkout description
   let orderMeta = {};
 
-  // ── Step 1: Submit details to Formspree ──────────────────────────────────
+  // ── Step 1: Submit booking details to Formspree ──────────────────────────
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    btn.disabled = true;
-    btn.textContent = 'Submitting…';
+    btn.disabled    = true;
+    btn.textContent = 'Submitting details…';
 
-    // Capture key fields for the payment summary and SumUp description
     orderMeta = {
       name:  document.getElementById('name').value.trim(),
       email: document.getElementById('email').value.trim(),
@@ -2149,11 +2171,12 @@ function googleTranslateElementInit() {
       });
 
       if (res.ok) {
-        // Hide the form, show the payment step
         form.style.display      = 'none';
-        formCard.querySelector('.form-intro').style.display = 'none';
+        const intro = formCard.querySelector('.form-intro');
+        if (intro) intro.style.display = 'none';
         paymentStep.style.display = 'block';
-        showPaymentWidget();
+        paymentStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        createHostedCheckout();
       } else {
         btn.disabled    = false;
         btn.textContent = 'Continue to Payment →';
@@ -2166,21 +2189,21 @@ function googleTranslateElementInit() {
     }
   });
 
-  // ── Step 2: Create checkout + mount SumUp Payment Widget ─────────────────
-  async function showPaymentWidget() {
-    // Populate the summary card
+  // ── Step 2: Create SumUp Hosted Checkout via Cloudflare Function ─────────
+  async function createHostedCheckout() {
+    // Populate the order summary card
     const dateStr = orderMeta.date
-      ? new Date(orderMeta.date).toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' })
+      ? new Date(orderMeta.date).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
       : 'Date not provided';
 
     paymentSummary.innerHTML = `
-      <strong>Your Order Summary</strong>
+      <strong>Your Order Summary</strong><br>
       ${orderMeta.name} &nbsp;·&nbsp; ${orderMeta.ship} &nbsp;·&nbsp; ${dateStr}<br>
-      <span style="color:var(--gold); font-family:'Overpass Mono',monospace; font-size:0.75rem; letter-spacing:0.1em;">Shore Day Concierge &nbsp;·&nbsp; £15.00</span>
+      <span style="color:var(--gold);font-family:'Overpass Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;">
+        Shore Day Concierge &nbsp;·&nbsp; £15.00
+      </span>
     `;
 
-    // Create the checkout via our Cloudflare Function
-    let checkoutId;
     try {
       const cfRes = await fetch('/api/create-checkout', {
         method:  'POST',
@@ -2188,43 +2211,20 @@ function googleTranslateElementInit() {
         body:    JSON.stringify(orderMeta),
       });
 
-      if (!cfRes.ok) throw new Error('Checkout creation failed');
+      if (!cfRes.ok) throw new Error(`Function returned ${cfRes.status}`);
       const data = await cfRes.json();
-      checkoutId = data.checkoutId;
+
+      if (!data.hosted_checkout_url) throw new Error('No checkout URL returned');
+
+      // Redirect the customer to SumUp's hosted payment page.
+      // SumUp will redirect back to cruise-hub.html?booking=confirmed on success.
+      window.location.href = data.hosted_checkout_url;
+
     } catch (err) {
-      paymentLoading.textContent = 'Payment form failed to load. Please email hello@exploreinvergordon.scot to complete your order.';
-      return;
+      paymentLoading.style.display = 'none';
+      paymentError.style.display   = 'block';
+      console.error('Checkout creation error:', err);
     }
-
-    // Hide the loading indicator
-    paymentLoading.style.display = 'none';
-
-    // Mount the SumUp Payment Widget
-    SumUpCard.mount({
-      id:         'sumup-card',
-      checkoutId: checkoutId,
-      amount:     '15.00',
-      currency:   'GBP',
-      locale:     'en-GB',
-      email:      orderMeta.email,   // pre-fills email in widget
-      showEmail:  false,             // we already have it from the form
-      showFooter: true,
-      onResponse: function(type, body) {
-        if (type === 'success') {
-          // Payment processed — show final confirmation
-          paymentStep.style.display  = 'none';
-          finalSuccess.style.display = 'block';
-          // Scroll to the confirmation
-          finalSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else if (type === 'error' || type === 'fail') {
-          // Let the widget show its own error state, but also surface a message
-          console.error('SumUp payment error:', type, body);
-        }
-      },
-      onLoad: function() {
-        paymentLoading.style.display = 'none';
-      },
-    });
   }
 
   // ── Practical Tips accordion ──
