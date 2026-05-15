@@ -1,91 +1,104 @@
-
 /**
- * Cloudflare Pages Function — SumUp Checkout Creator
- * Route: /api/create-checkout (POST)
+ * Cloudflare Pages Function — /api/create-checkout
+ * Route: POST /api/create-checkout
  *
- * Creates a £15 GBP SumUp checkout and returns the checkoutId
- * to the client so the Payment Widget can mount.
+ * Creates a SumUp Hosted Checkout for the Shore Day Concierge service (£15 GBP)
+ * and returns the hosted_checkout_url for the client to redirect to.
  *
- * Environment variable required (set in Cloudflare Pages dashboard):
- *   SUMUP_API_KEY  — your SumUp production API key
+ * Required Cloudflare secret: SUMUP_API_KEY
  */
 
 const MERCHANT_CODE = 'MDHCAGRZ';
 const AMOUNT        = 15.00;
 const CURRENCY      = 'GBP';
+const REDIRECT_URL  = 'https://exploreinvergordon.scot/cruise-hub.html?booking=confirmed';
 
 export async function onRequestPost(context) {
   const { env, request } = context;
 
-  // Read optional metadata from the page (name, ship, date)
-  // so the checkout description in SumUp matches the order
-  let meta = {};
-  try {
-    meta = await request.json();
-  } catch (_) { /* body may be empty — that's fine */ }
-
-  const name = meta.name  || 'Guest';
-  const ship = meta.ship  || 'Unknown ship';
-  const date = meta.date  || 'Unknown date';
-
-  const description = `Shore Day Concierge — ${name} — ${ship} — ${date}`;
-  const reference   = `ei-concierge-${Date.now()}`;
-
-  // Create the checkout via SumUp API
-  let apiResponse;
-  try {
-    apiResponse = await fetch('https://api.sumup.com/v0.1/checkouts', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${env.SUMUP_API_KEY}`,
-        'Content-Type':  'application/json',
-      },
-      body: JSON.stringify({
-        checkout_reference: reference,
-        amount:             AMOUNT,
-        currency:           CURRENCY,
-        description:        description,
-        merchant_code:      MERCHANT_CODE,
-      }),
-    });
-  } catch (networkErr) {
-    return jsonResponse({ error: 'Network error reaching SumUp API' }, 502);
-  }
-
-  if (!apiResponse.ok) {
-    const detail = await apiResponse.text();
-    return jsonResponse({ error: 'SumUp API error', detail }, 502);
-  }
-
-  const data = await apiResponse.json();
-
-  return jsonResponse({ checkoutId: data.id }, 200);
-}
-
-// Handle CORS preflight
-export async function onRequestOptions() {
-  return new Response(null, {
-    status: 204,
-    headers: corsHeaders(),
-  });
-}
-
-// ── Helpers ─────────────────────────────────────────────────────────────────
-
-function jsonResponse(body, status = 200) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      'Content-Type': 'application/json',
-      ...corsHeaders(),
-    },
-  });
-}
-
-function corsHeaders() {
-  return {
+  const headers = {
+    'Content-Type':                 'application/json',
     'Access-Control-Allow-Origin':  '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
   };
+
+  const apiKey = env.SUMUP_API_KEY;
+  if (!apiKey) {
+    return new Response(
+      JSON.stringify({ error: 'SUMUP_API_KEY not configured in Cloudflare secrets' }),
+      { status: 500, headers }
+    );
+  }
+
+  let body = {};
+  try { body = await request.json(); } catch (_) {}
+
+  const ref = `SDC-${Date.now()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+
+  const shipName  = (body.ship || 'Cruise passenger').slice(0, 60);
+  const portDate  = body.date
+    ? new Date(body.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+    : 'date TBC';
+  const guestName = (body.name || '').slice(0, 40);
+  const description = `Shore Day Concierge — ${shipName} · ${portDate}${guestName ? ' · ' + guestName : ''}`;
+
+  let checkoutRes, checkoutData;
+  try {
+    checkoutRes = await fetch('https://api.sumup.com/v0.1/checkouts', {
+      method:  'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type':  'application/json',
+      },
+      body: JSON.stringify({
+        amount:             AMOUNT,
+        currency:           CURRENCY,
+        checkout_reference: ref,
+        description:        description,
+        merchant_code:      MERCHANT_CODE,
+        redirect_url:       REDIRECT_URL,
+        hosted_checkout:    { enabled: true },
+      }),
+    });
+
+    checkoutData = await checkoutRes.json();
+
+    if (!checkoutRes.ok) {
+      return new Response(
+        JSON.stringify({
+          error:  'SumUp checkout creation failed',
+          status: checkoutRes.status,
+          detail: checkoutData,
+        }),
+        { status: 502, headers }
+      );
+    }
+
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ error: 'Network error calling SumUp API', detail: err.message }),
+      { status: 502, headers }
+    );
+  }
+
+  return new Response(
+    JSON.stringify({
+      hosted_checkout_url: checkoutData.hosted_checkout_url,
+      checkoutId:          checkoutData.id,
+      reference:           ref,
+    }),
+    { status: 200, headers }
+  );
+}
+
+export async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin':  '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
 }
