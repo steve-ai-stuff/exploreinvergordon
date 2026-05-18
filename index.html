@@ -2035,16 +2035,16 @@ function googleTranslateElementInit() {
   <div id="ei-weather-card">
     <div id="weather-particles"></div>
     <div class="ei-weather-content">
-      <div class="ei-weather-data">
-        <div class="ei-weather-data-top">
-          <div class="ei-temp-big" id="ei-temp"></div>
-          <div class="ei-weather-desc" id="ei-weather-desc"></div>
-        </div>
+      <div class="ei-weather-left">
+        <p class="ei-weather-label">Right now in Invergordon &middot; Scottish Highlands</p>
+        <p class="ei-welcome-msg" id="ei-welcome-msg">Connecting tae the Highlands&hellip;</p>
         <p class="ei-weather-sub" id="ei-weather-sub"></p>
         <div class="ei-weather-wind" id="ei-weather-wind"></div>
       </div>
-      <p class="ei-weather-label">Right now in Invergordon &middot; Scottish Highlands</p>
-      <p class="ei-welcome-msg" id="ei-welcome-msg">Connecting tae the Highlands&hellip;</p>
+      <div class="ei-weather-right">
+        <div class="ei-temp-big" id="ei-temp"></div>
+        <div class="ei-weather-desc" id="ei-weather-desc"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -3207,17 +3207,18 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 .ei-weather-window{width:100%;max-width:100%;padding:0;margin:0;margin-top:88px;display:block}
 #ei-weather-card{position:relative;width:100%;min-height:380px;overflow:hidden;background:linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%);-webkit-mask-image:linear-gradient(to bottom,black 68%,transparent 98%);mask-image:linear-gradient(to bottom,black 68%,transparent 98%)}
 #weather-particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
-.ei-weather-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem 2.5rem 2.5rem;min-height:380px}
-.ei-weather-data{margin-bottom:1.4rem}
-.ei-weather-data-top{display:flex;align-items:baseline;flex-wrap:wrap;gap:0.3rem 1rem;margin-bottom:0.4rem}
+.ei-weather-content{position:relative;z-index:1;display:flex;flex-direction:row;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding:2.5rem 2.5rem 2.5rem;min-height:380px}
+.ei-weather-left{flex:1}
+.ei-weather-right{text-align:right;flex-shrink:0}
 .ei-weather-label{font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.30em;text-transform:uppercase;color:rgba(201,168,76,0.90);margin-bottom:0.6rem}
-.ei-welcome-msg{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.8vw,2.4rem);font-weight:700;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.65),0 0 60px rgba(0,0,0,0.35);line-height:1.3;margin-bottom:0}
-.ei-weather-sub{font-family:'Crimson Pro',serif;font-size:clamp(0.9rem,1.8vw,1.1rem);color:rgba(255,255,255,0.80);font-style:italic;margin-top:0.25rem}
+.ei-welcome-msg{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.8vw,2.4rem);font-weight:700;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.65),0 0 60px rgba(0,0,0,0.35);line-height:1.3;margin-bottom:0.5rem}
+.ei-weather-sub{font-family:'Crimson Pro',serif;font-size:clamp(0.9rem,1.8vw,1.1rem);color:rgba(255,255,255,0.80);font-style:italic;margin-top:0}
 .ei-temp-big{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,4rem);font-weight:900;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.50);line-height:1}
-.ei-weather-desc{font-family:'Overpass Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,76,0.85);align-self:flex-end;padding-bottom:0.15rem}
+.ei-weather-desc{font-family:'Overpass Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,76,0.85);margin-top:0.4rem}
 .ei-weather-wind{display:none}
 @media(max-width:600px){
-  .ei-weather-content{padding:2rem 1.25rem 1.75rem;min-height:320px}
+  .ei-weather-content{flex-direction:column;justify-content:flex-end;gap:0;padding:2rem 1.25rem 1.75rem;min-height:320px}
+  .ei-weather-right{order:-1;text-align:left;margin-bottom:1.25rem}
   .ei-temp-big{font-size:clamp(2.4rem,9vw,3.2rem)}
 }
 /* ── EI WEATHER KEYFRAMES ──────────────────────────────────────────────── */
