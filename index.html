@@ -3204,7 +3204,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 }
 
 /* ── EI WEATHER WINDOW ──────────────────────────────────────────────────── */
-.ei-weather-window{width:100%;max-width:100%;padding:0;margin:0;display:block}
+.ei-weather-window{width:100%;max-width:100%;padding:0;margin:0;margin-top:88px;display:block}
 #ei-weather-card{position:relative;width:100%;min-height:380px;overflow:hidden;background:linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%);border-bottom:1px solid rgba(201,168,76,0.30)}
 #weather-particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
 .ei-weather-content{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding:3rem 2.5rem 2.5rem;min-height:380px}
@@ -3221,15 +3221,15 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
   .ei-weather-right{text-align:left}
 }
 /* ── EI WEATHER KEYFRAMES ──────────────────────────────────────────────── */
-@keyframes rainFall{0%{transform:translate(0,-12px) rotate(12deg);opacity:0}7%{opacity:0.90}93%{opacity:0.90}100%{transform:translate(-78px,305px) rotate(12deg);opacity:0}}
-@keyframes snowDrift{0%{transform:translateY(-20px) translateX(0) rotate(0deg);opacity:0}8%{opacity:0.92}38%{transform:translateY(108px) translateX(18px) rotate(128deg)}68%{transform:translateY(202px) translateX(-12px) rotate(252deg)}100%{transform:translateY(308px) translateX(7px) rotate(360deg);opacity:0}}
+@keyframes rainFall{0%{transform:translate(0,-12px) rotate(12deg);opacity:0}7%{opacity:0.90}93%{opacity:0.90}100%{transform:translate(-98px,430px) rotate(12deg);opacity:0}}
+@keyframes snowDrift{0%{transform:translateY(-20px) translateX(0) rotate(0deg);opacity:0}8%{opacity:0.92}38%{transform:translateY(140px) translateX(18px) rotate(128deg)}68%{transform:translateY(270px) translateX(-12px) rotate(252deg)}100%{transform:translateY(430px) translateX(7px) rotate(360deg);opacity:0}}
 @keyframes sunGlow{0%,100%{opacity:0.54;transform:scale(1)}38%{opacity:0.84;transform:scale(1.12)}72%{opacity:0.46;transform:scale(0.95)}}
 @keyframes sunShimmer{0%,100%{opacity:0;transform:scale(0.28) rotate(0deg)}50%{opacity:0.84;transform:scale(1.28) rotate(22deg)}}
 @keyframes rayRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes cloudDrift{from{transform:translateX(-380px);opacity:0}7%{opacity:1}93%{opacity:1}to{transform:translateX(calc(100% + 380px));opacity:0}}
 @keyframes cloudBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes fogDrift{0%{transform:translateX(-64%);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(64%);opacity:0}}
-@keyframes hailFall{0%{transform:translateY(-10px) scale(1.05);opacity:0}7%{opacity:0.92}84%{opacity:0.92;transform:translateY(272px) scale(0.82)}100%{transform:translateY(298px) scale(0.60);opacity:0}}
+@keyframes hailFall{0%{transform:translateY(-10px) scale(1.05);opacity:0}7%{opacity:0.92}84%{opacity:0.92;transform:translateY(370px) scale(0.82)}100%{transform:translateY(430px) scale(0.60);opacity:0}}
 @keyframes lightningFlash{0%,100%{opacity:0}2%{opacity:1}2.6%{opacity:0.08}3.8%{opacity:0.92}4.2%{opacity:0}8.5%{opacity:0.68}9%{opacity:0}}
 @keyframes windStreak{0%{transform:translateX(-118%) scaleX(0.45);opacity:0}10%{opacity:0.52}88%{opacity:0.52}100%{transform:translateX(118%) scaleX(0.45);opacity:0}}
 @keyframes stormCloud{from{transform:translateX(-440px);opacity:0}6%{opacity:0.54}94%{opacity:0.54}to{transform:translateX(calc(100vw + 440px));opacity:0}}
@@ -4070,15 +4070,16 @@ var MSGS={
 function pick(a){return a[Math.floor(Math.random()*a.length)];}
 function getSolarPhase(){
   var now=new Date();
-  var inv=new Date(now.toLocaleString('en-GB',{timeZone:'Europe/London'}));
-  var doy=Math.floor((inv-new Date(inv.getFullYear(),0,0))/86400000);
-  var h=inv.getHours()+inv.getMinutes()/60;
+  var doy=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000);
+  var tzOff=-now.getTimezoneOffset()/60;
+  var localHr=now.getHours()+now.getMinutes()/60;
+  var solarHr=(localHr-tzOff)+LON/15;
   var lat=LAT*Math.PI/180;
   var decl=0.4093*Math.sin(2*Math.PI*(284+doy)/365);
-  var ha=(h-12)*Math.PI/12;
-  var elev=Math.asin(Math.sin(lat)*Math.sin(decl)+Math.cos(lat)*Math.cos(decl)*Math.cos(ha))*180/Math.PI;
+  var haR=(solarHr-12)*15*Math.PI/180;
+  var elev=Math.asin(Math.sin(lat)*Math.sin(decl)+Math.cos(lat)*Math.cos(decl)*Math.cos(haR))*180/Math.PI;
   var phase=elev>4?'day':elev>-6?'twilight':'night';
-  return{phase:phase,elev:elev,hour:h,isMorning:h<13};
+  return{phase:phase,elev:elev,hour:localHr,isMorning:localHr<13};
 }
 function selectMsg(solar,code,wind,temp,kp){
   var p=solar.phase;
