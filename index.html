@@ -4086,7 +4086,7 @@ function selectMsg(solar,code,wind,temp,kp){
   if(p==='night'&&kp>=4&&code<=1)return pick(MSGS.aurora);
   if(p==='twilight')return pick(solar.isMorning?MSGS.dawn:MSGS.sunset);
   if(code>=95)return pick(MSGS.thunder);
-  if(wind>=50)return pick(MSGS.hoolie);
+  if(wind>=31)return pick(MSGS.hoolie);
   if((code>=71&&code<=77)||code===86)return pick(MSGS.snow);
   if(code===65||code===67||code===81||code===82)return pick(MSGS.heavyrain);
   if((code>=61&&code<=63)||code===80)return pick(MSGS.showers);
@@ -4095,7 +4095,7 @@ function selectMsg(solar,code,wind,temp,kp){
   if(temp<0)return pick(MSGS.subzero);
   if(temp<3&&code<=2)return pick(MSGS.frost);
   if(p==='night'){
-    if(code<=1&&wind<20)return pick(MSGS.clearnight);
+    if(code<=1&&wind<12)return pick(MSGS.clearnight);
     return pick(MSGS.calmnight);
   }
   if(code===3&&temp<14)return pick(MSGS.dreich);
@@ -4198,12 +4198,33 @@ function setWeatherAnimation(code,solar,wind){
     el.appendChild(rays);
   }
   if(code>=1&&code<=3&&p!=='night'){
-    var cc=code===1?2:code===2?4:6;
-    for(var c2=0;c2<cc;c2++){
-      var cl=document.createElement('div');
-      var w=160+Math.random()*200,h2=w*0.45;
-      cl.style.cssText='position:absolute;border-radius:50px;opacity:'+(code===3?0.90:0.72)+';width:'+w+'px;height:'+h2+'px;top:'+(8+Math.random()*55)+'%;background:'+(p==='night'?'rgba(30,40,60,0.75)':(code===3?'rgba(110,120,140,0.85)':'rgba(220,230,245,0.82)'))+';animation:cloudDrift '+(18+Math.random()*22)+'s '+(c2*-7)+'s linear infinite;';
-      el.appendChild(cl);
+    // ── PARALLAX CLOUD LAYERS ──────────────────────────────────────────────
+    var cBg=p==='night'?'rgba(28,38,58,0.72)':(code===3?'rgba(88,98,118,0.78)':'rgba(198,212,232,0.68)');
+    var cMid=p==='night'?'rgba(34,46,66,0.80)':(code===3?'rgba(104,116,136,0.88)':'rgba(216,227,245,0.82)');
+    var cFg=p==='night'?'rgba(42,54,74,0.88)':(code===3?'rgba(116,128,148,0.93)':'rgba(228,237,252,0.92)');
+    // BG layer — large, very slow, blurred (feels far away)
+    var bgN=code===1?1:code===2?2:3;
+    for(var cB=0;cB<bgN;cB++){
+      var bEl=document.createElement('div');
+      var bW=230+Math.random()*90,bH=bW*0.40;
+      bEl.style.cssText='position:absolute;border-radius:70px;width:'+bW+'px;height:'+bH+'px;top:'+(4+Math.random()*38)+'%;background:'+cBg+';filter:blur(4px);opacity:0.48;animation:cloudDrift '+(34+Math.random()*8)+'s '+(cB*-12)+'s linear infinite;';
+      el.appendChild(bEl);
+    }
+    // Mid layer — medium, moderate speed, light blur
+    var midN=code===1?2:code===2?3:4;
+    for(var cM=0;cM<midN;cM++){
+      var mEl=document.createElement('div');
+      var mW=128+Math.random()*72,mH=mW*0.43;
+      mEl.style.cssText='position:absolute;border-radius:52px;width:'+mW+'px;height:'+mH+'px;top:'+(14+Math.random()*48)+'%;background:'+cMid+';filter:blur(1.2px);opacity:0.72;animation:cloudDrift '+(21+Math.random()*8)+'s '+(cM*-6)+'s linear infinite;';
+      el.appendChild(mEl);
+    }
+    // FG layer — small, fast, sharp (feels close — right in front of you)
+    var fgN=code===1?1:2;
+    for(var cF=0;cF<fgN;cF++){
+      var fEl=document.createElement('div');
+      var fW=72+Math.random()*58,fH=fW*0.46;
+      fEl.style.cssText='position:absolute;border-radius:40px;width:'+fW+'px;height:'+fH+'px;top:'+(22+Math.random()*46)+'%;background:'+cFg+';opacity:0.90;animation:cloudDrift '+(13+Math.random()*4)+'s '+(cF*-5)+'s linear infinite;';
+      el.appendChild(fEl);
     }
   }
   if(code>=95){
@@ -4222,22 +4243,42 @@ function setWeatherAnimation(code,solar,wind){
   }
   if((code>=51&&code<=55)||(code>=61&&code<=67)||(code>=80&&code<=82)){
     var isH=code>=63||code===81||code===82;
-    var rcnt=isH?60:30;
-    var ang=wind>25?14:wind>10?8:0;
-    for(var ri=0;ri<rcnt;ri++){
+    var ang=wind>16?14:wind>6?8:0;
+    // ── PARALLAX RAIN LAYERS ───────────────────────────────────────────────
+    // BG layer — thin wisps, slow, low opacity (distant rain over the Firth)
+    var bgRC=isH?32:18;
+    for(var ri=0;ri<bgRC;ri++){
       var rd=document.createElement('div');
-      var rh2=isH?18+Math.random()*8:12+Math.random()*6;
-      var op=p==='night'?0.35+Math.random()*0.25:0.55+Math.random()*0.30;
-      rd.style.cssText='position:absolute;width:1.5px;border-radius:2px;height:'+rh2+'px;left:'+Math.random()*110+'%;top:-20px;background:linear-gradient(to bottom,transparent,rgba(180,210,255,'+op+'));transform:rotate('+ang+'deg);animation:rainFall '+(0.5+Math.random()*0.7)+'s '+(Math.random()*1.5)+'s linear infinite;';
+      var rH1=isH?9+Math.random()*5:7+Math.random()*4;
+      var op1=p==='night'?0.16+Math.random()*0.12:0.20+Math.random()*0.14;
+      rd.style.cssText='position:absolute;width:1px;border-radius:1px;height:'+rH1+'px;left:'+Math.random()*112+'%;top:-20px;background:linear-gradient(to bottom,transparent,rgba(180,210,255,'+op1+'));transform:rotate('+(ang*0.55)+'deg);animation:rainFall '+(0.85+Math.random()*0.65)+'s '+(Math.random()*2)+'s linear infinite;';
       el.appendChild(rd);
+    }
+    // FG layer — thick streaks, fast, high opacity (right outside the window)
+    var fgRC=isH?52:28;
+    for(var ri2=0;ri2<fgRC;ri2++){
+      var rd2=document.createElement('div');
+      var rH2=isH?18+Math.random()*10:13+Math.random()*7;
+      var op2=p==='night'?0.42+Math.random()*0.26:0.62+Math.random()*0.26;
+      rd2.style.cssText='position:absolute;width:2px;border-radius:2px;height:'+rH2+'px;left:'+Math.random()*112+'%;top:-20px;background:linear-gradient(to bottom,transparent,rgba(198,222,255,'+op2+'));transform:rotate('+ang+'deg);animation:rainFall '+(0.42+Math.random()*0.42)+'s '+(Math.random()*1.2)+'s linear infinite;';
+      el.appendChild(rd2);
     }
   }
   if((code>=71&&code<=77)||(code>=85&&code<=86)){
-    for(var si=0;si<55;si++){
+    // ── PARALLAX SNOW LAYERS ───────────────────────────────────────────────
+    // BG layer — tiny distant flakes, slow dreamy drift
+    for(var si=0;si<24;si++){
       var sd=document.createElement('div');
-      var sz2=2+Math.random()*3.5;
-      sd.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,0.88);width:'+sz2+'px;height:'+sz2+'px;left:'+Math.random()*105+'%;top:-20px;animation:snowDrift '+(2.5+Math.random()*3)+'s '+(Math.random()*3)+'s ease-in-out infinite;';
+      var sz1=1+Math.random()*1.2;
+      sd.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,0.58);width:'+sz1+'px;height:'+sz1+'px;left:'+Math.random()*108+'%;top:-20px;animation:snowDrift '+(4.5+Math.random()*3.5)+'s '+(Math.random()*4)+'s ease-in-out infinite;';
       el.appendChild(sd);
+    }
+    // FG layer — big bold flakes, faster, bright white (close up)
+    for(var si2=0;si2<34;si2++){
+      var sd2=document.createElement('div');
+      var sz2=2.8+Math.random()*3.2;
+      sd2.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,0.94);width:'+sz2+'px;height:'+sz2+'px;left:'+Math.random()*108+'%;top:-20px;animation:snowDrift '+(2+Math.random()*2.4)+'s '+(Math.random()*2.5)+'s ease-in-out infinite;';
+      el.appendChild(sd2);
     }
   }
   if(code===45||code===48){
@@ -4255,7 +4296,7 @@ function setWeatherAnimation(code,solar,wind){
       el.appendChild(hd);
     }
   }
-  if(wind>35){
+  if(wind>22){
     for(var wi2=0;wi2<8;wi2++){
       var ws=document.createElement('div');
       ws.style.cssText='position:absolute;height:1px;border-radius:2px;background:rgba(255,255,255,0.25);width:'+(80+Math.random()*120)+'px;top:'+(10+Math.random()*80)+'%;animation:windStreak '+(1.2+Math.random()*1.5)+'s '+(wi2*-0.4)+'s linear infinite;';
@@ -4263,7 +4304,7 @@ function setWeatherAnimation(code,solar,wind){
     }
   }
 }
-function render(temp,feelsLike,wind,code,kp){
+function render(temp,feelsLike,wind,code,kp,precip,cloud){
   var solar=getSolarPhase();
   var msg=selectMsg(solar,code,wind,temp,kp);
   var welcomeEl=document.getElementById('ei-welcome-msg');
@@ -4272,10 +4313,14 @@ function render(temp,feelsLike,wind,code,kp){
   var descEl=document.getElementById('ei-weather-desc');
   var windEl=document.getElementById('ei-weather-wind');
   if(welcomeEl)welcomeEl.textContent=msg;
-  if(tempEl)tempEl.textContent=Math.round(temp)+'°C';
+  if(tempEl)tempEl.textContent=Math.round(temp)+'°C / '+Math.round(temp*9/5+32)+'°F';
   if(descEl)descEl.textContent=wmoDesc(code);
-  if(windEl)windEl.textContent=wind>5?'💨 '+Math.round(wind)+' km/h':'';
-  if(subEl)subEl.textContent=(feelsLike!==null&&Math.abs(feelsLike-temp)>=2)?'Feels like '+Math.round(feelsLike)+'°C':'';
+  if(windEl)windEl.textContent=wind>3?'💨 '+Math.round(wind)+' mph':'';
+  var parts=[];
+  if(feelsLike!==null&&Math.abs(feelsLike-temp)>=2)parts.push('Feels like '+Math.round(feelsLike)+'°C');
+  if(precip!=null&&precip>0)parts.push('🌧 '+precip.toFixed(1)+' mm');
+  if(cloud!=null&&cloud>=0)parts.push('☁️ '+Math.round(cloud)+'%');
+  if(subEl)subEl.textContent=parts.join('  ·  ');
   setWeatherAnimation(code,solar,wind);
 }
 function fallback(){
@@ -4292,20 +4337,20 @@ function fetchKp(cb){
     }).catch(function(){cb(0);});
 }
 function init(){
-  var url='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON+'&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&wind_speed_unit=kmh&timezone=Europe%2FLondon';
+  var url='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON+'&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation,cloud_cover&wind_speed_unit=mph&timezone=Europe%2FLondon';
   fetchKp(function(kp){
     fetch(url)
       .then(function(r){return r.json();})
       .then(function(d){
         var c=d.current;
-        render(c.temperature_2m,c.apparent_temperature,c.wind_speed_10m,c.weather_code,kp);
+        render(c.temperature_2m,c.apparent_temperature,c.wind_speed_10m,c.weather_code,kp,c.precipitation,c.cloud_cover);
       })
       .catch(function(){
         fetch('https://wttr.in/Invergordon?format=j1')
           .then(function(r){return r.json();})
           .then(function(d){
             var c=d.current_condition[0];
-            render(parseFloat(c.temp_C),parseFloat(c.FeelsLikeC),parseFloat(c.windspeedKmph),wttrToWmo(parseInt(c.weatherCode)),kp);
+            render(parseFloat(c.temp_C),parseFloat(c.FeelsLikeC),parseFloat(c.windspeedMiles),wttrToWmo(parseInt(c.weatherCode)),kp,parseFloat(c.precipMM),parseInt(c.cloudcover));
           }).catch(fallback);
       });
   });
