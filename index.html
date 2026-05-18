@@ -2035,16 +2035,16 @@ function googleTranslateElementInit() {
   <div id="ei-weather-card">
     <div id="weather-particles"></div>
     <div class="ei-weather-content">
-      <div class="ei-weather-left">
-        <p class="ei-weather-label">Right now in Invergordon &middot; Scottish Highlands</p>
-        <p class="ei-welcome-msg" id="ei-welcome-msg">Connecting tae the Highlands&hellip;</p>
+      <div class="ei-weather-data">
+        <div class="ei-weather-data-top">
+          <div class="ei-temp-big" id="ei-temp"></div>
+          <div class="ei-weather-desc" id="ei-weather-desc"></div>
+        </div>
         <p class="ei-weather-sub" id="ei-weather-sub"></p>
-      </div>
-      <div class="ei-weather-right">
-        <div class="ei-temp-big" id="ei-temp"></div>
-        <div class="ei-weather-desc" id="ei-weather-desc"></div>
         <div class="ei-weather-wind" id="ei-weather-wind"></div>
       </div>
+      <p class="ei-weather-label">Right now in Invergordon &middot; Scottish Highlands</p>
+      <p class="ei-welcome-msg" id="ei-welcome-msg">Connecting tae the Highlands&hellip;</p>
     </div>
   </div>
 </div>
@@ -3207,18 +3207,18 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 .ei-weather-window{width:100%;max-width:100%;padding:0;margin:0;margin-top:88px;display:block}
 #ei-weather-card{position:relative;width:100%;min-height:380px;overflow:hidden;background:linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%);-webkit-mask-image:linear-gradient(to bottom,black 68%,transparent 98%);mask-image:linear-gradient(to bottom,black 68%,transparent 98%)}
 #weather-particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
-.ei-weather-content{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding:3rem 2.5rem 2.5rem;min-height:380px}
-.ei-weather-left{flex:1}
-.ei-weather-label{font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.30em;text-transform:uppercase;color:rgba(201,168,76,0.90);margin-bottom:1rem}
-.ei-welcome-msg{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.8vw,2.4rem);font-weight:700;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.65),0 0 60px rgba(0,0,0,0.35);line-height:1.3;margin-bottom:0.75rem}
-.ei-weather-sub{font-family:'Crimson Pro',serif;font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.80);font-style:italic}
-.ei-weather-right{text-align:right;flex-shrink:0}
-.ei-temp-big{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,4.5rem);font-weight:900;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.50);line-height:1}
-.ei-weather-desc{font-family:'Overpass Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,76,0.85);margin-top:0.5rem}
-.ei-weather-wind{font-family:'Overpass Mono',monospace;font-size:0.70rem;letter-spacing:0.10em;color:rgba(255,255,255,0.60);margin-top:0.35rem}
+.ei-weather-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem 2.5rem 2.5rem;min-height:380px}
+.ei-weather-data{margin-bottom:1.4rem}
+.ei-weather-data-top{display:flex;align-items:baseline;flex-wrap:wrap;gap:0.3rem 1rem;margin-bottom:0.4rem}
+.ei-weather-label{font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.30em;text-transform:uppercase;color:rgba(201,168,76,0.90);margin-bottom:0.6rem}
+.ei-welcome-msg{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.8vw,2.4rem);font-weight:700;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.65),0 0 60px rgba(0,0,0,0.35);line-height:1.3;margin-bottom:0}
+.ei-weather-sub{font-family:'Crimson Pro',serif;font-size:clamp(0.9rem,1.8vw,1.1rem);color:rgba(255,255,255,0.80);font-style:italic;margin-top:0.25rem}
+.ei-temp-big{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,4rem);font-weight:900;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.50);line-height:1}
+.ei-weather-desc{font-family:'Overpass Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,76,0.85);align-self:flex-end;padding-bottom:0.15rem}
+.ei-weather-wind{display:none}
 @media(max-width:600px){
-  .ei-weather-content{flex-direction:column;align-items:flex-start;padding:2rem 1.25rem 1.75rem;min-height:320px}
-  .ei-weather-right{text-align:left}
+  .ei-weather-content{padding:2rem 1.25rem 1.75rem;min-height:320px}
+  .ei-temp-big{font-size:clamp(2.4rem,9vw,3.2rem)}
 }
 /* ── EI WEATHER KEYFRAMES ──────────────────────────────────────────────── */
 @keyframes rainFall{0%{transform:translate(0,-12px) rotate(12deg);opacity:0}7%{opacity:0.90}93%{opacity:0.90}100%{transform:translate(-98px,430px) rotate(12deg);opacity:0}}
@@ -4126,7 +4126,19 @@ function wttrToWmo(c){
   if(c===176||c===179)return 80;if(c===227||c===230)return 75;
   return 3;
 }
-function setWeatherAnimation(code,solar,wind){
+function daySky(cloud){
+  // Smooth gradient: bright summer blue → grey based on cloud cover %
+  // Colour stops at 0%, 25%, 50%, 75%, 100%
+  var tops=[[11,95,207],[16,80,168],[24,53,112],[34,44,66],[42,48,64]];
+  var bots=[[90,181,255],[74,149,232],[56,112,184],[72,90,112],[88,104,122]];
+  var t=Math.min(100,Math.max(0,cloud||0))/100*4;
+  var i=Math.min(3,Math.floor(t)),f=t-i;
+  function lr(a,b,x){return Math.round(a+(b-a)*x);}
+  var top=[lr(tops[i][0],tops[i+1][0],f),lr(tops[i][1],tops[i+1][1],f),lr(tops[i][2],tops[i+1][2],f)];
+  var bot=[lr(bots[i][0],bots[i+1][0],f),lr(bots[i][1],bots[i+1][1],f),lr(bots[i][2],bots[i+1][2],f)];
+  return'linear-gradient(175deg,rgb('+top+') 0%,rgb('+bot+') 100%)';
+}
+function setWeatherAnimation(code,solar,wind,cloud){
   var card=document.getElementById('ei-weather-card');
   var el=document.getElementById('weather-particles');
   if(!card||!el)return;
@@ -4161,7 +4173,8 @@ function setWeatherAnimation(code,solar,wind){
     if(c>=61)return'drain';if(c===45||c===48)return'dfog';if(c===3)return'dover';
     if(c<=1)return'dclear';return'dpart';
   }
-  card.style.background=SKY[skyKey(code,p)];
+  var sk=skyKey(code,p);
+  card.style.background=(p==='day'&&(sk==='dclear'||sk==='dpart'||sk==='dover')&&cloud!=null)?daySky(cloud):SKY[sk];
   if((p==='night'||p==='twilight')&&code<=2){
     var cnt=p==='night'?120:40;
     for(var i=0;i<cnt;i++){
@@ -4322,12 +4335,12 @@ function render(temp,feelsLike,wind,code,kp,precip,cloud){
   if(cloud!=null&&cloud>=0)parts.push('☁️ '+Math.round(cloud)+'%');
   if(wind>3)parts.push('💨 '+Math.round(wind)+' mph');
   if(subEl)subEl.textContent=parts.join('  ·  ');
-  setWeatherAnimation(code,solar,wind);
+  setWeatherAnimation(code,solar,wind,cloud);
 }
 function fallback(){
   var el=document.getElementById('ei-welcome-msg');
   if(el)el.textContent='Welcome tae Invergordon — Highland weather loading… 🏴󠁧󠁢󠁳󠁣󠁴󠁿';
-  setWeatherAnimation(1,getSolarPhase(),0);
+  setWeatherAnimation(1,getSolarPhase(),0,0);
 }
 function fetchKp(cb){
   fetch('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json')
