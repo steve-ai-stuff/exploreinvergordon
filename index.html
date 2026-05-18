@@ -3229,7 +3229,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 @keyframes sunGlow{0%,100%{opacity:0.54;transform:scale(1)}38%{opacity:0.84;transform:scale(1.12)}72%{opacity:0.46;transform:scale(0.95)}}
 @keyframes sunShimmer{0%,100%{opacity:0;transform:scale(0.28) rotate(0deg)}50%{opacity:0.84;transform:scale(1.28) rotate(22deg)}}
 @keyframes rayRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes cloudDrift{from{transform:translateX(-380px);opacity:0}7%{opacity:1}93%{opacity:1}to{transform:translateX(calc(100% + 380px));opacity:0}}
+@keyframes cloudDrift{from{transform:translateX(-380px);opacity:0}7%{opacity:1}93%{opacity:1}to{transform:translateX(calc(100vw + 380px));opacity:0}}
 @keyframes cloudBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes fogDrift{0%{transform:translateX(-64%);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(64%);opacity:0}}
 @keyframes hailFall{0%{transform:translateY(-10px) scale(1.05);opacity:0}7%{opacity:0.92}84%{opacity:0.92;transform:translateY(370px) scale(0.82)}100%{transform:translateY(430px) scale(0.60);opacity:0}}
@@ -4129,6 +4129,24 @@ function wttrToWmo(c){
   if(c===176||c===179)return 80;if(c===227||c===230)return 75;
   return 3;
 }
+function mkCloud(color,blur,opacity,topPct,speed,delay,minW,maxW){
+  var bw=Math.round(minW+Math.random()*(maxW-minW));
+  var bh=Math.round(bw*(0.30+Math.random()*0.14));
+  var fs=blur>0?'filter:blur('+blur+'px);':'';
+  var wrap=document.createElement('div');
+  wrap.style.cssText='position:absolute;top:'+topPct+'%;opacity:'+opacity+';'+fs+'animation:cloudDrift '+speed+'s '+delay+'s linear infinite;';
+  var body=document.createElement('div');
+  body.style.cssText='position:relative;width:'+bw+'px;height:'+bh+'px;border-radius:'+Math.round(bh*0.5)+'px;background:'+color+';';
+  var b1s=Math.round(bh*(1.2+Math.random()*0.5));
+  var b1=document.createElement('div');
+  b1.style.cssText='position:absolute;border-radius:50%;background:'+color+';width:'+b1s+'px;height:'+b1s+'px;top:-'+Math.round(b1s*0.52)+'px;left:'+Math.round(bw*0.08)+'px;';
+  var b2s=Math.round(bh*(0.85+Math.random()*0.45));
+  var b2=document.createElement('div');
+  b2.style.cssText='position:absolute;border-radius:50%;background:'+color+';width:'+b2s+'px;height:'+b2s+'px;top:-'+Math.round(b2s*0.42)+'px;left:'+Math.round(bw*(0.38+Math.random()*0.18))+'px;';
+  body.appendChild(b1);body.appendChild(b2);
+  wrap.appendChild(body);
+  return wrap;
+}
 function daySky(cloud){
   // Smooth gradient: bright summer blue → grey based on cloud cover %
   // Colour stops at 0%, 25%, 50%, 75%, 100%
@@ -4221,26 +4239,17 @@ function setWeatherAnimation(code,solar,wind,cloud){
     // BG layer — large, very slow, blurred (feels far away)
     var bgN=code===1?1:code===2?2:3;
     for(var cB=0;cB<bgN;cB++){
-      var bEl=document.createElement('div');
-      var bW=230+Math.random()*90,bH=bW*0.40;
-      bEl.style.cssText='position:absolute;border-radius:70px;width:'+bW+'px;height:'+bH+'px;top:'+(4+Math.random()*38)+'%;background:'+cBg+';filter:blur(4px);opacity:0.48;animation:cloudDrift '+(34+Math.random()*8)+'s '+(cB*-12)+'s linear infinite;';
-      el.appendChild(bEl);
+      el.appendChild(mkCloud(cBg,4,0.48,4+Math.random()*38,34+Math.random()*8,cB*-12,200,300));
     }
     // Mid layer — medium, moderate speed, light blur
     var midN=code===1?2:code===2?3:4;
     for(var cM=0;cM<midN;cM++){
-      var mEl=document.createElement('div');
-      var mW=128+Math.random()*72,mH=mW*0.43;
-      mEl.style.cssText='position:absolute;border-radius:52px;width:'+mW+'px;height:'+mH+'px;top:'+(14+Math.random()*48)+'%;background:'+cMid+';filter:blur(1.2px);opacity:0.72;animation:cloudDrift '+(21+Math.random()*8)+'s '+(cM*-6)+'s linear infinite;';
-      el.appendChild(mEl);
+      el.appendChild(mkCloud(cMid,1.2,0.72,14+Math.random()*48,21+Math.random()*8,cM*-6,120,200));
     }
     // FG layer — small, fast, sharp (feels close — right in front of you)
     var fgN=code===1?1:2;
     for(var cF=0;cF<fgN;cF++){
-      var fEl=document.createElement('div');
-      var fW=72+Math.random()*58,fH=fW*0.46;
-      fEl.style.cssText='position:absolute;border-radius:40px;width:'+fW+'px;height:'+fH+'px;top:'+(22+Math.random()*46)+'%;background:'+cFg+';opacity:0.90;animation:cloudDrift '+(13+Math.random()*4)+'s '+(cF*-5)+'s linear infinite;';
-      el.appendChild(fEl);
+      el.appendChild(mkCloud(cFg,0,0.90,22+Math.random()*46,13+Math.random()*4,cF*-5,65,128));
     }
   }
   if(code>=95){
