@@ -3293,8 +3293,8 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 
 /* ── EI WEATHER WINDOW ──────────────────────────────────────────────────── */
 .ei-weather-window{width:100%;max-width:100%;padding:0;margin:0;display:block}
-#ei-weather-card{position:relative;width:100%;min-height:160px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,black 68%,transparent 98%);mask-image:linear-gradient(to bottom,black 68%,transparent 98%)}
-#ei-weather-card::before{content:'';position:absolute;inset:0;background:var(--sky-gradient,linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%));opacity:0.78;z-index:0}
+#ei-weather-card{position:relative;width:100%;min-height:160px;overflow:hidden}
+#ei-weather-card::before{content:'';position:absolute;inset:0;background:var(--sky-gradient,linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%));opacity:0.78;z-index:0;-webkit-mask-image:linear-gradient(to bottom,black 68%,transparent 98%);mask-image:linear-gradient(to bottom,black 68%,transparent 98%)}
 #weather-particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
 .ei-weather-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-start;padding:calc(88px + 1.25rem) 2.5rem 0.5rem}
 .ei-weather-data-row{display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;width:100%;margin-bottom:1.25rem}
