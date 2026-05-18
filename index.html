@@ -2020,6 +2020,7 @@ function googleTranslateElementInit() {
     <li><a href="index.html" class="nav-active">Home</a></li>
     <li><a href="murals.html">Murals</a></li>
     <li><a href="cruise-hub.html">Cruise Hub</a></li>
+      
     <li><a href="nc500.html">NC500</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="blog.html">Blog</a></li>
@@ -2028,6 +2029,25 @@ function googleTranslateElementInit() {
     <button class="nav-scroll-btn nav-scroll-right" aria-label="Scroll nav right">&#8250;</button>
   </div>
 </nav>
+
+<!-- INVERGORDON WEATHER WINDOW -->
+<div class="ei-weather-window">
+  <div id="ei-weather-card">
+    <div id="weather-particles"></div>
+    <div class="ei-weather-content">
+      <div class="ei-weather-left">
+        <p class="ei-weather-label">Right now in Invergordon &middot; Scottish Highlands</p>
+        <p class="ei-welcome-msg" id="ei-welcome-msg">Connecting tae the Highlands&hellip;</p>
+        <p class="ei-weather-sub" id="ei-weather-sub"></p>
+      </div>
+      <div class="ei-weather-right">
+        <div class="ei-temp-big" id="ei-temp"></div>
+        <div class="ei-weather-desc" id="ei-weather-desc"></div>
+        <div class="ei-weather-wind" id="ei-weather-wind"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="top" style="padding-top:0; max-width:100%;">
@@ -3182,6 +3202,41 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
   letter-spacing: 0.15em;
   font-family: 'IM Fell English', Georgia, serif;
 }
+
+/* ── EI WEATHER WINDOW ──────────────────────────────────────────────────── */
+.ei-weather-window{width:100%;max-width:100%;padding:0;margin:0;display:block}
+#ei-weather-card{position:relative;width:100%;min-height:380px;overflow:hidden;background:linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%);border-bottom:1px solid rgba(201,168,76,0.30)}
+#weather-particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+.ei-weather-content{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding:3rem 2.5rem 2.5rem;min-height:380px}
+.ei-weather-left{flex:1}
+.ei-weather-label{font-family:'Overpass Mono',monospace;font-size:0.65rem;letter-spacing:0.30em;text-transform:uppercase;color:rgba(201,168,76,0.90);margin-bottom:1rem}
+.ei-welcome-msg{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.8vw,2.4rem);font-weight:700;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.65),0 0 60px rgba(0,0,0,0.35);line-height:1.3;margin-bottom:0.75rem}
+.ei-weather-sub{font-family:'Crimson Pro',serif;font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.80);font-style:italic}
+.ei-weather-right{text-align:right;flex-shrink:0}
+.ei-temp-big{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,4.5rem);font-weight:900;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.50);line-height:1}
+.ei-weather-desc{font-family:'Overpass Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,76,0.85);margin-top:0.5rem}
+.ei-weather-wind{font-family:'Overpass Mono',monospace;font-size:0.70rem;letter-spacing:0.10em;color:rgba(255,255,255,0.60);margin-top:0.35rem}
+@media(max-width:600px){
+  .ei-weather-content{flex-direction:column;align-items:flex-start;padding:2rem 1.25rem 1.75rem;min-height:320px}
+  .ei-weather-right{text-align:left}
+}
+/* ── EI WEATHER KEYFRAMES ──────────────────────────────────────────────── */
+@keyframes rainFall{0%{transform:translate(0,-12px) rotate(12deg);opacity:0}7%{opacity:0.90}93%{opacity:0.90}100%{transform:translate(-78px,305px) rotate(12deg);opacity:0}}
+@keyframes snowDrift{0%{transform:translateY(-20px) translateX(0) rotate(0deg);opacity:0}8%{opacity:0.92}38%{transform:translateY(108px) translateX(18px) rotate(128deg)}68%{transform:translateY(202px) translateX(-12px) rotate(252deg)}100%{transform:translateY(308px) translateX(7px) rotate(360deg);opacity:0}}
+@keyframes sunGlow{0%,100%{opacity:0.54;transform:scale(1)}38%{opacity:0.84;transform:scale(1.12)}72%{opacity:0.46;transform:scale(0.95)}}
+@keyframes sunShimmer{0%,100%{opacity:0;transform:scale(0.28) rotate(0deg)}50%{opacity:0.84;transform:scale(1.28) rotate(22deg)}}
+@keyframes rayRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes cloudDrift{from{transform:translateX(-380px);opacity:0}7%{opacity:1}93%{opacity:1}to{transform:translateX(calc(100% + 380px));opacity:0}}
+@keyframes cloudBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes fogDrift{0%{transform:translateX(-64%);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(64%);opacity:0}}
+@keyframes hailFall{0%{transform:translateY(-10px) scale(1.05);opacity:0}7%{opacity:0.92}84%{opacity:0.92;transform:translateY(272px) scale(0.82)}100%{transform:translateY(298px) scale(0.60);opacity:0}}
+@keyframes lightningFlash{0%,100%{opacity:0}2%{opacity:1}2.6%{opacity:0.08}3.8%{opacity:0.92}4.2%{opacity:0}8.5%{opacity:0.68}9%{opacity:0}}
+@keyframes windStreak{0%{transform:translateX(-118%) scaleX(0.45);opacity:0}10%{opacity:0.52}88%{opacity:0.52}100%{transform:translateX(118%) scaleX(0.45);opacity:0}}
+@keyframes stormCloud{from{transform:translateX(-440px);opacity:0}6%{opacity:0.54}94%{opacity:0.54}to{transform:translateX(calc(100vw + 440px));opacity:0}}
+@keyframes sunCorona{0%,100%{opacity:0.36;transform:scale(1) rotate(0deg)}33%{opacity:0.66;transform:scale(1.11) rotate(4deg)}66%{opacity:0.30;transform:scale(0.93) rotate(-3deg)}}
+@keyframes lensFlare{0%,100%{opacity:0;transform:scaleX(0.25)}50%{opacity:0.60;transform:scaleX(1)}}
+@keyframes stormFlash{0%,100%{background:transparent}3%{background:rgba(255,255,255,0.22)}3.5%{background:transparent}4.4%{background:rgba(255,255,255,0.12)}4.8%{background:transparent}}
+@keyframes starTwinkle{0%,100%{opacity:0.72;transform:scale(1)}50%{opacity:0.12;transform:scale(0.62)}}50%{opacity:0.12;transform:scale(0.62)}}
 </style>
 
 
@@ -3903,6 +3958,360 @@ function eiMoreLangs(btn) {
   if (leftBtn)  addHoverTouch(leftBtn,  -1);
   if (rightBtn) addHoverTouch(rightBtn,  1);
 })();
+</script>
+
+<script>
+// ── EI WEATHER WINDOW ─────────────────────────────────────────────────────
+(function(){
+'use strict';
+var LAT=57.6875,LON=-4.1613;
+var MSGS={
+  hoolie:[
+    "Och it's absolutely BLOWIN A HOOLIE oot there the night! 🌬️💨 Haud ontae yer hat, yer brolly AND yer granny — the Cromarty Firth is absolutely ragin!",
+    "Sweet mother o' the Highlands — there's a PROPER hoolie screamin across the Cromarty Firth the noo! 💨🌬️ Dinnae even think aboot steppin ootside unless ye want tae end up somewhere near Dingwall!",
+    "It is pure mental oot there — the wind is absolutely HOWLIN ower the Firth! 💨😂 Wrap up, haud on tight, and if ye see a wheelie bin flyin past — that'll be wur Ian's!"
+  ],
+  thunder:[
+    "There's a full Highland THUNDERSTORM ragin ower the Cromarty Firth the night! ⛈️⚡️ Stay cosy inside wi' a wee dram and watch the absolute show!",
+    "She is absolutely CRACKIN and THUNDERIN ower the Firth the noo! ⛈️🌩️ Best viewed from inside wi' a hot cuppa and a biscuit — treat yersel, ye deserve it!",
+    "THUNDER AND LIGHTNING oer Invergordon tha night — full on dramatic Highland experience right there for free! ⛈️😂 Pure spectacular if yer in tha hoose. Pure terrifying if yer nae!"
+  ],
+  heavyrain:[
+    "It's comin doon in STAIR RODS ower Invergordon the noo! ☔️💦 Ye'll be soaked tae the bane in aboot four seconds flat — away an grab yer brolly hen!",
+    "The heavens have PURE OPENED UP ower the Cromarty Firth — she's comin doon in absolute sheets and buckets! ☔️😂 Classic Highland welcome — we hope ye packed for it!",
+    "It is ABSOLUTELY HOSING IT DOON ower Invergordon — like someone turned the biggest shower in Scotland on full blast ower the whole toon! ☔️💦 Brolly. Now. Immediately."
+  ],
+  showers:[
+    "Showers on and aff ower the Firth the day — pure Highland weather lottery! 🌦️ Ye might get lucky, ye might get absolutely drookit! Pack a brolly just tae be safe!",
+    "Wan o' they classic Highland days — sunny wan minute, pourin the next! 🌦️🌈 Ye cannae trust it. Keep a jacket handy and dinnae get caught oot!",
+    "Intermittent showers ower Invergordon the day — Scottish for 'keep yer brolly handy and yer heid doon'! 🌦️ Every silver cloud though — the Firth looks amazin after a shower! 🌈"
+  ],
+  drizzle:[
+    "Ach it's jist a wee smirr oot there — dinnae be such a big jessie aboot it, this is the Highlands! 🌧️ Ye'll survive, we absolutely promise!",
+    "Och it's barely even rainin — it's mair o' a damp suggestion than actual rain! 🌧️ Get ootside, ye'll be absolutely fine, honestly!",
+    "A wee bit o' Scottish mizzle oot there the noo — practically sunshine by Highland standards! 🌧️ Dinnae let it stop ye, we certainly dinnae up here!"
+  ],
+  dreich:[
+    "Pure dreich oot there the day. Grey skies, damp air, the whole authentic Highland works. ☁️ Absolutely CLASSIC Scotland — we wouldnae have it any other way!",
+    "Och it's a proper grey Scottish day the day — cloudy, a bit damp, nae much sun. ☁️ CHARACTER BUILDIN stuff right there, trust us on that wan!",
+    "The sky's a beautiful shade o' Scottish grey ower the Firth the day — fifty shades o' grey some might say! ☁️😄 The Highlands are gorgeous regardless, ye'll see for yersel!"
+  ],
+  fog:[
+    "The haar's rolled in thick ower the Firth the noo — cannae see yer hand in front o' yer face! 🌫️ Pure magical and mysterious though, we absolutely promise ye!",
+    "Highland mist has wrapped hersel right roond the Cromarty Firth this mornin — she's wearin her veil the day! 🌫️ Spooky, beautiful and totally Highland!",
+    "Thick haar ower Invergordon the noo — the Sutors have vanished completely intae the mist! 🌫️ Like somethin oot o' a film. We love it here honestly!"
+  ],
+  frost:[
+    "Pure Baltic oot there this mornin — the Firth's wearin a wee frost and the pavements are like a full-on skatin rink! 🧢 Watch yer feet hen, it is treacherous oot there!",
+    "Brass monkeys weather in Invergordon this mornin! 🥶 Nae snow mind ye, jist that crisp bitter Highland frost that gets right intae yer banes — beautiful though! Wrap up!",
+    "The whole o' Invergordon is SPARKLIN wi' frost this mornin — looks pure magic but dinnae be fooled, those wee sparkles are a tad slippy! 🧢✨ Slow doon and watch yer step!"
+  ],
+  snow:[
+    "She's wearin a fresh white coat the day! ❄️ The Highlands are absolutely STUNNING in the snow — wrap up warm, get oot there and dinnae ye dare moan aboot it!",
+    "IT'S SNOWIN OWER INVERGORDON! ❄️⭐ Pure white, absolutely beautiful, the Cromarty Firth is like a Christmas card — get yer wellies on and get ootside RIGHT NOO!",
+    "The Highland snow has arrived and she is pure GORGEOUS! ❄️✨ Everything's white, everything's quiet, everything's magical — this is exactly why we live up here. Get oot there!"
+  ],
+  dawn:[
+    "The dawn's crackin pure GOLDEN ower the Scottish Highlands the noo 🌅 — finest sight in the whole wide world. Ye heard us. THE WHOLE WIDE WORLD.",
+    "The sun's jist peekin ower the Highland hills this mornin — the Cromarty Firth is absolutely GLOWIN in the early light! 🌅 Best alarm clock in the world, nae joke!",
+    "Dawn has broken ower Invergordon and she is a pure BEAUTY this mornin 🌅 — pink skies, golden light, the Firth all glistenin! Get ootside or at least look oot yer windae!"
+  ],
+  sunset:[
+    "Ooh whit a BONNIE sunset o'er the Highlands this evenin! 🌄 The Cromarty Firth is absolutely glowin — get yersel ootside RIGHT NOO before she's gone!",
+    "Golden hour ower the Cromarty Firth the noo and she is pure MAGNIFICENT! 🌄 Orange and pink skies ower the Sutors — get yer camera oot this very second!",
+    "The sun's gaun doon ower the Highland hills and it is absolutely BREATHTAKIN the night! 🌄 Wan o' they sunsets that makes ye pure glad tae be alive — dinnae miss it!"
+  ],
+  clearnight:[
+    "Clear skies ower the Firth the night and the stars are absolutely MENTAL up there — nae light pollution oot here! 🌌🌚 Awa' ootside and look up RIGHT NOO!",
+    "Pure crystal clear nicht ower Invergordon — ye can see every single star! 🌟✨ Nae light pollution, pure Highland darkness — the Milky Way is oot in her FULL GLORY the night!",
+    "The night sky ower the Cromarty Firth is absolutely SPECTACULAR the night — millions o' stars, dead clear, pure silent! ✨🌙 This is why folk move tae the Highlands. Get ootside!"
+  ],
+  calmnight:[
+    "Grand calm nicht ower the Firth the night — dead quiet, dead beautiful. Pure Highland magic so it is! 🌙",
+    "Lovely still evenin ower Invergordon the night — the Firth's like glass and everythin's peaceful and quiet! 🌙 Perfect for a wee dander doon tae the waterfront!",
+    "Calm, mild and beautiful ower the Cromarty Firth this evenin — wan o' they rare Highland nights where everythin's jist perfect! 🌙✨ Get doon tae the waterfront and soak it in!"
+  ],
+  aurora:[
+    "NORTHERN LIGHTS OWER INVERGORDON THE NIGHT! 🌌⚡️ THE ACTUAL AURORA BOREALIS! Get ootside RIGHT NOO — nae excuses, nae delays, JUST GO! Ye can sleep when ye're deid!",
+    "Oh. Ma. Goodness. THE AURORA IS DANCIN OWER THE CROMARTY FIRTH! 🌌💚 Green and purple lights in the actual sky — only in the Highlands! This is the best place on EARTH!",
+    "THE NORTHERN LIGHTS ARE OOT! 🌌✨ We repeat — THE AURORA BOREALIS IS VISIBLE OWER INVERGORDON RIGHT NOO! Stop whit ye're daein, get ootside and look NORTH! YE WILL NEVER FORGET THIS!"
+  ],
+  subzero:[
+    "It is BRASS MONKEYS oot there the day — absolutely pure freezin! 🥶❄️ Every layer ye own. On. Now. Immediately!",
+    "Below zero in Invergordon the noo — Baltic conditions of the highest order! 🥶 Hat, gloves, scarf and jist maybe dinnae bother gaun oot at all!",
+    "Sub-zero temperatures ower the Firth the day — breathtakingly cold and genuinely beautiful! 🥶❄️ Very Highland, very dramatic, very much wrap up!"
+  ],
+  cold:[
+    "Aye it's a bit nippy oot there — nothin a guid thick jacket cannae sort! 🧣 Classic Highland weather, we love tae see it!",
+    "Cool and crisp ower Invergordon the day — fresh Highland air at its absolute finest! 🧣 Stick a layer on and get ootside, it's gorgeous!",
+    "Bit chilly oot there but dinnae let it stop ye — this is pure refreshin Highland weather! 🧣 A brisk walk by the Firth will dae ye the world o' good!"
+  ],
+  shorts:[
+    "Dinny forget yer sunglasses — IT'S A PURE CORKER OOT THERE THE DAY! 😎☀️🍦 Aye that's right, 15 degrees — shorts and t-shirt weather up here, we are genuinely built different!",
+    "15 degrees ower Invergordon and the shorts are officially OOT! 😎☀️ Americans are still wearin jumpers at this temperature — up here we're practically on the beach! Glorious!",
+    "Would ye look at that SUNSHINE! ☀️😎🍦 Shorts, t-shirts, ice creams — Invergordon is absolutely BUZZIN the day! 15 degrees of pure Highland luxury and we are HERE FOR IT!"
+  ],
+  suncream:[
+    "RIGHT that's it — the sun cream is OOT! 🌞😎 Nearly 19 degrees ower Invergordon — half the toon is already doon at the shore. An absolute SCORCHER by Highland standards!",
+    "SUN CREAM WEATHER IN INVERGORDON! 🌞🍦 18 glorious degrees ower the Cromarty Firth — folk are gettin tanned, the Firth is sparklin. It is absolutely MAGNIFICENT!",
+    "Haud on — is it actually 17 degrees?! IN SCOTLAND?! 🌞😎 The whole Highlands has lost the plot — sun cream on, straight doon tae the waterfront, this is practically a NATIONAL EVENT!"
+  ],
+  heatwave:[
+    "HAUD THE BUS — 20 degrees in Invergordon?! TWENTY! 🔥🌞🍦 The Cromarty Firth is absolutely MOBBED — folk swimmin in the sea, sunbathin on the shore. Historic scenes. HISTORIC.",
+    "21 DEGREES OWER THE CROMARTY FIRTH! 🔥🌞 We absolutely cannae cope! Everyone is in the sea, everyone is ootside, the whole toon has gone radge wi' pure joy! Come join us!",
+    "Twenty wan degrees in the Scottish Highlands and we have COMPLETELY LOST OUR MINDS! 🔥😂 The Firth looks like the Mediterranean and we're actin like it tae — come and join the madness!"
+  ],
+  emergency:[
+    "22 DEGREES?! TWENTY TWO?! 🥵☀️ Take cover IMMEDIATELY — find the nearest bit o' shade or get hame and close the shutters! This is NOT normal and we dinnae ken how tae cope!",
+    "WE ARE IN UNCHARTED TERRITORY — 22 degrees ower Invergordon! 🥵🔥 This is a genuine Highland emergency! Find shade, drink water, check on yer elderly neighbours and dinnae go oot in the midday sun!",
+    "22 degrees in INVERGORDON! IN SCOTLAND! 🥵😱 We have declared an unofficial Highland Heat Emergency! Close the shutters, fill the paddlin pool and dinnae move until it drops below 20! STAY SAFE OOT THERE!"
+  ]
+};
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function getSolarPhase(){
+  var now=new Date();
+  var inv=new Date(now.toLocaleString('en-GB',{timeZone:'Europe/London'}));
+  var doy=Math.floor((inv-new Date(inv.getFullYear(),0,0))/86400000);
+  var h=inv.getHours()+inv.getMinutes()/60;
+  var lat=LAT*Math.PI/180;
+  var decl=0.4093*Math.sin(2*Math.PI*(284+doy)/365);
+  var ha=(h-12)*Math.PI/12;
+  var elev=Math.asin(Math.sin(lat)*Math.sin(decl)+Math.cos(lat)*Math.cos(decl)*Math.cos(ha))*180/Math.PI;
+  var phase=elev>4?'day':elev>-6?'twilight':'night';
+  return{phase:phase,elev:elev,hour:h,isMorning:h<13};
+}
+function selectMsg(solar,code,wind,temp,kp){
+  var p=solar.phase;
+  if(p==='night'&&kp>=4&&code<=1)return pick(MSGS.aurora);
+  if(p==='twilight')return pick(solar.isMorning?MSGS.dawn:MSGS.sunset);
+  if(code>=95)return pick(MSGS.thunder);
+  if(wind>=50)return pick(MSGS.hoolie);
+  if((code>=71&&code<=77)||code===86)return pick(MSGS.snow);
+  if(code===65||code===67||code===81||code===82)return pick(MSGS.heavyrain);
+  if((code>=61&&code<=63)||code===80)return pick(MSGS.showers);
+  if(code>=51&&code<=55)return pick(MSGS.drizzle);
+  if(code===45||code===48)return pick(MSGS.fog);
+  if(temp<0)return pick(MSGS.subzero);
+  if(temp<3&&code<=2)return pick(MSGS.frost);
+  if(p==='night'){
+    if(code<=1&&wind<20)return pick(MSGS.clearnight);
+    return pick(MSGS.calmnight);
+  }
+  if(code===3&&temp<14)return pick(MSGS.dreich);
+  if(temp>=22)return pick(MSGS.emergency);
+  if(temp>=20)return pick(MSGS.heatwave);
+  if(temp>=17)return pick(MSGS.suncream);
+  if(temp>=14)return pick(MSGS.shorts);
+  if(code===3||code===2)return pick(MSGS.dreich);
+  return pick(MSGS.cold);
+}
+function wmoDesc(c){
+  if(c===0)return'Clear sky';if(c<=2)return'Partly cloudy';if(c===3)return'Overcast';
+  if(c<=48)return'Fog';if(c<=55)return'Drizzle';if(c<=67)return'Rain';
+  if(c<=77)return'Snow';if(c<=82)return'Showers';if(c<=86)return'Snow showers';
+  return'Thunderstorm';
+}
+function wttrToWmo(c){
+  if(c===113)return 0;if(c===116)return 1;if(c===119)return 2;if(c===122)return 3;
+  if(c===143||c===248||c===260)return 45;
+  if(c===263||c===266||c===281||c===284)return 51;
+  if(c===293||c===296)return 61;if(c===299||c===302)return 63;
+  if(c===305||c===308)return 65;if(c===311||c===314)return 67;
+  if(c===317||c===320||c===323||c===326)return 71;
+  if(c===329||c===332)return 73;if(c===335||c===338)return 75;
+  if(c===353)return 80;if(c===356||c===359)return 82;
+  if(c===368||c===371||c===362||c===365)return 85;
+  if(c===386||c===389||c===392||c===395||c===200)return 95;
+  if(c===176||c===179)return 80;if(c===227||c===230)return 75;
+  return 3;
+}
+function setWeatherAnimation(code,solar,wind){
+  var card=document.getElementById('ei-weather-card');
+  var el=document.getElementById('weather-particles');
+  if(!card||!el)return;
+  el.innerHTML='';card.style.animation='';
+  var p=solar?solar.phase:'day';
+  var SKY={
+    dclear:'linear-gradient(175deg,#0b3d8c 0%,#1a5fb4 35%,#2e86de 65%,#74b9ff 100%)',
+    dpart:'linear-gradient(175deg,#0d3f8f 0%,#1e5fa8 35%,#3a7bd5 65%,#7ab4e8 100%)',
+    dover:'linear-gradient(175deg,#1a2744 0%,#253552 35%,#374865 65%,#5a6a82 100%)',
+    dfog:'linear-gradient(175deg,#2a3a4a 0%,#3d505f 35%,#5a6e7d 65%,#8a9daa 100%)',
+    drain:'linear-gradient(175deg,#0d1f3c 0%,#162a4a 35%,#243d5e 65%,#3a5272 100%)',
+    dsnow:'linear-gradient(175deg,#1e2f45 0%,#2d4060 35%,#4a6080 65%,#8aabcc 100%)',
+    dhail:'linear-gradient(175deg,#162030 0%,#22303f 35%,#384f60 65%,#607080 100%)',
+    dstorm:'linear-gradient(175deg,#060d18 0%,#0d1827 35%,#162030 65%,#243040 100%)',
+    tclear:'linear-gradient(175deg,#1a0a2e 0%,#3d1f5a 25%,#8b3a62 50%,#e8845a 75%,#f4c88a 100%)',
+    tcloud:'linear-gradient(175deg,#1a1228 0%,#2d2040 25%,#5a3858 50%,#9a6060 75%,#c49070 100%)',
+    train:'linear-gradient(175deg,#0d0d1f 0%,#1a1a3a 35%,#2d2d50 65%,#4a4a68 100%)',
+    nclear:'linear-gradient(175deg,#000308 0%,#020818 35%,#040d28 65%,#081840 100%)',
+    ncloud:'linear-gradient(175deg,#050810 0%,#0a1020 35%,#121828 65%,#1e2838 100%)',
+    nfog:'linear-gradient(175deg,#080c14 0%,#101820 35%,#182430 65%,#283848 100%)',
+    nrain:'linear-gradient(175deg,#020408 0%,#080c18 35%,#0e1428 65%,#161e38 100%)',
+    nsnow:'linear-gradient(175deg,#080d18 0%,#101828 35%,#1a2838 65%,#2a3a50 100%)',
+    nstorm:'linear-gradient(175deg,#020308 0%,#05080f 35%,#080e18 65%,#0e1522 100%)'
+  };
+  function skyKey(c,ph){
+    if(ph==='twilight')return c<=2?'tclear':c>=95?'train':'tcloud';
+    if(ph==='night'){
+      if(c>=95)return'nstorm';if(c>=71&&c<=77)return'nsnow';if(c>=61)return'nrain';
+      if(c===45||c===48)return'nfog';if(c<=1)return'nclear';return'ncloud';
+    }
+    if(c>=95)return'dstorm';if(c>=85)return'dhail';if(c>=71)return'dsnow';
+    if(c>=61)return'drain';if(c===45||c===48)return'dfog';if(c===3)return'dover';
+    if(c<=1)return'dclear';return'dpart';
+  }
+  card.style.background=SKY[skyKey(code,p)];
+  if((p==='night'||p==='twilight')&&code<=2){
+    var cnt=p==='night'?120:40;
+    for(var i=0;i<cnt;i++){
+      var s=document.createElement('div');
+      var sz=Math.random()<0.15?2.5:Math.random()<0.4?1.5:1;
+      s.style.cssText='position:absolute;border-radius:50%;background:#fff;width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;top:'+Math.random()*90+'%;opacity:'+(0.3+Math.random()*0.65)+';animation:starTwinkle '+(2+Math.random()*4)+'s '+(Math.random()*5)+'s ease-in-out infinite;';
+      el.appendChild(s);
+    }
+  }
+  if(p==='night'&&code<=2){
+    var m=document.createElement('div');
+    m.style.cssText='position:absolute;top:18%;right:12%;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#f5e6a0,#e8c840 40%,#c8a820 70%,#a08820);box-shadow:0 0 28px rgba(248,230,120,0.45),0 0 64px rgba(248,230,120,0.20);animation:sunGlow 5s ease-in-out infinite;';
+    el.appendChild(m);
+  }
+  if(p==='twilight'){
+    var g=document.createElement('div');
+    g.style.cssText='position:absolute;bottom:0;'+(solar&&solar.isMorning?'left':'right')+':0;width:55%;height:55%;border-radius:50% 50% 0 0;opacity:0.35;filter:blur(48px);background:radial-gradient(ellipse at center,#f9c76a 0%,#f0824a 40%,transparent 75%);';
+    el.appendChild(g);
+  }
+  if(p==='day'&&code<=2){
+    var sun=document.createElement('div');
+    sun.style.cssText='position:absolute;top:14%;right:10%;width:72px;height:72px;border-radius:50%;background:radial-gradient(circle,#fff7d0 0%,#ffe566 40%,#ffcc00 70%,#ff9900);animation:sunGlow 4s ease-in-out infinite;';
+    el.appendChild(sun);
+    var corona=document.createElement('div');
+    corona.style.cssText='position:absolute;top:calc(14% - 20px);right:calc(10% - 20px);width:112px;height:112px;border-radius:50%;border:2px solid rgba(255,220,60,0.35);animation:sunCorona 6s ease-in-out infinite;';
+    el.appendChild(corona);
+    var rays=document.createElement('div');
+    rays.style.cssText='position:absolute;top:calc(14% - 36px);right:calc(10% - 36px);width:144px;height:144px;animation:rayRotate 18s linear infinite;';
+    for(var r=0;r<8;r++){
+      var ray=document.createElement('div');
+      ray.style.cssText='position:absolute;left:50%;top:50%;width:2px;height:40px;background:linear-gradient(to bottom,rgba(255,220,60,0.55),transparent);transform-origin:top center;transform:translateX(-50%) rotate('+(r*45)+'deg) translateY(-72px);';
+      rays.appendChild(ray);
+    }
+    el.appendChild(rays);
+  }
+  if(code>=1&&code<=3&&p!=='night'){
+    var cc=code===1?2:code===2?4:6;
+    for(var c2=0;c2<cc;c2++){
+      var cl=document.createElement('div');
+      var w=160+Math.random()*200,h2=w*0.45;
+      cl.style.cssText='position:absolute;border-radius:50px;opacity:'+(code===3?0.90:0.72)+';width:'+w+'px;height:'+h2+'px;top:'+(8+Math.random()*55)+'%;background:'+(p==='night'?'rgba(30,40,60,0.75)':(code===3?'rgba(110,120,140,0.85)':'rgba(220,230,245,0.82)'))+';animation:cloudDrift '+(18+Math.random()*22)+'s '+(c2*-7)+'s linear infinite;';
+      el.appendChild(cl);
+    }
+  }
+  if(code>=95){
+    card.style.animation='stormFlash 4s ease-in-out infinite';
+    for(var sc=0;sc<5;sc++){
+      var sw=240+Math.random()*180;
+      var scl=document.createElement('div');
+      scl.style.cssText='position:absolute;border-radius:60px;background:rgba(25,30,45,0.88);width:'+sw+'px;height:'+(sw*0.4)+'px;top:'+(5+Math.random()*50)+'%;animation:stormCloud '+(14+Math.random()*12)+'s '+(sc*-4)+'s linear infinite;';
+      el.appendChild(scl);
+    }
+    for(var l=0;l<3;l++){
+      var lb=document.createElement('div');
+      lb.style.cssText='position:absolute;width:2px;height:'+(60+Math.random()*80)+'px;background:linear-gradient(to bottom,rgba(255,255,255,0.9),rgba(180,200,255,0.4));left:'+(15+l*30+Math.random()*15)+'%;top:'+(15+Math.random()*30)+'%;animation:lightningFlash '+(3+Math.random()*4)+'s '+(l*1.2)+'s ease-in-out infinite;';
+      el.appendChild(lb);
+    }
+  }
+  if((code>=51&&code<=55)||(code>=61&&code<=67)||(code>=80&&code<=82)){
+    var isH=code>=63||code===81||code===82;
+    var rcnt=isH?60:30;
+    var ang=wind>25?14:wind>10?8:0;
+    for(var ri=0;ri<rcnt;ri++){
+      var rd=document.createElement('div');
+      var rh2=isH?18+Math.random()*8:12+Math.random()*6;
+      var op=p==='night'?0.35+Math.random()*0.25:0.55+Math.random()*0.30;
+      rd.style.cssText='position:absolute;width:1.5px;border-radius:2px;height:'+rh2+'px;left:'+Math.random()*110+'%;top:-20px;background:linear-gradient(to bottom,transparent,rgba(180,210,255,'+op+'));transform:rotate('+ang+'deg);animation:rainFall '+(0.5+Math.random()*0.7)+'s '+(Math.random()*1.5)+'s linear infinite;';
+      el.appendChild(rd);
+    }
+  }
+  if((code>=71&&code<=77)||(code>=85&&code<=86)){
+    for(var si=0;si<55;si++){
+      var sd=document.createElement('div');
+      var sz2=2+Math.random()*3.5;
+      sd.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,0.88);width:'+sz2+'px;height:'+sz2+'px;left:'+Math.random()*105+'%;top:-20px;animation:snowDrift '+(2.5+Math.random()*3)+'s '+(Math.random()*3)+'s ease-in-out infinite;';
+      el.appendChild(sd);
+    }
+  }
+  if(code===45||code===48){
+    for(var fi=0;fi<4;fi++){
+      var fd=document.createElement('div');
+      fd.style.cssText='position:absolute;height:60px;border-radius:30px;opacity:0.35;filter:blur(28px);background:rgba(180,190,200,0.80);width:'+(280+Math.random()*200)+'px;top:'+(20+fi*18)+'%;animation:fogDrift '+(12+Math.random()*10)+'s '+(fi*-3)+'s ease-in-out infinite;';
+      el.appendChild(fd);
+    }
+  }
+  if(code>=85&&code<=86){
+    for(var hi=0;hi<40;hi++){
+      var hd=document.createElement('div');
+      var hs=3+Math.random()*3;
+      hd.style.cssText='position:absolute;border-radius:50%;background:rgba(220,240,255,0.88);width:'+hs+'px;height:'+hs+'px;left:'+Math.random()*105+'%;top:-12px;animation:hailFall '+(0.6+Math.random()*0.5)+'s '+(Math.random()*1)+'s linear infinite;';
+      el.appendChild(hd);
+    }
+  }
+  if(wind>35){
+    for(var wi2=0;wi2<8;wi2++){
+      var ws=document.createElement('div');
+      ws.style.cssText='position:absolute;height:1px;border-radius:2px;background:rgba(255,255,255,0.25);width:'+(80+Math.random()*120)+'px;top:'+(10+Math.random()*80)+'%;animation:windStreak '+(1.2+Math.random()*1.5)+'s '+(wi2*-0.4)+'s linear infinite;';
+      el.appendChild(ws);
+    }
+  }
+}
+function render(temp,feelsLike,wind,code,kp){
+  var solar=getSolarPhase();
+  var msg=selectMsg(solar,code,wind,temp,kp);
+  var welcomeEl=document.getElementById('ei-welcome-msg');
+  var subEl=document.getElementById('ei-weather-sub');
+  var tempEl=document.getElementById('ei-temp');
+  var descEl=document.getElementById('ei-weather-desc');
+  var windEl=document.getElementById('ei-weather-wind');
+  if(welcomeEl)welcomeEl.textContent=msg;
+  if(tempEl)tempEl.textContent=Math.round(temp)+'°C';
+  if(descEl)descEl.textContent=wmoDesc(code);
+  if(windEl)windEl.textContent=wind>5?'💨 '+Math.round(wind)+' km/h':'';
+  if(subEl)subEl.textContent=(feelsLike!==null&&Math.abs(feelsLike-temp)>=2)?'Feels like '+Math.round(feelsLike)+'°C':'';
+  setWeatherAnimation(code,solar,wind);
+}
+function fallback(){
+  var el=document.getElementById('ei-welcome-msg');
+  if(el)el.textContent='Welcome tae Invergordon — Highland weather loading… 🏴󠁧󠁢󠁳󠁣󠁴󠁿';
+  setWeatherAnimation(1,getSolarPhase(),0);
+}
+function fetchKp(cb){
+  fetch('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d&&d.length>1){var last=d[d.length-1];cb(parseFloat(last[1])||0);}
+      else{cb(0);}
+    }).catch(function(){cb(0);});
+}
+function init(){
+  var url='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON+'&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&wind_speed_unit=kmh&timezone=Europe%2FLondon';
+  fetchKp(function(kp){
+    fetch(url)
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var c=d.current;
+        render(c.temperature_2m,c.apparent_temperature,c.wind_speed_10m,c.weather_code,kp);
+      })
+      .catch(function(){
+        fetch('https://wttr.in/Invergordon?format=j1')
+          .then(function(r){return r.json();})
+          .then(function(d){
+            var c=d.current_condition[0];
+            render(parseFloat(c.temp_C),parseFloat(c.FeelsLikeC),parseFloat(c.windspeedKmph),wttrToWmo(parseInt(c.weatherCode)),kp);
+          }).catch(fallback);
+      });
+  });
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+// ── END EI WEATHER WINDOW ─────────────────────────────────────────────────
 </script>
 </body>
 </html>
