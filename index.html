@@ -3205,7 +3205,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 
 /* ── EI WEATHER WINDOW ──────────────────────────────────────────────────── */
 .ei-weather-window{width:100%;max-width:100%;padding:0;margin:0;margin-top:88px;display:block}
-#ei-weather-card{position:relative;width:100%;min-height:380px;overflow:hidden;background:linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%);border-bottom:1px solid rgba(201,168,76,0.30)}
+#ei-weather-card{position:relative;width:100%;min-height:380px;overflow:hidden;background:linear-gradient(175deg,rgba(6,28,80,0.97) 0%,rgba(10,45,110,0.95) 40%,rgba(15,55,130,0.93) 100%);-webkit-mask-image:linear-gradient(to bottom,black 68%,transparent 98%);mask-image:linear-gradient(to bottom,black 68%,transparent 98%)}
 #weather-particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
 .ei-weather-content{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding:3rem 2.5rem 2.5rem;min-height:380px}
 .ei-weather-left{flex:1}
@@ -4315,11 +4315,12 @@ function render(temp,feelsLike,wind,code,kp,precip,cloud){
   if(welcomeEl)welcomeEl.textContent=msg;
   if(tempEl)tempEl.textContent=Math.round(temp)+'°C / '+Math.round(temp*9/5+32)+'°F';
   if(descEl)descEl.textContent=wmoDesc(code);
-  if(windEl)windEl.textContent=wind>3?'💨 '+Math.round(wind)+' mph':'';
+  if(windEl)windEl.textContent='';
   var parts=[];
   if(feelsLike!==null&&Math.abs(feelsLike-temp)>=2)parts.push('Feels like '+Math.round(feelsLike)+'°C');
   if(precip!=null&&precip>0)parts.push('🌧 '+precip.toFixed(1)+' mm');
   if(cloud!=null&&cloud>=0)parts.push('☁️ '+Math.round(cloud)+'%');
+  if(wind>3)parts.push('💨 '+Math.round(wind)+' mph');
   if(subEl)subEl.textContent=parts.join('  ·  ');
   setWeatherAnimation(code,solar,wind);
 }
