@@ -2017,7 +2017,7 @@ function googleTranslateElementInit() {
   <div class="nav-scroll-wrapper">
     <button class="nav-scroll-btn nav-scroll-left" aria-label="Scroll nav left">&#8249;</button>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-active">Home</a></li>
+    <li><a href="index.html" class="nav-active nav-home">Home</a></li>
     <li><a href="murals.html">Murals</a></li>
     <li><a href="cruise-hub.html">Cruise Hub</a></li>
       
@@ -3013,7 +3013,7 @@ function updateScrollSpy() {
       active = entry.cls;
     }
   }
-  setActiveNav(active);
+  setActiveNav(active || 'nav-home');
 }
 
 window.addEventListener('scroll', updateScrollSpy, { passive: true });
