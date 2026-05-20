@@ -744,6 +744,158 @@
   }
 
 
+
+  /* ── FEATURED PARTNER CARD ── */
+  .biz-featured-wrap {
+    grid-column: span 2;
+    grid-row: span 1;
+    cursor: pointer;
+    height: 110px;
+    border-radius: 10px;
+    border: 2px solid rgba(212,175,55,0.75);
+    box-shadow: 0 0 18px rgba(212,175,55,0.22), inset 0 0 30px rgba(0,0,0,0.25);
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(145deg, #1a4a1a 0%, #0d2e0d 55%, #1a3a0a 100%);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+  .biz-featured-wrap:hover {
+    box-shadow: 0 0 28px rgba(212,175,55,0.45), inset 0 0 30px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+  .biz-featured-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.28;
+    border-radius: 8px;
+  }
+  .biz-featured-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(212,175,55,0.92);
+    color: #0d1f0d;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    z-index: 2;
+  }
+  .biz-featured-content {
+    position: relative;
+    z-index: 2;
+    padding: 7px 12px 7px 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .biz-featured-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .biz-featured-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .biz-featured-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    color: #f5e97a;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+  .biz-featured-title small {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(245,233,122,0.65);
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    margin-top: 1px;
+  }
+  .biz-featured-rates {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 3px;
+  }
+  .biz-featured-rate {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 5px;
+    padding: 3px 7px;
+    font-family: 'Overpass Mono', monospace;
+    flex: 1;
+  }
+  .biz-featured-rate .rate-label {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+  .biz-featured-rate .rate-price {
+    font-size: 0.82rem;
+    color: #f5e97a;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .biz-featured-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .biz-featured-pills {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .biz-featured-pill {
+    background: rgba(86,194,123,0.18);
+    border: 1px solid rgba(86,194,123,0.4);
+    border-radius: 20px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--spring-green);
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+  .biz-featured-cta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(212,175,55,0.85);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .biz-featured-cta:hover { color: #f5e97a; }
+
+  @media (max-width: 440px) {
+    .biz-featured-wrap {
+      grid-column: span 1;
+      grid-row: span 1;
+      height: 110px;
+    }
+    .biz-featured-rates {
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .biz-featured-title {
+      font-size: 0.92rem;
+    }
+  }
+
   /* ── BUSINESS FLIP CARDS ── */
   .biz-grid {
     display: grid;
@@ -2209,6 +2361,49 @@ function googleTranslateElementInit() {
   </div>
   <div class="biz-inner">
     <div class="biz-grid">
+      <!-- ★ FEATURED PARTNER — Invergordon Golf Club ★ -->
+      <a class="biz-featured-wrap" href="https://www.invergordongolf.co.uk" target="_blank" rel="noopener">
+        <img class="biz-featured-bg"
+             src="website_image_files/business_images/invergordon-golf-course-hero-image-2.webp"
+             alt="Invergordon Golf Club"
+             onerror="this.style.display='none'" loading="lazy"/>
+        <div class="biz-featured-badge">⭐ Featured Partner</div>
+        <div class="biz-featured-content">
+          <div class="biz-featured-header">
+            <span class="biz-featured-icon">⛳</span>
+            <div class="biz-featured-title">
+              Invergordon Golf Club
+              <small>9-Hole Course · Easter Ross</small>
+            </div>
+          </div>
+          <div class="biz-featured-rates">
+            <div class="biz-featured-rate">
+              <div class="rate-label">9 Holes</div>
+              <div class="rate-price">£22.50</div>
+            </div>
+            <div class="biz-featured-rate">
+              <div class="rate-label">18 Holes</div>
+              <div class="rate-price">£45.00</div>
+            </div>
+            <div class="biz-featured-rate">
+              <div class="rate-label">Clubs &amp; Trolley</div>
+              <div class="rate-price">£10</div>
+            </div>
+            <div class="biz-featured-rate">
+              <div class="rate-label">Buggy Hire</div>
+              <div class="rate-price">£25</div>
+            </div>
+          </div>
+          <div class="biz-featured-footer">
+            <div class="biz-featured-pills">
+              <span class="biz-featured-pill">🍺 Bar Open</span>
+              <span class="biz-featured-pill">Walk-ins Welcome</span>
+              <span class="biz-featured-pill">📞 07809 643682</span>
+            </div>
+            <span class="biz-featured-cta">invergordongolf.co.uk →</span>
+          </div>
+        </div>
+      </a>
       <div class="biz-flip-wrap" id="biz-flip-24"
            onmouseenter="bizFlip(24)"
            onmouseleave="bizUnflip(24)"
@@ -2913,27 +3108,7 @@ function googleTranslateElementInit() {
           </div>
         </div>
       </div>
-      <div class="biz-flip-wrap" id="biz-flip-30"
-           onmouseenter="bizFlip(30)"
-           onmouseleave="bizUnflip(30)"
-           onclick="openBizLightbox(30)">
-        <div class="biz-flip-inner">
-          <div class="biz-face">
-            <div class="biz-category">Golf Club</div>
-            <div class="biz-name">Invergordon Golf Club ⛳</div>
-          </div>
-          <div class="biz-back" style="background:#1a5c1a;">
-            <div class="biz-back-fallback">⛳</div>
-            <img class="biz-back-photo"
-                 src="website_image_files/business_images/Invergordon Golf Club.jpg"
-                 alt="Invergordon Golf Club"
-                 onerror="this.style.display='none'" loading="lazy"/>
-            <div class="biz-back-overlay">
-              <div class="biz-back-name">Invergordon Golf Club</div>
-              <div class="biz-back-hint">CLICK TO EXPLORE</div>
-            </div>
-          </div>
-        </div>
+</div>
       </div>
       <div class="biz-flip-wrap" id="biz-flip-22"
            onmouseenter="bizFlip(22)"
