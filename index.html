@@ -329,8 +329,9 @@
   }
 
   .welcome-card {
-    background: rgba(86,194,123,0.26);
-    border: 1px solid rgba(86,194,123,0.35);
+    background: rgba(86,194,123,0.38);
+    border: 1px solid rgba(86,194,123,0.52);
+    border-radius: 12px;
     padding: 1.75rem;
     position: relative;
     overflow: hidden;
@@ -1288,7 +1289,8 @@
     border: none;
     cursor: pointer;
     text-transform: uppercase;
-    padding: 0.25rem 0.5rem;
+    padding: 0.2rem 0.5rem;
+    white-space: nowrap;
     transition: color 0.2s;
   }
 
@@ -3018,6 +3020,17 @@ function updateScrollSpy() {
 
 window.addEventListener('scroll', updateScrollSpy, { passive: true });
 document.addEventListener('DOMContentLoaded', updateScrollSpy);
+// ── SYNC NAV TOP TO LANG BAR HEIGHT (portrait mobile fix) ──
+function syncNavTop() {
+  var lb = document.querySelector('.lang-bar');
+  var nav = document.querySelector('nav');
+  if (!lb || !nav) return;
+  nav.style.top = lb.offsetHeight + 'px';
+}
+window.addEventListener('load', syncNavTop);
+window.addEventListener('resize', syncNavTop);
+document.addEventListener('DOMContentLoaded', syncNavTop);
+
 
 function navTo(id) {
   const el = document.getElementById(id);
