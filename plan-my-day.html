@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan My Shore Day — Custom Invergordon Itinerary | £15</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="Get a personalised Invergordon shore day itinerary delivered to your email within 1 hour. Tailored to your group, interests and pace. Just £15.">
+<meta name="keywords" content="Invergordon shore excursion, cruise passenger itinerary, Invergordon things to do, Scottish Highlands day trip, personalised Invergordon guide">
+<meta name="author" content="Explore Invergordon">
+<link rel="canonical" href="https://exploreinvergordon.scot/plan-my-day.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exploreinvergordon.scot/plan-my-day.html">
+<meta property="og:title" content="Plan My Shore Day — Custom Invergordon Itinerary">
+<meta property="og:description" content="A personalised Invergordon itinerary, built for your group, delivered in 1 hour. Just £15.">
+<meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plan My Shore Day — Custom Invergordon Itinerary">
+<meta name="twitter:description" content="A personalised Invergordon itinerary, built for your group, delivered in 1 hour. Just £15.">
+<meta name="twitter:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ── CSS VARIABLES (matching existing EI site) ── */
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+    --spring-green: #56c27b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANG BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(107,74,126,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.4rem 1.5rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
+  .lang-sep { color: rgba(255,255,255,0.2); font-size: 0.9rem; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .nav-follow-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav-social-btn:hover { opacity: 0.75; transform: scale(1.12); }
+  @media (max-width: 600px) { .nav-follow-label { display: none; } }
+
+  .nav-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+    margin-left: 1rem;
+  }
+  .nav-scroll-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .nav-scroll-btn:hover { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.8rem;
+    padding: 0 0.5rem;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links li { list-style: none; white-space: nowrap; }
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    position: relative;
+    padding: 9rem 2rem 3rem;
+    text-align: center;
+    background-image: url('website_image_files/background_images/hero-bg.jpeg');
+    background-size: cover;
+    background-position: center 40%;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.50) 0%,
+      rgba(8,15,30,0.65) 60%,
+      rgba(8,15,30,0.97) 100%);
+    z-index: 0;
+  }
+  .page-hero > * { position: relative; z-index: 1; }
+
+  .hero-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+  }
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .page-hero h1 em { color: var(--gold-light); font-style: italic; }
+  .page-hero .hero-sub {
+    color: var(--heather-light);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 580px;
+    margin: 0 auto 0.5rem;
+    font-style: italic;
+  }
+
+  /* ── PRICE BADGE (hero) ── */
+  .price-badge {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: rgba(201,168,76,0.12);
+    border: 1.5px solid rgba(201,168,76,0.7);
+    border-radius: 50px;
+    padding: 0.6rem 2rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .page-content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  /* ── VALUE STRIP ── */
+  .value-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 520px) {
+    .value-strip { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+  .value-card {
+    background: var(--highland-dark);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 10px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+  .value-card .vc-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .value-card .vc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .value-card .vc-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    margin-bottom: 2rem;
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── BOOKING FORM ── */
+  .booking-form-wrap {
+    background: var(--highland-dark);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 12px;
+    padding: 2rem 1.75rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 480px) {
+    .booking-form-wrap { padding: 1.5rem 1.2rem; }
+  }
+
+  .form-intro {
+    color: var(--mist);
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.65;
+  }
+  .form-intro strong { color: var(--gold-light); font-style: italic; }
+
+  /* form rows */
+  .form-row {
+    margin-bottom: 1.4rem;
+  }
+  .form-row label {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.45rem;
+  }
+  .form-row .label-hint {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+  }
+
+  /* inputs & selects */
+  .form-row input[type="text"],
+  .form-row input[type="email"],
+  .form-row input[type="date"],
+  .form-row input[type="number"],
+  .form-row select,
+  .form-row textarea {
+    width: 100%;
+    background: rgba(8,15,30,0.80);
+    border: 1px solid rgba(201,168,76,0.30);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    color: var(--text-light);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus {
+    border-color: rgba(201,168,76,0.75);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.10);
+  }
+  .form-row select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .form-row select option {
+    background: var(--highland-dark);
+    color: var(--text-light);
+  }
+  .form-row textarea { resize: vertical; min-height: 90px; }
+
+  /* input date colour fix */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.7) sepia(1) saturate(3) hue-rotate(5deg);
+    cursor: pointer;
+  }
+
+  /* 2-col row for small fields */
+  .form-row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  @media (max-width: 420px) {
+    .form-row-2col { grid-template-columns: 1fr; }
+  }
+
+  /* ── INTERESTS CHECKBOX GRID ── */
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.55rem;
+  }
+  @media (max-width: 400px) {
+    .interests-grid { grid-template-columns: 1fr; }
+  }
+
+  .interest-check {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(8,15,30,0.6);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 8px;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .interest-check:hover {
+    border-color: rgba(201,168,76,0.5);
+    background: rgba(201,168,76,0.06);
+  }
+  .interest-check input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: var(--gold);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .interest-check span {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.3;
+  }
+  .interest-check.checked {
+    border-color: rgba(201,168,76,0.65);
+    background: rgba(201,168,76,0.09);
+  }
+
+  /* ── SUBMIT BUTTON ── */
+  .btn-submit {
+    display: block;
+    width: 100%;
+    margin-top: 1.75rem;
+    padding: 1.1rem 2rem;
+    background: rgba(201,168,76,0.10);
+    border: 1.5px solid rgba(201,168,76,0.70);
+    border-radius: 50px;
+    color: var(--gold);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.25s;
+  }
+  .btn-submit:hover:not(:disabled) {
+    background: rgba(201,168,76,0.20);
+    border-color: var(--gold);
+    box-shadow: 0 0 24px rgba(201,168,76,0.35), 0 0 55px rgba(201,168,76,0.15);
+  }
+  .btn-submit:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* ── STEP 2: PAYMENT PANEL ── */
+  #payment-panel {
+    display: none;
+    background: var(--highland-dark);
+    border: 1.5px solid rgba(86,194,123,0.40);
+    border-radius: 12px;
+    padding: 2rem 1.75rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    #payment-panel { padding: 1.5rem 1.2rem; }
+  }
+  .payment-step-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.3em;
+    color: var(--spring-green);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .payment-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .payment-title em { color: var(--spring-green); font-style: italic; }
+  .payment-desc {
+    color: var(--mist);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+  }
+  .payment-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+    line-height: 1;
+  }
+  .payment-price-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .btn-pay {
+    display: inline-block;
+    padding: 1.1rem 3rem;
+    background: var(--spring-green);
+    border: none;
+    border-radius: 50px;
+    color: #0a1f0f;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.25s, transform 0.15s;
+    box-shadow: 0 0 20px rgba(86,194,123,0.35);
+  }
+  .btn-pay:hover {
+    background: #6ddfa0;
+    box-shadow: 0 0 35px rgba(86,194,123,0.60), 0 0 70px rgba(86,194,123,0.20);
+    transform: translateY(-2px);
+  }
+  .payment-note {
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .secure-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ── STEP 3: SUCCESS / CONFIRMATION ── */
+  #confirmation-panel {
+    display: none;
+    background: var(--highland-dark);
+    border: 1.5px solid rgba(86,194,123,0.50);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .confirm-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+  .confirm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .confirm-title em { color: var(--spring-green); font-style: italic; }
+  .confirm-desc {
+    color: var(--mist);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 1.5rem;
+  }
+  .confirm-steps {
+    list-style: none;
+    text-align: left;
+    display: inline-block;
+    margin: 0 auto 1.5rem;
+  }
+  .confirm-steps li {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+  }
+  .confirm-steps li::before {
+    content: '✓';
+    color: var(--spring-green);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .confirm-email-note {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 520px) {
+    .how-grid { grid-template-columns: 1fr; }
+  }
+  .how-step {
+    background: var(--highland-dark);
+    border: 1px solid rgba(107,74,126,0.25);
+    border-radius: 10px;
+    padding: 1.4rem 1.1rem;
+    text-align: center;
+  }
+  .how-step .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.55;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .how-step .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .how-step .step-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── TRUST SECTION ── */
+  .trust-block {
+    background: linear-gradient(to right, rgba(8,15,30,0.6), rgba(107,74,126,0.10), rgba(8,15,30,0.6));
+    border-top: 1px solid rgba(201,168,76,0.35);
+    border-bottom: 1px solid rgba(201,168,76,0.35);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+  }
+  .trust-block p {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--heather-light);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .trust-block strong {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(8,15,30,0.95);
+    border-top: 1px solid rgba(107,74,126,0.35);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    font-family: 'Crimson Pro', serif;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .footer-proton a { color: var(--heather-light) !important; }
+  .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeUp 0.55s ease forwards; }
+
+  /* ── UTILITY ── */
+  .text-gold { color: var(--gold); }
+  .mt-1 { margin-top: 0.5rem; }
+  .required-note {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  /* ── Google Translate suppression ── */
+  .goog-te-banner-frame,
+  iframe.goog-te-banner-frame,
+  .skiptranslate > iframe { display: none !important; height: 0 !important; }
+  body { top: 0px !important; }
+  html { top: 0px !important; }
+  body.translated-ltr, body.translated-rtl { margin-top: 0 !important; top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
+  <div id="google_translate_element"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-follow-label">Check Our Socials:</span>
+    <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+  <div class="nav-scroll-wrapper">
+    <button class="nav-scroll-btn nav-scroll-left" aria-label="Scroll nav left">&#8249;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="murals.html">Murals</a></li>
+      <li><a href="cruise-hub.html">Cruise Hub</a></li>
+      <li><a href="plan-my-day.html" class="nav-active">Plan My Day</a></li>
+      <li><a href="nc500.html">NC500</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="work-with-me.html">Work With Me</a></li>
+    </ul>
+    <button class="nav-scroll-btn nav-scroll-right" aria-label="Scroll nav right">&#8250;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <p class="hero-label">Shore Day Concierge · Invergordon · Scottish Highlands</p>
+  <h1>Plan <em>My Day</em></h1>
+  <p class="hero-sub">Your personalised Invergordon itinerary — built around you, delivered in 1 hour.</p>
+  <div class="price-badge">Just £15 per booking &nbsp;·&nbsp; Any size group</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="page-content">
+
+  <!-- VALUE STRIP -->
+  <div class="value-strip">
+    <div class="value-card">
+      <div class="vc-icon">🗺️</div>
+      <div class="vc-title">Built For You</div>
+      <div class="vc-desc">Tailored to your group size, interests, fitness level and budget — not a generic tourist leaflet.</div>
+    </div>
+    <div class="value-card">
+      <div class="vc-icon">⚡</div>
+      <div class="vc-title">1 Hour Delivery</div>
+      <div class="vc-desc">Your itinerary lands in your inbox within 60 minutes of booking. Plenty of time to plan ahead.</div>
+    </div>
+    <div class="value-card">
+      <div class="vc-icon">📍</div>
+      <div class="vc-title">Local Knowledge</div>
+      <div class="vc-desc">Written by someone who lives here — real tips, hidden spots, no-fuss walking routes, honest advice.</div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <p class="section-label">How It Works</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Fill the Form</div>
+      <div class="step-desc">Tell me about your group — arrival date, interests, pace, budget. Takes 2 minutes.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Pay £15</div>
+      <div class="step-desc">Secure payment via SumUp. Cheaper than one coffee at the pier — and far more useful.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Enjoy Your Day</div>
+      <div class="step-desc">Your personalised itinerary arrives by email within 1 hour. Print it or keep it on your phone.</div>
+    </div>
+  </div>
+
+  <!-- TRUST BLOCK -->
+  <div class="trust-block">
+    <p>You have <strong>around 6 hours ashore</strong> at Invergordon — make every one of them count. A personalised itinerary means no wasted time, no wrong turns, and no missing the ship. <strong>£15 is less than a round of drinks.</strong> Your day in the Highlands is worth a little planning.</p>
+  </div>
+
+  <!-- BOOKING FORM -->
+  <p class="section-label">Step 1 — Tell Me About Your Group</p>
+
+  <!-- Form (shown by default) -->
+  <div class="booking-form-wrap" id="bookingFormWrap">
+    <p class="form-intro">
+      Fill in the details below and I'll craft a personalised shore day plan around your group.
+      <strong>All fields marked * are required.</strong>
+    </p>
+
+    <form id="bookingForm" novalidate>
+
+      <div class="form-row-2col">
+        <div class="form-row" style="margin-bottom:0">
+          <label for="fieldName">Your Name *</label>
+          <input type="text" id="fieldName" name="name" placeholder="e.g. Jane Smith" autocomplete="name" required>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label for="fieldEmail">Email Address *</label>
+          <input type="email" id="fieldEmail" name="email" placeholder="we'll deliver your itinerary here" autocomplete="email" required>
+        </div>
+      </div>
+
+      <div class="form-row-2col" style="margin-top:1.4rem">
+        <div class="form-row" style="margin-bottom:0">
+          <label for="fieldDate">Ship Arrival Date *</label>
+          <input type="date" id="fieldDate" name="arrival_date" required>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label for="fieldGroup">Group Size *</label>
+          <select id="fieldGroup" name="group_size" required>
+            <option value="" disabled selected>Select…</option>
+            <option value="Just me">Just me</option>
+            <option value="2 people">2 people</option>
+            <option value="3–4 people">3–4 people</option>
+            <option value="5–8 people">5–8 people</option>
+            <option value="9+ people">9+ people</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top:1.4rem">
+        <label>Interests <span class="label-hint">— tick everything that appeals</span></label>
+        <div class="interests-grid" id="interestsGrid">
+          <label class="interest-check"><input type="checkbox" name="interest" value="History &amp; Heritage"> <span>🏰 History &amp; Heritage</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Whisky &amp; Distilleries"> <span>🥃 Whisky &amp; Distilleries</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Wildlife &amp; Nature"> <span>🦅 Wildlife &amp; Nature</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Murals &amp; Local Art"> <span>🖼️ Murals &amp; Local Art</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Shopping &amp; Souvenirs"> <span>🛍️ Shopping &amp; Souvenirs</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Food &amp; Local Produce"> <span>🍽️ Food &amp; Local Produce</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Easy Walks &amp; Scenery"> <span>🚶 Easy Walks &amp; Scenery</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Photography Spots"> <span>📸 Photography Spots</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="NC500 Highlights"> <span>🚗 NC500 Highlights</span></label>
+          <label class="interest-check"><input type="checkbox" name="interest" value="Castles &amp; Ruins"> <span>🏯 Castles &amp; Ruins</span></label>
+        </div>
+      </div>
+
+      <div class="form-row-2col" style="margin-top:1.4rem">
+        <div class="form-row" style="margin-bottom:0">
+          <label for="fieldFitness">Fitness Level *</label>
+          <select id="fieldFitness" name="fitness_level" required>
+            <option value="" disabled selected>Select…</option>
+            <option value="Easy — mostly flat, minimal walking">Easy — mostly flat</option>
+            <option value="Moderate — some hills, 1–2 miles">Moderate — 1–2 miles</option>
+            <option value="Active — comfortable with 3+ miles">Active — 3+ miles</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label for="fieldBudget">Budget (per person) *</label>
+          <select id="fieldBudget" name="budget_per_person" required>
+            <option value="" disabled selected>Select…</option>
+            <option value="Under £20 per person">Under £20</option>
+            <option value="£20–£50 per person">£20–£50</option>
+            <option value="£50–£100 per person">£50–£100</option>
+            <option value="Happy to splash out">Happy to splash out!</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top:1.4rem">
+        <label for="fieldNotes">Anything Else? <span class="label-hint">— optional but helpful</span></label>
+        <textarea id="fieldNotes" name="extra_notes" placeholder="e.g. mobility needs, special occasions, specific places you've heard about, dietary requirements for restaurant suggestions…"></textarea>
+      </div>
+
+      <!-- Hidden Formspree fields -->
+      <input type="hidden" name="_subject" value="🗺️ New Shore Day Booking — Explore Invergordon">
+      <input type="hidden" name="page" value="plan-my-day.html">
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        Continue to Payment →
+      </button>
+
+    </form>
+  </div>
+
+  <!-- STEP 2: PAYMENT PANEL (hidden until form submitted) -->
+  <div id="payment-panel">
+    <p class="payment-step-tag">Step 2 of 2 — Secure Payment</p>
+    <h2 class="payment-title">Almost there, <em id="paymentName">friend</em>!</h2>
+    <p class="payment-desc">Your booking details have been received. Complete your £15 payment below and I'll get to work on your personalised itinerary straight away. It will be in your inbox within 1 hour.</p>
+    <div class="payment-price">£15</div>
+    <div class="payment-price-label">One-time · Any size group · No hidden fees</div>
+    <a href="YOUR_SUMUP_CHECKOUT_URL" class="btn-pay" id="payBtn" target="_blank" rel="noopener">
+      Pay Securely Now →
+    </a>
+    <p class="payment-note">After payment, SumUp will redirect you back here with a confirmation.</p>
+    <div class="secure-badge">
+      <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 1L1 3v4c0 2.76 2.13 5.35 5 6 2.87-.65 5-3.24 5-6V3L6 1z" stroke="#7a90b8" stroke-width="1.2" fill="none"/></svg>
+      Secure payment by SumUp · Your data is protected
+    </div>
+  </div>
+
+  <!-- STEP 3: CONFIRMATION (shown when ?booking=confirmed) -->
+  <div id="confirmation-panel">
+    <div class="confirm-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+    <h2 class="confirm-title">Booking <em>Confirmed!</em></h2>
+    <p class="confirm-desc">Payment received — thank you! Your personalised shore day itinerary is being built right now and will be in your inbox within 1 hour.</p>
+    <ul class="confirm-steps">
+      <li>Check your email (including your spam/junk folder)</li>
+      <li>Itinerary is tailored to your group and interests</li>
+      <li>Print it or keep it on your phone for the day</li>
+      <li>Any questions? Email: <a href="mailto:hello@exploreinvergordon.scot" class="text-gold">hello@exploreinvergordon.scot</a></li>
+    </ul>
+    <p class="confirm-email-note">Booking reference sent to the email you provided</p>
+  </div>
+
+</div><!-- /page-content -->
+
+<!-- FOOTER -->
+<footer>
+  <p>Explore Invergordon · Shore Day Concierge · Scottish Highlands</p>
+  <p style="margin-top:0.8rem; font-size:0.9rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="index.html">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="cruise-hub.html">Cruise Hub</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <p class="footer-proton">Online privacy matters. I use Proton for encrypted email every day — <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">click my referral link for a bonus when you try it ↗</a></p>
+</footer>
+
+<!-- Google Translate -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+/* ───────────────────────────────────────────────
+   FORMSPREE ID — replace with your Plan My Day form ID
+   Create a free form at https://formspree.io
+   ─────────────────────────────────────────────── */
+var FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
+/* ── SUMUP CHECKOUT URL ──
+   Replace the href on #payBtn AND the constant below
+   with your real SumUp hosted checkout URL, e.g.:
+   https://pay.sumup.com/b2c/XXXXXXXX
+   Also set the SumUp "Redirect URL" in your SumUp dashboard to:
+   https://exploreinvergordon.scot/plan-my-day.html?booking=confirmed
+   ─────────────────────────────────────────────── */
+var SUMUP_URL = 'YOUR_SUMUP_CHECKOUT_URL';
+
+/* ── CHECK FOR ?booking=confirmed ON PAGE LOAD ── */
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('booking') === 'confirmed') {
+    document.getElementById('bookingFormWrap').style.display = 'none';
+    document.getElementById('payment-panel').style.display   = 'none';
+    document.getElementById('confirmation-panel').style.display = 'block';
+    document.getElementById('confirmation-panel').classList.add('fade-in');
+    // clean the URL
+    history.replaceState(null, '', window.location.pathname);
+  }
+})();
+
+/* ── INTEREST CHECKBOX VISUAL TOGGLE ── */
+document.querySelectorAll('.interest-check').forEach(function(label) {
+  var cb = label.querySelector('input[type="checkbox"]');
+  cb.addEventListener('change', function() {
+    label.classList.toggle('checked', cb.checked);
+  });
+  // handle tapping the whole label (already works natively but this adds visual)
+  label.addEventListener('touchstart', function() {}, { passive: true });
+});
+
+/* ── NAV SCROLL BUTTONS ── */
+var track = document.getElementById('navLinks');
+var btnL  = document.querySelector('.nav-scroll-left');
+var btnR  = document.querySelector('.nav-scroll-right');
+if (track && btnL && btnR) {
+  btnL.addEventListener('click', function() { track.scrollBy({ left: -120, behavior: 'smooth' }); });
+  btnR.addEventListener('click', function() { track.scrollBy({ left:  120, behavior: 'smooth' }); });
+}
+
+/* ── FORM SUBMIT → FORMSPREE ── */
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  var name    = document.getElementById('fieldName').value.trim();
+  var email   = document.getElementById('fieldEmail').value.trim();
+  var date    = document.getElementById('fieldDate').value;
+  var group   = document.getElementById('fieldGroup').value;
+  var fitness = document.getElementById('fieldFitness').value;
+  var budget  = document.getElementById('fieldBudget').value;
+
+  /* Basic validation */
+  if (!name)    { flashError('fieldName',    'Please enter your name.');          return; }
+  if (!email || !email.includes('@')) { flashError('fieldEmail', 'Please enter a valid email address.'); return; }
+  if (!date)    { flashError('fieldDate',    'Please select your ship arrival date.'); return; }
+  if (!group)   { flashError('fieldGroup',   'Please select your group size.'); return; }
+  if (!fitness) { flashError('fieldFitness', 'Please select your fitness level.'); return; }
+  if (!budget)  { flashError('fieldBudget',  'Please select your budget range.'); return; }
+
+  /* Collect interests */
+  var interests = [];
+  document.querySelectorAll('input[name="interest"]:checked').forEach(function(cb) {
+    interests.push(cb.value);
+  });
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending details…';
+
+  /* Build FormData */
+  var fd = new FormData();
+  fd.append('_subject',      '🗺️ New Shore Day Booking — ' + name + ' · ' + date);
+  fd.append('name',          name);
+  fd.append('email',         email);
+  fd.append('arrival_date',  date);
+  fd.append('group_size',    group);
+  fd.append('interests',     interests.length ? interests.join(', ') : 'None specified');
+  fd.append('fitness_level', fitness);
+  fd.append('budget',        budget);
+  fd.append('extra_notes',   document.getElementById('fieldNotes').value.trim() || 'None');
+  fd.append('page',          'plan-my-day.html');
+
+  fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+    method: 'POST',
+    body: fd,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(r) {
+    if (!r.ok) throw new Error('fail');
+    /* Success — show payment panel */
+    document.getElementById('bookingFormWrap').style.display = 'none';
+    var panel = document.getElementById('payment-panel');
+    panel.style.display = 'block';
+    panel.classList.add('fade-in');
+    document.getElementById('paymentName').textContent = name.split(' ')[0];
+    /* Set the real SumUp URL on the button */
+    document.getElementById('payBtn').href = SUMUP_URL;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Continue to Payment →';
+    alert('Something went wrong sending your details. Please try again, or email hello@exploreinvergordon.scot directly.');
+  });
+});
+
+/* ── INPUT ERROR FLASH ── */
+function flashError(fieldId, message) {
+  var el = document.getElementById(fieldId);
+  if (el) {
+    el.style.borderColor = 'rgba(255,80,80,0.7)';
+    el.style.boxShadow   = '0 0 0 3px rgba(255,80,80,0.12)';
+    el.focus();
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(function() {
+      el.style.borderColor = '';
+      el.style.boxShadow   = '';
+    }, 2800);
+  }
+  alert(message);
+}
+
+/* ── GOOGLE TRANSLATE ── */
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  if (lang === 'en') {
+    var _hn = location.hostname;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + _hn;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + _hn;
+    window.location.reload();
+    return;
+  }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+  }
+  fire();
+}
+
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  if (el) {
+    var vis = el.style.display === 'block';
+    el.style.display = vis ? 'none' : 'block';
+    if (btn) btn.classList.toggle('active', !vis);
+  }
+}
+</script>
+
+</body>
+</html>
