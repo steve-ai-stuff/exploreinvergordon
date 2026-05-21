@@ -3288,6 +3288,7 @@ function syncNavTop() {
 window.addEventListener('load', syncNavTop);
 window.addEventListener('resize', syncNavTop);
 document.addEventListener('DOMContentLoaded', syncNavTop);
+window.addEventListener('orientationchange', function() { setTimeout(syncNavTop, 150); });
 
 
 function navTo(id) {

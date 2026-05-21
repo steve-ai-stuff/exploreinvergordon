@@ -924,6 +924,18 @@ function eiMoreLangs(btn) {
   if (leftBtn)  addHoverTouch(leftBtn,  -1);
   if (rightBtn) addHoverTouch(rightBtn,  1);
 })();
+
+// ── SYNC NAV TOP TO LANG BAR HEIGHT (portrait mobile fix) ──
+function syncNavTop() {
+  var lb = document.querySelector(".lang-bar");
+  var nav = document.querySelector("nav");
+  if (!lb || !nav) return;
+  nav.style.top = lb.offsetHeight + "px";
+}
+window.addEventListener("load", syncNavTop);
+window.addEventListener("resize", syncNavTop);
+document.addEventListener("DOMContentLoaded", syncNavTop);
+window.addEventListener("orientationchange", function() { setTimeout(syncNavTop, 150); });
 </script>
 </body>
 </html>
