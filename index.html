@@ -748,11 +748,30 @@
 
 
   /* ── FEATURED FLIP CARD (#biz-flip-99) ── */
+  @keyframes gold-glow-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 6px  rgba(212,175,55,0.70),
+        0 0 18px rgba(212,175,55,0.50),
+        0 0 35px rgba(212,175,55,0.30),
+        0 0 60px rgba(212,175,55,0.15);
+    }
+    50% {
+      box-shadow:
+        0 0 10px rgba(232,201,106,0.90),
+        0 0 28px rgba(232,201,106,0.65),
+        0 0 52px rgba(232,201,106,0.40),
+        0 0 80px rgba(232,201,106,0.20);
+    }
+  }
   #biz-flip-99 {
     grid-column: span 2;
-    border: 1.5px solid rgba(212,175,55,0.6);
+    border: 1.5px solid rgba(212,175,55,0.85);
     border-radius: 6px;
-    box-shadow: 0 0 14px rgba(212,175,55,0.18);
+    animation: gold-glow-pulse 2.8s ease-in-out infinite;
+  }
+  #biz-flip-99 .biz-flip-inner {
+    background: #c9a84c;
   }
   #biz-flip-99 .biz-face {
     background: transparent;
