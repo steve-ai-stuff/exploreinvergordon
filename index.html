@@ -351,15 +351,15 @@
     text-align: center;
     margin-top: 1rem;
     padding: 0.65rem 1.5rem;
-    background: rgba(201,168,76,0.10);
-    color: var(--gold);
-    border: 1.5px solid rgba(201,168,76,0.65);
+    background: rgba(212,175,55,0.90);
+    color: rgba(255,255,255,0.97);
+    border: 1.5px solid rgba(212,175,55,0.95);
     border-radius: 50px;
     font-family: 'Overpass Mono', monospace;
     font-size: 0.875rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(201,168,76,0.20), 0 2px 8px rgba(0,0,0,0.30);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.55), 0 3px 8px rgba(0,0,0,0.40), 0 2px 6px rgba(212,175,55,0.30);
     cursor: default;
   }
 
@@ -800,7 +800,7 @@
   #biz-flip-99 .biz-face .feat-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(8,15,30,0.55) 0%, rgba(26,74,26,0.45) 100%);
+    background: linear-gradient(135deg, rgba(8,15,30,0.18) 0%, rgba(26,74,26,0.12) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -836,8 +836,8 @@
   }
   #biz-flip-99 .biz-face .feat-sub {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.58rem;
-    color: rgba(204,217,238,0.75);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.92);
     letter-spacing: 0.08em;
     text-align: center;
     position: absolute;
@@ -1329,6 +1329,21 @@
   .btn-secondary:hover {
     background: var(--gold);
     color: var(--highland-deep);
+  }
+
+  #museum-btn1 {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.50), 0 2px 4px rgba(0,0,0,0.30);
+  }
+  #museum-btn2 {
+    background: rgba(212,175,55,0.92);
+    color: rgba(255,255,255,0.95);
+    border-color: rgba(212,175,55,0.92);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.50), 0 2px 4px rgba(0,0,0,0.30);
+  }
+  #museum-btn2:hover {
+    background: rgba(212,175,55,1.0);
+    color: var(--highland-deep);
+    border-color: rgba(212,175,55,1.0);
   }
 
   /* ── CRUISE INFO ── */
@@ -2396,7 +2411,7 @@ function googleTranslateElementInit() {
   <p class="section-label" id="museum-label">History & Heritage</p>
   <h2 class="section-title" id="museum-title">Invergordon <em>Museum</em></h2>
   <div class="divider"></div>
-  <div style="width:100%;max-width:1000px;margin:0 auto 1.5rem;overflow:hidden;border-radius:4px;">
+  <div style="width:100%;max-width:1000px;margin:0 auto 1.5rem;overflow:hidden;border-radius:14px;border:2px solid rgba(212,175,55,0.80);box-shadow:0 0 18px rgba(212,175,55,0.25), 0 6px 20px rgba(0,0,0,0.45);">
     <img src="website_image_files/library_image/Invergordon-Museum.jpg" alt="Invergordon Museum"
          style="width:100%;height:260px;object-fit:cover;object-position:top;display:block;" loading="lazy"/>
   </div>
@@ -2431,8 +2446,8 @@ function googleTranslateElementInit() {
 <div class="businesses-section" id="town">
   <div style="display:flex; justify-content:center; margin-bottom: 1rem;">
     <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.58); border:1px solid rgba(86,194,123,0.75); border-left:3px solid var(--spring-green); border-radius:12px;">
-      <div class="stat-number" style="min-width:5rem; color:var(--spring-green);">In Town</div>
-      <div class="stat-label" style="color:var(--spring-yellow);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
+      <div class="stat-number" style="min-width:5rem; color:rgba(212,175,55,0.95);">In Town</div>
+      <div class="stat-label" style="color:rgba(255,255,255,0.92);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
     </div>
   </div>
   <div class="biz-inner">
@@ -2468,7 +2483,7 @@ function googleTranslateElementInit() {
                 <span class="feat-pill">Bar &amp; Food 🍽️</span>
               </div>
             </div>
-            <a class="feat-link feat-link-cta" href="https://invergordon.cw.sct.dotgolf.co.uk/deals?ComeFromCat=1310" target="_blank" rel="noopener">Click Here for<br>Visitor &amp; Cruise Passenger Deals →</a>
+            <a class="feat-link feat-link-cta" href="https://invergordon.cw.sct.dotgolf.co.uk/deals?ComeFromCat=1310" target="_blank" rel="noopener">Click Here for Visitor &amp;<br>Cruise Passenger Deals →</a>
           </div>
 
         </div>
