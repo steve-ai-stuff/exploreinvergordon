@@ -751,17 +751,19 @@
   @keyframes gold-glow-pulse {
     0%, 100% {
       box-shadow:
-        0 0 6px  rgba(212,175,55,0.70),
-        0 0 18px rgba(212,175,55,0.50),
-        0 0 35px rgba(212,175,55,0.30),
-        0 0 60px rgba(212,175,55,0.15);
+        0 0 8px  rgba(212,175,55,0.90),
+        0 0 22px rgba(212,175,55,0.72),
+        0 0 45px rgba(212,175,55,0.52),
+        0 0 80px rgba(212,175,55,0.30),
+        0 0 130px rgba(212,175,55,0.15);
     }
     50% {
       box-shadow:
-        0 0 10px rgba(232,201,106,0.90),
-        0 0 28px rgba(232,201,106,0.65),
-        0 0 52px rgba(232,201,106,0.40),
-        0 0 80px rgba(232,201,106,0.20);
+        0 0 12px rgba(232,201,106,1.0),
+        0 0 32px rgba(232,201,106,0.85),
+        0 0 62px rgba(232,201,106,0.62),
+        0 0 100px rgba(232,201,106,0.38),
+        0 0 180px rgba(232,201,106,0.20);
     }
   }
   #biz-flip-99 {
@@ -826,6 +828,27 @@
     font-size: 0.62rem;
     color: rgba(204,217,238,0.8);
     letter-spacing: 0.08em;
+  }
+  #biz-flip-99 .biz-face .feat-front-pills {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+  }
+  #biz-flip-99 .feat-link-cta {
+    white-space: normal;
+    font-size: 0.68rem;
+    text-align: center;
+    padding: 7px 10px;
+    background: rgba(212,175,55,0.14);
+    border: 1px solid rgba(212,175,55,0.45);
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+  #biz-flip-99 .feat-link-cta:hover {
+    background: rgba(212,175,55,0.25);
+    color: #f5e97a;
   }
   #biz-flip-99 .biz-face::after { display: none; }
 
@@ -2386,38 +2409,23 @@ function googleTranslateElementInit() {
             <div class="feat-overlay">
               <div class="feat-badge">⭐ Featured Partner</div>
               <div class="feat-name">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Invergordon Golf Club ⛳</div>
-              <div class="feat-sub">9-Hole Course · Easter Ross · Hover for info</div>
+              <div class="feat-front-pills">
+                <span class="feat-pill">A Prime Park Land Course</span>
+                <span class="feat-pill">9 or 18 Hole Golf</span>
+              </div>
+              <div class="feat-sub">invergordongolf.co.uk</div>
             </div>
           </div>
 
           <!-- BACK: pricing & info -->
           <div class="biz-back">
-            <div class="feat-rates">
-              <div class="feat-rate">
-                <div class="feat-rate-label">9 Holes</div>
-                <div class="feat-rate-price">£22.50</div>
-              </div>
-              <div class="feat-rate">
-                <div class="feat-rate-label">18 Holes</div>
-                <div class="feat-rate-price">£45.00</div>
-              </div>
-              <div class="feat-rate">
-                <div class="feat-rate-label">Clubs &amp; Trolley</div>
-                <div class="feat-rate-price">£10</div>
-              </div>
-              <div class="feat-rate">
-                <div class="feat-rate-label">Golf Buggy</div>
-                <div class="feat-rate-price">£25</div>
-              </div>
-            </div>
             <div class="feat-pills">
               <div class="feat-pills-left">
-                <span class="feat-pill">📞 01349 852715</span>
-                <span class="feat-pill">🍺 Bar Open to Visitors</span>
-                <span class="feat-pill">Walk-ins Welcome</span>
+                <span class="feat-pill">Clubhouse Open to Visitors 🥃</span>
+                <span class="feat-pill">Bar &amp; Food 🍽️</span>
               </div>
-              <a class="feat-link" href="https://www.invergordongolf.co.uk" target="_blank" rel="noopener">invergordongolf.co.uk →</a>
             </div>
+            <a class="feat-link feat-link-cta" href="https://invergordon.cw.sct.dotgolf.co.uk/deals?ComeFromCat=1310" target="_blank" rel="noopener">Click Here for Visitor &amp; Cruise Passenger Deals →</a>
           </div>
 
         </div>
