@@ -745,154 +745,144 @@
 
 
 
-  /* ── FEATURED PARTNER CARD ── */
-  .biz-featured-wrap {
+
+
+  /* ── FEATURED FLIP CARD (#biz-flip-99) ── */
+  #biz-flip-99 {
     grid-column: span 2;
-    grid-row: span 1;
-    cursor: pointer;
-    height: 110px;
-    border-radius: 10px;
-    border: 2px solid rgba(212,175,55,0.75);
-    box-shadow: 0 0 18px rgba(212,175,55,0.22), inset 0 0 30px rgba(0,0,0,0.25);
+    border: 1.5px solid rgba(212,175,55,0.6);
+    border-radius: 6px;
+    box-shadow: 0 0 14px rgba(212,175,55,0.18);
+  }
+  #biz-flip-99 .biz-face {
+    background: transparent;
+    border: none;
+    padding: 0;
     overflow: hidden;
-    position: relative;
-    background: linear-gradient(145deg, #1a4a1a 0%, #0d2e0d 55%, #1a3a0a 100%);
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    text-decoration: none;
+    border-radius: 5px;
   }
-  .biz-featured-wrap:hover {
-    box-shadow: 0 0 28px rgba(212,175,55,0.45), inset 0 0 30px rgba(0,0,0,0.2);
-    transform: translateY(-2px);
-  }
-  .biz-featured-bg {
+  #biz-flip-99 .biz-face .feat-photo {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.28;
-    border-radius: 8px;
+    object-position: center;
+    opacity: 0.55;
   }
-  .biz-featured-badge {
+  #biz-flip-99 .biz-face .feat-overlay {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(8,15,30,0.55) 0%, rgba(26,74,26,0.45) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 14px;
+    gap: 3px;
+  }
+  #biz-flip-99 .biz-face .feat-badge {
+    position: absolute;
+    top: 7px;
+    right: 8px;
     background: rgba(212,175,55,0.92);
     color: #0d1f0d;
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.58rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 3px 8px;
+    padding: 2px 7px;
     border-radius: 3px;
-    z-index: 2;
   }
-  .biz-featured-content {
-    position: relative;
-    z-index: 2;
-    padding: 7px 12px 7px 12px;
-    height: 100%;
+  #biz-flip-99 .biz-face .feat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f5e97a;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+    line-height: 1.2;
+  }
+  #biz-flip-99 .biz-face .feat-sub {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    color: rgba(204,217,238,0.8);
+    letter-spacing: 0.08em;
+  }
+  #biz-flip-99 .biz-face::after { display: none; }
+
+  /* Back face */
+  #biz-flip-99 .biz-back {
+    background: linear-gradient(135deg, #1a4a1a 0%, #0d2e0d 100%);
+    padding: 8px 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transform: rotateX(180deg);
   }
-  .biz-featured-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .feat-rates {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+    flex-shrink: 0;
   }
-  .biz-featured-icon {
-    font-size: 1.2rem;
-    line-height: 1;
-  }
-  .biz-featured-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.05rem;
-    color: #f5e97a;
-    letter-spacing: 0.04em;
-    line-height: 1.2;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-  }
-  .biz-featured-title small {
-    display: block;
+  .feat-rate {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 4px;
+    padding: 3px 6px;
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.72rem;
-    color: rgba(245,233,122,0.65);
-    letter-spacing: 0.08em;
-    font-weight: 400;
-    margin-top: 1px;
   }
-  .biz-featured-rates {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    margin-top: 3px;
-  }
-  .biz-featured-rate {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 5px;
-    padding: 3px 7px;
-    font-family: 'Overpass Mono', monospace;
-    flex: 1;
-  }
-  .biz-featured-rate .rate-label {
-    font-size: 0.65rem;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 0.06em;
+  .feat-rate-label {
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.5);
     line-height: 1.3;
+    letter-spacing: 0.04em;
   }
-  .biz-featured-rate .rate-price {
+  .feat-rate-price {
     font-size: 0.82rem;
-    color: #f5e97a;
     font-weight: 700;
+    color: #f5e97a;
     line-height: 1.2;
   }
-  .biz-featured-footer {
+  .feat-pills {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .biz-featured-pills {
-    display: flex;
     gap: 5px;
     flex-wrap: wrap;
   }
-  .biz-featured-pill {
+  .feat-pills-left {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .feat-pill {
     background: rgba(86,194,123,0.18);
-    border: 1px solid rgba(86,194,123,0.4);
+    border: 1px solid rgba(86,194,123,0.38);
     border-radius: 20px;
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.62rem;
+    font-size: 0.58rem;
     color: var(--spring-green);
     padding: 2px 7px;
     white-space: nowrap;
   }
-  .biz-featured-cta {
+  .feat-link {
     font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    color: rgba(212,175,55,0.85);
-    letter-spacing: 0.08em;
-    white-space: nowrap;
+    font-size: 0.62rem;
+    color: rgba(212,175,55,0.9);
     text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.06em;
   }
-  .biz-featured-cta:hover { color: #f5e97a; }
+  .feat-link:hover { color: #f5e97a; }
 
   @media (max-width: 440px) {
-    .biz-featured-wrap {
+    #biz-flip-99 {
       grid-column: span 1;
-      grid-row: span 1;
-      height: 110px;
     }
-    .biz-featured-rates {
+    .feat-rates {
       grid-template-columns: 1fr 1fr;
-      gap: 4px;
-    }
-    .biz-featured-title {
-      font-size: 0.92rem;
     }
   }
 
@@ -1177,8 +1167,9 @@
   }
 
   .museum-card {
-    background: linear-gradient(135deg, rgba(86,194,123,0.10), rgba(232,212,74,0.07));
-    border: 1px solid rgba(86,194,123,0.28);
+    background: linear-gradient(135deg, rgba(86,194,123,0.22), rgba(232,212,74,0.14));
+    border: 1px solid rgba(86,194,123,0.48);
+    border-radius: 12px;
     padding: 1.25rem;
     position: relative;
     overflow: hidden;
@@ -2354,7 +2345,7 @@ function googleTranslateElementInit() {
 <!-- BUSINESSES -->
 <div class="businesses-section" id="town">
   <div style="display:flex; justify-content:center; margin-bottom: 1rem;">
-    <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.26); border:1px solid rgba(86,194,123,0.45); border-left:3px solid var(--spring-green);">
+    <div class="trail-stat" style="max-width:600px; width:100%; background:rgba(86,194,123,0.38); border:1px solid rgba(86,194,123,0.58); border-left:3px solid var(--spring-green); border-radius:12px;">
       <div class="stat-number" style="min-width:5rem; color:var(--spring-green);">In Town</div>
       <div class="stat-label" style="color:var(--spring-yellow);">Browse this section for a list and location of the Shops, Café's, Restaurants &amp; Services in Invergordon</div>
     </div>
@@ -2362,48 +2353,56 @@ function googleTranslateElementInit() {
   <div class="biz-inner">
     <div class="biz-grid">
       <!-- ★ FEATURED PARTNER — Invergordon Golf Club ★ -->
-      <a class="biz-featured-wrap" href="https://www.invergordongolf.co.uk" target="_blank" rel="noopener">
-        <img class="biz-featured-bg"
-             src="website_image_files/business_images/invergordon-golf-course-hero-image-2.webp"
-             alt="Invergordon Golf Club"
-             onerror="this.style.display='none'" loading="lazy"/>
-        <div class="biz-featured-badge">⭐ Featured Partner</div>
-        <div class="biz-featured-content">
-          <div class="biz-featured-header">
-            <span class="biz-featured-icon">⛳</span>
-            <div class="biz-featured-title">
-              Invergordon Golf Club
-              <small>9-Hole Course · Easter Ross</small>
+      <div class="biz-flip-wrap" id="biz-flip-99"
+           onmouseenter="bizFlip(99)"
+           onmouseleave="bizUnflip(99)">
+        <div class="biz-flip-inner">
+
+          <!-- FRONT: photo + name + badge -->
+          <div class="biz-face">
+            <img class="feat-photo"
+                 src="website_image_files/business_images/invergordon-golf-course-hero-image-2.webp"
+                 alt="Invergordon Golf Club" loading="lazy"
+                 onerror="this.style.display='none'"/>
+            <div class="feat-overlay">
+              <div class="feat-badge">⭐ Featured Partner</div>
+              <div class="feat-name">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Invergordon Golf Club ⛳</div>
+              <div class="feat-sub">9-Hole Course · Easter Ross · Hover for info</div>
             </div>
           </div>
-          <div class="biz-featured-rates">
-            <div class="biz-featured-rate">
-              <div class="rate-label">9 Holes</div>
-              <div class="rate-price">£22.50</div>
+
+          <!-- BACK: pricing & info -->
+          <div class="biz-back">
+            <div class="feat-rates">
+              <div class="feat-rate">
+                <div class="feat-rate-label">9 Holes</div>
+                <div class="feat-rate-price">£22.50</div>
+              </div>
+              <div class="feat-rate">
+                <div class="feat-rate-label">18 Holes</div>
+                <div class="feat-rate-price">£45.00</div>
+              </div>
+              <div class="feat-rate">
+                <div class="feat-rate-label">Clubs &amp; Trolley</div>
+                <div class="feat-rate-price">£10</div>
+              </div>
+              <div class="feat-rate">
+                <div class="feat-rate-label">Golf Buggy</div>
+                <div class="feat-rate-price">£25</div>
+              </div>
             </div>
-            <div class="biz-featured-rate">
-              <div class="rate-label">18 Holes</div>
-              <div class="rate-price">£45.00</div>
-            </div>
-            <div class="biz-featured-rate">
-              <div class="rate-label">Clubs &amp; Trolley</div>
-              <div class="rate-price">£10</div>
-            </div>
-            <div class="biz-featured-rate">
-              <div class="rate-label">Buggy Hire</div>
-              <div class="rate-price">£25</div>
+            <div class="feat-pills">
+              <div class="feat-pills-left">
+                <span class="feat-pill">🍺 Bar Open to Visitors</span>
+                <span class="feat-pill">Walk-ins Welcome</span>
+                <span class="feat-pill">📞 07809 643682</span>
+              </div>
+              <a class="feat-link" href="https://www.invergordongolf.co.uk" target="_blank" rel="noopener">invergordongolf.co.uk →</a>
             </div>
           </div>
-          <div class="biz-featured-footer">
-            <div class="biz-featured-pills">
-              <span class="biz-featured-pill">🍺 Bar Open</span>
-              <span class="biz-featured-pill">Walk-ins Welcome</span>
-              <span class="biz-featured-pill">📞 07809 643682</span>
-            </div>
-            <span class="biz-featured-cta">invergordongolf.co.uk →</span>
-          </div>
+
         </div>
-      </a>
+      </div>
       <div class="biz-flip-wrap" id="biz-flip-24"
            onmouseenter="bizFlip(24)"
            onmouseleave="bizUnflip(24)"
@@ -3107,8 +3106,6 @@ function googleTranslateElementInit() {
             </div>
           </div>
         </div>
-      </div>
-</div>
       </div>
       <div class="biz-flip-wrap" id="biz-flip-22"
            onmouseenter="bizFlip(22)"
