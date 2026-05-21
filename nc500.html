@@ -769,6 +769,21 @@
   .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
   .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
   .lang-bar { overflow: visible !important; }
+  .lang-scroll {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 1.25rem;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    padding: 0 0.25rem;
+  }
+  .lang-scroll::-webkit-scrollbar { display: none; }
+  @media (max-width: 680px) {
+    .lang-scroll { gap: 0.5rem; }
+  }
 
   /* ── Nav horizontal scroll bar ───────────────────────────────────────────── */
   .nav-scroll-wrapper {
@@ -822,6 +837,7 @@ function googleTranslateElementInit() {
 
 <!-- LANG BAR -->
 <div class="lang-bar">
+  <div class="lang-scroll">
   <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
   <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
   <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
@@ -830,9 +846,9 @@ function googleTranslateElementInit() {
   <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
   <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
   <span class="lang-sep">|</span>
-  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
-  <div id="google_translate_element"></div>
-</div>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button></div>
+  <div id="google_translate_element">
+</div></div>
 
 <!-- NAV -->
 <nav>
