@@ -781,6 +781,9 @@
     padding: 0;
     overflow: hidden;
     border-radius: 5px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
   }
   #biz-flip-99 .biz-face .feat-photo {
     position: absolute;
@@ -790,6 +793,8 @@
     object-fit: cover;
     object-position: center 5%;
     opacity: 1.0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   #biz-flip-99 .biz-face .feat-overlay {
     position: absolute;
@@ -867,9 +872,7 @@
 
   /* Back face */
   #biz-flip-99 .biz-back {
-    background:
-      linear-gradient(135deg, rgba(26,74,26,0.72) 0%, rgba(13,46,13,0.78) 100%),
-      url('website_image_files/business_images/invergordon-golf-course-hero-image-2.webp') center 5% / cover no-repeat;
+    background: url('website_image_files/business_images/invergordon-golf-course-hero-image-2.webp') center 5% / cover no-repeat;
     padding: 8px 12px;
     display: flex;
     flex-direction: column;
