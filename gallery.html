@@ -531,54 +531,70 @@
     opacity: 0.8;
   }
 
-  /* ── VISITOR CAROUSEL ── */
-  .visitor-carousel-outer {
+  /* ── VISITOR 3D CAROUSEL ── */
+  .vc3-outer {
     position: relative;
-    max-width: 680px;
-    margin: 0 auto 2rem;
     padding: 0 52px;
+    margin: 0 auto 2.5rem;
+    max-width: 800px;
+    overflow: hidden;
   }
   @media (max-width: 680px) {
-    .visitor-carousel-outer { padding: 0 40px; }
+    .vc3-outer { padding: 0 40px; }
   }
-  .visitor-carousel {
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  .vc-track {
+  .vc3-scene {
+    perspective: 900px;
+    perspective-origin: 50% 50%;
+    height: 295px;
     display: flex;
     align-items: center;
-    transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
+    justify-content: center;
   }
-  .vc-slide {
-    min-width: 100%;
-    flex: 0 0 100%;
+  .vc3-stage {
+    width: 280px;
+    height: 205px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-  .vc-slide .gallery-item {
+  .vc3-slide {
+    position: absolute;
+    width: 280px;
+    height: 205px;
+    top: 0; left: 0;
+  }
+  .vc3-slide .gallery-item {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     border-radius: 6px;
     border: 2px solid rgba(201,168,76,0.35);
-    cursor: pointer;
     background: var(--highland-dark);
-    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
-  .vc-slide .gallery-item:hover {
+  .vc3-slide .gallery-item:hover {
+    border-color: rgba(201,168,76,0.7);
     box-shadow: 0 12px 40px rgba(0,0,0,0.5);
   }
-  .vc-slide .gallery-item img {
+  .vc3-slide .gallery-item img {
     width: 100%;
-    height: auto;
+    height: 158px;
+    object-fit: cover;
     display: block;
     filter: brightness(0.92);
     transition: filter 0.3s ease;
   }
-  .vc-slide .gallery-item:hover img { filter: brightness(1.05); }
+  .vc3-slide .gallery-item:hover img { filter: brightness(1.05); }
+  .vc3-slide .visitor-credit { padding: 0.35rem 0.6rem 0.3rem; }
+  .vc3-slide .visitor-credit-name  { font-size: 0.82rem; }
+  .vc3-slide .visitor-credit-caption { font-size: 0.78rem; }
+  /* Arrow buttons */
   .vc-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-70%); /* offset slightly up — dots sit below */
-    z-index: 10;
+    transform: translateY(-70%);
+    z-index: 20;
     background: rgba(8,15,30,0.82);
     border: 1px solid rgba(201,168,76,0.4);
     color: var(--heather-light);
@@ -1259,16 +1275,15 @@ function googleTranslateElementInit() {
   <!-- Approved visitor photos — add new entries here as they come in -->
   <div class="gallery-section">
     <p class="gallery-section-title">Shared by Our Visitors</p>
-    <div class="visitor-carousel-outer">
+    <div class="vc3-outer">
       <button class="vc-btn vc-prev" id="vc-prev" aria-label="Previous photo">&#8249;</button>
-      <div class="visitor-carousel">
-        <div class="vc-track" id="vc-track">
+      <div class="vc3-scene" id="vc3-scene">
+        <div class="vc3-stage" id="vc3-stage">
 
-          <div class="vc-slide">
+          <div class="vc3-slide" data-idx="0">
             <div class="gallery-item">
               <img src="website_image_files/visitor_gallery_uploads/Visitor-Bartholomew-the-Great.webp"
-                   alt="Near the beach — photo by Bartholomew the Great"
-                   loading="lazy">
+                   alt="Near the beach — photo by Bartholomew the Great" loading="lazy">
               <div class="visitor-credit">
                 <span class="visitor-credit-name">📸 Bartholomew the Great</span>
                 <span class="visitor-credit-caption">"Near the beach"</span>
@@ -1276,11 +1291,10 @@ function googleTranslateElementInit() {
             </div>
           </div>
 
-          <div class="vc-slide">
+          <div class="vc3-slide" data-idx="1">
             <div class="gallery-item">
               <img src="website_image_files/visitor_gallery_uploads/Alan-Gurney-Invergordon-Golf-Course-18th-fairway.webp"
-                   alt="Invergordon Golf Course 18th fairway — photo by Alan Gurney"
-                   loading="lazy">
+                   alt="Invergordon Golf Course 18th fairway — photo by Alan Gurney" loading="lazy">
               <div class="visitor-credit">
                 <span class="visitor-credit-name">📸 Alan Gurney</span>
                 <span class="visitor-credit-caption">"Invergordon Golf Course 18th fairway"</span>
@@ -1288,11 +1302,10 @@ function googleTranslateElementInit() {
             </div>
           </div>
 
-          <div class="vc-slide">
+          <div class="vc3-slide" data-idx="2">
             <div class="gallery-item">
               <img src="website_image_files/visitor_gallery_uploads/Alan-Gurney-Invergordon-Golf-Course-view-from-2nd-Tee.webp"
-                   alt="Invergordon Golf Course view from 2nd Tee — photo by Alan Gurney"
-                   loading="lazy">
+                   alt="Invergordon Golf Course view from 2nd Tee — photo by Alan Gurney" loading="lazy">
               <div class="visitor-credit">
                 <span class="visitor-credit-name">📸 Alan Gurney</span>
                 <span class="visitor-credit-caption">"Invergordon Golf Course view from 2nd Tee"</span>
@@ -1300,11 +1313,10 @@ function googleTranslateElementInit() {
             </div>
           </div>
 
-          <div class="vc-slide">
+          <div class="vc3-slide" data-idx="3">
             <div class="gallery-item">
               <img src="website_image_files/visitor_gallery_uploads/snowy-invergordon-port-of-cromarty-firth-winter-2022.webp"
-                   alt="Snowy Port of Cromarty Firth Invergordon - Winter 2022 — photo by Steve, Invergordon"
-                   loading="lazy">
+                   alt="Snowy Port of Cromarty Firth Invergordon - Winter 2022 — photo by Steve, Invergordon" loading="lazy">
               <div class="visitor-credit">
                 <span class="visitor-credit-name">📸 Steve, Invergordon</span>
                 <span class="visitor-credit-caption">"Snowy Port of Cromarty Firth Invergordon - Winter 2022"</span>
@@ -1312,11 +1324,10 @@ function googleTranslateElementInit() {
             </div>
           </div>
 
-          <div class="vc-slide">
+          <div class="vc3-slide" data-idx="4">
             <div class="gallery-item">
               <img src="website_image_files/visitor_gallery_uploads/snowy-invergordon-train-station-winter-2025.webp"
-                   alt="Snowy Invergordon Train Station - Winter 2025 — photo by Steve, Invergordon"
-                   loading="lazy">
+                   alt="Snowy Invergordon Train Station - Winter 2025 — photo by Steve, Invergordon" loading="lazy">
               <div class="visitor-credit">
                 <span class="visitor-credit-name">📸 Steve, Invergordon</span>
                 <span class="visitor-credit-caption">"Snowy Invergordon Train Station - Winter 2025"</span>
@@ -1324,11 +1335,10 @@ function googleTranslateElementInit() {
             </div>
           </div>
 
-          <div class="vc-slide">
+          <div class="vc3-slide" data-idx="5">
             <div class="gallery-item">
               <img src="website_image_files/visitor_gallery_uploads/snowy-invergordon-high-street-winter-2025.webp"
-                   alt="Snowy Invergordon High Street - Winter 2025 — photo by Steve, Invergordon"
-                   loading="lazy">
+                   alt="Snowy Invergordon High Street - Winter 2025 — photo by Steve, Invergordon" loading="lazy">
               <div class="visitor-credit">
                 <span class="visitor-credit-name">📸 Steve, Invergordon</span>
                 <span class="visitor-credit-caption">"Snowy Invergordon High Street - Winter 2025"</span>
@@ -1746,60 +1756,125 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
 })();
 </script>
 <script>
-// ── Visitor Carousel ─────────────────────────────────────────────────────────
+// ── Visitor 3D Carousel ───────────────────────────────────────────────────────
 (function () {
-  var track   = document.getElementById('vc-track');
+  var stage    = document.getElementById('vc3-stage');
+  var scene    = document.getElementById('vc3-scene');
   var dotsWrap = document.getElementById('vc-dots');
   var prevBtn  = document.getElementById('vc-prev');
   var nextBtn  = document.getElementById('vc-next');
-  if (!track) return;
+  if (!stage) return;
 
-  var slides = Array.from(track.querySelectorAll('.vc-slide'));
-  var dots   = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.vc-dot')) : [];
-  var total  = slides.length;
-  var cur    = 0;
+  var slides   = Array.from(stage.querySelectorAll('.vc3-slide'));
+  var dots     = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.vc-dot')) : [];
+  var N        = slides.length;
+  var STEP     = 360 / N;   // 60° per slide
+  var RADIUS   = 240;       // px — circle radius
+  var rotation = 0;         // cumulative stage Y rotation
+  var cur      = 0;
+  var autoTimer = null;
 
-  function goTo(i) {
-    cur = (i + total) % total;
-    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
-    dots.forEach(function (d, idx) {
-      d.classList.toggle('active', idx === cur);
+  // Position every slide evenly around the circle
+  slides.forEach(function (slide, i) {
+    slide.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + RADIUS + 'px)';
+  });
+
+  // Fade slides based on their angle from the front
+  function updateVisibility() {
+    slides.forEach(function (slide, i) {
+      var angle = ((i * STEP + rotation) % 360 + 360) % 360;
+      if (angle > 180) angle -= 360;
+      var abs = Math.abs(angle);
+      if (abs < 5) {
+        slide.style.opacity = '1';
+      } else if (abs <= 60) {
+        // Adjacent slides: fade to ~0.45
+        slide.style.opacity = String(1 - (abs / 60) * 0.55);
+      } else if (abs < 90) {
+        slide.style.opacity = String(0.45 * (1 - (abs - 60) / 30));
+      } else {
+        slide.style.opacity = '0';
+      }
     });
   }
 
-  if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); goTo(cur - 1); });
-  if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); goTo(cur + 1); });
+  function updateDots() {
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === cur); });
+  }
 
+  function advance(dir) {
+    rotation -= dir * STEP;
+    cur = ((cur + dir) % N + N) % N;
+    stage.style.transform = 'rotateY(' + rotation + 'deg)';
+    updateVisibility();
+    updateDots();
+  }
+
+  function goTo(target) {
+    var diff = target - cur;
+    if (diff > N / 2)  diff -= N;
+    if (diff < -N / 2) diff += N;
+    rotation -= diff * STEP;
+    cur = target;
+    stage.style.transform = 'rotateY(' + rotation + 'deg)';
+    updateVisibility();
+    updateDots();
+  }
+
+  // Set initial state instantly (no transition yet)
+  updateVisibility();
+
+  // Enable opacity transitions after first paint
+  setTimeout(function () {
+    slides.forEach(function (s) { s.style.transition = 'opacity 0.5s ease'; });
+  }, 80);
+
+  // Controls
+  if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); advance(-1); resetAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); advance(1);  resetAuto(); });
   dots.forEach(function (d) {
-    d.addEventListener('click', function () { goTo(parseInt(d.dataset.idx, 10)); });
+    d.addEventListener('click', function () { goTo(parseInt(d.dataset.idx, 10)); resetAuto(); });
   });
 
-  // Keyboard arrows — only when visitor tab active and lightbox closed
+  // Keyboard — only when visitor tab active and lightbox closed
   document.addEventListener('keydown', function (e) {
-    var visPanel = document.getElementById('tab-panel-visitor');
-    if (!visPanel || !visPanel.classList.contains('active')) return;
+    var panel = document.getElementById('tab-panel-visitor');
+    if (!panel || !panel.classList.contains('active')) return;
     var lb = document.getElementById('gal-lightbox');
     if (lb && lb.classList.contains('active')) return;
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(cur - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(cur + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); advance(-1); resetAuto(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); advance(1);  resetAuto(); }
   });
 
-  // Touch swipe — horizontal drag > 40px triggers slide, ignores vertical scrolling
-  var txStart = null;
-  var tyStart = null;
-  track.addEventListener('touchstart', function (e) {
+  // Touch swipe
+  var txStart = null, tyStart = null;
+  stage.addEventListener('touchstart', function (e) {
     txStart = e.touches[0].clientX;
     tyStart = e.touches[0].clientY;
   }, { passive: true });
-  track.addEventListener('touchend', function (e) {
+  stage.addEventListener('touchend', function (e) {
     if (txStart === null) return;
     var dx = e.changedTouches[0].clientX - txStart;
     var dy = e.changedTouches[0].clientY - tyStart;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      goTo(dx < 0 ? cur + 1 : cur - 1);
+      advance(dx < 0 ? 1 : -1);
+      resetAuto();
     }
     txStart = null; tyStart = null;
   }, { passive: true });
+
+  // Auto-spin — pauses on hover, resumes on leave
+  function startAuto() {
+    autoTimer = setInterval(function () { advance(1); }, 3500);
+  }
+  function stopAuto()  { clearInterval(autoTimer); autoTimer = null; }
+  function resetAuto() { stopAuto(); startAuto(); }
+
+  if (scene) {
+    scene.addEventListener('mouseenter', stopAuto);
+    scene.addEventListener('mouseleave', startAuto);
+  }
+  startAuto();
 })();
 </script>
 </body>
