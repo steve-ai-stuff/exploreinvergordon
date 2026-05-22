@@ -1366,5 +1366,136 @@ window.addEventListener("resize", syncNavTop);
 document.addEventListener("DOMContentLoaded", syncNavTop);
 window.addEventListener("orientationchange", function() { setTimeout(syncNavTop, 150); });
 </script>
+<script>
+// ── Visitor Photo Upload ─────────────────────────────────────────────────
+(function () {
+  var IMGBB_KEY    = '579f3586a5476f82a60598eb6440a29f';
+  var FORMSPREE_ID = 'mpqkepnd';
+
+  var fileDrop   = document.getElementById('fileDrop');
+  var fileInput  = document.getElementById('visitorPhoto');
+  var preview    = document.getElementById('photoPreview');
+  var progress   = document.getElementById('uploadProgress');
+  var submitBtn  = document.getElementById('uploadSubmit');
+  var formDiv    = document.getElementById('uploadForm');
+  var successDiv = document.getElementById('uploadSuccess');
+  var selectedFile = null;
+
+  // ── File selected via input ──────────────────────────────────────────
+  window.handleFileSelect = function (input) {
+    if (!input.files || !input.files[0]) return;
+    selectedFile = input.files[0];
+    showPreview(selectedFile);
+  };
+
+  // ── Drag & drop ─────────────────────────────────────────────────────
+  if (fileDrop) {
+    fileDrop.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      fileDrop.classList.add('drag-over');
+    });
+    fileDrop.addEventListener('dragleave', function (e) {
+      e.preventDefault();
+      fileDrop.classList.remove('drag-over');
+    });
+    fileDrop.addEventListener('drop', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      fileDrop.classList.remove('drag-over');
+      var files = e.dataTransfer && e.dataTransfer.files;
+      if (!files || !files[0]) return;
+      selectedFile = files[0];
+      showPreview(selectedFile);
+    });
+
+    // Clicking anywhere on the drop zone opens the file picker
+    fileDrop.addEventListener('click', function (e) {
+      if (e.target !== fileInput) fileInput.click();
+    });
+  }
+
+  // ── Show image preview ───────────────────────────────────────────────
+  function showPreview(file) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      if (preview) {
+        preview.src = e.target.result;
+        preview.classList.add('visible');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── Submit ───────────────────────────────────────────────────────────
+  window.handleVisitorUpload = function (e) {
+    e.preventDefault();
+    var name    = (document.getElementById('visitorName').value    || '').trim();
+    var caption = (document.getElementById('visitorCaption').value || '').trim();
+
+    if (!name)         { alert('Please enter your name before submitting.'); return; }
+    if (!caption)      { alert('Please add a caption before submitting.'); return; }
+    if (!selectedFile) { alert('Please choose a photo before submitting.'); return; }
+
+    submitBtn.disabled = true;
+    if (progress) progress.style.display = 'block';
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var base64 = e.target.result.split(',')[1];
+      var fd = new FormData();
+      fd.append('key',   IMGBB_KEY);
+      fd.append('image', base64);
+      fd.append('name',  name + ' — ' + caption);
+
+      fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: fd })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data.success) throw new Error('ImgBB upload failed');
+          var imgUrl = data.data.url;
+          return fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              _subject:  '📸 New Visitor Photo — Explore Invergordon',
+              name:      name,
+              caption:   caption,
+              photo_url: imgUrl
+            })
+          });
+        })
+        .then(function () {
+          if (progress)   progress.style.display = 'none';
+          if (formDiv)    formDiv.style.display   = 'none';
+          if (successDiv) successDiv.style.display = 'block';
+          playShutter();
+        })
+        .catch(function (err) {
+          if (progress) progress.style.display = 'none';
+          submitBtn.disabled = false;
+          alert('Upload failed — please try again.\n(' + (err.message || err) + ')');
+        });
+    };
+    reader.readAsDataURL(selectedFile);
+  };
+
+  // ── Camera shutter sound ─────────────────────────────────────────────
+  function playShutter() {
+    try {
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var sr  = ctx.sampleRate;
+      var buf = ctx.createBuffer(1, Math.floor(sr * 0.08), sr);
+      var ch  = buf.getChannelData(0);
+      for (var i = 0; i < ch.length; i++) {
+        ch[i] = (Math.random() * 2 - 1) * Math.exp(-i / (sr * 0.008));
+      }
+      var src = ctx.createBufferSource();
+      src.buffer = buf;
+      src.connect(ctx.destination);
+      src.start();
+    } catch (ex) { /* AudioContext not available — fail silently */ }
+  }
+})();
+</script>
 </body>
 </html>
