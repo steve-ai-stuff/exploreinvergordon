@@ -278,6 +278,11 @@
     margin-bottom: 4rem;
   }
 
+  /* Visitor gallery — cards must only wrap their own content, centred vertically */
+  #tab-panel-visitor .gallery-grid {
+    align-items: center;
+  }
+
   .gallery-grid.featured {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
@@ -1506,6 +1511,89 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
       snd.play().catch(function () {});
     } catch (ex) { /* Audio not available — fail silently */ }
   }
+})();
+</script>
+<script>
+// ── Lightbox ─────────────────────────────────────────────────────────────────
+(function () {
+  var lb    = document.getElementById('gal-lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-caption');
+  var lbPrev = document.getElementById('lb-prev');
+  var lbNext = document.getElementById('lb-next');
+  var lbItems = [];
+  var lbCur   = 0;
+
+  function getCaption(item) {
+    // Visitor gallery: use the credit caption text
+    var vc = item.querySelector('.visitor-credit-caption');
+    if (vc) return vc.textContent.replace(/^["""]/,'').replace(/["""']$/,'').trim();
+    // My gallery: use the gallery-caption text
+    var gc = item.querySelector('.gallery-caption');
+    if (gc) return gc.textContent.trim();
+    return '';
+  }
+
+  window.lbOpen = function (imgEl) {
+    // Build image list from whichever tab panel is active
+    var panel = document.querySelector('.tab-panel.active') || document;
+    var imgs  = Array.from(panel.querySelectorAll('.gallery-item img'));
+    lbItems   = imgs.map(function (img) {
+      return { src: img.src, alt: getCaption(img.closest('.gallery-item')) || img.alt };
+    });
+    lbCur = imgs.indexOf(imgEl);
+    if (lbCur < 0) lbCur = 0;
+    lbShow(lbCur);
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (lbItems.length > 1) {
+      lbPrev.classList.add('visible');
+      lbNext.classList.add('visible');
+    } else {
+      lbPrev.classList.remove('visible');
+      lbNext.classList.remove('visible');
+    }
+  };
+
+  function lbShow(i) {
+    lbCur       = (i + lbItems.length) % lbItems.length;
+    lbImg.src   = lbItems[lbCur].src;
+    lbImg.alt   = lbItems[lbCur].alt;
+    lbCap.textContent = lbItems[lbCur].alt;
+  }
+
+  window.lbClose = function () {
+    lb.classList.remove('active');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  };
+
+  window.lbNav = function (dir) {
+    lbShow(lbCur + dir);
+  };
+
+  window.lbClickOverlay = function (e) {
+    if (e.target === lb) lbClose();
+  };
+
+  // Keyboard: Escape to close, arrow keys to navigate
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape')      lbClose();
+    if (e.key === 'ArrowLeft')   lbNav(-1);
+    if (e.key === 'ArrowRight')  lbNav(1);
+  });
+
+  // Event delegation — click any gallery-item that has a real image
+  document.addEventListener('click', function (e) {
+    // Don't intercept if lightbox already open and clicking a button
+    if (lb.classList.contains('active')) return;
+    var item = e.target.closest('.gallery-item');
+    if (!item) return;
+    var img = item.querySelector('img');
+    if (!img) return; // placeholder — no lightbox
+    lbOpen(img);
+  });
 })();
 </script>
 </body>
