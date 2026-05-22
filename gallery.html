@@ -1482,18 +1482,9 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
   // ── Camera shutter sound ─────────────────────────────────────────────
   function playShutter() {
     try {
-      var ctx = new (window.AudioContext || window.webkitAudioContext)();
-      var sr  = ctx.sampleRate;
-      var buf = ctx.createBuffer(1, Math.floor(sr * 0.08), sr);
-      var ch  = buf.getChannelData(0);
-      for (var i = 0; i < ch.length; i++) {
-        ch[i] = (Math.random() * 2 - 1) * Math.exp(-i / (sr * 0.008));
-      }
-      var src = ctx.createBufferSource();
-      src.buffer = buf;
-      src.connect(ctx.destination);
-      src.start();
-    } catch (ex) { /* AudioContext not available — fail silently */ }
+      var snd = new Audio('sounds/camera-shutter.mp3');
+      snd.play().catch(function () {});
+    } catch (ex) { /* Audio not available — fail silently */ }
   }
 })();
 </script>
