@@ -531,6 +531,96 @@
     opacity: 0.8;
   }
 
+  /* ── VISITOR CAROUSEL ── */
+  .visitor-carousel-outer {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto 2rem;
+    padding: 0 52px;
+  }
+  @media (max-width: 680px) {
+    .visitor-carousel-outer { padding: 0 40px; }
+  }
+  .visitor-carousel {
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .vc-track {
+    display: flex;
+    transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+  .vc-slide {
+    min-width: 100%;
+    flex: 0 0 100%;
+  }
+  .vc-slide .gallery-item {
+    overflow: hidden;
+    border-radius: 6px;
+    border: 2px solid rgba(201,168,76,0.35);
+    cursor: pointer;
+    background: var(--highland-dark);
+    transition: box-shadow 0.3s ease;
+  }
+  .vc-slide .gallery-item:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .vc-slide .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.92);
+    transition: filter 0.3s ease;
+  }
+  .vc-slide .gallery-item:hover img { filter: brightness(1.05); }
+  .vc-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-70%); /* offset slightly up — dots sit below */
+    z-index: 10;
+    background: rgba(8,15,30,0.82);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--heather-light);
+    font-size: 1.6rem;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .vc-btn:hover {
+    background: rgba(201,168,76,0.18);
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.7);
+  }
+  .vc-prev { left: 5px; }
+  .vc-next { right: 5px; }
+  .vc-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 0.65rem;
+  }
+  .vc-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.22);
+    border: 1px solid rgba(201,168,76,0.3);
+    cursor: pointer;
+    transition: background 0.25s, border-color 0.25s;
+    flex-shrink: 0;
+  }
+  .vc-dot.active {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
   /* ── UPLOAD FORM ── */
   .upload-section {
     max-width: 640px;
@@ -1168,38 +1258,55 @@ function googleTranslateElementInit() {
   <!-- Approved visitor photos — add new entries here as they come in -->
   <div class="gallery-section">
     <p class="gallery-section-title">Shared by Our Visitors</p>
-    <div class="gallery-grid">
+    <div class="visitor-carousel-outer">
+      <button class="vc-btn vc-prev" id="vc-prev" aria-label="Previous photo">&#8249;</button>
+      <div class="visitor-carousel">
+        <div class="vc-track" id="vc-track">
 
-      <div class="gallery-item" style="overflow:visible;">
-        <img src="website_image_files/visitor_gallery_uploads/Visitor-Bartholomew-the-Great.webp"
-             alt="Near the beach — photo by Bartholomew the Great"
-             loading="lazy">
-        <div class="visitor-credit">
-          <span class="visitor-credit-name">📸 Bartholomew the Great</span>
-          <span class="visitor-credit-caption">"Near the beach"</span>
+          <div class="vc-slide">
+            <div class="gallery-item">
+              <img src="website_image_files/visitor_gallery_uploads/Visitor-Bartholomew-the-Great.webp"
+                   alt="Near the beach — photo by Bartholomew the Great"
+                   loading="lazy">
+              <div class="visitor-credit">
+                <span class="visitor-credit-name">📸 Bartholomew the Great</span>
+                <span class="visitor-credit-caption">"Near the beach"</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vc-slide">
+            <div class="gallery-item">
+              <img src="website_image_files/visitor_gallery_uploads/Alan-Gurney-Invergordon-Golf-Course-18th-fairway.webp"
+                   alt="Invergordon Golf Course 18th fairway — photo by Alan Gurney"
+                   loading="lazy">
+              <div class="visitor-credit">
+                <span class="visitor-credit-name">📸 Alan Gurney</span>
+                <span class="visitor-credit-caption">"Invergordon Golf Course 18th fairway"</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vc-slide">
+            <div class="gallery-item">
+              <img src="website_image_files/visitor_gallery_uploads/Alan-Gurney-Invergordon-Golf-Course-view-from-2nd-Tee.webp"
+                   alt="Invergordon Golf Course view from 2nd Tee — photo by Alan Gurney"
+                   loading="lazy">
+              <div class="visitor-credit">
+                <span class="visitor-credit-name">📸 Alan Gurney</span>
+                <span class="visitor-credit-caption">"Invergordon Golf Course view from 2nd Tee"</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <div class="gallery-item" style="overflow:visible;">
-        <img src="website_image_files/visitor_gallery_uploads/Alan-Gurney-Invergordon-Golf-Course-18th-fairway.webp"
-             alt="Invergordon Golf Course 18th fairway — photo by Alan Gurney"
-             loading="lazy">
-        <div class="visitor-credit">
-          <span class="visitor-credit-name">📸 Alan Gurney</span>
-          <span class="visitor-credit-caption">"Invergordon Golf Course 18th fairway"</span>
-        </div>
+      <button class="vc-btn vc-next" id="vc-next" aria-label="Next photo">&#8250;</button>
+      <div class="vc-dots" id="vc-dots">
+        <span class="vc-dot active" data-idx="0"></span>
+        <span class="vc-dot" data-idx="1"></span>
+        <span class="vc-dot" data-idx="2"></span>
       </div>
-
-      <div class="gallery-item" style="overflow:visible;">
-        <img src="website_image_files/visitor_gallery_uploads/Alan-Gurney-Invergordon-Golf-Course-view-from-2nd-Tee.webp"
-             alt="Invergordon Golf Course view from 2nd Tee — photo by Alan Gurney"
-             loading="lazy">
-        <div class="visitor-credit">
-          <span class="visitor-credit-name">📸 Alan Gurney</span>
-          <span class="visitor-credit-caption">"Invergordon Golf Course view from 2nd Tee"</span>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1588,12 +1695,71 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
   document.addEventListener('click', function (e) {
     // Don't intercept if lightbox already open and clicking a button
     if (lb.classList.contains('active')) return;
+    // Don't intercept carousel nav button clicks
+    if (e.target.closest('.vc-btn')) return;
     var item = e.target.closest('.gallery-item');
     if (!item) return;
     var img = item.querySelector('img');
     if (!img) return; // placeholder — no lightbox
     lbOpen(img);
   });
+})();
+</script>
+<script>
+// ── Visitor Carousel ─────────────────────────────────────────────────────────
+(function () {
+  var track   = document.getElementById('vc-track');
+  var dotsWrap = document.getElementById('vc-dots');
+  var prevBtn  = document.getElementById('vc-prev');
+  var nextBtn  = document.getElementById('vc-next');
+  if (!track) return;
+
+  var slides = Array.from(track.querySelectorAll('.vc-slide'));
+  var dots   = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.vc-dot')) : [];
+  var total  = slides.length;
+  var cur    = 0;
+
+  function goTo(i) {
+    cur = (i + total) % total;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function (d, idx) {
+      d.classList.toggle('active', idx === cur);
+    });
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); goTo(cur - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); goTo(cur + 1); });
+
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { goTo(parseInt(d.dataset.idx, 10)); });
+  });
+
+  // Keyboard arrows — only when visitor tab active and lightbox closed
+  document.addEventListener('keydown', function (e) {
+    var visPanel = document.getElementById('tab-panel-visitor');
+    if (!visPanel || !visPanel.classList.contains('active')) return;
+    var lb = document.getElementById('gal-lightbox');
+    if (lb && lb.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(cur - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(cur + 1); }
+  });
+
+  // Touch swipe — horizontal drag > 40px triggers slide, ignores vertical scrolling
+  var txStart = null;
+  var tyStart = null;
+  track.addEventListener('touchstart', function (e) {
+    txStart = e.touches[0].clientX;
+    tyStart = e.touches[0].clientY;
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    if (txStart === null) return;
+    var dx = e.changedTouches[0].clientX - txStart;
+    var dy = e.changedTouches[0].clientY - tyStart;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      goTo(dx < 0 ? cur + 1 : cur - 1);
+    }
+    txStart = null; tyStart = null;
+  }, { passive: true });
 })();
 </script>
 </body>
