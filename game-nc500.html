@@ -122,7 +122,7 @@
   #circuit{position:fixed;left:14px;bottom:14px;z-index:22;display:none;pointer-events:none;
     filter:drop-shadow(0 0 13px rgba(43,139,255,0.35));}
   #circuit-canvas{width:122px;height:122px;display:block;}
-  @media(max-width:640px){ #circuit-canvas{width:94px;height:94px;} #circuit{left:8px;bottom:120px;} }
+  @media(max-width:640px){ #circuit-canvas{width:94px;height:94px;} #circuit{left:8px;bottom:8px;} #touch-hint{bottom:116px;} }
 
   /* ── OVERLAYS ── */
   .overlay{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;
@@ -176,7 +176,7 @@
   .hidden{display:none !important;}
 
   /* ── MOBILE STEER HINTS ── */
-  #touch-hint{position:fixed;bottom:20px;left:0;right:0;z-index:15;display:none;
+  #touch-hint{position:fixed;bottom:150px;left:0;right:0;z-index:15;display:none;
     justify-content:space-between;padding:0 8px;pointer-events:none;}
   #touch-hint{align-items:flex-end;}
   .joystick{position:relative;width:118px;height:118px;border-radius:50%;
@@ -187,6 +187,7 @@
   .joy-nub{position:absolute;top:50%;left:50%;width:54px;height:54px;margin:-27px 0 0 -27px;
     border-radius:50%;background:rgba(232,201,106,0.5);border:1.5px solid rgba(232,201,106,0.85);}
   @media(hover:hover) and (pointer:fine){#touch-hint{display:none !important;}}
+  @media(max-height:500px){ #touch-hint{bottom:26px;} }
 
   .credit{font-size:0.74rem;color:var(--text-muted);margin-top:16px;line-height:1.5;}
   .device-note{font-size:0.64rem;color:var(--text-muted);margin-top:14px;line-height:1.45;opacity:0.8;
@@ -2021,11 +2022,12 @@ muteBtn.addEventListener('click', function(){
     if(!el) return;
     var id=null, nub=el.querySelector('.joy-nub');
     function place(touch){
-      var r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2, R=44;
-      var nx=vertical?0:Math.max(-R,Math.min(R,touch.clientX-cx));
-      var ny=vertical?Math.max(-R,Math.min(R,touch.clientY-cy)):0;
-      nub.style.transform='translate('+nx+'px,'+ny+'px)';
-      apply(vertical?ny/R:nx/R);
+      var r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2, R=40, DEAD=13;
+      var raw = vertical ? (touch.clientY-cy) : (touch.clientX-cx);
+      var d = raw < -DEAD ? -1 : (raw > DEAD ? 1 : 0);   // digital: full / nothing
+      var off = d * R;                                    // snap nub to the active position
+      nub.style.transform = vertical ? 'translate(0,'+off+'px)' : 'translate('+off+'px,0)';
+      apply(d);
     }
     function find(list){ for(var i=0;i<list.length;i++) if(list[i].identifier===id) return list[i]; return null; }
     el.addEventListener('touchstart',function(e){ var t=e.changedTouches[0]; id=t.identifier; place(t); e.preventDefault(); },{passive:false});
