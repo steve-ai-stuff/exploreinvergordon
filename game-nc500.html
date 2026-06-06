@@ -178,9 +178,14 @@
   /* ── MOBILE STEER HINTS ── */
   #touch-hint{position:fixed;bottom:20px;left:0;right:0;z-index:15;display:none;
     justify-content:space-between;padding:0 8px;pointer-events:none;}
-  .steer-pad{width:84px;height:84px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.35);
-    background:rgba(8,15,30,0.4);display:flex;align-items:center;justify-content:center;
-    font-size:2rem;color:rgba(232,201,106,0.65);}
+  #touch-hint{align-items:flex-end;}
+  .joystick{position:relative;width:118px;height:118px;border-radius:50%;
+    border:2px solid rgba(201,168,76,0.40);background:rgba(8,15,30,0.34);
+    pointer-events:auto;touch-action:none;-webkit-user-select:none;user-select:none;}
+  .joy-base{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:0.8rem;line-height:1.1;text-align:center;color:rgba(232,201,106,0.42);pointer-events:none;}
+  .joy-nub{position:absolute;top:50%;left:50%;width:54px;height:54px;margin:-27px 0 0 -27px;
+    border-radius:50%;background:rgba(232,201,106,0.5);border:1.5px solid rgba(232,201,106,0.85);}
   @media(hover:hover) and (pointer:fine){#touch-hint{display:none !important;}}
 
   .credit{font-size:0.74rem;color:var(--text-muted);margin-top:16px;line-height:1.5;}
@@ -306,7 +311,7 @@
   <b>🚔 The Rozzers caught you!</b>
   <div class="fine-amount" id="police-fine-amount">Fine: 0 points</div>
   <div>They have pulled you over. Lights flashing. Pride dented.</div>
-  <div class="fine-resume">Press ↑ / W to accelerate and resume</div>
+  <div class="fine-resume">Press ↑ / W — or push the right joystick up — to resume</div>
 </div>
 
 <div id="rear-mirror">
@@ -362,8 +367,8 @@
 
 <!-- Touch steer hint -->
 <div id="touch-hint">
-  <div class="steer-pad">◀</div>
-  <div class="steer-pad">▶</div>
+  <div id="joy-left" class="joystick"><div class="joy-base">◀&nbsp;&nbsp;▶</div><div class="joy-nub"></div></div>
+  <div id="joy-right" class="joystick"><div class="joy-base">▲<br>▼</div><div class="joy-nub"></div></div>
 </div>
 
 <!-- START -->
@@ -382,7 +387,7 @@
         <div class="legend-items" id="legend-avoid"></div>
       </div>
     </div>
-    <div class="legend-note">Race all <b>516 miles</b> of the NC500 — and don’t let the <b>Hairy Haggis</b> catch your bumper!<br>← → / A D steer · ↑ ↓ / W S speed · tap left/right on mobile</div>
+    <div class="legend-note">Race all <b>516 miles</b> of the NC500 — and don’t let the <b>Hairy Haggis</b> catch your bumper!<br>← → / A D steer · ↑ ↓ / W S speed · on mobile use the joysticks: left = steer, right = gas/brake</div>
     <button class="btn" id="startBtn">▶ Start Driving</button>
     <div class="credit">Best so far: <span id="start-best">0</span></div>
     <div class="device-note">📱 Best experience on a phone from <b>2019 or newer</b> (iPhone 8 / iOS&nbsp;15+, Android&nbsp;10+) — or any desktop / laptop. On older devices some visual effects are reduced and it may not load; if so, please try a newer phone or a computer. 🚐</div>
@@ -2010,6 +2015,31 @@ muteBtn.addEventListener('click', function(){
   canvas.addEventListener('touchend',function(){touchSide=0;},{passive:true});
   canvas.addEventListener('touchcancel',function(){touchSide=0;},{passive:true});
 
+  // ── Twin virtual joysticks (mobile): left = steer, right = gas/brake ──
+  var touchSteer=0, touchThrottle=0;
+  function bindJoystick(el, vertical, apply){
+    if(!el) return;
+    var id=null, nub=el.querySelector('.joy-nub');
+    function place(touch){
+      var r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2, R=44;
+      var nx=vertical?0:Math.max(-R,Math.min(R,touch.clientX-cx));
+      var ny=vertical?Math.max(-R,Math.min(R,touch.clientY-cy)):0;
+      nub.style.transform='translate('+nx+'px,'+ny+'px)';
+      apply(vertical?ny/R:nx/R);
+    }
+    function find(list){ for(var i=0;i<list.length;i++) if(list[i].identifier===id) return list[i]; return null; }
+    el.addEventListener('touchstart',function(e){ var t=e.changedTouches[0]; id=t.identifier; place(t); e.preventDefault(); },{passive:false});
+    el.addEventListener('touchmove',function(e){ var t=find(e.changedTouches); if(t){ place(t); e.preventDefault(); } },{passive:false});
+    function release(e){ if(find(e.changedTouches)){ id=null; nub.style.transform='translate(0,0)'; apply(0); } }
+    el.addEventListener('touchend',release,{passive:true});
+    el.addEventListener('touchcancel',release,{passive:true});
+  }
+  bindJoystick(document.getElementById('joy-left'), false, function(v){ touchSteer=v; });
+  bindJoystick(document.getElementById('joy-right'), true, function(v){
+    touchThrottle = v < -0.32 ? 1 : (v > 0.32 ? -1 : 0);   // up = gas, down = brake
+    if(touchThrottle>0 && state==='pulled'){ resumeAfterPoliceFine(); }
+  });
+
   // ────────────────────────────────────────────────────────────────
   //  GAME STATE
   // ────────────────────────────────────────────────────────────────
@@ -2055,7 +2085,7 @@ muteBtn.addEventListener('click', function(){
   function resetWorld(){
     clearGroup(collectibles); clearGroup(obstacles); clearGroup(props); clearGroup(signs); clearGroup(landmarks); clearGroup(bridges);
     speed=0; distance=0; score=0; items=0; haggisGap=HAGGIS_MAX_GAP;
-    cleanTime=0; crashFlash=0; car.position.x=0; steer=0; touchSide=0; keyL=keyR=false;
+    cleanTime=0; crashFlash=0; car.position.x=0; steer=0; touchSide=0; touchSteer=0; touchThrottle=0; keyL=keyR=false;
     nextCollZ=-40; nextObstZ=-150; nextPropZ=-30;
     routeMile=0; nextSignIdx=0; nextPassIdx=0; lastTown='the start line';
     nextLmSpawnIdx=0; nextLmPassIdx=0; nextBridgeIdx=0; currentBiome=-1; curve=0;
@@ -2603,7 +2633,7 @@ muteBtn.addEventListener('click', function(){
       // each successive gear gives a shorter, gentler burst before the next change.
       //   G1 0→24mph (~2s) · G2 →39 (~3s) · G3 →51 (~4s) · G4 →62 (~5s) · G5 →96 (~5s)
       var spCap = START_SPEED + (MAX_SPEED-START_SPEED)*Math.min(1, routeMile/300); // haggis/police cruise reference only
-      var throttle = (keyUp?1:0) - (keyDown?1:0);
+      var throttle = Math.max(-1, Math.min(1, (keyUp?1:0) - (keyDown?1:0) + touchThrottle));
       var SP_CAP_MPH = 96;                       // top gear maxes out here (speedo bounces 95–96)
       var curMph = speed*1.4;
       // gear-based acceleration (mph per second)
@@ -2645,7 +2675,7 @@ muteBtn.addEventListener('click', function(){
       // steering (the bend pushes you to the outside; off the tarmac drags you)
       var dir=0;
       if(keyL) dir-=1; if(keyR) dir+=1;
-      dir+=touchSide;
+      dir+=touchSide; dir+=touchSteer;
       dir=Math.max(-1,Math.min(1,dir));
       // Improved driving feel - slight grip and weight
       var grip = (Math.abs(car.position.x) > ROAD_HALF - 0.8) ? 0.72 : 1.0;
