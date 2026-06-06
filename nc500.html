@@ -831,6 +831,10 @@ function googleTranslateElementInit() {
 }
 </script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NC500 — North Coast 500 · Explore Invergordon">
+<meta name="twitter:description" content="Invergordon sits at the heart of Scotland's legendary North Coast 500. Discover the best stops, distilleries, castles and dramatic landscapes within easy reach of the town.">
+<meta name="twitter:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
 </head>
 
 <body>
@@ -925,7 +929,7 @@ function googleTranslateElementInit() {
       <em>500</em>
     </h1>
     <p class="hero-subtitle" id="nc500-hero-sub">Invergordon sits at the heart of Scotland's most celebrated road trip. Mountains, lochs, castles, distilleries and wild coastline — all on your doorstep.</p>
-    <a href="#nc500-content" class="hero-cta">Explore the Route ↓</a>
+    <a href="#nc500-game" class="hero-cta" style="letter-spacing:.14em;">🏁 Click HERE to Drive the NC500</a>
   </div>
 
   <div class="scroll-hint">
@@ -1150,6 +1154,45 @@ function googleTranslateElementInit() {
     </div>
   </div>
 </div>
+
+<!-- ── NC500 DASH GAME ── -->
+<section id="nc500-game" class="eigame">
+  <style>
+    #nc500-game{padding:0 1.5rem;scroll-margin-top:70px;}
+    .eigame-card{max-width:860px;margin:4rem auto;background:linear-gradient(135deg,rgba(107,74,126,0.20),rgba(201,168,76,0.10));border:2px solid rgba(201,168,76,0.4);border-radius:10px;padding:2.5rem 1.75rem;text-align:center;position:relative;overflow:hidden;}
+    .eigame-eyebrow{display:inline-block;font-family:'Overpass Mono',monospace;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-light);border:1px solid rgba(201,168,76,0.5);border-radius:50px;padding:.35rem 1rem;margin-bottom:1rem;}
+    .eigame-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--cream);margin:.25rem 0 .65rem;line-height:1.15;}
+    .eigame-title em{color:var(--gold-light);font-style:italic;}
+    .eigame-sub{font-size:1.02rem;color:var(--mist);line-height:1.7;max-width:640px;margin:0 auto 1.6rem;}
+    .eigame-sub strong{color:var(--gold-light);font-weight:600;}
+    .eigame-art{display:block;position:relative;border-radius:10px;overflow:hidden;border:1.5px solid rgba(201,168,76,0.45);box-shadow:0 14px 40px rgba(0,0,0,0.45);max-width:760px;margin:0 auto;}
+    .eigame-art img{display:block;width:100%;height:auto;transition:transform .5s ease;}
+    .eigame-art:hover img{transform:scale(1.04);}
+    .eigame-playpill{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:rgba(8,15,30,0.80);color:var(--gold-light);font-family:'Overpass Mono',monospace;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1.5rem;border-radius:50px;border:1px solid rgba(201,168,76,0.6);backdrop-filter:blur(4px);pointer-events:none;}
+    .eigame-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 1.6rem;margin:1.5rem auto .2rem;font-family:'Overpass Mono',monospace;font-size:.78rem;color:var(--mist);}
+    .eigame-legend span b{font-size:1.05rem;}
+    .eigame-cta{display:inline-block;margin-top:1.6rem;background:var(--gold);color:var(--highland-deep);font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;padding:.95rem 2.6rem;border-radius:6px;text-decoration:none;transition:all .3s ease;}
+    .eigame-cta:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,168,76,0.35);}
+    .eigame-prize{font-family:'Overpass Mono',monospace;font-size:.8rem;color:var(--heather-light);line-height:1.6;margin:1.2rem auto 0;max-width:580px;}
+    @media(max-width:600px){.eigame-title{font-size:1.55rem;}.eigame-card{padding:2rem 1.1rem;}.eigame-sub{font-size:.96rem;}}
+  </style>
+  <div class="eigame-card">
+    <span class="eigame-eyebrow">New &middot; Free to Play</span>
+    <h3 class="eigame-title">Now Drive the <em>NC500</em> — The Game</h3>
+    <p class="eigame-sub">Take the wheel of a Highland campervan, collect whisky casks, coins and golden thistles, dodge the sheep and mind the Rozzers — and whatever you do, <strong>don't let the Hairy Haggis catch you!</strong> 🐗</p>
+    <a class="eigame-art" href="game-nc500.html" aria-label="Play NC500 Dash — free 3D driving game">
+      <img src="website_image_files/game/nc500-dash-hero.webp" alt="NC500 Dash game — a Highland campervan draped in a Saltire flees a giant purple Hairy Haggis along the NC500 at sunset, a police car in pursuit" width="1170" height="780" loading="lazy">
+      <span class="eigame-playpill">▶ Tap to Play</span>
+    </a>
+    <div class="eigame-legend">
+      <span><b>🚐</b> The Campervan — that's you</span>
+      <span><b>🐗</b> The Hairy Haggis — outrun him</span>
+      <span><b>🚔</b> The Rozzers — watch your speed</span>
+    </div>
+    <a class="eigame-cta" href="game-nc500.html">▶ Play NC500 Dash — Free</a>
+    <p class="eigame-prize">🏆 New monthly leaderboard — the top score each month wins a prize. Think you've got what it takes to conquer all 516 miles?</p>
+  </div>
+</section>
 
 <!-- CTA CALLOUT -->
 <div class="nc500-callout">
