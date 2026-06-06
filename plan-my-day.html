@@ -193,7 +193,7 @@
     position: relative;
     padding: 9rem 2rem 3rem;
     text-align: center;
-    background-image: url('website_image_files/background_images/hero-bg.jpeg');
+    background-image: url('website_image_files/background_images/background_image-opengraph.jpg');
     background-size: cover;
     background-position: center 40%;
     overflow: hidden;
@@ -774,6 +774,7 @@
 
 <!-- LANG BAR -->
 <div class="lang-bar">
+  <div class="lang-scroll">
   <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
   <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
   <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
@@ -782,9 +783,9 @@
   <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
   <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
   <span class="lang-sep">|</span>
-  <button class="lang-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button>
-  <div id="google_translate_element"></div>
-</div>
+  <button class="lang-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button></div>
+  <div id="google_translate_element">
+</div></div>
 
 <!-- NAV -->
 <nav>
@@ -1175,6 +1176,18 @@ function eiMoreLangs(btn) {
     if (btn) btn.classList.toggle('active', !vis);
   }
 }
+
+// ── SYNC NAV TOP TO LANG BAR HEIGHT (portrait mobile fix) ──
+function syncNavTop() {
+  var lb = document.querySelector(".lang-bar");
+  var nav = document.querySelector("nav");
+  if (!lb || !nav) return;
+  nav.style.top = lb.offsetHeight + "px";
+}
+window.addEventListener("load", syncNavTop);
+window.addEventListener("resize", syncNavTop);
+document.addEventListener("DOMContentLoaded", syncNavTop);
+window.addEventListener("orientationchange", function() { setTimeout(syncNavTop, 150); });
 </script>
 
 </body>
