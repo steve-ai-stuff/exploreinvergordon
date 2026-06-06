@@ -84,6 +84,11 @@
   #toast.show{opacity:1;transform:translate(-50%,0) scale(1);}
   #toast .toast-sub{display:block;font-family:'Overpass Mono',monospace;font-size:0.9rem;
     font-weight:600;color:var(--cream);letter-spacing:0.1em;margin-top:6px;text-shadow:0 2px 6px #000;}
+  /* Phone only: shrink toast pop-ups ~40% so they don't block the road */
+  @media (max-width:560px), (max-height:520px){
+    #toast{font-size:clamp(0.66rem,2.16vw,1.08rem);}
+    #toast .toast-sub{font-size:0.54rem;margin-top:4px;}
+  }
   /* ── TomTom-GO-style landscape SAT NAV ── */
   .satnav{width:332px;}
   .tomtom-bezel{position:relative;background:linear-gradient(158deg,#3a3e45,#101216 72%);border:1px solid #0a0b0d;
@@ -393,9 +398,44 @@
       </div>
     </div>
     <div class="legend-note">Race all <b>516 miles</b> of the NC500 — and don’t let the <b>Hairy Haggis</b> catch your bumper!<br>← → / A D steer · ↑ ↓ / W S speed · on mobile use the joysticks: left = steer, right = gas/brake</div>
-    <button class="btn" id="startBtn">▶ Start Driving</button>
+    <div class="btn-row">
+      <button class="btn" id="startBtn">▶ Start Driving</button>
+      <button class="btn secondary" id="howBtn">📖 Instructions</button>
+    </div>
     <div class="credit">Best so far: <span id="start-best">0</span></div>
     <div class="device-note">📱 Best experience on a phone from <b>2019 or newer</b> (iPhone 8 / iOS&nbsp;15+, Android&nbsp;10+) — or any desktop / laptop. On older devices some visual effects are reduced and it may not load; if so, please try a newer phone or a computer. 🚐</div>
+  </div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="overlay hidden" id="instructionsScreen">
+  <div class="panel" style="text-align:left;max-width:520px;">
+    <h1 style="text-align:center;font-size:clamp(1.5rem,5.5vw,2rem);">How to Play</h1>
+    <div style="font-size:0.92rem;line-height:1.6;color:var(--text-light);">
+      <p style="margin:14px 0 6px;color:var(--gold-light);font-weight:700;">🎮 Controls</p>
+      <p style="margin:0 0 5px;"><b>On mobile &amp; tablet:</b> two on-screen joysticks. The <b>left stick steers</b> (push left / right); the <b>right stick is your pedals</b> — push <b>up to accelerate</b>, <b>down to brake</b>.</p>
+      <p style="margin:0 0 12px;"><b>On desktop &amp; laptop:</b> use the <b>arrow keys</b> (← → steer, ↑ ↓ speed) <b>or</b> the letters <b>A&nbsp;D</b> to steer and <b>W&nbsp;S</b> for speed — whichever suits you best.</p>
+
+      <p style="margin:14px 0 6px;color:var(--gold-light);font-weight:700;">🏆 Scoring &amp; the monthly prize</p>
+      <p style="margin:0 0 5px;">Collect <b>coins, thistles, whisky casks and gold stars</b> for points, and pile up the miles as you race the full 516-mile NC500. Dodge the <b>sheep, deer, cones, rocks and oncoming traffic</b> — and never let the <b>Hairy Haggis</b> catch your bumper.</p>
+      <p style="margin:0 0 12px;">The <b>highest score each calendar month wins a prize.</b></p>
+
+      <p style="margin:14px 0 6px;color:var(--gold-light);font-weight:700;">🎟️ How to enter the prize draw</p>
+      <ol style="margin:0 0 10px;padding-left:1.25rem;">
+        <li style="margin-bottom:4px;">Play a run.</li>
+        <li style="margin-bottom:4px;">At the end, enter your <b>name</b> and your <b>town</b>.</li>
+        <li style="margin-bottom:4px;">Tap <b>“Share my Run”</b> to save your score card:
+          <ul style="margin:4px 0;padding-left:1.1rem;">
+            <li style="margin-bottom:3px;"><b>Phone / tablet:</b> the image saves straight to your <b>Photos</b>.</li>
+            <li><b>Desktop:</b> a pop-up appears — choose <b>“Copy”</b>, then <b>paste</b> the score card wherever you’d like to keep it (your desktop or a folder).</li>
+          </ul>
+        </li>
+        <li style="margin-bottom:4px;">Go to our <b>Facebook page</b>, <b>post your score card</b>, and <b>tag us @exploreinvergordon</b>.</li>
+        <li>At the end of each month we’ll message the winning post on our Facebook page. 🎉</li>
+      </ol>
+      <p style="margin:10px 0 0;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);border-radius:8px;padding:9px 11px;font-size:0.86rem;">⚠️ <b>Important:</b> the name on your high score must match the name on the Facebook account that posts the card, so we can confirm the winner.</p>
+    </div>
+    <div style="text-align:center;"><button class="btn secondary" id="howBackBtn" style="margin-top:16px;">← Back</button></div>
   </div>
 </div>
 
@@ -2022,11 +2062,11 @@ muteBtn.addEventListener('click', function(){
 
   // ── Twin virtual joysticks (mobile): left = steer, right = gas/brake ──
   var touchSteer=0, touchThrottle=0;
-  function bindJoystick(el, vertical, apply){
+  function bindJoystick(el, vertical, apply, dead){
     if(!el) return;
     var id=null, nub=el.querySelector('.joy-nub');
     function place(touch){
-      var r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2, R=40, DEAD=13;
+      var r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2, R=40, DEAD=(dead||13);
       var raw = vertical ? (touch.clientY-cy) : (touch.clientX-cx);
       var d = raw < -DEAD ? -1 : (raw > DEAD ? 1 : 0);   // digital: full / nothing
       var off = d * R;                                    // snap nub to the active position
@@ -2040,7 +2080,7 @@ muteBtn.addEventListener('click', function(){
     el.addEventListener('touchend',release,{passive:true});
     el.addEventListener('touchcancel',release,{passive:true});
   }
-  bindJoystick(document.getElementById('joy-left'), false, function(v){ touchSteer=v; });
+  bindJoystick(document.getElementById('joy-left'), false, function(v){ touchSteer=v; }, 24);  // wider centre dead-zone for steering
   bindJoystick(document.getElementById('joy-right'), true, function(v){
     touchThrottle = v < -0.32 ? 1 : (v > 0.32 ? -1 : 0);   // up = gas, down = brake
     if(touchThrottle>0 && state==='pulled'){ resumeAfterPoliceFine(); }
@@ -2130,6 +2170,8 @@ muteBtn.addEventListener('click', function(){
     playImpactSound(0.25); // nice engine start thump
   }
   document.getElementById('startBtn').addEventListener('click',startGame);
+  document.getElementById('howBtn').addEventListener('click',function(){ document.getElementById('instructionsScreen').classList.remove('hidden'); });
+  document.getElementById('howBackBtn').addEventListener('click',function(){ document.getElementById('instructionsScreen').classList.add('hidden'); });
   document.getElementById('againBtn').addEventListener('click',startGame);
 
   // ── SHAREABLE SCORE CARD (branded synthwave image → social) ──
