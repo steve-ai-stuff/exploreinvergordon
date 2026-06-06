@@ -621,6 +621,20 @@
   .vc3-slide .visitor-credit { padding: 0.35rem 0.6rem 0.3rem; }
   .vc3-slide .visitor-credit-name  { font-size: 0.82rem; }
   .vc3-slide .visitor-credit-caption { font-size: 0.78rem; }
+
+  /* Larger carousel on tablet / desktop — mobile stays as-is */
+  @media (min-width: 768px) {
+    .vc3-outer { max-width: 900px; }
+    .vc3-scene { height: 350px; perspective: 1050px; }
+    .vc3-stage, .vc3-slide { width: 330px; height: 242px; }
+    .vc3-slide .gallery-item img { height: 188px; }
+  }
+  @media (min-width: 1100px) {
+    .vc3-outer { max-width: 1000px; }
+    .vc3-scene { height: 392px; perspective: 1200px; }
+    .vc3-stage, .vc3-slide { width: 372px; height: 272px; }
+    .vc3-slide .gallery-item img { height: 212px; }
+  }
   /* Arrow buttons */
   .vc-btn {
     position: absolute;
@@ -1156,7 +1170,7 @@ function googleTranslateElementInit() {
 
   <!-- Approved visitor photos — add new entries here as they come in -->
   <div class="gallery-section">
-    <p class="gallery-section-title">Shared by Our Visitors</p>
+    <p class="gallery-section-title" style="text-align:center;">Shared by our Visitors<span style="display:block;font-size:0.68rem;letter-spacing:0.1em;text-transform:none;color:var(--text-muted);margin-top:0.55rem;">[ click any image to enlarge ]</span></p>
     <div class="vc3-outer">
       <button class="vc-btn vc-prev" id="vc-prev" aria-label="Previous photo">&#8249;</button>
       <div class="vc3-scene" id="vc3-scene">
@@ -1672,10 +1686,21 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
   var cur      = 0;
   var autoTimer = null;
 
-  // Position every slide evenly around the circle
-  slides.forEach(function (slide, i) {
-    slide.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + RADIUS + 'px)';
-  });
+  // Position slides on a circle whose radius scales with the slide size
+  function layoutCarousel() {
+    var w = (slides[0] && slides[0].offsetWidth) || 280;
+    RADIUS = Math.round(w * (240 / 280));   // keep the original proportions at any size
+    slides.forEach(function (slide, i) {
+      slide.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + RADIUS + 'px)';
+    });
+    updateVisibility();
+  }
+  if (window.ResizeObserver) {
+    new ResizeObserver(layoutCarousel).observe(stage);   // fires on viewport change AND when the Visitor tab is shown
+  } else {
+    layoutCarousel();
+    window.addEventListener('resize', layoutCarousel);
+  }
 
   // Fade slides based on their angle from the front
   function updateVisibility() {
