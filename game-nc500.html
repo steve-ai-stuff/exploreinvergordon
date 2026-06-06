@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NC500 Dash v8 — Vice Highlands Wild Stabilised</title>
+<title>NC500 Dash [www.exploreinvergordon.scot]</title>
 <meta name="description" content="Drive the legendary NC500, collect Highland treasures and outrun the Hairy Haggis! A fun 3D game from Explore Invergordon — top score each month wins a prize.">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -256,8 +256,12 @@
     font-size:.48rem;letter-spacing:.28em;color:#5f6876;text-transform:uppercase;white-space:nowrap;}
   #rear-mirror.alert .mirror-shell{box-shadow:0 0 26px rgba(214,69,69,.5), inset 0 1px 0 rgba(255,255,255,.14), inset 0 -4px 10px rgba(0,0,0,.65);}
   #rear-mirror.police .mirror-shell{box-shadow:0 0 26px rgba(74,123,255,.45), inset 0 1px 0 rgba(255,255,255,.14), inset 0 -4px 10px rgba(0,0,0,.65);}
-  @media(max-width:760px){#rear-mirror{top:50px;width:46vw;min-width:190px}.satnav{width:210px}.hud-box{padding:6px 9px}}
-  @media(max-width:520px){#rear-mirror{top:96px;width:72vw}.satnav{display:none}}
+  @media(max-width:760px){.hud-box{padding:6px 9px}}
+  /* Phone (portrait + landscape): shrink mirror + satnav so the road stays visible, and keep the satnav on screen */
+  @media (max-width:560px), (max-height:520px){
+    #rear-mirror{top:46px;width:min(340px,46vw);transform:translateX(-50%) scale(0.55);transform-origin:top center;}
+    #satnav{width:300px;position:fixed;top:48px;right:4px;display:block;transform:scale(0.5);transform-origin:top right;}
+  }
 
 
 
@@ -288,12 +292,12 @@
 <link rel="canonical" href="https://exploreinvergordon.scot/game-nc500.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://exploreinvergordon.scot/game-nc500.html">
-<meta property="og:title" content="NC500 Dash v8 — Vice Highlands Wild Stabilised">
+<meta property="og:title" content="NC500 Dash [www.exploreinvergordon.scot]">
 <meta property="og:description" content="Drive the legendary NC500, collect Highland treasures and outrun the Hairy Haggis! A fun 3D game from Explore Invergordon — top score each month wins a prize.">
 <meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/game/nc500-dash-og.jpg">
 <meta property="og:site_name" content="Explore Invergordon">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="NC500 Dash v8 — Vice Highlands Wild Stabilised">
+<meta name="twitter:title" content="NC500 Dash [www.exploreinvergordon.scot]">
 <meta name="twitter:description" content="Drive the legendary NC500, collect Highland treasures and outrun the Hairy Haggis! A fun 3D game from Explore Invergordon — top score each month wins a prize.">
 <meta name="twitter:image" content="https://exploreinvergordon.scot/website_image_files/game/nc500-dash-og.jpg">
 </head>
@@ -324,7 +328,7 @@
 
 <div class="topbar">
   <a class="brand" href="/">← Explore Invergordon</a>
-  <span class="title">NC500 Dash · Vice Highlands v8</span>
+  <span class="title">NC500 Dash</span>
   <button class="icon-btn" id="muteBtn" title="Sound on/off">🔊</button>
 </div>
 
