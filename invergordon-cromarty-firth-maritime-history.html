@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invergordon &amp; the Cromarty Firth: A Maritime History</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="How a quiet, sheltered Highland firth shaped history — Churchill's fleet, the loss of HMS Natal, the 1931 Invergordon Mutiny, and today's Port of Cromarty Firth.">
+<meta name="keywords" content="Invergordon, Cromarty Firth, Invergordon maritime history, the Sutors, HMS Natal, Invergordon Mutiny 1931, Port of Cromarty Firth, Royal Navy Scotland, Scottish Highlands, NC500">
+<meta name="author" content="Explore Invergordon">
+<link rel="canonical" href="https://exploreinvergordon.scot/invergordon-cromarty-firth-maritime-history">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://exploreinvergordon.scot/invergordon-cromarty-firth-maritime-history">
+<meta property="og:title" content="The Quiet Firth That Sank a Battleship, Defied the Admiralty, and Shook the Pound">
+<meta property="og:description" content="Invergordon looks like the calmest place on earth — and that stillness is exactly why it has held the Royal Navy, lost a battleship, defied the Admiralty and shaken the pound.">
+<meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/blog_images/invergordon-cromarty-firth-maritime-og.jpg">
+<meta property="og:site_name" content="Explore Invergordon">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Quiet Firth That Sank a Battleship, Defied the Admiralty, and Shook the Pound">
+<meta name="twitter:description" content="How a quiet, sheltered Highland firth shaped the Royal Navy, lost HMS Natal, sparked the 1931 mutiny that shook the pound — and still powers the Highlands today.">
+<meta name="twitter:image" content="https://exploreinvergordon.scot/website_image_files/blog_images/invergordon-cromarty-firth-maritime-og.jpg">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --highland-dark: #0e1628;
+    --highland-deep: #080f1e;
+    --loch-blue: #1a3a6e;
+    --loch-light: #2e6aad;
+    --heather: #6b4a7e;
+    --heather-light: #a87cc0;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #ffffff;
+    --mist: #ccd9ee;
+    --text-light: #e8eef8;
+    --text-muted: #7a90b8;
+    --saltire: #1d4fa8;
+    --saltire-deep: #0f2d6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--highland-deep);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANG BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(8,15,30,0.98);
+    border-bottom: 1px solid rgba(107,74,126,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.4rem 1.5rem;
+  }
+
+  .lang-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .lang-btn:hover { color: var(--gold); }
+
+  @keyframes langGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,168,76,0.60), 0 0 18px rgba(201,168,76,0.30); }
+    50%       { text-shadow: 0 0 18px rgba(201,168,76,1.0), 0 0 36px rgba(201,168,76,0.70), 0 0 60px rgba(201,168,76,0.40); }
+  }
+
+  .lang-btn.active {
+    color: var(--gold);
+    animation: langGlow 2.5s ease-in-out infinite;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 32px; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,15,30,0.97), transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-follow-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    color: var(--heather-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .nav-social-btn:hover { opacity: 0.75; transform: scale(1.12); }
+  @media (max-width: 600px) { .nav-follow-label { display: none; } }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.8rem;
+      padding: 0 0.5rem;
+      scrollbar-width: none;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+  }
+
+  /* ── ARTICLE HERO ── */
+  .article-hero {
+    position: relative;
+    padding: 11rem 2rem 7rem;
+    text-align: center;
+    background-image: url('website_image_files/blog_images/invergordon-cromarty-firth-cruise-rigs.webp');
+    background-size: cover;
+    background-position: center 40%;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .article-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,15,30,0.55) 0%,
+      rgba(8,15,30,0.70) 50%,
+      rgba(8,15,30,0.95) 100%);
+    z-index: 0;
+  }
+
+  .article-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(8,15,30,1) 0%, transparent 100%);
+    z-index: 0;
+  }
+
+  .article-hero > * { position: relative; z-index: 1; }
+
+  .article-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .article-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 5vw, 3.4rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .article-hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .article-byline {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-intro {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--heather-light);
+    max-width: 620px;
+    margin: 1.25rem auto 0;
+    line-height: 1.75;
+  }
+
+  /* ── ARTICLE BODY ── */
+  .article-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover { color: var(--gold); }
+
+  .article-body p {
+    color: var(--text-light);
+    font-size: 1.15rem;
+    line-height: 1.9;
+    margin-bottom: 1.4rem;
+  }
+
+  .article-body p:last-of-type { margin-bottom: 0; }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+    margin: 3rem 0 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .article-body h2:first-of-type {
+    margin-top: 1rem;
+    border-top: none;
+  }
+
+  .article-body strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .article-body em {
+    color: var(--heather-light);
+    font-style: italic;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-left: 3px solid var(--gold);
+    margin: 2.5rem 0;
+    padding: 1.25rem 1.75rem;
+    background: rgba(201,168,76,0.06);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem !important;
+    font-style: italic;
+    color: var(--gold-light) !important;
+    line-height: 1.65 !important;
+    margin: 0 !important;
+  }
+
+  /* Fact box */
+  .fact-box {
+    background: rgba(26,58,110,0.2);
+    border: 1px solid rgba(46,106,173,0.35);
+    border-radius: 8px;
+    padding: 1.4rem 1.75rem;
+    margin: 2.5rem 0;
+  }
+
+  .fact-box-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+    display: block;
+  }
+
+  .fact-box p {
+    font-size: 1rem !important;
+    margin-bottom: 0.6rem !important;
+    color: var(--mist) !important;
+  }
+
+  .fact-box p:last-child { margin-bottom: 0 !important; }
+
+  /* CTA box */
+  .cta-box {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: rgba(26,58,110,0.25);
+    border: 1px solid rgba(46,106,173,0.4);
+    border-radius: 8px;
+  }
+
+  .cta-box-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  .cta-box p {
+    font-size: 1rem !important;
+    color: var(--text-light) !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--highland-deep);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.3rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .cta-btn:hover { background: var(--gold-light); }
+
+  /* Sources */
+  .sources {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .sources-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .sources p {
+    font-size: 0.9rem !important;
+    color: var(--text-muted) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .sources a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .sources a:hover {
+    color: var(--gold-light);
+    text-decoration: underline;
+  }
+
+  /* ── SHARE BUTTONS ── */
+  .post-share {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(201,168,76,0.35);
+  }
+
+  .post-share-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    border-radius: 20px;
+    padding: 0.45rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    line-height: 1;
+    border: none;
+  }
+
+  .share-btn:hover { opacity: 0.85; }
+  .share-btn-x { background: #000000; color: #ffffff; }
+  .share-btn-wa { background: #25D366; color: #ffffff; }
+  .share-btn-copy { background: var(--heather); color: var(--cream); }
+  .share-btn.copied { color: var(--heather-light); border-color: var(--heather-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--highland-deep);
+    border-top: 2px solid rgba(201,168,76,0.55);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .footer-proton {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(107,74,126,0.4);
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .footer-proton a { color: var(--heather-light) !important; text-decoration: none; }
+  .footer-proton a:hover { color: #c9a0e0 !important; text-decoration: underline; }
+
+  footer p {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+
+  /* ── Google Translate ── */
+  .goog-te-banner-frame,
+  iframe.goog-te-banner-frame,
+  .skiptranslate > iframe { display: none !important; height: 0 !important; }
+  body { top: 0px !important; }
+  html { top: 0px !important; }
+  body.translated-ltr,
+  body.translated-rtl { margin-top: 0 !important; top: 0 !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+  .goog-te-gadget .goog-te-combo {
+    background: rgba(8,15,30,0.97);
+    color: #e8eef8;
+    border: 1px solid rgba(107,74,126,0.7);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  #google_translate_element {
+    position: absolute;
+    top: 100%;
+    right: 0.5rem;
+    z-index: 9999;
+    display: none;
+    background: rgba(8,15,30,0.98);
+    border: 1px solid rgba(107,74,126,0.55);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .lang-sep { color: rgba(107,74,126,0.5); margin: 0 0.15rem; font-size: 0.875rem; }
+  .lang-more-btn { color: var(--text-muted, #7a90b8) !important; }
+  .lang-more-btn:hover { color: var(--gold, #c9a84c) !important; }
+  .lang-bar { overflow: visible !important; }
+  .lang-scroll {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 1.25rem;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    padding: 0 0.25rem;
+  }
+  .lang-scroll::-webkit-scrollbar { display: none; }
+  @media (max-width: 680px) { .lang-scroll { gap: 0.5rem; } }
+
+  /* ── Nav scroll ── */
+  .nav-scroll-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    margin-left: 1rem;
+  }
+  .nav-scroll-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #f5c842;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.45rem;
+    animation: navArrowPulse 2.4s ease-in-out infinite;
+    user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+  }
+  @keyframes navArrowPulse {
+    0%, 100% { opacity: 0.18; text-shadow: none; }
+    50%       { opacity: 1; text-shadow: 0 0 7px #f5c842, 0 0 18px #f5c842, 0 0 32px rgba(245,200,66,0.45); }
+  }
+  .nav-links {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+    flex-wrap: nowrap !important;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links li { white-space: nowrap; }
+</style>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The Quiet Firth That Sank a Battleship, Defied the Admiralty, and Shook the Pound", "description": "How Invergordon's deep, sheltered Cromarty Firth shaped the Royal Navy, the loss of HMS Natal, the 1931 Invergordon Mutiny, and today's oil, offshore-wind and cruise port.", "image": "https://exploreinvergordon.scot/website_image_files/blog_images/invergordon-cromarty-firth-maritime-og.jpg", "datePublished": "2026-06-07", "dateModified": "2026-06-07", "author": {"@type": "Person", "name": "Steve Redford"}, "publisher": {"@type": "Organization", "name": "Explore Invergordon", "url": "https://exploreinvergordon.scot/"}, "mainEntityOfPage": "https://exploreinvergordon.scot/invergordon-cromarty-firth-maritime-history"}
+</script>
+</head>
+<body>
+
+<div class="lang-bar">
+  <div class="lang-scroll">
+  <button class="lang-btn active" onclick="eiLang('en',this)">&#127468;&#127463; EN</button>
+  <button class="lang-btn" onclick="eiLang('de',this)">&#127465;&#127466; DE</button>
+  <button class="lang-btn" onclick="eiLang('fr',this)">&#127467;&#127479; FR</button>
+  <button class="lang-btn" onclick="eiLang('no',this)">&#127475;&#127476; NO</button>
+  <button class="lang-btn" onclick="eiLang('nl',this)">&#127475;&#127473; NL</button>
+  <button class="lang-btn" onclick="eiLang('es',this)">&#127466;&#127480; ES</button>
+  <button class="lang-btn" onclick="eiLang('tl',this)">&#127477;&#127469; PH</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn lang-more-btn" onclick="eiMoreLangs(this)">&#127760; More&nbsp;&#9660;</button></div>
+  <div id="google_translate_element"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <span class="nav-follow-label">Check Our Socials:</span>
+    <a href="https://www.facebook.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Facebook"><svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.instagram.com/exploreinvergordon" target="_blank" rel="noopener" class="nav-social-btn" title="Follow us on Instagram"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad-b" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig-grad-b)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+  </div>
+  <div class="nav-scroll-wrapper">
+    <button class="nav-scroll-btn nav-scroll-left" aria-label="Scroll nav left">&#8249;</button>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="murals">Murals</a></li>
+      <li><a href="cruise-hub">Cruise Hub</a></li>
+      <li><a href="nc500">NC500</a></li>
+      <li><a href="gallery">Gallery</a></li>
+      <li><a href="blog" class="nav-active">Blog</a></li>
+      <li><a href="work-with-me">Work With Me</a></li>
+    </ul>
+    <button class="nav-scroll-btn nav-scroll-right" aria-label="Scroll nav right">&#8250;</button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="article-hero">
+  <p class="article-label">Scottish Highlands &middot; Maritime History &middot; 7 June 2026</p>
+  <h1>The <em>Quiet</em> Firth That Sank a Battleship, Defied the Admiralty, and Shook the Pound</h1>
+  <p class="article-byline">Explore Invergordon &middot; Scottish Highlands</p>
+  <p class="article-intro">Invergordon looks like the most peaceful place on earth. That stillness is the whole point — it is the reason this small Highland town has held the might of the Royal Navy, swallowed a warship whole, defied an empire, and helped crash a currency.</p>
+  <p style="position:absolute; bottom:0.8rem; right:1.2rem; z-index:1; font-family:'Overpass Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; color:rgba(255,255,255,0.45); text-transform:uppercase;">Photo: &copy; Explore Invergordon</p>
+</div>
+
+<!-- ── ARTICLE BODY ── -->
+<div class="article-container">
+
+  <a href="blog" class="back-link">&#8592; Back to the Blog</a>
+
+  <div class="article-body">
+
+    <p>Stand on the shore at Invergordon on a still morning and the Cromarty Firth barely seems to move. The water lies flat and pewter-grey, the hills of the Black Isle reflected so cleanly you could almost walk across to them. A cruise ship the size of a small town sits at the pier without so much as a ripple at its hull. Oil rigs — vast, skeletal, taller than anything else for miles — stand out in the channel as though someone set them down and forgot them. It is one of the most curiously calm stretches of water in Britain.</p>
+
+    <p>That calm is not an accident. It is geology, and it is the whole story.</p>
+
+    <h2>The Door in the Hills</h2>
+
+    <p>The Cromarty Firth is a sea loch with a secret. Its entrance, where it meets the open Moray Firth and the North Sea beyond, is guarded by two great headlands that rise almost sheer from the water — the North Sutor and the South Sutor, climbing to roughly 151 and 141 metres. Sailors have called them &ldquo;The Sutors&rdquo; for centuries, and together they form a narrow entrance channel roughly half a mile wide. Pass between them and you enter another world: a long, broad basin of deep, still water, wrapped on every side by hills.</p>
+
+    <figure style="margin: 2.5rem 0; text-align: center;">
+      <img width="1920" height="1044" src="website_image_files/main-gallery/invergordon/summer-evening-over-the-sutors-invergordon.webp"
+           alt="A summer evening over the Sutors, the two headlands guarding the entrance to the Cromarty Firth at Invergordon, Scottish Highlands"
+           style="width:100%; max-width:780px; border-radius:6px; border:1px solid rgba(201,168,76,0.3);"
+           loading="lazy">
+      <figcaption style="font-family:'Overpass Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; color:var(--text-muted); margin-top:0.6rem; text-transform:uppercase;">
+        A summer evening over the Sutors — the deep, sheltered gateway to the Cromarty Firth &nbsp;·&nbsp; &copy; Explore Invergordon
+      </figcaption>
+    </figure>
+
+    <p>The numbers are what make it extraordinary. The entrance channel runs between roughly 15 and 26 metres deep; inside, the Firth plunges to as much as 55 metres. That is deep enough to accommodate very large vessels that many smaller ports simply could not handle. And because the basin sits behind the narrow door of the Sutors, then folds again behind a second inner narrowing, it is sheltered twice over. The Atlantic gales that batter the open coast a few miles away lose most of their force here. The water rarely shows the fury of the sea beyond the headlands. It is, in the dry language of the harbour authorities, one of the safest and most commodious anchorages in the north of Scotland.</p>
+
+    <p>A deep-water harbour with naturally sheltered, year-round access, hidden behind a defensible gate in the hills. To a visitor it is simply beautiful. To the Royal Navy, a century ago, it was something close to perfect.</p>
+
+    <h2>Churchill&rsquo;s Harbour</h2>
+
+    <p>In September 1912, a young and famously restless First Lord of the Admiralty came north to see it for himself. His name was Winston Churchill.</p>
+
+    <p>Churchill spent a week at Cromarty inspecting the fleet — torpedo boat destroyers, the new submarines — and he was captivated. He called the Cromarty Firth &ldquo;incomparably the finest harbour on the East Coast of Great Britain.&rdquo; Here, in this sheltered Highland basin, the Navy could anchor its great fleets in safety, refuel, and shelter from both the weather and the enemy.</p>
+
+    <p>Churchill did not just admire it. He fortified it. In 1913 he commissioned gun batteries for the South Sutor, and by the autumn of 1914, with the First World War underway, both headlands bristled with heavy guns and the entrance was strung with anti-submarine defences. The door in the hills had been locked. Through the Great War the Cromarty Firth served as a main anchorage for the Grand Fleet, and Invergordon became a vital oiling station, fuelling the warships that held the North Sea against the German High Seas Fleet.</p>
+
+    <p>For a quiet Highland town it was a staggering transformation: from herring coast to one of the nerve centres of British naval power.</p>
+
+    <h2>The Night the Natal Died</h2>
+
+    <p>And then, three days after Christmas in 1915, the Firth took a terrible price.</p>
+
+    <p>HMS <em>Natal</em> was an armoured cruiser, anchored in the Cromarty Firth with the fleet. On the afternoon of 30 December her captain, Eric Back, was hosting a film show aboard — and in the gentler spirit of an earlier age, he had invited guests: the wives and children of his officers, nurses from a nearby hospital ship, friends from the shore. They had come aboard for an afternoon&rsquo;s entertainment in the warmth and safety of the anchorage.</p>
+
+    <p>At about twenty past three, a series of explosions tore through the ship.</p>
+
+    <p>There was no enemy. No U-boat had slipped past the Sutors. The catastrophe appears to have come from within — an internal ammunition explosion, possibly caused by faulty cordite, ripped <em>Natal</em> open from the inside. Within five minutes she had rolled over and capsized in the freezing Firth. Between 390 and 421 people died: sailors, more than sixty Royal Marines, and the very guests who had come aboard for a film and an afternoon&rsquo;s peace. Children were among them.</p>
+
+    <p>The wreck lay in the Firth for decades, a hazard marked on the charts, before it was largely broken up. For the families of Easter Ross and far beyond, the loss of the <em>Natal</em> was a wound that never quite closed — a peacetime afternoon that became one of the worst disasters in the Royal Navy&rsquo;s home waters, in the very place that was meant to be the safest of all.</p>
+
+    <figure style="margin: 2.5rem 0; text-align: center;">
+      <img width="549" height="335" src="website_image_files/blog_images/cromarty-firth-blog-HMS_Natal.jpg"
+           alt="HMS Natal, the Warrior-class armoured cruiser, photographed before 1915 — destroyed by an internal explosion in the Cromarty Firth on 30 December 1915"
+           style="width:100%; max-width:680px; border-radius:6px; border:1px solid rgba(201,168,76,0.3);"
+           loading="lazy">
+      <figcaption style="font-family:'Overpass Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; color:var(--text-muted); margin-top:0.6rem; text-transform:uppercase;">
+        HMS Natal (1905–1915) — lost to an internal explosion in the Cromarty Firth, 30 December 1915 &nbsp;·&nbsp; Public domain via Wikimedia Commons
+      </figcaption>
+    </figure>
+
+    <h2>The Mutiny That Shook the Pound</h2>
+
+    <p>If 1915 was tragedy, 1931 was something stranger and, in its way, more astonishing: the moment a few thousand sailors in this quiet Highland firth made the world&rsquo;s financial markets tremble.</p>
+
+    <p>It was the depth of the Great Depression. Britain&rsquo;s new National Government, scrambling to balance the books, announced sweeping cuts to public spending — and among them, brutal pay cuts for the Royal Navy. For officers the cut was around 10 per cent. But for the lowest-paid ratings — the ordinary seamen who had joined before 1925 — the reduction amounted, in real terms, to as much as 25 per cent of their wages. Men already supporting families on very little were being told to absorb a quarter of their pay.</p>
+
+    <p>The Atlantic Fleet was anchored at Invergordon. And on the morning of 15 September 1931, it simply refused.</p>
+
+    <p>There was no violence. No officers were harmed, no weapons drawn. The worst resistance centred on four of the fleet&rsquo;s major warships — <em>Valiant</em>, <em>Rodney</em>, <em>Nelson</em> and the battle-cruiser <em>Hood</em> — but the unrest ran more widely through the Atlantic Fleet: men declined to fall in, declined to weigh anchor, declined to put to sea for the morning&rsquo;s exercises. They gathered on the forecastles, sang, and held the fleet in harbour. For two days the most powerful navy on earth sat motionless in a Highland firth because its sailors had said — quietly, collectively — no. It became known as the Invergordon Mutiny, one of the very few mutinies in modern British naval history.</p>
+
+    <figure style="margin: 2.5rem 0; text-align: center;">
+      <img width="609" height="782" src="website_image_files/blog_images/cromarty-firth-blog-HMSRodney.jpg"
+           alt="HMS Rodney, one of the battleships whose crew refused duty in the 1931 Invergordon Mutiny"
+           style="width:100%; max-width:680px; border-radius:6px; border:1px solid rgba(201,168,76,0.3);"
+           loading="lazy">
+      <figcaption style="font-family:'Overpass Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; color:var(--text-muted); margin-top:0.6rem; text-transform:uppercase;">
+        HMS Rodney — one of the four major warships whose crews refused to sail in the Invergordon Mutiny, September 1931 &nbsp;·&nbsp; Public domain
+      </figcaption>
+    </figure>
+
+    <p>The government caved on the worst of the cuts. But the damage was already done, and it was not the kind anyone had foreseen. News that the Royal Navy — the very symbol of British stability — was in open mutiny sent a shockwave through the financial world. Investors panicked. There was a run on the pound. And within days, on 21 September 1931, Britain was forced off the Gold Standard, abandoning the bedrock of its monetary system. Britain was already under severe financial strain that summer — but the mutiny in the Cromarty Firth was a major trigger that helped tip it over the edge, and the tremors were felt around the globe.</p>
+
+    <p>The sailors of Invergordon almost certainly never imagined their quiet refusal would be felt in the trading rooms of the world. But it was.</p>
+
+    <figure style="margin: 2.5rem 0; text-align: center;">
+      <img width="1280" height="816" src="website_image_files/blog_images/cromarty-firth-blog-HMS_Hood_(51)_-_March_17,_1924.jpg"
+           alt="The battlecruiser HMS Hood photographed in 1924 — one of the four major warships at the centre of the 1931 Invergordon Mutiny"
+           style="width:100%; max-width:780px; border-radius:6px; border:1px solid rgba(201,168,76,0.3);"
+           loading="lazy">
+      <figcaption style="font-family:'Overpass Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; color:var(--text-muted); margin-top:0.6rem; text-transform:uppercase;">
+        HMS Hood, 1924 — one of the four major warships at the heart of the Invergordon Mutiny &nbsp;·&nbsp; Allan C. Green / State Library of Victoria (public domain)
+      </figcaption>
+    </figure>
+
+    <div class="fact-box">
+      <span class="fact-box-label">&#9875; The Firth by the Numbers</span>
+      <p><strong>The Sutors:</strong> roughly 151 m (North) and 141 m (South) — the two headlands guarding an entrance channel about half a mile wide.</p>
+      <p><strong>Depth:</strong> entrance channel ~15–26 m; up to <strong>55 m</strong> inside — deep enough for very large vessels many ports cannot take.</p>
+      <p><strong>1913:</strong> Churchill commissions the South Sutor gun batteries. <strong>1915:</strong> HMS <em>Natal</em> lost to an internal explosion — 390–421 dead. <strong>1931:</strong> the Invergordon Mutiny helps force Britain off the Gold Standard.</p>
+      <p><strong>Today:</strong> the port reached its <strong>750th</strong> drilling-rig visit in 2024, is a ScotWind offshore-wind hub, and welcomed around 118 cruise ships carrying 213,000+ passengers.</p>
+    </div>
+
+    <h2>The Firth Today</h2>
+
+    <p>The guns are long gone from the Sutors. The Grand Fleet is a century in the past. There is no naval base at Invergordon any more, no warships at anchor. And yet the thing that drew the Navy here in the first place — that deep, sheltered, remarkably calm water — has never stopped working.</p>
+
+    <figure style="margin: 2.5rem 0; text-align: center;">
+      <img width="1400" height="1050" src="website_image_files/blog_images/cromarty-firth-blog-saltburn-pier-invergordon.jpg"
+           alt="A cruise liner docked at the deep-water pier at Invergordon, oil rigs beyond, on the calm Cromarty Firth"
+           style="width:100%; max-width:780px; border-radius:6px; border:1px solid rgba(201,168,76,0.3);"
+           loading="lazy">
+      <figcaption style="font-family:'Overpass Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; color:var(--text-muted); margin-top:0.6rem; text-transform:uppercase;">
+        A cruise liner at the Invergordon pier today, oil rigs beyond — the deep, sheltered water still doing its work &nbsp;·&nbsp; &copy; Explore Invergordon
+      </figcaption>
+    </figure>
+
+    <p>Walk the shore today and the Firth is as busy as it ever was, just in different colours. Out in the channel stand the oil rigs: since the North Sea boom of the 1970s the Cromarty Firth has been a leading location for rig repair and maintenance, and in April 2024 the Port welcomed its <strong>750th drilling-rig visit</strong> — there is room here, and shelter, that almost no other port in Britain can offer. Alongside them now is the new industry. The Port of Cromarty Firth has become one of the front-runners of Scotland&rsquo;s offshore-wind boom, with the great majority of the ScotWind development sites sitting close at hand and tens of millions of pounds earmarked to build the quaysides that will assemble the turbines of the future. The same water that sheltered battleships now shelters the machinery of the energy transition.</p>
+
+    <p>And then there are the ships that bring the rest of the world to the Highlands. For roughly seven months of the year, Invergordon is one of Scotland&rsquo;s busiest cruise ports — the gateway to Loch Ness, the NC500 and the Highlands beyond. In 2024, around 118 cruise ships called here, carrying more than 213,000 passengers — each vessel able to come right up to the pier for precisely the same reason as everything else: the water is deep enough, and calm enough, to take them. Among the most familiar of them is TUI Cruises&rsquo; <em>Mein Schiff 2</em> — a 316-metre, 111,500-tonne floating resort and the most frequent caller of the entire 2026 season, bringing around 2,700 German guests ashore on every visit.</p>
+
+    <figure style="margin: 2.5rem 0; text-align: center;">
+      <img width="1600" height="958" src="website_image_files/blog_images/cromarty-firth-mein-schiff-2.jpg"
+           alt="TUI Cruises' Mein Schiff 2 alongside the deep-water pier at Invergordon on the Cromarty Firth"
+           style="width:100%; max-width:780px; border-radius:6px; border:1px solid rgba(201,168,76,0.3);"
+           loading="lazy">
+      <figcaption style="font-family:'Overpass Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; color:var(--text-muted); margin-top:0.6rem; text-transform:uppercase;">
+        TUI Cruises&rsquo; Mein Schiff 2 alongside at Invergordon — the most frequent visitor of the 2026 cruise season &nbsp;·&nbsp; &copy; Explore Invergordon
+      </figcaption>
+    </figure>
+
+    <p>It is easy, standing on the shore at Invergordon, to see only the view — the still water, the reflected hills, the great white ships. But the view <em>is</em> the history. The reason a cruise liner can dock here, the reason the rigs shelter here, the reason Churchill fortified here and the <em>Natal</em> anchored here and the fleet mutinied here, is the same in every age: the quiet, deep, sheltered water behind the door in the hills.</p>
+
+    <p>That water still matters more than ever. In 2024 alone, the cruise trade it makes possible was worth an estimated &pound;28 million to the Highland economy — proof that this quiet firth, which has shaped wars and currencies, is still quietly shaping the fortunes of the place that grew up around it.</p>
+
+    <p>The Firth rarely shows the fury of the open sea. And because of that, for more than a century, it has sat at the centre of events far stormier than anything its surface would ever suggest.</p>
+
+    <!-- SHARE -->
+    <div class="post-share" data-url="https://exploreinvergordon.scot/invergordon-cromarty-firth-maritime-history" data-title="The Quiet Firth That Sank a Battleship, Defied the Admiralty, and Shook the Pound — Explore Invergordon">
+      <span class="post-share-label">Share this post</span>
+      <div class="post-share-buttons">
+        <a href="#" class="share-btn share-btn-x" onclick="shareX(this);return false;" title="Share on X / Twitter"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X / Twitter</a>
+        <a href="#" class="share-btn share-btn-wa" onclick="shareWa(this);return false;" title="Share on WhatsApp"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <button class="share-btn share-btn-copy" onclick="copyPostLink(this)" title="Copy link to this post"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copy Link</button>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <span class="cta-box-label">&#9875; Visiting the Scottish Highlands by Ship?</span>
+      <p>Invergordon is your gateway to one of the world's most history-rich landscapes. See the full 2026 cruise schedule — ship names, arrival times, and what to do with your day ashore.</p>
+      <a href="cruise-hub" class="cta-btn">View the 2026 Cruise Schedule &rarr;</a>
+    </div>
+
+    <!-- SOURCES -->
+    <div class="sources">
+      <span class="sources-label">Sources</span>
+      <p><a href="https://pocf.co.uk/renewables/" target="_blank" rel="noopener">Port of Cromarty Firth — Renewables, Cruise &amp; Annual Review 2024 ↗</a></p>
+      <p><a href="https://www.royalnavy.mod.uk/news/2020/december/30/20201230-hms-natal" target="_blank" rel="noopener">Royal Navy — Anniversary of the loss of HMS Natal ↗</a></p>
+      <p><a href="https://www.rossandcromartyheritage.org/home/black-isle-communities/cromarty/cromarty-folk/cromarty-archaeology-soutor-fortifications/" target="_blank" rel="noopener">Ross &amp; Cromarty Heritage — Sutor Fortifications &amp; HMS Natal ↗</a></p>
+      <p><a href="https://winstonchurchill.org/publications/finest-hour/finest-hour-189/churchill-the-admiralty-and-scotland/" target="_blank" rel="noopener">International Churchill Society — Churchill, the Admiralty, and Scotland ↗</a></p>
+      <p><a href="https://www.offshore-mag.com/rigs/article/55016599/cromarty-firth-marks-offshore-rig-milestone" target="_blank" rel="noopener">Offshore Magazine — Cromarty Firth marks 750th drilling-rig visit (2024) ↗</a></p>
+      <p><a href="https://www.nationalarchives.gov.uk/education/resources/thirties-britain/invergordon-mutiny/" target="_blank" rel="noopener">The National Archives — The Invergordon Mutiny, 1931 ↗</a></p>
+      <p style="margin-top:0.6rem;">Supplementary background: Wikipedia (Cromarty Firth, HMS Natal, Invergordon Mutiny).</p>
+    </div>
+
+
+  </div><!-- /article-body -->
+</div><!-- /article-container -->
+
+<footer>
+  <p>EXPLORE INVERGORDON &middot; SCOTTISH HIGHLANDS</p>
+  <p><a href="blog">&#8592; Back to the Blog</a></p>
+  <p style="margin-top:0.8rem; font-size:0.9rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy">Privacy Policy</a></p>
+  <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
+</footer>
+
+<script>
+function getShareData(btn) {
+  var c = btn.closest('.post-share');
+  return { url: c.getAttribute('data-url'), title: c.getAttribute('data-title') };
+}
+function shareX(btn) {
+  var d = getShareData(btn);
+  window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(d.url) + '&text=' + encodeURIComponent(d.title), '_blank', 'width=620,height=420');
+}
+function shareWa(btn) {
+  var d = getShareData(btn);
+  window.open('https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.url), '_blank');
+}
+function fallbackCopy(text, callback) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select(); ta.setSelectionRange(0, 99999);
+  try { document.execCommand('copy'); callback(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+function copyPostLink(btn) {
+  var d = getShareData(btn);
+  if (navigator.share) { navigator.share({ title: d.title, url: d.url }).catch(function() {}); return; }
+  var orig = btn.innerHTML;
+  function done() {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(d.url).then(done).catch(function() { fallbackCopy(d.url, done); });
+  } else { fallbackCopy(d.url, done); }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  if (navigator.share) {
+    document.querySelectorAll('.post-share-buttons .share-btn:last-child').forEach(function(btn) {
+      btn.innerHTML = btn.innerHTML.replace('Copy Link', 'Share');
+    });
+  }
+});
+
+// ── Google Translate ─────────────────────────────────────────────
+function eiLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  var el = document.getElementById('google_translate_element');
+  if (el) el.style.display = 'none';
+  document.querySelectorAll('.lang-more-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (lang === 'en') {
+    var _hn = location.hostname;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + _hn;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + _hn;
+    window.location.reload(); return;
+  }
+  function fire() {
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo || !combo.options.length) { setTimeout(fire, 300); return; }
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+    setTimeout(function() { combo.dispatchEvent(new Event('change')); }, 50);
+  }
+  fire();
+}
+function eiMoreLangs(btn) {
+  var el = document.getElementById('google_translate_element');
+  var open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (btn) btn.classList.toggle('active', !open);
+}
+(function() {
+  function hideGTBar() {
+    document.querySelectorAll('iframe').forEach(function(f) {
+      if ((f.className || '').indexOf('goog-te') !== -1) {
+        f.style.cssText = 'display:none!important;height:0!important;border:0!important;';
+      }
+    });
+    if (document.body) document.body.style.top = '0';
+    document.documentElement.style.top = '0';
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      var obs = new MutationObserver(hideGTBar);
+      obs.observe(document.body, { childList: true, subtree: true });
+      hideGTBar();
+    });
+  } else {
+    var obs = new MutationObserver(hideGTBar);
+    obs.observe(document.body, { childList: true, subtree: true });
+    hideGTBar();
+  }
+  [500, 1000, 2000, 3000].forEach(function(t) { setTimeout(hideGTBar, t); });
+})();
+
+// ── Nav scroll arrows ────────────────────────────────────────────
+(function() {
+  var track   = document.querySelector('.nav-links');
+  var leftBtn = document.querySelector('.nav-scroll-left');
+  var rightBtn= document.querySelector('.nav-scroll-right');
+  if (!track) return;
+  var _navTimer = null;
+  function navGo(dir) { navStop(); _navTimer = setInterval(function() { track.scrollLeft += dir * 4; }, 16); }
+  function navStop() { clearInterval(_navTimer); _navTimer = null; }
+  function addHoverTouch(btn, dir) {
+    btn.addEventListener('mouseenter', function() { navGo(dir); });
+    btn.addEventListener('mouseleave', navStop);
+    btn.addEventListener('touchstart', function() { navGo(dir); }, { passive: true });
+    btn.addEventListener('touchend', navStop);
+    btn.addEventListener('touchcancel', navStop);
+  }
+  if (leftBtn) addHoverTouch(leftBtn, -1);
+  if (rightBtn) addHoverTouch(rightBtn, 1);
+})();
+
+function syncNavTop() {
+  var lb = document.querySelector(".lang-bar");
+  var nav = document.querySelector("nav");
+  if (!lb || !nav) return;
+  nav.style.top = lb.offsetHeight + "px";
+}
+window.addEventListener("load", syncNavTop);
+window.addEventListener("resize", syncNavTop);
+document.addEventListener("DOMContentLoaded", syncNavTop);
+window.addEventListener("orientationchange", function() { setTimeout(syncNavTop, 150); });
+</script>
+</body>
+</html>

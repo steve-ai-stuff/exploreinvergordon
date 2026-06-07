@@ -25,6 +25,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://exploreinvergordon.scot/invergordon-cromarty-firth-maritime-history</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://exploreinvergordon.scot/plan-my-day</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
