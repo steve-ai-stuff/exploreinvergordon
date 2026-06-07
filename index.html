@@ -2364,7 +2364,7 @@ function googleTranslateElementInit() {
       <em>Invergordon</em>
     </h1>
     <p class="hero-subtitle" id="hero-sub">Your guide to Invergordon, Scottish Highlands and surrounding area</p>
-    <a href="javascript:void(0)" onclick="beginVisit()" class="hero-cta">
+    <a href="#welcome" onclick="beginVisit();return false;" class="hero-cta">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       <span id="hero-cta-text">Begin Here</span>
     </a>
@@ -2412,13 +2412,13 @@ function googleTranslateElementInit() {
       <p class="card-text" id="card2-text">Mountains, sea lochs, ancient forests and dramatic coastlines surround the town. You're standing in one of the most beautiful landscapes in Europe.</p>
       <p class="card-cta-btn" id="card2-cta">Discover ↓</p>
     </a>
-    <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
+    <a href="#town" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'});return false;" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🍽️</span>
       <div class="card-title" id="card3-title">Eat & Drink Locally</div>
       <p class="card-text" id="card3-text">From a legendary full Scottish breakfast to award-winning Indian cuisine, the High Street offers genuine local flavours. No tourist traps — just good food.</p>
       <p class="card-cta-btn" id="card3-cta">See the Guide ↓</p>
     </a>
-    <a href="javascript:void(0)" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'})" class="welcome-card" style="text-decoration:none; display:block;">
+    <a href="#town" onclick="document.getElementById('town').scrollIntoView({behavior:'smooth'});return false;" class="welcome-card" style="text-decoration:none; display:block;">
       <span class="card-icon">🛍️</span>
       <div class="card-title" id="card4-title">Shop Local</div>
       <p class="card-text" id="card4-text">Scottish gifts, handmade crafts, tartan and local art. Support real independent businesses, not chain stores. Everything is a short stroll from the port.</p>
@@ -2432,7 +2432,7 @@ function googleTranslateElementInit() {
   <h2 class="section-title" id="museum-title">Invergordon <em>Museum</em></h2>
   <div class="divider"></div>
   <div style="width:100%;max-width:1000px;margin:0 auto 1.5rem;overflow:hidden;border-radius:14px;border:2px solid rgba(212,175,55,0.80);box-shadow:0 0 18px rgba(212,175,55,0.25), 0 6px 20px rgba(0,0,0,0.45);">
-    <img src="website_image_files/library_image/Invergordon-Museum.jpg" alt="Invergordon Museum"
+    <img width="1024" height="486" src="website_image_files/library_image/Invergordon-Museum.jpg" alt="Invergordon Museum"
          style="width:100%;height:260px;object-fit:cover;object-position:top;display:block;" loading="lazy"/>
   </div>
   <div class="museum-card">
@@ -2480,7 +2480,7 @@ function googleTranslateElementInit() {
 
           <!-- FRONT: photo + name + badge -->
           <div class="biz-face">
-            <img class="feat-photo"
+            <img width="3662" height="1663" class="feat-photo"
                  src="website_image_files/business_images/invergordon-golf-course-hero-image-2.webp"
                  alt="Invergordon Golf Club" loading="lazy"
                  onerror="this.style.display='none'"/>
@@ -2519,7 +2519,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d1a3d;">
             <div class="biz-back-fallback">🍔</div>
-            <img class="biz-back-photo"
+            <img width="408" height="271" class="biz-back-photo"
                  src="website_image_files/business_images/SCRAN Restaurant.jpg"
                  alt="SCRAN"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2541,7 +2541,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d2d;">
             <div class="biz-back-fallback">☕</div>
-            <img class="biz-back-photo"
+            <img width="426" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Cafe Tomich.jpg"
                  alt="Cafe Tomich"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2563,7 +2563,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d2d;">
             <div class="biz-back-fallback">🍽️</div>
-            <img class="biz-back-photo"
+            <img width="408" height="320" class="biz-back-photo"
                  src="website_image_files/business_images/Clootie McToot Cafe.jpg"
                  alt="Clootie McToot Cafe"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2585,7 +2585,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d2d;">
             <div class="biz-back-fallback">☕</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Smugglers Point Cafe.jpg"
                  alt="Smugglers Point Café"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2607,7 +2607,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d2d;">
             <div class="biz-back-fallback">☕</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Rashos Cafe.jpg"
                  alt="Rasho's Café"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2629,7 +2629,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d1a3d;">
             <div class="biz-back-fallback">🍦</div>
-            <img class="biz-back-photo"
+            <img width="865" height="502" class="biz-back-photo"
                  src="website_image_files/business_images/Sweets &amp; Treats.png"
                  alt="Sweets &amp; Treats"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2651,7 +2651,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d2d;">
             <div class="biz-back-fallback">🥐</div>
-            <img class="biz-back-photo"
+            <img width="408" height="408" class="biz-back-photo"
                  src="website_image_files/business_images/Harry Gow Bakers.jpeg"
                  alt="Harry Gow Bakers"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2673,7 +2673,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d1a3d;">
             <div class="biz-back-fallback">🍛</div>
-            <img class="biz-back-photo"
+            <img width="426" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Balti Mahal.png"
                  alt="Balti Mahal"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2695,7 +2695,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d1a3d;">
             <div class="biz-back-fallback">🍛</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Bonnie Bhaji.jpg"
                  alt="Bonnie Bhaji"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2717,7 +2717,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d1a3d;">
             <div class="biz-back-fallback">🥡</div>
-            <img class="biz-back-photo"
+            <img width="407" height="271" class="biz-back-photo"
                  src="website_image_files/business_images/K-Style Takeaway.jpg"
                  alt="K-Style"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2739,7 +2739,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d1a3d;">
             <div class="biz-back-fallback">🥢</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Come Home Love, Dinner @8 Chinese Takeaway.jpg"
                  alt="Dinner @8 Chinese"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2761,7 +2761,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d1a1a;">
             <div class="biz-back-fallback">🍺</div>
-            <img class="biz-back-photo"
+            <img width="427" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Tuckers Inn.jpg"
                  alt="Tuckers Inn"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2783,7 +2783,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a2d3d;">
             <div class="biz-back-fallback">🥃</div>
-            <img class="biz-back-photo"
+            <img width="427" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Marine Bar & Hotel.jpg"
                  alt="The Marine"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2805,7 +2805,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a2d3d;">
             <div class="biz-back-fallback">🥂</div>
-            <img class="biz-back-photo"
+            <img width="604" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Invergordon Social Club.jpg"
                  alt="Social Club"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2827,7 +2827,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d3d1a;">
             <div class="biz-back-fallback">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
-            <img class="biz-back-photo"
+            <img width="507" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Macraes of Scotland.jpg"
                  alt="MacRaes Tartan & Gifts"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2849,7 +2849,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d2d1a;">
             <div class="biz-back-fallback">🎁</div>
-            <img class="biz-back-photo"
+            <img width="426" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Tanstar Gifts.jpg"
                  alt="Tanstar Gifts"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2871,7 +2871,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d2d1a;">
             <div class="biz-back-fallback">🎁</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Nickel & Dime Hardware Shop.jpg"
                  alt="Nickel & Dime"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2893,7 +2893,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a2d3d;">
             <div class="biz-back-fallback">🛍️</div>
-            <img class="biz-back-photo"
+            <img width="340" height="193" class="biz-back-photo"
                  src="website_image_files/business_images/Arti Clan.jpg"
                  alt="ArtiClan"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2915,7 +2915,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a2d3d;">
             <div class="biz-back-fallback">🖼️</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Invergordon Gallery.jpg"
                  alt="Invergordon Gallery"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2937,7 +2937,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2d1a3d;">
             <div class="biz-back-fallback">🎨</div>
-            <img class="biz-back-photo"
+            <img width="407" height="523" class="biz-back-photo"
                  src="website_image_files/business_images/Mike Ross Arts.jpg"
                  alt="Mike Ross Arts"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2959,7 +2959,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d1a2d;">
             <div class="biz-back-fallback">💪</div>
-            <img class="biz-back-photo"
+            <img width="408" height="208" class="biz-back-photo"
                  src="website_image_files/business_images/The Stoltman Shop.jpg"
                  alt="The Stoltman Shop"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -2981,7 +2981,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d1a;">
             <div class="biz-back-fallback">🛒</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Co-Op Food Invergordon.jpg"
                  alt="Co-Op"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3003,7 +3003,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d1a;">
             <div class="biz-back-fallback">🛒</div>
-            <img class="biz-back-photo"
+            <img width="470" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Farmfoods Supermarket.jpg"
                  alt="Farmfoods"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3025,7 +3025,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a2a3d;">
             <div class="biz-back-fallback">💊</div>
-            <img class="biz-back-photo"
+            <img width="586" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Boots Pharmacy.jpg"
                  alt="Boots Chemist"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3047,7 +3047,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d2a1a;">
             <div class="biz-back-fallback">❤️</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Hope Charity Shop.jpg"
                  alt="Hope Charity Shop"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3069,7 +3069,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d2a1a;">
             <div class="biz-back-fallback">❤️</div>
-            <img class="biz-back-photo"
+            <img width="426" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Blythswood Care Charity Shop.jpg"
                  alt="Blythswood Care"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3091,7 +3091,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2a1a3d;">
             <div class="biz-back-fallback">📚</div>
-            <img class="biz-back-photo"
+            <img width="408" height="347" class="biz-back-photo"
                  src="website_image_files/business_images/Invergordon Library.JPG"
                  alt="Invergordon Library"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3113,7 +3113,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#2a1a3d;">
             <div class="biz-back-fallback">🏛️</div>
-            <img class="biz-back-photo"
+            <img width="408" height="230" class="biz-back-photo"
                  src="website_image_files/business_images/Invergordon Museum.jpg"
                  alt="Invergordon Museum"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3135,7 +3135,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d3d;">
             <div class="biz-back-fallback">📰</div>
-            <img class="biz-back-photo"
+            <img width="408" height="306" class="biz-back-photo"
                  src="website_image_files/business_images/Buchanan's Newsagents Grab n Go.jpg"
                  alt="Buchanan's Newsagents"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3157,7 +3157,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a3d1a;">
             <div class="biz-back-fallback">🧃</div>
-            <img class="biz-back-photo"
+            <img width="408" height="259" class="biz-back-photo"
                  src="website_image_files/business_images/Premier.jpg"
                  alt="Premier"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3179,7 +3179,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a2d3d;">
             <div class="biz-back-fallback">🏊</div>
-            <img class="biz-back-photo"
+            <img width="408" height="272" class="biz-back-photo"
                  src="website_image_files/business_images/Invergordon Leisure Centre High Life Highland.jpg"
                  alt="Invergordon Leisure Centre"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3201,7 +3201,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#1a5c1a;">
             <div class="biz-back-fallback">⚾</div>
-            <img class="biz-back-photo"
+            <img width="426" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Invergordon Bowling Club.jpg"
                  alt="Bowling Club"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3223,7 +3223,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d3d1a;">
             <div class="biz-back-fallback">🔨</div>
-            <img class="biz-back-photo"
+            <img width="426" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Travis Perkins Invergordon.jpg"
                  alt="Travis Perkins"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3245,7 +3245,7 @@ function googleTranslateElementInit() {
           </div>
           <div class="biz-back" style="background:#3d2d1a;">
             <div class="biz-back-fallback">🚕</div>
-            <img class="biz-back-photo"
+            <img width="425" height="240" class="biz-back-photo"
                  src="website_image_files/business_images/Highland Taxis Ross-shire Taxis.jpg"
                  alt="Highland Taxis"
                  onerror="this.style.display='none'" loading="lazy"/>
@@ -3762,7 +3762,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
   <div style="position:relative; display:inline-block; margin-top:8px;">
 
     <!-- Saltire flag image -->
-    <img src="website_image_files/background_images/saltire_flag.jpg"
+    <img width="480" height="270" src="website_image_files/background_images/saltire_flag.jpg"
          alt="Scottish Saltire flag"
          style="display:block; width:300px; border-radius:8px;
                 filter: drop-shadow(0 8px 28px rgba(20,30,100,0.75));" loading="lazy"/>
