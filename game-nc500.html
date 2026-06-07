@@ -294,9 +294,9 @@
   @keyframes finePop{from{opacity:0;transform:translate(-50%,-50%) scale(.84);}to{opacity:1;transform:translate(-50%,-50%) scale(1);}}
 
 </style>
-<link rel="canonical" href="https://exploreinvergordon.scot/game-nc500.html">
+<link rel="canonical" href="https://exploreinvergordon.scot/game-nc500">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://exploreinvergordon.scot/game-nc500.html">
+<meta property="og:url" content="https://exploreinvergordon.scot/game-nc500">
 <meta property="og:title" content="NC500 Dash [www.exploreinvergordon.scot]">
 <meta property="og:description" content="Drive the legendary NC500, collect Highland treasures and outrun the Hairy Haggis! A fun 3D game from Explore Invergordon — top score each month wins a prize.">
 <meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/game/nc500-dash-og.jpg">
@@ -465,7 +465,7 @@
     </div>
     <div class="share-prompt">📣 Post your card to the <b>Explore Invergordon</b> Facebook page &amp; <b>tag @exploreinvergordon</b> — the top score each month wins a prize! 🏆</div>
     <div class="btn-row" style="margin-top:12px;">
-      <a class="btn secondary" href="/nc500.html" target="_blank" rel="noopener">🗺️ Plan your real NC500 trip →</a>
+      <a class="btn secondary" href="/nc500" target="_blank" rel="noopener">🗺️ Plan your real NC500 trip →</a>
     </div>
     <div class="credit">Best so far: <span id="over-best">0</span><br>
       <span style="opacity:.7;">🏆 Top score each month wins a prize · made right here on the NC500 · exploreinvergordon.scot</span></div>
@@ -2208,7 +2208,7 @@ muteBtn.addEventListener('click', function(){
   function downloadCard(cn){ try{ var a=document.createElement('a'); a.download='nc500-dash.png'; a.href=cn.toDataURL('image/png'); a.click(); }catch(e){} }
   document.getElementById('shareBtn').addEventListener('click',function(){
     var btn=this, cn=buildShareCard(lastRun);
-    var txt='I scored '+Number(lastRun.score).toLocaleString()+' on NC500 Dash 🚐🏴󠁧󠁢󠁳󠁣󠁴󠁿 — the world\'s first North Coast 500 game, with REAL-TIME Highland weather, the actual route & mileage, made by a local living on the NC500. FREE to play!\n\n👉 Post your card on the Explore Invergordon Facebook page & tag @exploreinvergordon — top score each month wins a prize!\n\nhttps://exploreinvergordon.scot/game-nc500.html';
+    var txt='I scored '+Number(lastRun.score).toLocaleString()+' on NC500 Dash 🚐🏴󠁧󠁢󠁳󠁣󠁴󠁿 — the world\'s first North Coast 500 game, with REAL-TIME Highland weather, the actual route & mileage, made by a local living on the NC500. FREE to play!\n\n👉 Post your card on the Explore Invergordon Facebook page & tag @exploreinvergordon — top score each month wins a prize!\n\nhttps://exploreinvergordon.scot/game-nc500';
     try{
       cn.toBlob(function(blob){
         var file = (blob && window.File) ? new File([blob],'nc500-dash.png',{type:'image/png'}) : null;

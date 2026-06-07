@@ -2282,14 +2282,14 @@ function googleTranslateElementInit() {
   <div class="nav-scroll-wrapper">
     <button class="nav-scroll-btn nav-scroll-left" aria-label="Scroll nav left">&#8249;</button>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-active nav-home">Home</a></li>
-    <li><a href="murals.html">Murals</a></li>
-    <li><a href="cruise-hub.html">Cruise Hub</a></li>
+    <li><a href="/" class="nav-active nav-home">Home</a></li>
+    <li><a href="murals">Murals</a></li>
+    <li><a href="cruise-hub">Cruise Hub</a></li>
       
-    <li><a href="nc500.html">NC500</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="work-with-me.html" id="nav-wwm">Work With Me</a></li>
+    <li><a href="nc500">NC500</a></li>
+    <li><a href="gallery">Gallery</a></li>
+    <li><a href="blog">Blog</a></li>
+    <li><a href="work-with-me" id="nav-wwm">Work With Me</a></li>
   </ul>
     <button class="nav-scroll-btn nav-scroll-right" aria-label="Scroll nav right">&#8250;</button>
   </div>
@@ -2388,7 +2388,7 @@ function googleTranslateElementInit() {
   <div class="visitor-photo-cta-inner">
     <div class="visitor-photo-cta-icon">📸</div>
     <p class="visitor-photo-cta-text">Got a photo you love — from your time here in Invergordon, the Highlands, or even back home from wherever you travelled from in the world? <strong>We would love to see it.</strong> Share your favourite with us in our brand new Visitor Gallery.</p>
-    <button class="visitor-photo-cta-btn" onclick="if(window.playFX)window.playFX('camera');setTimeout(function(){window.location.href='gallery.html#visitor';},650);">📸 Share Your Photo With Us</button>
+    <button class="visitor-photo-cta-btn" onclick="if(window.playFX)window.playFX('camera');setTimeout(function(){window.location.href='gallery#visitor';},650);">📸 Share Your Photo With Us</button>
   </div>
 </div>
 
@@ -3834,7 +3834,7 @@ document.querySelectorAll('.welcome-card, .trail-stat, .cruise-tip').forEach(el 
 <footer>
   <p>EXPLORE INVERGORDON · EASTER ROSS · SCOTTISH HIGHLANDS</p>
   <p style="margin-top:0.5rem;"><a href="https://invergordonoffthewall.org.uk" target="_blank">Invergordon Off the Wall</a> · <a href="https://www.invergordonmuseum.co.uk" target="_blank">Invergordon Museum</a> · <a href="https://pocf.co.uk/cruise/" target="_blank">Port of Cromarty Firth</a></p>
-  <p style="margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid rgba(107,74,126,0.5); font-size:0.9rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy Policy</a></p>
+  <p style="margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid rgba(107,74,126,0.5); font-size:0.9rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="/privacy">Privacy Policy</a></p>
   <p class="footer-proton">Online Privacy is so important these days but often people don't know where to begin. Would you like your own Privacy focused Encrypted emails along with a range of other innovative Proton products that all offer security and peace of mind? <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">Click my referral link here for a bonus when you give them a try ↗</a></p>
   <p class="footer-credit" id="footer-credit">Created by a Local Resident using Modern Tools — Capturing his own Unique Images &amp; Video of the Town and Surrounding Areas · ExploreInvergordon.scot</p>
 </footer>
@@ -4247,7 +4247,7 @@ function showUploadComingSoon(btn) {
     teaser.appendChild(msg);
   }
   setTimeout(function() {
-    window.location.href = 'gallery.html#visitor';
+    window.location.href = 'gallery#visitor';
   }, 650);
 }
 

@@ -9,11 +9,11 @@
 <meta name="description" content="Get a personalised Invergordon shore day itinerary delivered to your email within 1 hour. Tailored to your group, interests and pace. Just £15.">
 <meta name="keywords" content="Invergordon shore excursion, cruise passenger itinerary, Invergordon things to do, Scottish Highlands day trip, personalised Invergordon guide">
 <meta name="author" content="Explore Invergordon">
-<link rel="canonical" href="https://exploreinvergordon.scot/plan-my-day.html">
+<link rel="canonical" href="https://exploreinvergordon.scot/plan-my-day">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://exploreinvergordon.scot/plan-my-day.html">
+<meta property="og:url" content="https://exploreinvergordon.scot/plan-my-day">
 <meta property="og:title" content="Plan My Shore Day — Custom Invergordon Itinerary">
 <meta property="og:description" content="A personalised Invergordon itinerary, built for your group, delivered in 1 hour. Just £15.">
 <meta property="og:image" content="https://exploreinvergordon.scot/website_image_files/background_images/background_image-opengraph.jpg">
@@ -801,14 +801,14 @@
   <div class="nav-scroll-wrapper">
     <button class="nav-scroll-btn nav-scroll-left" aria-label="Scroll nav left">&#8249;</button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="murals.html">Murals</a></li>
-      <li><a href="cruise-hub.html">Cruise Hub</a></li>
-      <li><a href="plan-my-day.html" class="nav-active">Plan My Day</a></li>
-      <li><a href="nc500.html">NC500</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="work-with-me.html">Work With Me</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="murals">Murals</a></li>
+      <li><a href="cruise-hub">Cruise Hub</a></li>
+      <li><a href="plan-my-day" class="nav-active">Plan My Day</a></li>
+      <li><a href="nc500">NC500</a></li>
+      <li><a href="gallery">Gallery</a></li>
+      <li><a href="blog">Blog</a></li>
+      <li><a href="work-with-me">Work With Me</a></li>
     </ul>
     <button class="nav-scroll-btn nav-scroll-right" aria-label="Scroll nav right">&#8250;</button>
   </div>
@@ -1000,7 +1000,7 @@
 <!-- FOOTER -->
 <footer>
   <p>Explore Invergordon · Shore Day Concierge · Scottish Highlands</p>
-  <p style="margin-top:0.8rem; font-size:0.9rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="index.html">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="cruise-hub.html">Cruise Hub</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <p style="margin-top:0.8rem; font-size:0.9rem;">&copy; 2026 Explore Invergordon &nbsp;&middot;&nbsp; <a href="/">Back to Homepage</a> &nbsp;&middot;&nbsp; <a href="cruise-hub">Cruise Hub</a> &nbsp;&middot;&nbsp; <a href="privacy">Privacy Policy</a></p>
   <p class="footer-proton">Online privacy matters. I use Proton for encrypted email every day — <a href="https://pr.tn/ref/1CZT8S08" target="_blank" rel="noopener">click my referral link for a bonus when you try it ↗</a></p>
 </footer>
 
@@ -1027,7 +1027,7 @@ var FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
    with your real SumUp hosted checkout URL, e.g.:
    https://pay.sumup.com/b2c/XXXXXXXX
    Also set the SumUp "Redirect URL" in your SumUp dashboard to:
-   https://exploreinvergordon.scot/plan-my-day.html?booking=confirmed
+   https://exploreinvergordon.scot/plan-my-day?booking=confirmed
    ─────────────────────────────────────────────── */
 var SUMUP_URL = 'YOUR_SUMUP_CHECKOUT_URL';
 
@@ -1103,7 +1103,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
   fd.append('fitness_level', fitness);
   fd.append('budget',        budget);
   fd.append('extra_notes',   document.getElementById('fieldNotes').value.trim() || 'None');
-  fd.append('page',          'plan-my-day.html');
+  fd.append('page',          'plan-my-day');
 
   fetch('https://formspree.io/f/' + FORMSPREE_ID, {
     method: 'POST',
