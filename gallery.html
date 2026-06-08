@@ -1743,7 +1743,7 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
     var id = idFromSrc(src);
     var title = (caption && caption.trim()) ? caption.trim() : 'Explore Invergordon — Scottish Highlands';
     var clean = SITE + '/gallery?photo=' + encodeURIComponent(id);     // clean deep-link (humans)
-    var share = SITE + '/share?p=' + encodeURIComponent(id) +          // OG route (crawlers see the real photo)
+    var share = SITE + '/api/share?p=' + encodeURIComponent(id) +      // OG route (crawlers see the real photo)
                 '&img=' + encodeURIComponent(src) +
                 '&t=' + encodeURIComponent(title);
     return { id: id, url: clean, share: share, title: title, image: src };
@@ -1805,7 +1805,7 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
       if (k !== 'copy' && h[k]) btn.setAttribute('href', h[k]);
       btn.onclick = function (e) {
         e.preventDefault(); e.stopPropagation();
-        if (k === 'copy') { copyLink(d.url, btn); return; }
+        if (k === 'copy') { copyLink(d.share, btn); return; }
         openWin(h[k]);
       };
     });
