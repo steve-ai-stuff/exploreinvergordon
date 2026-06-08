@@ -313,6 +313,10 @@
     font-style: italic;
   }
 
+  /* Keep figure photos in their natural proportions — overrides the HTML height
+     attribute so width:100% scales height automatically (fixes stretched images) */
+  .article-body figure img { height: auto; }
+
   /* Pull quote */
   .pull-quote {
     border-left: 3px solid var(--gold);
