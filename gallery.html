@@ -903,8 +903,63 @@
   .gal-share-btn:hover { opacity: 0.85; }
   .gal-share-btn-x    { background: #000000;          color: #ffffff; }
   .gal-share-btn-wa   { background: #25D366;           color: #ffffff; }
+  .gal-share-btn-fb   { background: #1877F2;           color: #ffffff; }
+  .gal-share-btn-pin  { background: #E60023;           color: #ffffff; }
   .gal-share-btn-copy { background: var(--heather);    color: var(--cream); }
   .gal-share-btn.copied { opacity: 0.7; }
+
+  /* ── THUMBNAIL SHARE ICON ── */
+  .gal-thumb-share {
+    position: absolute;
+    top: 8px; right: 8px;
+    z-index: 6;
+    width: 34px; height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(8,15,30,0.72);
+    color: var(--gold, #c9a84c);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  .gallery-item:hover .gal-thumb-share,
+  .gal-thumb-share:focus-visible { opacity: 1; transform: translateY(0); }
+  .gal-thumb-share:hover { background: var(--gold, #c9a84c); color: #08111e; }
+  @media (hover: none) { .gal-thumb-share { opacity: 1; transform: none; } }
+
+  /* ── SHARE POPOVER (thumbnails) ── */
+  #gal-share-pop {
+    display: none;
+    position: fixed; inset: 0; z-index: 600;
+    background: rgba(5,10,22,0.85);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  #gal-share-pop.active { display: flex; }
+  .gal-share-pop-card {
+    background: var(--highland-dark, #0e1628);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 12px;
+    padding: 1.4rem 1.3rem 1.2rem;
+    max-width: 360px; width: 100%;
+    text-align: center;
+    position: relative;
+  }
+  .gal-share-pop-thumb {
+    width: 100%; max-height: 180px; object-fit: cover;
+    border-radius: 8px; margin-bottom: 1rem;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .gal-share-pop-close {
+    position: absolute; top: 6px; right: 10px;
+    background: none; border: none; color: var(--text-muted, #7a90b8);
+    font-size: 1.5rem; cursor: pointer; line-height: 1;
+  }
+  .gal-share-pop-close:hover { color: var(--gold, #c9a84c); }
 
   /* ── LIGHTBOX ── */
   #gal-lightbox {
@@ -1613,6 +1668,7 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
     lbImg.src   = lbItems[lbCur].src;
     lbImg.alt   = lbItems[lbCur].alt;
     lbCap.textContent = lbItems[lbCur].alt;
+    if (window.galUpdateShareBar) window.galUpdateShareBar(lbItems[lbCur].src, lbItems[lbCur].alt);
   }
 
   window.lbClose = function () {
@@ -1665,6 +1721,156 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
     if (!img) return; // placeholder — no lightbox
     lbOpen(img);
   });
+})();
+</script>
+<script>
+// ── Gallery photo sharing — thumbnails + lightbox + deep-link ────────────────
+(function () {
+  var SITE = 'https://exploreinvergordon.scot';
+
+  function idFromSrc(src) {
+    try { src = src.split('?')[0]; } catch (e) {}
+    var base = (src.split('/').pop() || '');
+    return base.replace(/\.[a-z0-9]+$/i, '');
+  }
+  function captionOf(item, img) {
+    var vc = item && item.querySelector('.visitor-credit-caption');
+    var gc = item && item.querySelector('.gallery-caption');
+    var t = (vc && vc.textContent) || (gc && gc.textContent) || (img && img.alt) || '';
+    return t.replace(/^["“”']+/, '').replace(/["“”']+$/, '').trim();
+  }
+  function shareData(src, caption) {
+    var id = idFromSrc(src);
+    return {
+      id:    id,
+      url:   SITE + '/gallery?photo=' + encodeURIComponent(id),
+      title: (caption && caption.trim()) ? caption.trim() : 'Explore Invergordon — Scottish Highlands',
+      image: src
+    };
+  }
+  function hrefs(d) {
+    var u = encodeURIComponent(d.url), t = encodeURIComponent(d.title), m = encodeURIComponent(d.image);
+    return {
+      x:   'https://twitter.com/intent/tweet?url=' + u + '&text=' + t,
+      wa:  'https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.url),
+      fb:  'https://www.facebook.com/sharer/sharer.php?u=' + u,
+      pin: 'https://www.pinterest.com/pin/create/button/?url=' + u + '&media=' + m + '&description=' + t
+    };
+  }
+  function openWin(href) { window.open(href, '_blank', 'noopener,noreferrer,width=600,height=520'); }
+  function fallbackCopy(text, cb) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand('copy'); cb(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function copyLink(text, btn) {
+    function done() {
+      if (!btn) return;
+      var o = btn.textContent; btn.textContent = '✓ Copied!'; btn.classList.add('copied');
+      setTimeout(function () { btn.textContent = o; btn.classList.remove('copied'); }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+    } else { fallbackCopy(text, done); }
+  }
+
+  function buttonsHTML() {
+    return '' +
+      '<a class="gal-share-btn gal-share-btn-x"   data-sh="x"   href="#" target="_blank" rel="noopener" title="Share on X">X</a>' +
+      '<a class="gal-share-btn gal-share-btn-wa"  data-sh="wa"  href="#" target="_blank" rel="noopener" title="Share on WhatsApp">WhatsApp</a>' +
+      '<a class="gal-share-btn gal-share-btn-fb"  data-sh="fb"  href="#" target="_blank" rel="noopener" title="Share on Facebook">Facebook</a>' +
+      '<a class="gal-share-btn gal-share-btn-pin" data-sh="pin" href="#" target="_blank" rel="noopener" title="Pin on Pinterest">Pinterest</a>' +
+      '<button type="button" class="gal-share-btn gal-share-btn-copy" data-sh="copy" title="Copy link">Copy Link</button>';
+  }
+  function wireButtons(container, d) {
+    var h = hrefs(d);
+    container.querySelectorAll('[data-sh]').forEach(function (btn) {
+      var k = btn.getAttribute('data-sh');
+      if (k !== 'copy' && h[k]) btn.setAttribute('href', h[k]);
+      btn.onclick = function (e) {
+        e.preventDefault(); e.stopPropagation();
+        if (k === 'copy') { copyLink(d.url, btn); return; }
+        openWin(h[k]);
+      };
+    });
+  }
+
+  // ── Lightbox share bar (created once, updated as photos change) ──
+  var lbInner = document.querySelector('#gal-lightbox .lb-inner');
+  if (lbInner) {
+    var bar = document.createElement('div');
+    bar.className = 'gal-share'; bar.id = 'lb-share';
+    bar.innerHTML = '<span class="gal-share-label">Share this photo</span>' +
+      '<div class="gal-share-buttons">' + buttonsHTML() + '</div>';
+    lbInner.appendChild(bar);
+  }
+  window.galUpdateShareBar = function (src, caption) {
+    var b = document.getElementById('lb-share');
+    if (b) wireButtons(b, shareData(src, caption));
+  };
+
+  // ── Share popover (one instance, reused by all thumbnails) ──
+  var pop = document.createElement('div');
+  pop.id = 'gal-share-pop';
+  pop.innerHTML = '<div class="gal-share-pop-card">' +
+      '<button type="button" class="gal-share-pop-close" aria-label="Close">&times;</button>' +
+      '<img class="gal-share-pop-thumb" alt="">' +
+      '<span class="gal-share-label">Share this photo</span>' +
+      '<div class="gal-share-buttons">' + buttonsHTML() + '</div>' +
+    '</div>';
+  document.body.appendChild(pop);
+  var popThumb = pop.querySelector('.gal-share-pop-thumb');
+  var popBtns  = pop.querySelector('.gal-share-buttons');
+  function closePop() { pop.classList.remove('active'); }
+  pop.addEventListener('click', function (e) { if (e.target === pop) closePop(); });
+  pop.querySelector('.gal-share-pop-close').addEventListener('click', closePop);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePop(); });
+  function openPop(src, caption) {
+    var d = shareData(src, caption);
+    popThumb.src = src; popThumb.alt = d.title;
+    wireButtons(popBtns, d);
+    pop.classList.add('active');
+  }
+
+  // ── Inject a share icon on each thumbnail (grid galleries only) ──
+  function injectThumbIcons() {
+    document.querySelectorAll('.gallery-item').forEach(function (item) {
+      if (item.closest('#vc3-scene') || item.closest('.vc3-slide')) return; // skip 3D carousel
+      if (item.querySelector('.gal-thumb-share')) return;                    // already done
+      var img = item.querySelector('img');
+      if (!img) return;                                                      // placeholder, no photo
+      if (getComputedStyle(item).position === 'static') item.style.position = 'relative';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gal-thumb-share';
+      btn.setAttribute('aria-label', 'Share this photo');
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+      btn.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        openPop(img.src, captionOf(item, img));
+      });
+      item.appendChild(btn);
+    });
+  }
+
+  // ── Deep link: /gallery?photo=<id> opens that exact photo ──
+  function openDeepLink() {
+    var m = location.search.match(/[?&]photo=([^&]+)/);
+    if (!m) return;
+    var id = decodeURIComponent(m[1]);
+    var imgs = document.querySelectorAll('.gallery-item img'), target = null;
+    for (var i = 0; i < imgs.length; i++) { if (idFromSrc(imgs[i].src) === id) { target = imgs[i]; break; } }
+    if (!target) return;
+    var panel = target.closest('.tab-panel');
+    if (panel && panel.id && window.switchGalleryTab) switchGalleryTab(panel.id.replace('tab-panel-', ''));
+    if (window.lbOpen) setTimeout(function () { lbOpen(target); }, 250);
+  }
+
+  function init() { injectThumbIcons(); openDeepLink(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script>
 <script>
