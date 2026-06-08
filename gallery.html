@@ -1741,20 +1741,22 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
   }
   function shareData(src, caption) {
     var id = idFromSrc(src);
-    return {
-      id:    id,
-      url:   SITE + '/gallery?photo=' + encodeURIComponent(id),
-      title: (caption && caption.trim()) ? caption.trim() : 'Explore Invergordon — Scottish Highlands',
-      image: src
-    };
+    var title = (caption && caption.trim()) ? caption.trim() : 'Explore Invergordon — Scottish Highlands';
+    var clean = SITE + '/gallery?photo=' + encodeURIComponent(id);     // clean deep-link (humans)
+    var share = SITE + '/share?p=' + encodeURIComponent(id) +          // OG route (crawlers see the real photo)
+                '&img=' + encodeURIComponent(src) +
+                '&t=' + encodeURIComponent(title);
+    return { id: id, url: clean, share: share, title: title, image: src };
   }
   function hrefs(d) {
-    var u = encodeURIComponent(d.url), t = encodeURIComponent(d.title), m = encodeURIComponent(d.image);
+    var s = encodeURIComponent(d.share), c = encodeURIComponent(d.url), t = encodeURIComponent(d.title), m = encodeURIComponent(d.image);
     return {
-      x:   'https://twitter.com/intent/tweet?url=' + u + '&text=' + t,
-      wa:  'https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.url),
-      fb:  'https://www.facebook.com/sharer/sharer.php?u=' + u,
-      pin: 'https://www.pinterest.com/pin/create/button/?url=' + u + '&media=' + m + '&description=' + t
+      // X / Facebook / WhatsApp read OG from the shared URL → use /share so the photo previews
+      x:   'https://twitter.com/intent/tweet?url=' + s + '&text=' + t,
+      wa:  'https://wa.me/?text=' + encodeURIComponent(d.title + ' — ' + d.share),
+      fb:  'https://www.facebook.com/sharer/sharer.php?u=' + s,
+      // Pinterest pins the explicit image directly; link to the clean gallery deep-link
+      pin: 'https://www.pinterest.com/pin/create/button/?url=' + c + '&media=' + m + '&description=' + t
     };
   }
   function openWin(href) { window.open(href, '_blank', 'noopener,noreferrer,width=600,height=520'); }
