@@ -77,17 +77,31 @@ async function handleRequest(context) {
   const payload = { host: HOST, key: KEY, keyLocation: KEY_LOCATION, urlList: URLS };
 
   let indexNowRes;
+  // Hard timeout — without this, a hanging IndexNow call lets the Function exceed
+  // its runtime limit and Cloudflare kills it, returning a branded 502 "Bad gateway"
+  // page (bypassing the JSON error handling below). AbortController makes it fail fast.
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
   try {
     indexNowRes = await fetch('https://api.indexnow.org/indexnow', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body:    JSON.stringify(payload),
+      signal:  controller.signal,
     });
   } catch (err) {
+    const timedOut = err && err.name === 'AbortError';
     return new Response(
-      JSON.stringify({ success: false, error: 'Network error contacting IndexNow API', detail: err.message }, null, 2),
-      { status: 502, headers: JSON_HEADERS }
+      JSON.stringify({
+        success: false,
+        error: timedOut ? 'IndexNow API did not respond within 8s (timed out)' : 'Network error contacting IndexNow API',
+        detail: err.message,
+        note: 'Static site, sitemap and key file are unaffected. You can also reindex manually in Bing Webmaster Tools.',
+      }, null, 2),
+      { status: 504, headers: JSON_HEADERS }
     );
+  } finally {
+    clearTimeout(timeoutId);
   }
 
   const success = indexNowRes.status === 200 || indexNowRes.status === 202;
