@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://exploreinvergordon.scot/blog</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -27,6 +27,12 @@
   <url>
     <loc>https://exploreinvergordon.scot/invergordon-cromarty-firth-maritime-history</loc>
     <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://exploreinvergordon.scot/bliadhna-nan-caorach-year-of-the-sheep</loc>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
