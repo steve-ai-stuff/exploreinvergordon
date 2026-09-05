@@ -1940,7 +1940,11 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
   // Position slides on a circle whose radius scales with the slide size
   function layoutCarousel() {
     var w = (slides[0] && slides[0].offsetWidth) || 280;
-    RADIUS = Math.round(w * (240 / 280));   // keep the original proportions at any size
+    // Radius MUST be derived from the slide count, not hard-coded. On a cylinder the
+    // cards only sit flush without intersecting when radius = (w/2) / tan(180/N).
+    // The old fixed 240/280 ratio was the correct value for N=6 ONLY — adding a 7th
+    // slide on 5 Sep 2026 tightened the circle and the cards cut through each other.
+    RADIUS = Math.round((w / 2) / Math.tan(Math.PI / N));
     slides.forEach(function (slide, i) {
       slide.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + RADIUS + 'px)';
     });
@@ -1959,13 +1963,16 @@ window.addEventListener("orientationchange", function() { setTimeout(syncNavTop,
       var angle = ((i * STEP + rotation) % 360 + 360) % 360;
       if (angle > 180) angle -= 360;
       var abs = Math.abs(angle);
+      // Fade thresholds are expressed in STEPS, not fixed degrees, so the look is
+      // identical at any slide count. (At N=6 these evaluate to the original 60/90.)
+      var FADE_OUT = STEP * 1.5;
       if (abs < 5) {
         slide.style.opacity = '1';
-      } else if (abs <= 60) {
+      } else if (abs <= STEP) {
         // Adjacent slides: fade to ~0.45
-        slide.style.opacity = String(1 - (abs / 60) * 0.55);
-      } else if (abs < 90) {
-        slide.style.opacity = String(0.45 * (1 - (abs - 60) / 30));
+        slide.style.opacity = String(1 - (abs / STEP) * 0.55);
+      } else if (abs < FADE_OUT) {
+        slide.style.opacity = String(0.45 * (1 - (abs - STEP) / (FADE_OUT - STEP)));
       } else {
         slide.style.opacity = '0';
       }
